@@ -4,5 +4,6 @@
     <string name="app_name">DailyStatus</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="month_year">m</string>
 
 </resources>

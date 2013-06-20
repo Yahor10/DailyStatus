@@ -703,10 +703,14 @@ containing a value of this type.
         public static final int abs__bright_foreground_inverse_holo_dark=0x7f070006;
         public static final int abs__bright_foreground_inverse_holo_light=0x7f070007;
         public static final int abs__holo_blue_light=0x7f070008;
-        public static final int abs__primary_text_disable_only_holo_dark=0x7f070009;
-        public static final int abs__primary_text_disable_only_holo_light=0x7f07000a;
-        public static final int abs__primary_text_holo_dark=0x7f07000b;
-        public static final int abs__primary_text_holo_light=0x7f07000c;
+        public static final int abs__primary_text_disable_only_holo_dark=0x7f07000d;
+        public static final int abs__primary_text_disable_only_holo_light=0x7f07000e;
+        public static final int abs__primary_text_holo_dark=0x7f07000f;
+        public static final int abs__primary_text_holo_light=0x7f070010;
+        public static final int daynames_background=0x7f070009;
+        public static final int daynames_text_color=0x7f07000a;
+        public static final int saturday_text_color=0x7f07000c;
+        public static final int sunday_text_color=0x7f07000b;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -950,7 +954,6 @@ containing a value of this type.
         public static final int ratingstars=0x7f020073;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f050033;
         public static final int abs__action_bar=0x7f050022;
         public static final int abs__action_bar_container=0x7f050021;
         public static final int abs__action_bar_subtitle=0x7f050011;
@@ -991,18 +994,29 @@ containing a value of this type.
         public static final int abs__title=0x7f05001b;
         public static final int abs__titleDivider=0x7f05001c;
         public static final int abs__up=0x7f05000b;
-        public static final int action_settings=0x7f050036;
+        public static final int action_settings=0x7f050040;
+        public static final int currentDay=0x7f05003c;
+        public static final int day0=0x7f050035;
+        public static final int day1=0x7f050036;
+        public static final int day2=0x7f050037;
+        public static final int day3=0x7f050038;
+        public static final int day4=0x7f050039;
+        public static final int day5=0x7f05003a;
+        public static final int day6=0x7f05003b;
+        public static final int dayImage=0x7f05003d;
+        public static final int dayLayout=0x7f050033;
+        public static final int day_names=0x7f050034;
         public static final int disableHome=0x7f050009;
         public static final int edit_query=0x7f050027;
         public static final int homeAsUp=0x7f050006;
-        public static final int icon=0x7f050034;
+        public static final int icon=0x7f05003e;
         public static final int listMode=0x7f050002;
         public static final int normal=0x7f050001;
         public static final int showCustom=0x7f050008;
         public static final int showHome=0x7f050005;
         public static final int showTitle=0x7f050007;
         public static final int tabMode=0x7f050003;
-        public static final int text=0x7f050035;
+        public static final int text=0x7f05003f;
         public static final int useLogo=0x7f050004;
         public static final int wrap_content=0x7f050000;
     }
@@ -1090,6 +1104,7 @@ containing a value of this type.
         public static final int action_settings=0x7f0a0010;
         public static final int app_name=0x7f0a000f;
         public static final int hello_world=0x7f0a0011;
+        public static final int month_year=0x7f0a0012;
     }
     public static final class style {
         public static final int Animations=0x7f0b005c;
@@ -1136,7 +1151,10 @@ containing a value of this type.
         public static final int DialogWindowTitle_Sherlock=0x7f0b0036;
         public static final int DialogWindowTitle_Sherlock_Light=0x7f0b0037;
         public static final int LoginFormContainer=0x7f0b005b;
-        public static final int RatingBar=0x7f0b0067;
+        /**  calendar 
+         */
+        public static final int MonthView_DayLabel=0x7f0b0067;
+        public static final int RatingBar=0x7f0b0066;
         public static final int Sherlock___TextAppearance_Small=0x7f0b004a;
         public static final int Sherlock___Theme=0x7f0b004e;
         public static final int Sherlock___Theme_DarkActionBar=0x7f0b0050;
@@ -1170,6 +1188,7 @@ containing a value of this type.
         public static final int TextAppearance_Sherlock_Widget_PopupMenu_Large=0x7f0b0042;
         public static final int TextAppearance_Sherlock_Widget_PopupMenu_Small=0x7f0b0044;
         public static final int TextAppearance_Sherlock_Widget_TextView_SpinnerItem=0x7f0b0046;
+        public static final int TextAppearance_MonthView_DayLabel=0x7f0b0068;
         public static final int Theme_Sherlock=0x7f0b0052;
         public static final int Theme_Sherlock_Dialog=0x7f0b0057;
         public static final int Theme_Sherlock_Light=0x7f0b0053;
@@ -1225,7 +1244,6 @@ containing a value of this type.
         public static final int Widget_Sherlock_Spinner_DropDown_ActionBar=0x7f0b0024;
         public static final int Widget_Sherlock_TextView_SpinnerItem=0x7f0b0032;
         public static final int YOURTHEME=0x7f0b0065;
-        public static final int YOURTHEME_ActionBar_TitleTextStyle=0x7f0b0066;
     }
     public static final class styleable {
         /**  Attributes used to style the Action Bar. 
