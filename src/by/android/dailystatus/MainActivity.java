@@ -9,6 +9,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 import by.android.dailystatus.widget.calendar.Utils;
 
@@ -16,7 +18,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
-public class MainActivity extends SherlockActivity {
+public class MainActivity extends SherlockActivity implements OnClickListener {
 
 	private static final String[] DATA = { "Sunday", "Monday", "Tuesday",
 			"Wednesday", "Thursday", "Friday", "Saturday" };
@@ -62,6 +64,7 @@ public class MainActivity extends SherlockActivity {
 			}
 		}
 
+		findViewById(R.id.good_day).setOnClickListener(this);
 	}
 
 	@Override
@@ -71,6 +74,19 @@ public class MainActivity extends SherlockActivity {
 		menu.add("Save").setIcon(R.drawable.ic_compose)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public void onClick(View v) {
+		
+		switch (v.getId()) {
+		case R.id.good_day:
+			findViewById(R.id.day_layout).setBackgroundColor(Color.BLUE);
+			break;
+
+		default:
+			break;
+		}
 	}
 
 }

@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dayLayout"
+     android:id="@+id/day_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,33 +9,75 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
-    
-	<LinearLayout android:id="@+id/day_names"
-		android:orientation="horizontal" android:background="@color/daynames_background"
-		android:layout_width="match_parent" android:layout_height="wrap_content">
 
-		<TextView android:id="@+id/day0" style="@style/MonthView_DayLabel" />
-		<TextView android:id="@+id/day1" style="@style/MonthView_DayLabel" />
-		<TextView android:id="@+id/day2" style="@style/MonthView_DayLabel" />
-		<TextView android:id="@+id/day3" style="@style/MonthView_DayLabel" />
-		<TextView android:id="@+id/day4" style="@style/MonthView_DayLabel" />
-		<TextView android:id="@+id/day5" style="@style/MonthView_DayLabel" />
-		<TextView android:id="@+id/day6" style="@style/MonthView_DayLabel" />
-	</LinearLayout>
-	
-	<View
+    <LinearLayout
+        android:id="@+id/day_names"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/daynames_background"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/day0"
+            style="@style/MonthView_DayLabel" />
+
+        <TextView
+            android:id="@+id/day1"
+            style="@style/MonthView_DayLabel" />
+
+        <TextView
+            android:id="@+id/day2"
+            style="@style/MonthView_DayLabel" />
+
+        <TextView
+            android:id="@+id/day3"
+            style="@style/MonthView_DayLabel" />
+
+        <TextView
+            android:id="@+id/day4"
+            style="@style/MonthView_DayLabel" />
+
+        <TextView
+            android:id="@+id/day5"
+            style="@style/MonthView_DayLabel" />
+
+        <TextView
+            android:id="@+id/day6"
+            style="@style/MonthView_DayLabel" />
+    </LinearLayout>
+
+    <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#ac9d93" />
-	    
-    <TextView
-        android:id="@+id/currentDay"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginTop="10dp"
-        android:text="Friday 20.Jule"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:text="&lt;" />
+
+        <TextView
+            android:id="@+id/currentDay"
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.07"
+            android:gravity="center"
+            android:text="Friday 20.Jule"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="34dp"
+            android:layout_height="wrap_content"
+            android:text=">" />
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
@@ -48,5 +90,37 @@
         android:layout_height="150dp"
         android:scaleType="fitXY"
         android:src="@drawable/ic_launcher" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ac9d93" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="1"
+        android:gravity="bottom|center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/good_day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#147ac8"
+            android:text="Good Day"
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/bad_day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#069c29"
+            android:text="Bad day"
+            android:textColor="#fff" />
+    </LinearLayout>
 
 </LinearLayout>
