@@ -21,27 +21,27 @@
             android:id="@+id/day0"
             style="@style/MonthView_DayLabel" />
 
-        <CheckedTextView
+        <TextView
             android:id="@+id/day1"
             style="@style/MonthView_DayLabel" />
 
-        <CheckedTextView
+        <TextView
             android:id="@+id/day2"
             style="@style/MonthView_DayLabel" />
 
-        <CheckedTextView
+        <TextView
             android:id="@+id/day3"
             style="@style/MonthView_DayLabel" />
 
-        <CheckedTextView
+        <TextView
             android:id="@+id/day4"
             style="@style/MonthView_DayLabel" />
 
-        <CheckedTextView
+        <TextView
             android:id="@+id/day5"
             style="@style/MonthView_DayLabel" />
 
-        <CheckedTextView
+        <TextView
             android:id="@+id/day6"
             style="@style/MonthView_DayLabel" />
     </LinearLayout>
