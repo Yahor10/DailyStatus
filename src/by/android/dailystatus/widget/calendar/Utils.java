@@ -16,6 +16,8 @@
 
 package by.android.dailystatus.widget.calendar;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +29,7 @@ import android.database.MatrixCursor;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.text.format.Time;
 import android.util.Log;
@@ -51,6 +54,9 @@ public class Utils {
 	private static final int MED_ALPHA = 180 << 24;
 
 	protected static final String OPEN_EMAIL_MARKER = " <";
+	private final static String TAG = Utils.class.getSimpleName();
+	public static String SDCARD_FOLDER_CACHE = Environment.getExternalStorageDirectory()
+			+ "/Android/data/%s/files/";
 
 	public static final void applyAlphaAnimation(ViewFlipper v) {
 		final AlphaAnimation in = new AlphaAnimation(0.0f, 1.0f);
@@ -271,5 +277,26 @@ public class Utils {
 			millis = System.currentTimeMillis();
 		}
 		return millis;
+	}
+	
+	public static File getTempFile(Context context) {
+		final File path = getAppCacheDir(context);
+		if (!path.exists()) {
+			path.mkdirs();
+		}
+		File f = new File(path, "temp_image.jpg");
+		if (f.exists() == false) {
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				Log.w(TAG, e.getMessage(), e);
+			}
+		}
+		return f;
+	}
+	
+	public static File getAppCacheDir(Context context) {
+		File file = new File(String.format(SDCARD_FOLDER_CACHE, Utils.class.getSimpleName()));
+		return file;
 	}
 }
