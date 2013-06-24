@@ -703,10 +703,11 @@ containing a value of this type.
         public static final int abs__bright_foreground_inverse_holo_dark=0x7f070006;
         public static final int abs__bright_foreground_inverse_holo_light=0x7f070007;
         public static final int abs__holo_blue_light=0x7f070008;
-        public static final int abs__primary_text_disable_only_holo_dark=0x7f07000d;
-        public static final int abs__primary_text_disable_only_holo_light=0x7f07000e;
-        public static final int abs__primary_text_holo_dark=0x7f07000f;
-        public static final int abs__primary_text_holo_light=0x7f070010;
+        public static final int abs__primary_text_disable_only_holo_dark=0x7f07000e;
+        public static final int abs__primary_text_disable_only_holo_light=0x7f07000f;
+        public static final int abs__primary_text_holo_dark=0x7f070010;
+        public static final int abs__primary_text_holo_light=0x7f070011;
+        public static final int bg_text_color=0x7f07000d;
         public static final int daynames_background=0x7f070009;
         public static final int daynames_text_color=0x7f07000a;
         public static final int saturday_text_color=0x7f07000c;
@@ -947,11 +948,12 @@ containing a value of this type.
         public static final int abs__textfield_searchview_holo_light=0x7f02006c;
         public static final int abs__textfield_searchview_right_holo_dark=0x7f02006d;
         public static final int abs__textfield_searchview_right_holo_light=0x7f02006e;
-        public static final int ic_compose=0x7f02006f;
-        public static final int ic_launcher=0x7f020070;
-        public static final int ic_star_empty=0x7f020071;
-        public static final int ic_star_full=0x7f020072;
-        public static final int ratingstars=0x7f020073;
+        public static final int checked=0x7f02006f;
+        public static final int ic_compose=0x7f020070;
+        public static final int ic_launcher=0x7f020071;
+        public static final int ic_star_empty=0x7f020072;
+        public static final int ic_star_full=0x7f020073;
+        public static final int ratingstars=0x7f020074;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f050022;
@@ -994,10 +996,11 @@ containing a value of this type.
         public static final int abs__title=0x7f05001b;
         public static final int abs__titleDivider=0x7f05001c;
         public static final int abs__up=0x7f05000b;
-        public static final int action_settings=0x7f050044;
-        public static final int bad_day=0x7f050041;
+        public static final int action_settings=0x7f050045;
+        public static final int bad_day=0x7f050042;
         public static final int button1=0x7f05003c;
         public static final int button2=0x7f05003e;
+        public static final int container=0x7f05003f;
         public static final int currentDay=0x7f05003d;
         public static final int day0=0x7f050035;
         public static final int day1=0x7f050036;
@@ -1006,21 +1009,21 @@ containing a value of this type.
         public static final int day4=0x7f050039;
         public static final int day5=0x7f05003a;
         public static final int day6=0x7f05003b;
-        public static final int dayImage=0x7f05003f;
+        public static final int dayImage=0x7f050040;
         public static final int day_layout=0x7f050033;
         public static final int day_names=0x7f050034;
         public static final int disableHome=0x7f050009;
         public static final int edit_query=0x7f050027;
-        public static final int good_day=0x7f050040;
+        public static final int good_day=0x7f050041;
         public static final int homeAsUp=0x7f050006;
-        public static final int icon=0x7f050042;
+        public static final int icon=0x7f050043;
         public static final int listMode=0x7f050002;
         public static final int normal=0x7f050001;
         public static final int showCustom=0x7f050008;
         public static final int showHome=0x7f050005;
         public static final int showTitle=0x7f050007;
         public static final int tabMode=0x7f050003;
-        public static final int text=0x7f050043;
+        public static final int text=0x7f050044;
         public static final int useLogo=0x7f050004;
         public static final int wrap_content=0x7f050000;
     }
@@ -1107,6 +1110,7 @@ containing a value of this type.
         public static final int abs__shareactionprovider_share_with_application=0x7f0a0009;
         public static final int action_settings=0x7f0a0010;
         public static final int app_name=0x7f0a000f;
+        public static final int dialog_title=0x7f0a0013;
         public static final int hello_world=0x7f0a0011;
         public static final int month_year=0x7f0a0012;
     }
