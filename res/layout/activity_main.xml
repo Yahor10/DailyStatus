@@ -13,7 +13,9 @@
     <LinearLayout
         android:id="@+id/day_names"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
         android:background="@color/daynames_background"
         android:orientation="horizontal" >
 
@@ -46,90 +48,10 @@
             style="@style/MonthView_DayLabel" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#ac9d93" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center" >
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="32dp"
-            android:layout_height="wrap_content"
-            android:text="&lt;" />
-
-        <TextView
-            android:id="@+id/currentDay"
-            android:layout_width="182dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.07"
-            android:gravity="center"
-            android:text="Friday 20.Jule"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="34dp"
-            android:layout_height="wrap_content"
-            android:text=">" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#ac9d93" />
-
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" >
-
-        <ImageView
-            android:id="@+id/dayImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher" />
-
-    </FrameLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#ac9d93" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_weight="1"
-        android:gravity="bottom|center"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/good_day"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#147ac8"
-            android:text="Good Day"
-            android:textColor="#fff" />
-
-        <Button
-            android:id="@+id/bad_day"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#069c29"
-            android:text="Bad day"
-            android:textColor="#fff" />
-    </LinearLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5" />
 
 </LinearLayout>

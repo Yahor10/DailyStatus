@@ -1,40 +1,34 @@
 package by.android.dailystatus;
 
-import java.io.File;
-import java.text.DateFormatSymbols;
-import java.util.Calendar;
-import java.util.Locale;
+import static by.android.dailystatus.application.Constants.TAG;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTime.Property;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 import by.android.dailystatus.dialog.ImageChoiseDialog;
-import by.android.dailystatus.widget.calendar.Utils;
+import by.android.dailystatus.fragment.DayModel;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -42,13 +36,11 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
 import com.actionbarsherlock.view.SubMenu;
 
-import static by.android.dailystatus.application.Constants.TAG;
-
 public class MainActivity extends SherlockFragmentActivity implements
-		OnClickListener, OnMenuItemClickListener {
+		OnMenuItemClickListener, OnPageChangeListener {
 
-	private static final int DAY_OF_WEEK_LABEL_IDS[] = { R.id.day0, R.id.day1,
-			R.id.day2, R.id.day3, R.id.day4, R.id.day5, R.id.day6 };
+	private static final int DAY_OF_WEEK_LABEL_IDS[] = { R.id.day1, R.id.day2,
+			R.id.day3, R.id.day4, R.id.day5, R.id.day6, R.id.day0 };
 
 	private Animator mCurrentAnimator;
 	private int mShortAnimationDuration;
@@ -58,84 +50,45 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	private int dayStep = 0;
 
+	private DateTime now;
+
+	private LayoutInflater inflater;
+	private DayModel[] dayPageModel = new DayModel[3];
+
+	private static final int PAGE_LEFT = 0;
+	private static final int PAGE_MIDDLE = 1;
+	private static final int PAGE_RIGHT = 2;
+
+	private int mSelectedPageIndex = 1;
+
+	private ViewPager viewPager;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.v(TAG, "Main activity created");
 		setContentView(R.layout.activity_main);
 
+		inflater = getLayoutInflater();
 		getSupportActionBar().setBackgroundDrawable(
 				new ColorDrawable(Color.parseColor("#0e78c9")));
 
-		dayImage = (ImageView) findViewById(R.id.dayImage);
-		// if (savedInstanceState != null) {
-		// this.takePictureUri =
-		// Uri.parse(savedInstanceState.getString("takePictureUri"));
-		// this.picturePath = savedInstanceState.getString("picturePath");
-		// this.takePhoto = savedInstanceState.getBoolean("takePhoto");
-		// }
-		// if(takePhoto == true & takePictureUri != null) {
-		// dayImage.setImageURI(takePictureUri);
-		// }
-		// else if(takePhoto == false & picturePath != null){
-		// dayImage.setImageURI(Uri.parse(picturePath));
-		// }
-
-		// Get first day of week based on locale and populate the day headers
-		final int startDay = Utils.getFirstDayOfWeek();
-		final int sundayColor = getResources().getColor(
-				R.color.sunday_text_color);
-		final int saturdayColor = getResources().getColor(
-				R.color.saturday_text_color);
-
-		DateFormatSymbols symbols = new DateFormatSymbols(new Locale("EN"));
-		String[] dayNames = symbols.getShortWeekdays();
-		for (int i = 0; i < dayNames.length - 1; i++) {
-			dayNames[i] = dayNames[i + 1];
-		}
-
-		DateTime now = DateTime.now();
-		int dayOfWeek = now.getDayOfWeek();
-
-		for (int day = 0; day < 7; day++) {
-			final String dayString = dayNames[day];
-			final TextView label = (TextView) findViewById(DAY_OF_WEEK_LABEL_IDS[day]);
-			label.setText(dayString);
-			if (dayOfWeek == day) {
-				label.setBackgroundColor(Color.BLUE);
-			}
-			if (Utils.isSunday(day, startDay)) {
-				label.setTextColor(sundayColor);
-			} else if (Utils.isSaturday(day, startDay)) {
-				label.setTextColor(saturdayColor);
-			}
-		}
-
-		currentDay = (TextView) findViewById(R.id.currentDay);
-
-		DateTime.Property pDoW = now.dayOfWeek();
-		String day = pDoW.getAsText();
-
-		Property pMoY = now.monthOfYear();
-		String month = pMoY.getAsText();
-		int dayOfMonth = now.getDayOfMonth();
-
-		StringBuffer dataBuilder = new StringBuffer();
-		dataBuilder.append(day);
-		dataBuilder.append(" ");
-		dataBuilder.append(dayOfMonth);
-		dataBuilder.append(". ");
-		dataBuilder.append(month);
-
-		currentDay.setText(dataBuilder.toString());
-
-		findViewById(R.id.good_day).setOnClickListener(this);
-		findViewById(R.id.bad_day).setOnClickListener(this);
-
-		dayImage.setOnClickListener(this);
-
 		mShortAnimationDuration = getResources().getInteger(
 				android.R.integer.config_shortAnimTime);
+		
+		now = DateTime.now();
+		
+		initPageModel();
+		initDayLaybels();
+
+		DayPageAdapter adapter = new DayPageAdapter();
+		viewPager = (ViewPager) findViewById(R.id.pager);
+		viewPager.setAdapter(adapter);
+		// we dont want any smoothscroll. This enables us to switch the page
+		// without the user notifiying this
+		viewPager.setCurrentItem(PAGE_MIDDLE, false);
+
+		viewPager.setOnPageChangeListener(this);
 	}
 
 	@Override
@@ -156,26 +109,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 	}
 
 	@Override
-	public void onClick(View v) {
-
-		switch (v.getId()) {
-		case R.id.good_day:
-			findViewById(R.id.day_layout).setBackgroundColor(Color.BLUE);
-			break;
-		case R.id.bad_day:
-			findViewById(R.id.day_layout).setBackgroundColor(Color.BLACK);
-			break;
-		case R.id.dayImage:
-			BitmapDrawable bitmapDrawable = (BitmapDrawable) dayImage
-					.getDrawable();
-			Bitmap bitmap = bitmapDrawable.getBitmap();
-			zoomImageFromThumb(dayImage, bitmap);
-		default:
-			break;
-		}
-	}
-
-	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.isChecked())
 			item.setChecked(false);
@@ -184,16 +117,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 		return true;
 	}
 
-	public void alertChoosePhoto() {
-		DialogFragment dialog = new ImageChoiseDialog();
-		dialog.show(getSupportFragmentManager(), "");
-	}
-
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
 		case 1:
-			alertChoosePhoto();
+			DialogChosePhoto();
 			return true;
 		case 2:
 			// ColorPickerDialog colorPickerDialog = new ColorPickerDialog();
@@ -205,6 +133,129 @@ public class MainActivity extends SherlockFragmentActivity implements
 		default:
 			return false;
 		}
+	}
+
+	@Override
+	public void onPageScrollStateChanged(int state) {
+		if (state == ViewPager.SCROLL_STATE_IDLE) {
+
+			final DayModel leftPage = dayPageModel[PAGE_LEFT];
+			final DayModel middlePage = dayPageModel[PAGE_MIDDLE];
+			final DayModel rightPage = dayPageModel[PAGE_RIGHT];
+
+			final int oldLeftIndex = leftPage.getIndex();
+			final int oldMiddleIndex = middlePage.getIndex();
+			final int oldRightIndex = rightPage.getIndex();
+
+			// user swiped to right direction --> left page
+			if (mSelectedPageIndex == PAGE_LEFT) {
+
+				// moving each page content one page to the right
+				leftPage.setIndex(oldLeftIndex - 1);
+				middlePage.setIndex(oldLeftIndex);
+				rightPage.setIndex(oldMiddleIndex);
+
+				setContent(PAGE_RIGHT);
+				setContent(PAGE_MIDDLE);
+				setContent(PAGE_LEFT);
+
+				now = now.minusDays(1);
+				updateDateStep();
+
+				// user swiped to left direction --> right page
+			} else if (mSelectedPageIndex == PAGE_RIGHT) {
+
+				leftPage.setIndex(oldMiddleIndex);
+				middlePage.setIndex(oldRightIndex);
+				rightPage.setIndex(oldRightIndex + 1);
+
+				setContent(PAGE_LEFT);
+				setContent(PAGE_MIDDLE);
+				setContent(PAGE_RIGHT);
+
+				now = now.plusDays(1);
+				updateDateStep();
+			}
+			viewPager.setCurrentItem(PAGE_MIDDLE, false);
+		}
+
+	}
+
+	@Override
+	public void onPageScrolled(int arg0, float arg1, int arg2) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onPageSelected(int position) {
+		mSelectedPageIndex = position;
+	}
+
+	private void initDayLaybels() {
+		int dayOfWeek = now.getDayOfWeek() - 1;
+		// Get first day of week based on locale and populate the day
+		// headers
+		final int sundayColor = getResources().getColor(
+				R.color.sunday_text_color);
+		final int saturdayColor = getResources().getColor(
+				R.color.saturday_text_color);
+	
+		DateTime weekStart = now.dayOfWeek().withMinimumValue();
+	
+		String[] weekDays = new String[7];
+	
+		for (int i = 0; i < weekDays.length; i++) {
+			DateTime plusDays = weekStart.plusDays(i);
+			String asShortText = plusDays.dayOfWeek().getAsShortText();
+			weekDays[i] = asShortText;
+		}
+	
+		for (int day = 0; day < weekDays.length; day++) {
+			final String dayString = weekDays[day];
+			final TextView label = (TextView) findViewById(DAY_OF_WEEK_LABEL_IDS[day]);
+			label.setText(dayString);
+			if (dayOfWeek == day) {
+				label.setBackgroundColor(Color.BLUE);
+				dayStep = day;
+			}
+			if (day == 6) {
+				label.setTextColor(sundayColor);
+			} else if (day == 5) {
+				label.setTextColor(saturdayColor);
+			}
+		}
+	}
+
+	private void initPageModel() {
+		for (int i = 0; i < dayPageModel.length; i++) {
+			// initing the pagemodel with indexes of -1, 0 and 1
+			dayPageModel[i] = new DayModel(i - 1);
+		}
+	}
+
+	private void setContent(int index) {
+		final DayModel model = dayPageModel[index];
+		model.dayText.setText(model.getDayText());
+	}
+
+	private void DialogChosePhoto() {
+		DialogFragment dialog = new ImageChoiseDialog();
+		dialog.show(getSupportFragmentManager(), "");
+	}
+
+	private void updateDateStep() {
+
+		View prevDay = findViewById(DAY_OF_WEEK_LABEL_IDS[dayStep]);
+		prevDay.setBackgroundColor(Color.parseColor("#FFDDDDDD"));
+
+		View view = findViewById(DAY_OF_WEEK_LABEL_IDS[now.getDayOfWeek() - 1]);
+		view.setBackgroundColor(Color.BLUE);
+
+		dayStep = now.getDayOfWeek() - 1;
+
+		Log.v(TAG, "CURRENT DAY" + now.getDayOfWeek());
+
 	}
 
 	private void zoomImageFromThumb(final View thumbView, Bitmap bitmap) {
@@ -322,5 +373,91 @@ public class MainActivity extends SherlockFragmentActivity implements
 	// bundle.putString("picturePath", picturePath);
 	// bundle.putBoolean("takePhoto", takePhoto);
 	// }
+
+	private class DayPageAdapter extends PagerAdapter implements
+			OnClickListener {
+
+		@Override
+		public int getItemPosition(Object object) {
+			return POSITION_NONE;
+		}
+
+		@Override
+		public void destroyItem(ViewGroup container, int position, Object object) {
+			container.removeView((View) object);
+		}
+
+		@Override
+		public int getCount() {
+			// we only need three pages
+			return 3;
+		}
+
+		@Override
+		public Object instantiateItem(ViewGroup container, int position) {
+			View inflate = inflater.inflate(R.layout.day_fragment, null);
+			DayModel currentPage = dayPageModel[position];
+			currentDay = (TextView) inflate.findViewById(R.id.currentDay);
+			currentPage.dayText = currentDay;
+			currentDay.setText(currentPage.getDayText());
+			container.addView(inflate);
+
+			dayImage = (ImageView) inflate.findViewById(R.id.dayImage);
+
+			// if (savedInstanceState != null) {
+			// this.takePictureUri =
+			// Uri.parse(savedInstanceState.getString("takePictureUri"));
+			// this.picturePath = savedInstanceState.getString("picturePath");
+			// this.takePhoto = savedInstanceState.getBoolean("takePhoto");
+			// }
+			// if(takePhoto == true & takePictureUri != null) {
+			// dayImage.setImageURI(takePictureUri);
+			// }
+			// else if(takePhoto == false & picturePath != null){
+			// dayImage.setImageURI(Uri.parse(picturePath));
+			// }
+
+			updateDateStep();
+
+			inflate.findViewById(R.id.good_day).setOnClickListener(this);
+			inflate.findViewById(R.id.bad_day).setOnClickListener(this);
+			inflate.findViewById(R.id.back_day).setOnClickListener(this);
+			inflate.findViewById(R.id.next_day).setOnClickListener(this);
+
+			dayImage.setOnClickListener(this);
+
+			return inflate;
+		}
+
+		@Override
+		public boolean isViewFromObject(View arg0, Object arg1) {
+			return arg0 == arg1;
+		}
+
+		@Override
+		public void onClick(View v) {
+
+			switch (v.getId()) {
+			case R.id.good_day:
+				findViewById(R.id.day_layout).setBackgroundColor(Color.BLUE);
+				break;
+			case R.id.bad_day:
+				findViewById(R.id.day_layout).setBackgroundColor(Color.BLACK);
+				break;
+			case R.id.dayImage:
+				BitmapDrawable bitmapDrawable = (BitmapDrawable) dayImage
+						.getDrawable();
+				Bitmap bitmap = bitmapDrawable.getBitmap();
+				zoomImageFromThumb(dayImage, bitmap);
+			case R.id.back_day:
+				viewPager.setCurrentItem(PAGE_LEFT);
+				break;
+			case R.id.next_day:
+				viewPager.setCurrentItem(PAGE_RIGHT);
+			default:
+				break;
+			}
+		}
+	}
 
 }
