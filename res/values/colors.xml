@@ -6,5 +6,6 @@
     <color name="sunday_text_color">#ff446688</color>
     <color name="saturday_text_color">#ff446688</color>
     <color name="bg_text_color">#ff550000</color>
+    <color name="bg_gray">#3d3d3d00</color>
 
 </resources>

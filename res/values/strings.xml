@@ -6,5 +6,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="month_year">m</string>
     <string name="dialog_title">Pick a color</string>
+    <string name="name_profile">Lyudmila</string>
+    <string name="stats">Stats</string>
+    <string name="good_day">Good Day</string>
+    <string name="bad_day">Bad day</string>
 
 </resources>
