@@ -14,7 +14,9 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.SyncStateContract.Constants;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -25,10 +27,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import by.android.dailystatus.dialog.ImageChoiseDialog;
 import by.android.dailystatus.fragment.DayModel;
+import by.android.dailystatus.orm.model.DayORM;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -45,15 +50,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 	private Animator mCurrentAnimator;
 	private int mShortAnimationDuration;
 
-	private TextView currentDay;
-	private ImageView dayImage;
-
 	private int dayStep = 0;
 
 	private DateTime now;
 
 	private LayoutInflater inflater;
-	private DayModel[] dayPageModel = new DayModel[3];
 
 	private static final int PAGE_LEFT = 0;
 	private static final int PAGE_MIDDLE = 1;
@@ -62,6 +63,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 	private int mSelectedPageIndex = 1;
 
 	private ViewPager viewPager;
+
+	private DayPageAdapter adapter;
+
+	private DayModel[] dayPageModel = new DayModel[3];
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +80,13 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		mShortAnimationDuration = getResources().getInteger(
 				android.R.integer.config_shortAnimTime);
-		
+
 		now = DateTime.now();
-		
+
 		initPageModel();
 		initDayLaybels();
 
-		DayPageAdapter adapter = new DayPageAdapter();
+		adapter = new DayPageAdapter();
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		viewPager.setAdapter(adapter);
 		// we dont want any smoothscroll. This enables us to switch the page
@@ -200,17 +205,17 @@ public class MainActivity extends SherlockFragmentActivity implements
 				R.color.sunday_text_color);
 		final int saturdayColor = getResources().getColor(
 				R.color.saturday_text_color);
-	
+
 		DateTime weekStart = now.dayOfWeek().withMinimumValue();
-	
+
 		String[] weekDays = new String[7];
-	
+
 		for (int i = 0; i < weekDays.length; i++) {
 			DateTime plusDays = weekStart.plusDays(i);
 			String asShortText = plusDays.dayOfWeek().getAsShortText();
 			weekDays[i] = asShortText;
 		}
-	
+
 		for (int day = 0; day < weekDays.length; day++) {
 			final String dayString = weekDays[day];
 			final TextView label = (TextView) findViewById(DAY_OF_WEEK_LABEL_IDS[day]);
@@ -374,8 +379,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 	// bundle.putBoolean("takePhoto", takePhoto);
 	// }
 
+	// TODO change to static
 	private class DayPageAdapter extends PagerAdapter implements
 			OnClickListener {
+
+		private TextView currentDay;
+		private ImageView dayImage;
 
 		@Override
 		public int getItemPosition(Object object) {
@@ -395,6 +404,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
+			Log.v(TAG, "instantiateItem ");
 			View inflate = inflater.inflate(R.layout.day_fragment, null);
 			DayModel currentPage = dayPageModel[position];
 			currentDay = (TextView) inflate.findViewById(R.id.currentDay);
@@ -404,6 +414,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 			dayImage = (ImageView) inflate.findViewById(R.id.dayImage);
 
+		
 			// if (savedInstanceState != null) {
 			// this.takePictureUri =
 			// Uri.parse(savedInstanceState.getString("takePictureUri"));
@@ -417,8 +428,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 			// dayImage.setImageURI(Uri.parse(picturePath));
 			// }
 
-			updateDateStep();
-
 			inflate.findViewById(R.id.good_day).setOnClickListener(this);
 			inflate.findViewById(R.id.bad_day).setOnClickListener(this);
 			inflate.findViewById(R.id.back_day).setOnClickListener(this);
@@ -427,6 +436,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 			dayImage.setOnClickListener(this);
 
 			return inflate;
+		}
+
+		@Override
+		public void startUpdate(ViewGroup container) {
+			updateDateStep();
+			super.startUpdate(container);
 		}
 
 		@Override
@@ -439,10 +454,18 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 			switch (v.getId()) {
 			case R.id.good_day:
-				findViewById(R.id.day_layout).setBackgroundColor(Color.BLUE);
+				// TODO change layout color
+				DayORM goodDay = new DayORM(now.getDayOfYear(),
+						now.getMonthOfYear(), now.getYear());
+				goodDay.color = Color.BLUE;
+				DayORM.insertOrUpdateDay(getApplicationContext(), goodDay);
 				break;
 			case R.id.bad_day:
-				findViewById(R.id.day_layout).setBackgroundColor(Color.BLACK);
+				// TODO change layout color
+				DayORM badDay = new DayORM(now.getDayOfYear(),
+						now.getMonthOfYear(), now.getYear());
+				badDay.color = Color.BLACK;
+				DayORM.insertOrUpdateDay(getApplicationContext(), badDay);
 				break;
 			case R.id.dayImage:
 				BitmapDrawable bitmapDrawable = (BitmapDrawable) dayImage
@@ -458,6 +481,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 				break;
 			}
 		}
+
 	}
 
 }
