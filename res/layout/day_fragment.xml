@@ -78,22 +78,22 @@
         android:orientation="horizontal" >
 
         <Button
+            style="@style/ButtonStyle"
             android:id="@+id/good_day"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#147ac8"
             android:text="Good Day"
-            android:textColor="#fff" />
+             />
 
         <Button
+              style="@style/ButtonStyle"
             android:id="@+id/bad_day"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#069c29"
             android:text="Bad day"
-            android:textColor="#fff" />
+             />
     </LinearLayout>
 
 </LinearLayout>

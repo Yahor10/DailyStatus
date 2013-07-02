@@ -20,7 +20,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 	private static final Class<?>[] DATA_CLASSES = { DayORM.class};
 
-	public static final String DATABASE_NAME = "freetables.db";
+	public static final String DATABASE_NAME = "daystatus.db";
 	private static final int DATABASE_VERSION = 1;
 
 	private Dao<DayORM, String> dayDao = null;

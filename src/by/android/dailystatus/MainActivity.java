@@ -77,9 +77,9 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		mShortAnimationDuration = getResources().getInteger(
 				android.R.integer.config_shortAnimTime);
-		
+
 		now = DateTime.now();
-		
+
 		initPageModel();
 		initDayLaybels();
 
@@ -106,16 +106,17 @@ public class MainActivity extends SherlockFragmentActivity implements
 				.setOnMenuItemClickListener(this);
 		subChoosePhoto.add(0, 2, Menu.NONE, "Pick Day Color")
 				.setOnMenuItemClickListener(this);
-		subChoosePhoto.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		
+		subChoosePhoto.getItem()
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
 		SubMenu subMyProfile = menu.addSubMenu("").setIcon(
 				getResources().getDrawable(
 						R.drawable.abs__spinner_ab_default_holo_dark));
 
-		subMyProfile.add(0, 3, Menu.NONE, "Charts")
-				.setOnMenuItemClickListener(this);
-		subMyProfile.add(0, 4, Menu.NONE, "Month")
-				.setOnMenuItemClickListener(this);
+		subMyProfile.add(0, 3, Menu.NONE, "Charts").setOnMenuItemClickListener(
+				this);
+		subMyProfile.add(0, 4, Menu.NONE, "Month").setOnMenuItemClickListener(
+				this);
 		subMyProfile.add(0, 5, Menu.NONE, "Profile")
 				.setOnMenuItemClickListener(this);
 		subMyProfile.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -136,21 +137,23 @@ public class MainActivity extends SherlockFragmentActivity implements
 		switch (item.getItemId()) {
 		case 1:
 			DialogChosePhoto();
-			return true;
 		case 2:
 			// ColorPickerDialog colorPickerDialog = new ColorPickerDialog();
 			// colorPickerDialog.initialize(R.string.dialog_title, new int[] {
 			// Color.CYAN, Color.LTGRAY, Color.BLACK, Color.BLUE, Color.GREEN,
 			// Color.MAGENTA, Color.RED, Color.GRAY }, Color.YELLOW, 3, 2);
 			// colorPickerDialog.showPaletteView();
-			return true;
+			break;
+		case 3:
+			startActivity(ChartsActivity.buintIntent(this));
+			break;
 		case 5:
 			Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
 			startActivity(intent);
-			return true;
+			break;
 		default:
-			return false;
 		}
+		return true;
 	}
 
 	@Override
@@ -218,17 +221,17 @@ public class MainActivity extends SherlockFragmentActivity implements
 				R.color.sunday_text_color);
 		final int saturdayColor = getResources().getColor(
 				R.color.saturday_text_color);
-	
+
 		DateTime weekStart = now.dayOfWeek().withMinimumValue();
-	
+
 		String[] weekDays = new String[7];
-	
+
 		for (int i = 0; i < weekDays.length; i++) {
 			DateTime plusDays = weekStart.plusDays(i);
 			String asShortText = plusDays.dayOfWeek().getAsShortText();
 			weekDays[i] = asShortText;
 		}
-	
+
 		for (int day = 0; day < weekDays.length; day++) {
 			final String dayString = weekDays[day];
 			final TextView label = (TextView) findViewById(DAY_OF_WEEK_LABEL_IDS[day]);
@@ -457,10 +460,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 			switch (v.getId()) {
 			case R.id.good_day:
-				findViewById(R.id.day_layout).setBackgroundColor(Color.BLUE);
+				// findViewById(R.id.day_layout).setBackgroundColor(Color.BLUE);
 				break;
 			case R.id.bad_day:
-				findViewById(R.id.day_layout).setBackgroundColor(Color.BLACK);
+				// findViewById(R.id.day_layout).setBackgroundColor(Color.BLACK);
 				break;
 			case R.id.dayImage:
 				BitmapDrawable bitmapDrawable = (BitmapDrawable) dayImage
