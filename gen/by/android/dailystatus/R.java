@@ -1122,10 +1122,6 @@ containing a value of this type.
          */
         public static final int action_button_min_width=0x7f080010;
         /**  Default screen margins, per the Android Design guidelines. 
-
-         Customize dimensions originally defined in res/values/dimens.xml (such as
-         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
-    
          */
         public static final int activity_horizontal_margin=0x7f080011;
         public static final int activity_vertical_margin=0x7f080012;
@@ -1257,30 +1253,38 @@ containing a value of this type.
         public static final int abs__textfield_searchview_holo_light=0x7f02006c;
         public static final int abs__textfield_searchview_right_holo_dark=0x7f02006d;
         public static final int abs__textfield_searchview_right_holo_light=0x7f02006e;
-        public static final int checked=0x7f02006f;
-        public static final int custom_tab_indicator=0x7f020070;
-        public static final int custom_tab_indicator_divider=0x7f020071;
-        public static final int custom_tab_indicator_focused=0x7f020072;
-        public static final int custom_tab_indicator_selected=0x7f020073;
-        public static final int custom_tab_indicator_selected_focused=0x7f020074;
-        public static final int custom_tab_indicator_selected_pressed=0x7f020075;
-        public static final int custom_tab_indicator_unselected=0x7f020076;
-        public static final int custom_tab_indicator_unselected_focused=0x7f020077;
-        public static final int custom_tab_indicator_unselected_pressed=0x7f020078;
-        public static final int green_button=0x7f020079;
-        public static final int ic_compose=0x7f02007a;
-        public static final int ic_launcher=0x7f02007b;
-        public static final int ic_star_empty=0x7f02007c;
-        public static final int ic_star_full=0x7f02007d;
-        public static final int profile=0x7f02007e;
-        public static final int ratingstars=0x7f02007f;
-        public static final int vpi__tab_indicator=0x7f020080;
-        public static final int vpi__tab_selected_focused_holo=0x7f020081;
-        public static final int vpi__tab_selected_holo=0x7f020082;
-        public static final int vpi__tab_selected_pressed_holo=0x7f020083;
-        public static final int vpi__tab_unselected_focused_holo=0x7f020084;
-        public static final int vpi__tab_unselected_holo=0x7f020085;
-        public static final int vpi__tab_unselected_pressed_holo=0x7f020086;
+        public static final int arrow_left=0x7f02006f;
+        public static final int arrow_right=0x7f020070;
+        public static final int calendar_background=0x7f020071;
+        public static final int calendar_cel_selectl=0x7f020072;
+        public static final int calendar_cell=0x7f020073;
+        public static final int calendar_item_background=0x7f020074;
+        public static final int calendar_top=0x7f020075;
+        public static final int checked=0x7f020076;
+        public static final int custom_tab_indicator=0x7f020077;
+        public static final int custom_tab_indicator_divider=0x7f020078;
+        public static final int custom_tab_indicator_focused=0x7f020079;
+        public static final int custom_tab_indicator_selected=0x7f02007a;
+        public static final int custom_tab_indicator_selected_focused=0x7f02007b;
+        public static final int custom_tab_indicator_selected_pressed=0x7f02007c;
+        public static final int custom_tab_indicator_unselected=0x7f02007d;
+        public static final int custom_tab_indicator_unselected_focused=0x7f02007e;
+        public static final int custom_tab_indicator_unselected_pressed=0x7f02007f;
+        public static final int dot=0x7f020080;
+        public static final int green_button=0x7f020081;
+        public static final int ic_compose=0x7f020082;
+        public static final int ic_launcher=0x7f020083;
+        public static final int ic_star_empty=0x7f020084;
+        public static final int ic_star_full=0x7f020085;
+        public static final int profile=0x7f020086;
+        public static final int ratingstars=0x7f020087;
+        public static final int vpi__tab_indicator=0x7f020088;
+        public static final int vpi__tab_selected_focused_holo=0x7f020089;
+        public static final int vpi__tab_selected_holo=0x7f02008a;
+        public static final int vpi__tab_selected_pressed_holo=0x7f02008b;
+        public static final int vpi__tab_unselected_focused_holo=0x7f02008c;
+        public static final int vpi__tab_unselected_holo=0x7f02008d;
+        public static final int vpi__tab_unselected_pressed_holo=0x7f02008e;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f050025;
@@ -1323,12 +1327,14 @@ containing a value of this type.
         public static final int abs__title=0x7f05001e;
         public static final int abs__titleDivider=0x7f05001f;
         public static final int abs__up=0x7f05000b;
-        public static final int action_settings=0x7f050053;
-        public static final int back_day=0x7f050040;
-        public static final int bad_day=0x7f050046;
-        public static final int chart=0x7f050052;
-        public static final int container=0x7f050043;
-        public static final int currentDay=0x7f050041;
+        public static final int action_settings=0x7f05005a;
+        public static final int back_day=0x7f050047;
+        public static final int bad_day=0x7f05004d;
+        public static final int chart=0x7f050059;
+        public static final int container=0x7f05004a;
+        public static final int currentDay=0x7f050048;
+        public static final int date=0x7f050045;
+        public static final int date_icon=0x7f050046;
         public static final int day0=0x7f050038;
         public static final int day1=0x7f050039;
         public static final int day2=0x7f05003a;
@@ -1336,34 +1342,39 @@ containing a value of this type.
         public static final int day4=0x7f05003c;
         public static final int day5=0x7f05003d;
         public static final int day6=0x7f05003e;
-        public static final int dayImage=0x7f050044;
+        public static final int dayImage=0x7f05004b;
         public static final int day_layout=0x7f050036;
         public static final int day_names=0x7f050037;
         public static final int disableHome=0x7f050009;
         public static final int edit_query=0x7f05002a;
-        public static final int good_day=0x7f050045;
+        public static final int good_day=0x7f05004c;
+        public static final int gridview=0x7f050044;
+        public static final int header=0x7f050040;
         public static final int homeAsUp=0x7f050006;
-        public static final int icon=0x7f050047;
-        public static final int imgProfile=0x7f050049;
-        public static final int indicator=0x7f050051;
+        public static final int icon=0x7f05004e;
+        public static final int imgProfile=0x7f050050;
+        public static final int indicator=0x7f050058;
         public static final int listMode=0x7f050002;
-        public static final int next_day=0x7f050042;
+        public static final int next=0x7f050043;
+        public static final int next_day=0x7f050049;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050001;
         public static final int pager=0x7f05003f;
+        public static final int previous=0x7f050041;
         public static final int showCustom=0x7f050008;
         public static final int showHome=0x7f050005;
         public static final int showTitle=0x7f050007;
         public static final int tabMode=0x7f050003;
-        public static final int text=0x7f050048;
-        public static final int textView1=0x7f05004b;
-        public static final int textView2=0x7f05004c;
-        public static final int textView3=0x7f05004e;
-        public static final int textView4=0x7f050050;
+        public static final int text=0x7f05004f;
+        public static final int textView1=0x7f050052;
+        public static final int textView2=0x7f050053;
+        public static final int textView3=0x7f050055;
+        public static final int textView4=0x7f050057;
+        public static final int title=0x7f050042;
         public static final int triangle=0x7f050011;
-        public static final int txtBadDay=0x7f05004f;
-        public static final int txtGoodDay=0x7f05004d;
-        public static final int txtProfile=0x7f05004a;
+        public static final int txtBadDay=0x7f050056;
+        public static final int txtGoodDay=0x7f050054;
+        public static final int txtProfile=0x7f050051;
         public static final int underline=0x7f050012;
         public static final int useLogo=0x7f050004;
         public static final int wrap_content=0x7f050000;
@@ -1400,17 +1411,19 @@ containing a value of this type.
         public static final int abs__search_view=0x7f030015;
         public static final int abs__simple_dropdown_hint=0x7f030016;
         public static final int activity_main=0x7f030017;
-        public static final int day_fragment=0x7f030018;
-        public static final int list_item_icon_text=0x7f030019;
-        public static final int profile=0x7f03001a;
-        public static final int sherlock_spinner_dropdown_item=0x7f03001b;
-        public static final int sherlock_spinner_item=0x7f03001c;
-        public static final int simple_tabs=0x7f03001d;
-        public static final int vpi__attrs=0x7f03001e;
-        public static final int vpi__colors=0x7f03001f;
-        public static final int vpi__defaults=0x7f030020;
-        public static final int vpi__styles=0x7f030021;
-        public static final int xy_chart=0x7f030022;
+        public static final int calendar=0x7f030018;
+        public static final int calendar_item=0x7f030019;
+        public static final int day_fragment=0x7f03001a;
+        public static final int list_item_icon_text=0x7f03001b;
+        public static final int profile=0x7f03001c;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001d;
+        public static final int sherlock_spinner_item=0x7f03001e;
+        public static final int simple_tabs=0x7f03001f;
+        public static final int vpi__attrs=0x7f030020;
+        public static final int vpi__colors=0x7f030021;
+        public static final int vpi__defaults=0x7f030022;
+        public static final int vpi__styles=0x7f030023;
+        public static final int xy_chart=0x7f030024;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
@@ -1492,17 +1505,6 @@ containing a value of this type.
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
     
-
-        Base application theme for API 11+. This theme completely replaces
-        AppBaseTheme from res/values/styles.xml on API 11+ devices.
-    
- API 11 theme customizations can go here. 
-
-        Base application theme for API 14+. This theme completely replaces
-        AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
-    
- API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f0b0059;
         public static final int ButtonStyle=0x7f0b005b;

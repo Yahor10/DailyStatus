@@ -26,7 +26,7 @@ public class MonthFragment extends BaseChartsFragment {
 	CategorySeries mSeries = new CategorySeries("");
 	/** The main renderer for the main dataset. */
 	DefaultRenderer mRenderer = new DefaultRenderer();
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -34,9 +34,19 @@ public class MonthFragment extends BaseChartsFragment {
 		return inflate;
 	}
 
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		mRenderer.setStartAngle(180);
+		mRenderer.setDisplayValues(true);
+		mRenderer.setZoomEnabled(false);
+		mRenderer.setPanEnabled(false);
+		mRenderer.setInScroll(true);
+		super.onViewCreated(view, savedInstanceState);
+	}
 
 	@Override
 	public void onResume() {
+
 		Context applicationContext = getActivity().getApplicationContext();
 		LinearLayout layout = (LinearLayout) inflate.findViewById(R.id.chart);
 		mChartView = ChartFactory.getPieChartView(applicationContext, mSeries,
@@ -49,25 +59,26 @@ public class MonthFragment extends BaseChartsFragment {
 		mSeries.add("Bad" + (mSeries.getItemCount() + 1), 5);
 
 		SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
-		renderer.setColor(COLORS[(mSeries.getItemCount() - 1)
-				% COLORS.length]);
+		renderer.setColor(COLORS[(mSeries.getItemCount() - 1) % COLORS.length]);
 		mRenderer.addSeriesRenderer(renderer);
 
 		mSeries.add("Good " + (mSeries.getItemCount() + 1), 17);
 
 		SimpleSeriesRenderer renderer2 = new SimpleSeriesRenderer();
-		renderer2.setColor(COLORS[(mSeries.getItemCount() - 1)
-				% COLORS.length]);
+		renderer2
+				.setColor(COLORS[(mSeries.getItemCount() - 1) % COLORS.length]);
 		mRenderer.addSeriesRenderer(renderer2);
 
 		mChartView.repaint();
-		
-		mRenderer.setStartAngle(180);
-		mRenderer.setDisplayValues(true);
-		mRenderer.setZoomEnabled(false);
-		mRenderer.setPanEnabled(false);
-		mRenderer.setInScroll(true);
+
 		super.onResume();
+	}
+
+	@Override
+	public void onPause() {
+		mSeries.clear();
+		mRenderer.removeAllRenderers();
+		super.onPause();
 	}
 
 	public static Fragment newInstance() {

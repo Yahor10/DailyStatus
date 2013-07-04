@@ -3,6 +3,7 @@ package by.android.dailystatus.fragment;
 import org.joda.time.DateTime;
 import org.joda.time.DateTime.Property;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DayModel {
@@ -10,6 +11,7 @@ public class DayModel {
 	private int index;
 	private String text;
 	public TextView dayText;
+	public ImageView dayImage;
 	
 
 	public DayModel(int index) {

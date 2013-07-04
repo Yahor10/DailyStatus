@@ -23,13 +23,28 @@ public class YearFragment extends BaseChartsFragment {
 	private DefaultRenderer mRenderer = new DefaultRenderer();
 
 	private GraphicalView mChartView;
+	private View inflate;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View inflate = inflater.inflate(R.layout.xy_chart, null);
+		inflate = inflater.inflate(R.layout.xy_chart, null);
+		return inflate;
+	}
+
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		mRenderer.setStartAngle(180);
+		mRenderer.setDisplayValues(true);
+		mRenderer.setZoomEnabled(false);
+		mRenderer.setPanEnabled(false);
+		mRenderer.setInScroll(true);
+		super.onViewCreated(view, savedInstanceState);
+	}
+
+	@Override
+	public void onResume() {
 		LinearLayout layout = (LinearLayout) inflate.findViewById(R.id.chart);
-		mRenderer.removeAllRenderers();
 		mChartView = ChartFactory.getPieChartView(getActivity(), mSeries,
 				mRenderer);
 
@@ -57,15 +72,14 @@ public class YearFragment extends BaseChartsFragment {
 		mRenderer.setPanEnabled(false);
 		mRenderer.setInScroll(true);
 
-		return inflate;
+		super.onResume();
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		mRenderer.setStartAngle(180);
-		mRenderer.setDisplayValues(true);
-
-		super.onViewCreated(view, savedInstanceState);
+	public void onPause() {
+		mSeries.clear();
+		mRenderer.removeAllRenderers();
+		super.onPause();
 	}
 
 	public static Fragment newInstance() {

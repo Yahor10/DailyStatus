@@ -22,7 +22,7 @@ public class DayORM {
 	public static final String MONTH = "month";
 	public static final String YEAR = "year";
 	public static final String PICTURE = "picture";
-	public static final String COLOR = "color";
+	public static final String STATUS = "status"; // -1 bad . 1 good
 
 	@DatabaseField(columnName = KEY_ID)
 	public int id;
@@ -34,8 +34,8 @@ public class DayORM {
 	public int year;
 	@DatabaseField(columnName = PICTURE)
 	public String pictureURL;
-	@DatabaseField(columnName = COLOR)
-	public int color;
+	@DatabaseField(columnName = STATUS)
+	public int status;
 
 	public DayORM() {
 
@@ -64,7 +64,8 @@ public class DayORM {
 			} else {
 				UpdateBuilder<DayORM, String> updateBuilder = dao
 						.updateBuilder();
-				updateBuilder.updateColumnValue(DayORM.COLOR, day.color);
+				updateBuilder.updateColumnValue(DayORM.STATUS, day.status);
+				updateBuilder.updateColumnValue(DayORM.PICTURE, day.pictureURL);
 				PreparedUpdate<DayORM> prepare2 = updateBuilder.prepare();
 				int update = dao.update(prepare2);
 			}
@@ -79,7 +80,6 @@ public class DayORM {
 		DatabaseHelper helper = OpenHelperManager.getHelper(context,
 				DatabaseHelper.class);
 		try {
-			DayORM item = new DayORM(0, 0, 0);
 			final Dao<DayORM, String> dao = helper.getDayDao();
 			DeleteBuilder<DayORM, String> deleteBuilder = dao.deleteBuilder();
 			int removed = dao.delete(deleteBuilder.prepare());
@@ -113,9 +113,26 @@ public class DayORM {
 		}
 	}
 
+	public static List<DayORM> getMonthDays(Context context, int month) {
+		DatabaseHelper helper = OpenHelperManager.getHelper(context,
+				DatabaseHelper.class);
+		List<DayORM> query = null;
+		try {
+			final Dao<DayORM, String> dao = helper.getDayDao();
+			PreparedQuery<DayORM> prepare = dao.queryBuilder().where()
+					.eq(DayORM.MONTH, month).prepare();
+			query = dao.query(prepare);
+		} catch (SQLException e) {
+			return null;
+		} finally {
+			OpenHelperManager.releaseHelper();
+		}
+		return query;
+	}
+
 	@Override
 	public String toString() {
 		return "DayORM [day=" + day + ", month=" + month + ", year=" + year
-				+ ", pictureURL=" + pictureURL + ", color=" + color + "]";
+				+ ", pictureURL=" + pictureURL + ", color=" + status + "]";
 	}
 }

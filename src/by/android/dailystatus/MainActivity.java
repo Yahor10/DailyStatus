@@ -2,20 +2,29 @@ package by.android.dailystatus;
 
 import static by.android.dailystatus.application.Constants.TAG;
 
+import java.io.File;
+
 import org.joda.time.DateTime;
+
+import uk.co.senab.bitmapcache.BitmapLruCache;
+import uk.co.senab.bitmapcache.CacheableBitmapWrapper;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -28,9 +37,13 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
+import by.android.dailystatus.application.DailyStatusApplication;
 import by.android.dailystatus.dialog.ImageChoiseDialog;
 import by.android.dailystatus.fragment.DayModel;
+import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.profile.ProfileActivity;
+import by.android.dailystatus.widget.calendar.CalendarView;
+import by.android.dailystatus.widget.calendar.Utils;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -43,6 +56,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	private static final int DAY_OF_WEEK_LABEL_IDS[] = { R.id.day1, R.id.day2,
 			R.id.day3, R.id.day4, R.id.day5, R.id.day6, R.id.day0 };
+
+	public static final int RESULT_TAKE_IMAGE = 0;
+	public static final int RESULT_LOAD_IMAGE = 1;
+
+	private Uri takePictureUri;
 
 	private Animator mCurrentAnimator;
 	private int mShortAnimationDuration;
@@ -65,6 +83,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	private ViewPager viewPager;
 
+	private DayPageAdapter adapter;
+
+	private BitmapLruCache mCache;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -79,11 +101,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 				android.R.integer.config_shortAnimTime);
 
 		now = DateTime.now();
+		mCache = DailyStatusApplication.getApplication(this).getImageCache();
 
 		initPageModel();
 		initDayLaybels();
 
-		DayPageAdapter adapter = new DayPageAdapter();
+		adapter = new DayPageAdapter();
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		viewPager.setAdapter(adapter);
 		// we dont want any smoothscroll. This enables us to switch the page
@@ -144,8 +167,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 			// Color.MAGENTA, Color.RED, Color.GRAY }, Color.YELLOW, 3, 2);
 			// colorPickerDialog.showPaletteView();
 			break;
-		case 3:
+		case 3: 
 			startActivity(ChartsActivity.buintIntent(this));
+			break;
+		case 4:
+			startActivity(CalendarView.buintIntent(this));
 			break;
 		case 5:
 			Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
@@ -159,7 +185,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	@Override
 	public void onPageScrollStateChanged(int state) {
 		if (state == ViewPager.SCROLL_STATE_IDLE) {
-
+			Log.v(TAG, "onPageScrollStateChanged");
 			final DayModel leftPage = dayPageModel[PAGE_LEFT];
 			final DayModel middlePage = dayPageModel[PAGE_MIDDLE];
 			final DayModel rightPage = dayPageModel[PAGE_RIGHT];
@@ -176,12 +202,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 				middlePage.setIndex(oldLeftIndex);
 				rightPage.setIndex(oldMiddleIndex);
 
+				now = now.minusDays(1);
+				updateDateStep();
+				
 				setContent(PAGE_RIGHT);
 				setContent(PAGE_MIDDLE);
 				setContent(PAGE_LEFT);
-
-				now = now.minusDays(1);
-				updateDateStep();
 
 				// user swiped to left direction --> right page
 			} else if (mSelectedPageIndex == PAGE_RIGHT) {
@@ -190,12 +216,13 @@ public class MainActivity extends SherlockFragmentActivity implements
 				middlePage.setIndex(oldRightIndex);
 				rightPage.setIndex(oldRightIndex + 1);
 
+				now = now.plusDays(1);
+				updateDateStep();
+				
 				setContent(PAGE_LEFT);
 				setContent(PAGE_MIDDLE);
 				setContent(PAGE_RIGHT);
-
-				now = now.plusDays(1);
-				updateDateStep();
+		
 			}
 			viewPager.setCurrentItem(PAGE_MIDDLE, false);
 		}
@@ -205,12 +232,49 @@ public class MainActivity extends SherlockFragmentActivity implements
 	@Override
 	public void onPageScrolled(int arg0, float arg1, int arg2) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void onPageSelected(int position) {
 		mSelectedPageIndex = position;
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == RESULT_TAKE_IMAGE && resultCode == RESULT_OK
+				&& null != data) {
+			File file = Utils.getTempFile(this);
+			takePictureUri = Uri.fromFile(file);
+			Log.v(TAG, "TEMP FILE");
+			// Bitmap bitmap =
+			// BitmapFactory.decodeStream(takePictureUri.toString());
+			// notify
+		}
+		if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK
+				&& null != data) {
+			Uri selectedImage = data.getData();
+			String[] filePathColumn = { MediaStore.Images.Media.DATA };
+			Cursor cursor = getContentResolver().query(selectedImage,
+					filePathColumn, null, null, null);
+			cursor.moveToFirst();
+			int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+			String picturePath = cursor.getString(columnIndex);
+			cursor.close();
+			Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
+
+			Log.v(TAG, "PICTURE PATH" + picturePath  + "DAY" + now.getDayOfYear());
+			CacheableBitmapWrapper newValue = new CacheableBitmapWrapper(
+					picturePath, bitmap);
+			mCache.put(newValue);
+
+			DayORM day = new DayORM(now.getDayOfYear(), now.getMonthOfYear(),
+					now.getYear());
+			day.pictureURL = picturePath;
+			DayORM.insertOrUpdateDay(this, day);
+			adapter.notifyDataSetChanged();
+
+		}
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	private void initDayLaybels() {
@@ -257,7 +321,28 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	private void setContent(int index) {
 		final DayModel model = dayPageModel[index];
-		model.dayText.setText(model.getDayText());
+		String dayText = model.getDayText();
+		model.dayText.setText(dayText);
+
+		int dayOfYear = now.getDayOfYear();
+		int year = now.getYear();
+		if (index == 1) { // TODO find correct place for text and day image
+			DayORM day = DayORM
+					.getDay(getApplicationContext(), dayOfYear, year);
+			if (day != null) {
+				String pictureUrl = day.pictureURL;
+				CacheableBitmapWrapper cacheableBitmapWrapper = mCache
+						.get(pictureUrl);
+				if (cacheableBitmapWrapper != null
+						&& cacheableBitmapWrapper.hasValidBitmap()) {
+					Bitmap bitmap = cacheableBitmapWrapper.getBitmap();
+					model.dayImage.setImageBitmap(bitmap);
+				}
+			} else {
+				Log.v(TAG, "DAY NULL");
+				model.dayImage.setImageResource(R.drawable.ic_launcher);
+			}
+		}
 	}
 
 	private void DialogChosePhoto() {
@@ -269,14 +354,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		View prevDay = findViewById(DAY_OF_WEEK_LABEL_IDS[dayStep]);
 		prevDay.setBackgroundColor(Color.parseColor("#FFDDDDDD"));
-
 		View view = findViewById(DAY_OF_WEEK_LABEL_IDS[now.getDayOfWeek() - 1]);
 		view.setBackgroundColor(Color.BLUE);
-
+		
 		dayStep = now.getDayOfWeek() - 1;
-
-		Log.v(TAG, "CURRENT DAY" + now.getDayOfWeek());
-
 	}
 
 	private void zoomImageFromThumb(final View thumbView, Bitmap bitmap) {
@@ -418,25 +499,13 @@ public class MainActivity extends SherlockFragmentActivity implements
 		public Object instantiateItem(ViewGroup container, int position) {
 			View inflate = inflater.inflate(R.layout.day_fragment, null);
 			DayModel currentPage = dayPageModel[position];
+			Log.v(TAG, "instantiateItem");
 			currentDay = (TextView) inflate.findViewById(R.id.currentDay);
+			dayImage = (ImageView) inflate.findViewById(R.id.dayImage);
 			currentPage.dayText = currentDay;
+			currentPage.dayImage = dayImage;
 			currentDay.setText(currentPage.getDayText());
 			container.addView(inflate);
-
-			dayImage = (ImageView) inflate.findViewById(R.id.dayImage);
-
-			// if (savedInstanceState != null) {
-			// this.takePictureUri =
-			// Uri.parse(savedInstanceState.getString("takePictureUri"));
-			// this.picturePath = savedInstanceState.getString("picturePath");
-			// this.takePhoto = savedInstanceState.getBoolean("takePhoto");
-			// }
-			// if(takePhoto == true & takePictureUri != null) {
-			// dayImage.setImageURI(takePictureUri);
-			// }
-			// else if(takePhoto == false & picturePath != null){
-			// dayImage.setImageURI(Uri.parse(picturePath));
-			// }
 
 			updateDateStep();
 
@@ -466,10 +535,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 				// findViewById(R.id.day_layout).setBackgroundColor(Color.BLACK);
 				break;
 			case R.id.dayImage:
-				BitmapDrawable bitmapDrawable = (BitmapDrawable) dayImage
-						.getDrawable();
-				Bitmap bitmap = bitmapDrawable.getBitmap();
-				zoomImageFromThumb(dayImage, bitmap);
+				// BitmapDrawable bitmapDrawable = (BitmapDrawable) dayImage
+				// .getDrawable();
+				// Bitmap bitmap = bitmapDrawable.getBitmap();
+				// zoomImageFromThumb(dayImage, bitmap);
 			case R.id.back_day:
 				viewPager.setCurrentItem(PAGE_LEFT);
 				break;
@@ -480,5 +549,4 @@ public class MainActivity extends SherlockFragmentActivity implements
 			}
 		}
 	}
-
 }

@@ -21,7 +21,7 @@ public class WeekFragment extends BaseChartsFragment {
 
 	private GraphicalView mChartView;
 	private View inflate;
-	
+
 	CategorySeries mSeries = new CategorySeries("");
 	/** The main renderer for the main dataset. */
 	DefaultRenderer mRenderer = new DefaultRenderer();
@@ -34,8 +34,17 @@ public class WeekFragment extends BaseChartsFragment {
 	}
 
 	@Override
-	public void onResume() {
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		mRenderer.setStartAngle(180);
+		mRenderer.setDisplayValues(true);
+		mRenderer.setZoomEnabled(false);
+		mRenderer.setPanEnabled(false);
+		mRenderer.setInScroll(true);
+		super.onViewCreated(view, savedInstanceState);
+	}
 
+	@Override
+	public void onResume() {
 
 		LinearLayout layout = (LinearLayout) inflate.findViewById(R.id.chart);
 		Context applicationContext = getActivity().getApplicationContext();
@@ -68,6 +77,13 @@ public class WeekFragment extends BaseChartsFragment {
 		mRenderer.setPanEnabled(false);
 		mRenderer.setInScroll(true);
 		super.onResume();
+	}
+
+	@Override
+	public void onPause() {
+		mSeries.clear();
+		mRenderer.removeAllRenderers();
+		super.onPause();
 	}
 
 	public static Fragment newInstance() {
