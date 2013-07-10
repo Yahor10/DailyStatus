@@ -353,7 +353,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	private void updateDateStep() {
 
 		View prevDay = findViewById(DAY_OF_WEEK_LABEL_IDS[dayStep]);
-		prevDay.setBackgroundColor(Color.parseColor("#FFDDDDDD"));
+		prevDay.setBackgroundColor(Color.parseColor("#67CBEE"));
 		View view = findViewById(DAY_OF_WEEK_LABEL_IDS[now.getDayOfWeek() - 1]);
 		view.setBackgroundColor(Color.BLUE);
 		

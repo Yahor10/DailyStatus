@@ -21,11 +21,12 @@
         android:layout_marginTop="10dp"
         android:gravity="center" >
 
-        <Button
+        <ImageButton
             android:id="@+id/back_day"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
-            android:text="&lt;" />
+            android:text="&lt;" 
+            android:src="@drawable/back_day"/>
 
         <TextView
             android:id="@+id/currentDay"
@@ -36,11 +37,12 @@
             android:text="Friday 20.Jule"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <Button
+        <ImageButton
             android:id="@+id/next_day"
             android:layout_width="34dp"
             android:layout_height="wrap_content"
-            android:text="&gt;" />
+            android:src="@drawable/next_day"
+            android:text=">" />
     </LinearLayout>
 
     <View
@@ -61,7 +63,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/ic_launcher" />
-
     </FrameLayout>
 
     <View
@@ -70,28 +71,44 @@
         android:background="#ac9d93" />
 
     <LinearLayout
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Day Event"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Day Event"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal" >
 
         <Button
-            style="@style/ButtonStyle"
             android:id="@+id/good_day"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Good Day"
-             />
+            android:text="Good Day" />
 
         <Button
-              style="@style/ButtonStyle"
             android:id="@+id/bad_day"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Bad day"
-             />
+            android:text="Bad day" />
     </LinearLayout>
 
 </LinearLayout>
