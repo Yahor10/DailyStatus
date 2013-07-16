@@ -21,12 +21,11 @@
         android:layout_marginTop="10dp"
         android:gravity="center" >
 
-        <ImageButton
+        <ImageView
             android:id="@+id/back_day"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
-            android:text="&lt;" 
-            android:src="@drawable/back_day"/>
+            android:src="@drawable/day_back"/>
 
         <TextView
             android:id="@+id/currentDay"
@@ -37,12 +36,11 @@
             android:text="Friday 20.Jule"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/next_day"
             android:layout_width="34dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/next_day"
-            android:text=">" />
+            android:src="@drawable/day_next"/>
     </LinearLayout>
 
     <View
@@ -100,7 +98,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Good Day" />
+            android:text="Good Day" 
+            />
 
         <Button
             android:id="@+id/bad_day"
@@ -108,7 +107,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Bad day" />
+            android:text="Bad day"
+             />
     </LinearLayout>
 
 </LinearLayout>

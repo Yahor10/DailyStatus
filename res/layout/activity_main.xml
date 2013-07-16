@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background"
     tools:context=".MainActivity" >
 
     <LinearLayout
@@ -23,25 +24,55 @@
             android:id="@+id/day0"
             style="@style/MonthView_DayLabel" />
 
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@android:color/white" />
+
         <TextView
             android:id="@+id/day1"
             style="@style/MonthView_DayLabel" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@android:color/white" />
 
         <TextView
             android:id="@+id/day2"
             style="@style/MonthView_DayLabel" />
 
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@android:color/white" />
+
         <TextView
             android:id="@+id/day3"
             style="@style/MonthView_DayLabel" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@android:color/white" />
 
         <TextView
             android:id="@+id/day4"
             style="@style/MonthView_DayLabel" />
 
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@android:color/white" />
+
         <TextView
             android:id="@+id/day5"
             style="@style/MonthView_DayLabel" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@android:color/white" />
 
         <TextView
             android:id="@+id/day6"
