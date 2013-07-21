@@ -55,14 +55,14 @@
 
     <GridView
         android:id="@+id/gridview"
-        android:layout_width="fill_parent"
-        android:layout_height="250dp"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
         android:layout_gravity="center_horizontal"
         android:listSelector="@android:color/transparent"
         android:numColumns="7"
         android:stretchMode="columnWidth"
-        android:layout_marginBottom="30dp" 
-        android:background="@drawable/ic_calendar_b3"/>
+        android:layout_marginBottom="5dp" 
+        />
 
 
     <LinearLayout

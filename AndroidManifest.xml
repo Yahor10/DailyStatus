@@ -12,16 +12,15 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name="by.android.dailystatus.application.DailyStatusApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppBaseTheme"
-        android:name="by.android.dailystatus.application.DailyStatusApplication" >
+        android:theme="@style/AppBaseTheme" >
         <activity
             android:name="by.android.dailystatus.MainActivity"
             android:label="@string/app_name"
-            android:noHistory="false"
-             >
+            android:noHistory="false" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,12 +30,12 @@
         <activity android:name="by.android.dailystatus.profile.ProfileActivity" >
         </activity>
         <activity
-            android:name="ChartsActivity"
+            android:name="by.android.dailystatus.ChartsActivity"
             android:icon="@drawable/ic_launcher"
-            android:label="@string/charts"
-            >
+            android:label="@string/charts" >
         </activity>
-        <activity android:name=".widget.calendar.CalendarView"></activity>
+        <activity android:name="by.android.dailystatus.widget.calendar.CalendarView" >
+        </activity>
     </application>
 
 </manifest>

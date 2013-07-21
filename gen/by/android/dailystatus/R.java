@@ -1284,24 +1284,26 @@ containing a value of this type.
         public static final int ic_day_next_pressed=0x7f020092;
         public static final int ic_good_day=0x7f020093;
         public static final int ic_launcher=0x7f020094;
-        public static final int ic_month_back=0x7f020095;
-        public static final int ic_month_back_pressed=0x7f020096;
-        public static final int ic_month_next=0x7f020097;
-        public static final int ic_month_next_pressed=0x7f020098;
-        public static final int ic_star_empty=0x7f020099;
-        public static final int ic_star_full=0x7f02009a;
-        public static final int month_back=0x7f02009b;
-        public static final int month_next=0x7f02009c;
-        public static final int profile=0x7f02009d;
-        public static final int ratingstars=0x7f02009e;
-        public static final int violet_button=0x7f02009f;
-        public static final int vpi__tab_indicator=0x7f0200a0;
-        public static final int vpi__tab_selected_focused_holo=0x7f0200a1;
-        public static final int vpi__tab_selected_holo=0x7f0200a2;
-        public static final int vpi__tab_selected_pressed_holo=0x7f0200a3;
-        public static final int vpi__tab_unselected_focused_holo=0x7f0200a4;
-        public static final int vpi__tab_unselected_holo=0x7f0200a5;
-        public static final int vpi__tab_unselected_pressed_holo=0x7f0200a6;
+        public static final int ic_menu_add=0x7f020095;
+        public static final int ic_month_back=0x7f020096;
+        public static final int ic_month_back_pressed=0x7f020097;
+        public static final int ic_month_next=0x7f020098;
+        public static final int ic_month_next_pressed=0x7f020099;
+        public static final int ic_profile=0x7f02009a;
+        public static final int ic_star_empty=0x7f02009b;
+        public static final int ic_star_full=0x7f02009c;
+        public static final int month_back=0x7f02009d;
+        public static final int month_next=0x7f02009e;
+        public static final int profile=0x7f02009f;
+        public static final int ratingstars=0x7f0200a0;
+        public static final int violet_button=0x7f0200a1;
+        public static final int vpi__tab_indicator=0x7f0200a2;
+        public static final int vpi__tab_selected_focused_holo=0x7f0200a3;
+        public static final int vpi__tab_selected_holo=0x7f0200a4;
+        public static final int vpi__tab_selected_pressed_holo=0x7f0200a5;
+        public static final int vpi__tab_unselected_focused_holo=0x7f0200a6;
+        public static final int vpi__tab_unselected_holo=0x7f0200a7;
+        public static final int vpi__tab_unselected_pressed_holo=0x7f0200a8;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f050023;
@@ -1343,7 +1345,8 @@ containing a value of this type.
         public static final int abs__textButton=0x7f050016;
         public static final int abs__title=0x7f05001e;
         public static final int abs__up=0x7f05000b;
-        public static final int action_settings=0x7f050059;
+        public static final int action_forgot_password=0x7f050059;
+        public static final int action_settings=0x7f05005a;
         public static final int back_day=0x7f050046;
         public static final int bad_day=0x7f05004c;
         public static final int chart=0x7f050058;
@@ -1436,7 +1439,8 @@ containing a value of this type.
         public static final int xy_chart=0x7f03001e;
     }
     public static final class menu {
-        public static final int main=0x7f0c0000;
+        public static final int login=0x7f0c0000;
+        public static final int main=0x7f0c0001;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1478,16 +1482,29 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f0a0007;
+        public static final int action_forgot_password=0x7f0a001c;
         public static final int action_settings=0x7f0a000e;
+        public static final int action_sign_in_register=0x7f0a001a;
+        public static final int action_sign_in_short=0x7f0a001b;
         public static final int app_name=0x7f0a000d;
         public static final int bad_day=0x7f0a0015;
         public static final int charts=0x7f0a0016;
         public static final int dialog_title=0x7f0a0011;
+        public static final int error_field_required=0x7f0a0021;
+        public static final int error_incorrect_password=0x7f0a0020;
+        public static final int error_invalid_email=0x7f0a001e;
+        public static final int error_invalid_password=0x7f0a001f;
         public static final int good_day=0x7f0a0014;
         public static final int hello_world=0x7f0a000f;
+        public static final int login_progress_signing_in=0x7f0a001d;
         public static final int month_year=0x7f0a0010;
         public static final int name_profile=0x7f0a0012;
+        /**  Strings related to login 
+         */
+        public static final int prompt_email=0x7f0a0018;
+        public static final int prompt_password=0x7f0a0019;
         public static final int stats=0x7f0a0013;
+        public static final int title_activity_login=0x7f0a0017;
     }
     public static final class style {
         public static final int ActivityTheme=0x7f0b0066;

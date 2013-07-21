@@ -123,7 +123,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 		SubMenu subChoosePhoto = menu.addSubMenu("").setIcon(
 				getResources().getDrawable(
-						R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark));
+						R.drawable.ic_menu_add));
 
 		subChoosePhoto.add(0, 1, Menu.NONE, "Add Day Picture")
 				.setOnMenuItemClickListener(this);
