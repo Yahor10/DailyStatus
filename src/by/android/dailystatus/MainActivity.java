@@ -41,6 +41,7 @@ import by.android.dailystatus.application.DailyStatusApplication;
 import by.android.dailystatus.dialog.ImageChoiseDialog;
 import by.android.dailystatus.fragment.DayModel;
 import by.android.dailystatus.orm.model.DayORM;
+import by.android.dailystatus.preference.PreferenceUtils;
 import by.android.dailystatus.profile.ProfileActivity;
 import by.android.dailystatus.widget.calendar.CalendarView;
 import by.android.dailystatus.widget.calendar.Utils;
@@ -122,8 +123,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		menu.add("Save").setIcon(R.drawable.ic_compose)
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 		SubMenu subChoosePhoto = menu.addSubMenu("").setIcon(
-				getResources().getDrawable(
-						R.drawable.ic_menu_add));
+				getResources().getDrawable(R.drawable.ic_menu_add));
 
 		subChoosePhoto.add(0, 1, Menu.NONE, "Add Day Picture")
 				.setOnMenuItemClickListener(this);
@@ -136,11 +136,14 @@ public class MainActivity extends SherlockFragmentActivity implements
 				getResources().getDrawable(
 						R.drawable.abs__spinner_ab_default_holo_dark));
 
-		subMyProfile.add(0, 3, Menu.NONE, "Charts").setOnMenuItemClickListener(
-				this);
-		subMyProfile.add(0, 4, Menu.NONE, "Month").setOnMenuItemClickListener(
-				this);
+		subMyProfile.add(0, 3, Menu.NONE, "Charts")
+				.setIcon(R.drawable.ic_menu_chart)
+				.setOnMenuItemClickListener(this);
+		subMyProfile.add(0, 4, Menu.NONE, "Month")
+				.setIcon(R.drawable.ic_menu_calendar)
+				.setOnMenuItemClickListener(this);
 		subMyProfile.add(0, 5, Menu.NONE, "Profile")
+				.setIcon(R.drawable.ic_menu_profile)
 				.setOnMenuItemClickListener(this);
 		subMyProfile.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		return super.onCreateOptionsMenu(menu);
@@ -167,7 +170,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 			// Color.MAGENTA, Color.RED, Color.GRAY }, Color.YELLOW, 3, 2);
 			// colorPickerDialog.showPaletteView();
 			break;
-		case 3: 
+		case 3:
 			startActivity(ChartsActivity.buintIntent(this));
 			break;
 		case 4:
@@ -204,7 +207,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 				now = now.minusDays(1);
 				updateDateStep();
-				
+
 				setContent(PAGE_RIGHT);
 				setContent(PAGE_MIDDLE);
 				setContent(PAGE_LEFT);
@@ -218,11 +221,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 				now = now.plusDays(1);
 				updateDateStep();
-				
+
 				setContent(PAGE_LEFT);
 				setContent(PAGE_MIDDLE);
 				setContent(PAGE_RIGHT);
-		
+
 			}
 			viewPager.setCurrentItem(PAGE_MIDDLE, false);
 		}
@@ -262,13 +265,17 @@ public class MainActivity extends SherlockFragmentActivity implements
 			cursor.close();
 			Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
 
-			Log.v(TAG, "PICTURE PATH" + picturePath  + "DAY" + now.getDayOfYear());
+			Log.v(TAG,
+					"PICTURE PATH" + picturePath + "DAY" + now.getDayOfYear());
 			CacheableBitmapWrapper newValue = new CacheableBitmapWrapper(
 					picturePath, bitmap);
 			mCache.put(newValue);
 
-			DayORM day = new DayORM(now.getDayOfYear(), now.getMonthOfYear(),
-					now.getYear());
+			String currentUser = PreferenceUtils.getCurrentUser(this);
+
+			DayORM day = new DayORM(currentUser, now.getDayOfYear(),
+					now.getMonthOfYear(), now.getYear());
+
 			day.pictureURL = picturePath;
 			DayORM.insertOrUpdateDay(this, day);
 			adapter.notifyDataSetChanged();
@@ -356,7 +363,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		prevDay.setBackgroundColor(Color.parseColor("#67CBEE"));
 		View view = findViewById(DAY_OF_WEEK_LABEL_IDS[now.getDayOfWeek() - 1]);
 		view.setBackgroundColor(Color.BLUE);
-		
+
 		dayStep = now.getDayOfWeek() - 1;
 	}
 

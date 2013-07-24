@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import android.content.Context;
+import by.android.dailystatus.preference.PreferenceUtils;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
@@ -18,6 +19,7 @@ import com.j256.ormlite.table.DatabaseTable;
 public class DayORM {
 
 	public static final String KEY_ID = "id";
+	public static final String USER = "user";
 	public static final String DAY = "day";
 	public static final String MONTH = "month";
 	public static final String YEAR = "year";
@@ -26,6 +28,8 @@ public class DayORM {
 
 	@DatabaseField(columnName = KEY_ID)
 	public int id;
+	@DatabaseField(columnName = USER)
+	public String user;
 	@DatabaseField(columnName = DAY)
 	public int day;
 	@DatabaseField(columnName = MONTH)
@@ -41,8 +45,9 @@ public class DayORM {
 
 	}
 
-	public DayORM(int day, int month, int year) {
+	public DayORM(String user, int day, int month, int year) {
 		super();
+		this.user = user;
 		this.day = day;
 		this.month = month;
 		this.year = year;
@@ -54,8 +59,8 @@ public class DayORM {
 		try {
 			final Dao<DayORM, String> dao = helper.getDayDao();
 			PreparedQuery<DayORM> prepare = dao.queryBuilder().where()
-					.eq(DayORM.DAY, day.day).and().eq(DayORM.YEAR, day.year)
-					.prepare();
+					.eq(DayORM.USER, day.user).and().eq(DayORM.DAY, day.day).and()
+					.eq(DayORM.YEAR, day.year).prepare();
 			List<DayORM> query = dao.query(prepare);
 			if (query.isEmpty()) {
 				if (dao.create(day) == 0) {
@@ -96,10 +101,12 @@ public class DayORM {
 		DatabaseHelper helper = OpenHelperManager.getHelper(context,
 				DatabaseHelper.class);
 		List<DayORM> query = null;
+		String currentUser = PreferenceUtils.getCurrentUser(context);
 		try {
 			final Dao<DayORM, String> dao = helper.getDayDao();
 			PreparedQuery<DayORM> prepare = dao.queryBuilder().where()
-					.eq(DayORM.DAY, day).and().eq(DayORM.YEAR, year).prepare();
+					.eq(DayORM.USER, currentUser).and().eq(DayORM.DAY, day).and()
+					.eq(DayORM.YEAR, year).prepare();
 			query = dao.query(prepare);
 		} catch (SQLException e) {
 			return null;
