@@ -3,6 +3,7 @@ package by.android.dailystatus.fragment;
 import org.joda.time.DateTime;
 import org.joda.time.DateTime.Property;
 
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +13,9 @@ public class DayModel {
 	private String text;
 	public TextView dayText;
 	public ImageView dayImage;
+	public Button goodDay;
+	public Button badDay;
+	public DateTime date;
 	
 
 	public DayModel(int index) {
@@ -39,6 +43,8 @@ public class DayModel {
 		} else {
 			now = now.minusDays(Math.abs(index));
 		}
+		setDate(now);
+		
 		DateTime.Property pDoW = now.dayOfWeek();
 		String day = pDoW.getAsText();
 		Property pMoY = now.monthOfYear();
@@ -53,5 +59,13 @@ public class DayModel {
 		dataBuilder.append(month);
 		
 		this.text = dataBuilder.toString();
+	}
+
+	public DateTime getDate() {
+		return date;
+	}
+
+	public void setDate(DateTime date) {
+		this.date = date;
 	}
 }

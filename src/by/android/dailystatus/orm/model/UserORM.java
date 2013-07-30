@@ -14,7 +14,7 @@ import com.j256.ormlite.stmt.PreparedUpdate;
 import com.j256.ormlite.stmt.UpdateBuilder;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "day")
+@DatabaseTable(tableName = "users")
 public class UserORM {
 
 	public static final String KEY_ID = "id";

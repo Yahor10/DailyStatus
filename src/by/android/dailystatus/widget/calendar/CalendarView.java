@@ -6,11 +6,15 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import com.actionbarsherlock.app.SherlockActivity;
+
 import by.android.dailystatus.R;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -22,7 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CalendarView extends Activity {
+public class CalendarView extends SherlockActivity {
 
 	public GregorianCalendar month, itemmonth;// calendar instances.
 
@@ -36,6 +40,9 @@ public class CalendarView extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calendar);
 		Locale.setDefault(Locale.US);
+		getSupportActionBar().setBackgroundDrawable(
+				new ColorDrawable(Color.parseColor("#0e78c9")));
+		
 		month = (GregorianCalendar) GregorianCalendar.getInstance();
 		itemmonth = (GregorianCalendar) month.clone();
 

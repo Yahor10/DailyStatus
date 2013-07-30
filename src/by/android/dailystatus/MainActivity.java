@@ -24,6 +24,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.PagerAdapter;
@@ -35,8 +37,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import by.android.dailystatus.R.color;
 import by.android.dailystatus.application.DailyStatusApplication;
 import by.android.dailystatus.dialog.ImageChoiseDialog;
 import by.android.dailystatus.fragment.DayModel;
@@ -68,6 +73,9 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	private TextView currentDay;
 	private ImageView dayImage;
+
+	private Button badDay;
+	private Button goodDay;
 
 	private int dayStep = 0;
 
@@ -103,7 +111,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		now = DateTime.now();
 		mCache = DailyStatusApplication.getApplication(this).getImageCache();
-
+		
 		initPageModel();
 		initDayLaybels();
 
@@ -120,8 +128,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Used to put dark icons on light action bar
-		menu.add("Save").setIcon(R.drawable.ic_compose)
-				.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 		SubMenu subChoosePhoto = menu.addSubMenu("").setIcon(
 				getResources().getDrawable(R.drawable.ic_menu_add));
 
@@ -134,7 +140,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		SubMenu subMyProfile = menu.addSubMenu("").setIcon(
 				getResources().getDrawable(
-						R.drawable.abs__spinner_ab_default_holo_dark));
+						R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark));
 
 		subMyProfile.add(0, 3, Menu.NONE, "Charts")
 				.setIcon(R.drawable.ic_menu_chart)
@@ -151,10 +157,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.isChecked())
-			item.setChecked(false);
-		else
-			item.setChecked(true);
 		return true;
 	}
 
@@ -267,9 +269,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 			Log.v(TAG,
 					"PICTURE PATH" + picturePath + "DAY" + now.getDayOfYear());
-			CacheableBitmapWrapper newValue = new CacheableBitmapWrapper(
-					picturePath, bitmap);
-			mCache.put(newValue);
+			CacheableBitmapWrapper newValue = new CacheableBitmapWrapper(bitmap);
+			mCache.put(picturePath, newValue);
+
+			Log.v(TAG, "LRU CACHE SIZE" + mCache.size());
 
 			String currentUser = PreferenceUtils.getCurrentUser(this);
 
@@ -331,24 +334,42 @@ public class MainActivity extends SherlockFragmentActivity implements
 		String dayText = model.getDayText();
 		model.dayText.setText(dayText);
 
-		int dayOfYear = now.getDayOfYear();
-		int year = now.getYear();
-		if (index == 1) { // TODO find correct place for text and day image
-			DayORM day = DayORM
-					.getDay(getApplicationContext(), dayOfYear, year);
-			if (day != null) {
-				String pictureUrl = day.pictureURL;
-				CacheableBitmapWrapper cacheableBitmapWrapper = mCache
-						.get(pictureUrl);
+		DateTime date = model.getDate();
+		DayORM day = DayORM.getDay(this, date.getDayOfYear(), date.getYear());
+		if (day != null) {
+			if (day.pictureURL != null) {
+				final CacheableBitmapWrapper cacheableBitmapWrapper = mCache
+						.get(day.pictureURL);
 				if (cacheableBitmapWrapper != null
 						&& cacheableBitmapWrapper.hasValidBitmap()) {
-					Bitmap bitmap = cacheableBitmapWrapper.getBitmap();
-					model.dayImage.setImageBitmap(bitmap);
+					model.dayImage.setImageBitmap(cacheableBitmapWrapper
+							.getBitmap());
 				}
-			} else {
-				Log.v(TAG, "DAY NULL");
-				model.dayImage.setImageResource(R.drawable.ic_launcher);
 			}
+
+			int status = day.status;
+			int color = 0;
+			switch (status) {
+			case 1:
+				color = getResources().getColor(android.R.color.white);
+				model.goodDay.setBackgroundColor(color);
+				color = getResources().getColor(R.color.violet);
+				model.badDay.setBackgroundColor(color);
+				break;
+			case -1:
+				color = getResources().getColor(android.R.color.black);
+				model.badDay.setBackgroundColor(color);
+				color = getResources().getColor(R.color.violet);
+				model.goodDay.setBackgroundColor(color);
+				break;
+			default:
+				break;
+			}
+		} else {
+			model.dayImage.setImageResource(R.drawable.ic_launcher);
+			int color = getResources().getColor(R.color.violet);
+			model.goodDay.setBackgroundColor(color);
+			model.badDay.setBackgroundColor(color);
 		}
 	}
 
@@ -509,8 +530,15 @@ public class MainActivity extends SherlockFragmentActivity implements
 			Log.v(TAG, "instantiateItem");
 			currentDay = (TextView) inflate.findViewById(R.id.currentDay);
 			dayImage = (ImageView) inflate.findViewById(R.id.dayImage);
+
+			goodDay = (Button) inflate.findViewById(R.id.good_day);
+			badDay = (Button) inflate.findViewById(R.id.bad_day);
+
 			currentPage.dayText = currentDay;
 			currentPage.dayImage = dayImage;
+			currentPage.goodDay = goodDay;
+			currentPage.badDay = badDay;
+
 			currentDay.setText(currentPage.getDayText());
 			container.addView(inflate);
 
@@ -536,10 +564,28 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 			switch (v.getId()) {
 			case R.id.good_day:
-				// findViewById(R.id.day_layout).setBackgroundColor(Color.BLUE);
+				String currentUser = PreferenceUtils
+						.getCurrentUser(getApplicationContext());
+
+				DayORM day = new DayORM(currentUser, now.getDayOfYear(),
+						now.getMonthOfYear(), now.getYear());
+				day.status = 1;
+
+				DayORM.insertOrUpdateDay(getApplicationContext(), day);
+				Toast.makeText(getApplicationContext(), "GOOD DAY",
+						Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.bad_day:
-				// findViewById(R.id.day_layout).setBackgroundColor(Color.BLACK);
+				currentUser = PreferenceUtils
+						.getCurrentUser(getApplicationContext());
+
+				day = new DayORM(currentUser, now.getDayOfYear(),
+						now.getMonthOfYear(), now.getYear());
+				day.status = -1;
+
+				DayORM.insertOrUpdateDay(getApplicationContext(), day);
+				Toast.makeText(getApplicationContext(), "BAD DAY",
+						Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.dayImage:
 				// BitmapDrawable bitmapDrawable = (BitmapDrawable) dayImage
