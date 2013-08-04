@@ -7,6 +7,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
 
 import by.android.dailystatus.R;
 
@@ -17,6 +18,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.NavUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -42,6 +44,7 @@ public class CalendarView extends SherlockActivity {
 		Locale.setDefault(Locale.US);
 		getSupportActionBar().setBackgroundDrawable(
 				new ColorDrawable(Color.parseColor("#0e78c9")));
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		month = (GregorianCalendar) GregorianCalendar.getInstance();
 		itemmonth = (GregorianCalendar) month.clone();
@@ -106,6 +109,17 @@ public class CalendarView extends SherlockActivity {
 			}
 		});
 	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+        	NavUtils.navigateUpFromSameTask(this);
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
 
 	protected void setNextMonth() {
 		if (month.get(GregorianCalendar.MONTH) == month

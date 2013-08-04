@@ -28,13 +28,22 @@
             </intent-filter>
         </activity>
         <activity android:name="by.android.dailystatus.profile.ProfileActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="by.android.dailystatus.MainActivity" />
         </activity>
         <activity
             android:name="by.android.dailystatus.ChartsActivity"
             android:icon="@drawable/ic_launcher"
             android:label="@string/charts" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="by.android.dailystatus.MainActivity" />
         </activity>
         <activity android:name="by.android.dailystatus.widget.calendar.CalendarView" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="by.android.dailystatus.MainActivity" />
         </activity>
     </application>
 

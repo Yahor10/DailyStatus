@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
@@ -17,6 +18,7 @@ import by.android.dailystatus.fragment.WeekFragment;
 import by.android.dailystatus.fragment.YearFragment;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.viewpagerindicator.TabPageIndicator;
 
 public class ChartsActivity extends SherlockFragmentActivity {
@@ -30,6 +32,7 @@ public class ChartsActivity extends SherlockFragmentActivity {
 
 		getSupportActionBar().setBackgroundDrawable(
 				new ColorDrawable(Color.parseColor("#0e78c9")));
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		FragmentPagerAdapter adapter = new AppsAdapter(
 				getSupportFragmentManager());
@@ -40,6 +43,17 @@ public class ChartsActivity extends SherlockFragmentActivity {
 		TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
 		indicator.setViewPager(pager);
 	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+        	NavUtils.navigateUpFromSameTask(this);
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
 
 	private class AppsAdapter extends FragmentPagerAdapter {
 

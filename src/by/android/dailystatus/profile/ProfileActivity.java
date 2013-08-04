@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
@@ -53,13 +54,7 @@ public class ProfileActivity extends SherlockActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case android.R.id.home:
-        	onBackPressed();
-        	/* If you need when call ProfileActivity not from MainActivity and onBack to MainActivity
-        	 * 
-        	 * Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-			   startActivity(intent);
-			   finish();
-			 */
+        	NavUtils.navigateUpFromSameTask(this);
             return true;
         default:
             return super.onOptionsItemSelected(item);
