@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp" >
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_corner" >
 
         <ImageView
             android:id="@+id/imgProfile"
@@ -40,7 +41,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="25dp"
-        android:background="@android:color/white"
+        android:background="@drawable/round_corner"
         android:paddingBottom="20dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -66,7 +67,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="25dp"
-        android:background="@android:color/white"
+        android:background="@drawable/round_corner"
         android:paddingBottom="20dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -90,7 +91,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
-        android:background="@android:color/white"
+        android:background="@drawable/round_corner"
         android:paddingBottom="20dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
