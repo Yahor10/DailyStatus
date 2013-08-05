@@ -49,6 +49,7 @@ import by.android.dailystatus.fragment.DayModel;
 import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.preference.PreferenceUtils;
 import by.android.dailystatus.profile.ProfileActivity;
+import by.android.dailystatus.settings.SettingsActivity;
 import by.android.dailystatus.widget.calendar.CalendarView;
 import by.android.dailystatus.widget.calendar.Utils;
 
@@ -154,6 +155,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 				.setOnMenuItemClickListener(this);
 		subMyProfile.add(0, 6, Menu.NONE, "Alarm")
 		.setOnMenuItemClickListener(this);
+		subMyProfile.add(0, 7, Menu.NONE, "Settings")
+		.setOnMenuItemClickListener(this);
 		subMyProfile.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -186,8 +189,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 			startActivity(intent);
 			break;
 		case 6:
-			Intent i = new Intent(MainActivity.this, AlarmActivity.class);
-			startActivity(i);
+			Intent intentAlarm = new Intent(MainActivity.this, AlarmActivity.class);
+			startActivity(intentAlarm);
+			break;
+		case 7:
+			Intent intantSettings = new Intent(MainActivity.this, SettingsActivity.class);
+			startActivity(intantSettings);
 			break;
 		default:
 		}
