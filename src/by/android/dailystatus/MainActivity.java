@@ -42,6 +42,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import by.android.dailystatus.R.color;
+import by.android.dailystatus.alarm.AlarmActivity;
 import by.android.dailystatus.application.DailyStatusApplication;
 import by.android.dailystatus.dialog.ImageChoiseDialog;
 import by.android.dailystatus.fragment.DayModel;
@@ -151,6 +152,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 		subMyProfile.add(0, 5, Menu.NONE, "Profile")
 				.setIcon(R.drawable.ic_menu_profile)
 				.setOnMenuItemClickListener(this);
+		subMyProfile.add(0, 6, Menu.NONE, "Alarm")
+		.setOnMenuItemClickListener(this);
 		subMyProfile.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -181,6 +184,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 		case 5:
 			Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
 			startActivity(intent);
+			break;
+		case 6:
+			Intent i = new Intent(MainActivity.this, AlarmActivity.class);
+			startActivity(i);
 			break;
 		default:
 		}
