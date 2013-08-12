@@ -44,6 +44,7 @@ import android.widget.Toast;
 import by.android.dailystatus.R.color;
 import by.android.dailystatus.alarm.AlarmActivity;
 import by.android.dailystatus.application.DailyStatusApplication;
+import by.android.dailystatus.dialog.AddDayEvent;
 import by.android.dailystatus.dialog.ImageChoiseDialog;
 import by.android.dailystatus.fragment.DayModel;
 import by.android.dailystatus.orm.model.DayORM;
@@ -135,6 +136,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 				.setOnMenuItemClickListener(this);
 		subChoosePhoto.add(0, 2, Menu.NONE, "Pick Day Color")
 				.setOnMenuItemClickListener(this);
+		subChoosePhoto.add(0, 3, Menu.NONE, "Add Day Event")
+		.setOnMenuItemClickListener(this);
 		subChoosePhoto.getItem()
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
@@ -142,19 +145,20 @@ public class MainActivity extends SherlockFragmentActivity implements
 				getResources().getDrawable(
 						R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark));
 
-		subMyProfile.add(0, 3, Menu.NONE, "Charts")
+		subMyProfile.add(0, 4, Menu.NONE, "Charts")
 				.setIcon(R.drawable.ic_menu_chart)
 				.setOnMenuItemClickListener(this);
-		subMyProfile.add(0, 4, Menu.NONE, "Month")
+		subMyProfile.add(0, 5, Menu.NONE, "Month")
 				.setIcon(R.drawable.ic_menu_calendar)
 				.setOnMenuItemClickListener(this);
-		subMyProfile.add(0, 5, Menu.NONE, "Profile")
+		subMyProfile.add(0, 6, Menu.NONE, "Profile")
 				.setIcon(R.drawable.ic_menu_profile)
 				.setOnMenuItemClickListener(this);
-		subMyProfile.add(0, 6, Menu.NONE, "Alarm")
+		subMyProfile.add(0, 7, Menu.NONE, "Alarm")
 		.setOnMenuItemClickListener(this);
-		subMyProfile.add(0, 7, Menu.NONE, "Settings")
-		.setOnMenuItemClickListener(this);
+		subMyProfile.add(0, 8, Menu.NONE, "Settings")
+			.setIcon(R.drawable.ic_settings)
+			.setOnMenuItemClickListener(this);
 		subMyProfile.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -177,20 +181,23 @@ public class MainActivity extends SherlockFragmentActivity implements
 			// colorPickerDialog.showPaletteView();
 			break;
 		case 3:
+			DialogAddDayEvent();
+			break;	
+		case 4:
 			startActivity(ChartsActivity.buintIntent(this));
 			break;
-		case 4:
+		case 5:
 			startActivity(CalendarView.buintIntent(this));
 			break;
-		case 5:
+		case 6:
 			Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
 			startActivity(intent);
 			break;
-		case 6:
+		case 7:
 			Intent intentAlarm = new Intent(MainActivity.this, AlarmActivity.class);
 			startActivity(intentAlarm);
 			break;
-		case 7:
+		case 8:
 			Intent intantSettings = new Intent(MainActivity.this, SettingsActivity.class);
 			startActivity(intantSettings);
 			break;
@@ -390,6 +397,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 		dialog.show(getSupportFragmentManager(), "");
 	}
 
+	private void DialogAddDayEvent() {
+		DialogFragment dialog = new AddDayEvent();
+		dialog.show(getSupportFragmentManager(), "");
+	}
+	
 	private void updateDateStep() {
 
 		View prevDay = findViewById(DAY_OF_WEEK_LABEL_IDS[dayStep]);
