@@ -27,15 +27,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="by.android.dailystatus.alarm.AlarmActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="by.android.dailystatus.MainActivity" />
+        </activity>
+        <activity android:name="by.android.dailystatus.settings.SettingsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="by.android.dailystatus.MainActivity" />
+        </activity>
         <activity android:name="by.android.dailystatus.profile.ProfileActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="by.android.dailystatus.MainActivity" />
         </activity>
         <activity
             android:name="by.android.dailystatus.ChartsActivity"
             android:icon="@drawable/ic_launcher"
             android:label="@string/charts" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="by.android.dailystatus.MainActivity" />
         </activity>
         <activity android:name="by.android.dailystatus.widget.calendar.CalendarView" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="by.android.dailystatus.MainActivity" />
         </activity>
+        <receiver android:name="by.android.dailystatus.alarm.TimeAlarm" />
     </application>
 
 </manifest>

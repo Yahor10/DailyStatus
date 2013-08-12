@@ -32,12 +32,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="by.android.dailystatus.MainActivity" />
         </activity>
-        <activity android:name="by.android.dailystatus.settings.SettingsActivity" >
+        <activity android:name="by.android.dailystatus.SettingsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="by.android.dailystatus.MainActivity" />
         </activity>
-        <activity android:name="by.android.dailystatus.profile.ProfileActivity" >
+        <activity android:name="by.android.dailystatus.ProfileActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="by.android.dailystatus.MainActivity" />

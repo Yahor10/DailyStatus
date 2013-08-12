@@ -1320,14 +1320,15 @@ containing a value of this type.
         public static final int month_next=0x7f0200a6;
         public static final int profile=0x7f0200a7;
         public static final int ratingstars=0x7f0200a8;
-        public static final int violet_button=0x7f0200a9;
-        public static final int vpi__tab_indicator=0x7f0200aa;
-        public static final int vpi__tab_selected_focused_holo=0x7f0200ab;
-        public static final int vpi__tab_selected_holo=0x7f0200ac;
-        public static final int vpi__tab_selected_pressed_holo=0x7f0200ad;
-        public static final int vpi__tab_unselected_focused_holo=0x7f0200ae;
-        public static final int vpi__tab_unselected_holo=0x7f0200af;
-        public static final int vpi__tab_unselected_pressed_holo=0x7f0200b0;
+        public static final int round_corner=0x7f0200a9;
+        public static final int violet_button=0x7f0200aa;
+        public static final int vpi__tab_indicator=0x7f0200ab;
+        public static final int vpi__tab_selected_focused_holo=0x7f0200ac;
+        public static final int vpi__tab_selected_holo=0x7f0200ad;
+        public static final int vpi__tab_selected_pressed_holo=0x7f0200ae;
+        public static final int vpi__tab_unselected_focused_holo=0x7f0200af;
+        public static final int vpi__tab_unselected_holo=0x7f0200b0;
+        public static final int vpi__tab_unselected_pressed_holo=0x7f0200b1;
     }
     public static final class id {
         public static final int Button01=0x7f050038;
@@ -1463,15 +1464,17 @@ containing a value of this type.
         public static final int abs__simple_dropdown_hint=0x7f030016;
         public static final int activity_login=0x7f030017;
         public static final int activity_main=0x7f030018;
-        public static final int calendar=0x7f030019;
-        public static final int calendar_item=0x7f03001a;
-        public static final int day_fragment=0x7f03001b;
-        public static final int list_item_icon_text=0x7f03001c;
-        public static final int profile=0x7f03001d;
-        public static final int sherlock_spinner_dropdown_item=0x7f03001e;
-        public static final int sherlock_spinner_item=0x7f03001f;
-        public static final int simple_tabs=0x7f030020;
-        public static final int xy_chart=0x7f030021;
+        public static final int alarm=0x7f030019;
+        public static final int calendar=0x7f03001a;
+        public static final int calendar_item=0x7f03001b;
+        public static final int day_fragment=0x7f03001c;
+        public static final int list_item_icon_text=0x7f03001d;
+        public static final int profile=0x7f03001e;
+        public static final int settings=0x7f03001f;
+        public static final int sherlock_spinner_dropdown_item=0x7f030020;
+        public static final int sherlock_spinner_item=0x7f030021;
+        public static final int simple_tabs=0x7f030022;
+        public static final int xy_chart=0x7f030023;
     }
     public static final class menu {
         public static final int login=0x7f0d0000;

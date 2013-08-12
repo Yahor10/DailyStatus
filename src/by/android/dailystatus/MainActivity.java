@@ -48,8 +48,6 @@ import by.android.dailystatus.dialog.ImageChoiseDialog;
 import by.android.dailystatus.fragment.DayModel;
 import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.preference.PreferenceUtils;
-import by.android.dailystatus.profile.ProfileActivity;
-import by.android.dailystatus.settings.SettingsActivity;
 import by.android.dailystatus.widget.calendar.CalendarView;
 import by.android.dailystatus.widget.calendar.Utils;
 
