@@ -59,8 +59,8 @@ public class DayORM {
 		try {
 			final Dao<DayORM, String> dao = helper.getDayDao();
 			PreparedQuery<DayORM> prepare = dao.queryBuilder().where()
-					.eq(DayORM.USER, day.user).and().eq(DayORM.DAY, day.day).and()
-					.eq(DayORM.YEAR, day.year).prepare();
+					.eq(DayORM.USER, day.user).and().eq(DayORM.DAY, day.day)
+					.and().eq(DayORM.YEAR, day.year).prepare();
 			List<DayORM> query = dao.query(prepare);
 			if (query.isEmpty()) {
 				if (dao.create(day) == 0) {
@@ -105,8 +105,8 @@ public class DayORM {
 		try {
 			final Dao<DayORM, String> dao = helper.getDayDao();
 			PreparedQuery<DayORM> prepare = dao.queryBuilder().where()
-					.eq(DayORM.USER, currentUser).and().eq(DayORM.DAY, day).and()
-					.eq(DayORM.YEAR, year).prepare();
+					.eq(DayORM.USER, currentUser).and().eq(DayORM.DAY, day)
+					.and().eq(DayORM.YEAR, year).prepare();
 			query = dao.query(prepare);
 		} catch (SQLException e) {
 			return null;
@@ -131,6 +131,40 @@ public class DayORM {
 			query = dao.query(prepare);
 		} catch (SQLException e) {
 			return null;
+		} finally {
+			OpenHelperManager.releaseHelper();
+		}
+		return query;
+	}
+
+	public static List<DayORM> getGoodDaysByMonth(Context context, int month) {
+		DatabaseHelper helper = OpenHelperManager.getHelper(context,
+				DatabaseHelper.class);
+		List<DayORM> query = null;
+		try {
+			final Dao<DayORM, String> dao = helper.getDayDao();
+			PreparedQuery<DayORM> prepare = dao.queryBuilder().where()
+					.eq(DayORM.MONTH, month).and().eq(DayORM.STATUS, 1)
+					.prepare();
+			query = dao.query(prepare);
+		} catch (SQLException e) {
+		} finally {
+			OpenHelperManager.releaseHelper();
+		}
+		return query;
+	}
+
+	public static List<DayORM> getBadDaysByMonth(Context context, int month) {
+		DatabaseHelper helper = OpenHelperManager.getHelper(context,
+				DatabaseHelper.class);
+		List<DayORM> query = null;
+		try {
+			final Dao<DayORM, String> dao = helper.getDayDao();
+			PreparedQuery<DayORM> prepare = dao.queryBuilder().where()
+					.eq(DayORM.MONTH, month).and().eq(DayORM.STATUS, -1)
+					.prepare();
+			query = dao.query(prepare);
+		} catch (SQLException e) {
 		} finally {
 			OpenHelperManager.releaseHelper();
 		}

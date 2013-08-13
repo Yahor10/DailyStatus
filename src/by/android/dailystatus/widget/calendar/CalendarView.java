@@ -3,13 +3,22 @@ package by.android.dailystatus.widget.calendar;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
+import com.actionbarsherlock.view.SubMenu;
 
 import by.android.dailystatus.R;
+import by.android.dailystatus.application.Constants;
+import by.android.dailystatus.orm.model.DayORM;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,6 +28,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -28,7 +38,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CalendarView extends SherlockActivity {
+public class CalendarView extends SherlockActivity implements
+		OnMenuItemClickListener {
 
 	public GregorianCalendar month, itemmonth;// calendar instances.
 
@@ -45,7 +56,7 @@ public class CalendarView extends SherlockActivity {
 		getSupportActionBar().setBackgroundDrawable(
 				new ColorDrawable(Color.parseColor("#0e78c9")));
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		
+
 		month = (GregorianCalendar) GregorianCalendar.getInstance();
 		itemmonth = (GregorianCalendar) month.clone();
 
@@ -109,17 +120,58 @@ public class CalendarView extends SherlockActivity {
 			}
 		});
 	}
-	
+
 	@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case android.R.id.home:
-        	NavUtils.navigateUpFromSameTask(this);
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
-        }
-    }
+	public boolean onCreateOptionsMenu(Menu menu) {
+		SubMenu subMyProfile = menu.addSubMenu("").setIcon(
+				getResources().getDrawable(
+						R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark));
+
+		subMyProfile.add(0, 4, Menu.NONE, "Show Good days")
+				.setIcon(R.drawable.ic_good_day)
+				.setOnMenuItemClickListener(this);
+		subMyProfile.add(0, 5, Menu.NONE, "Show Bad days")
+				.setIcon(R.drawable.ic_bad_day)
+				.setOnMenuItemClickListener(this);
+		subMyProfile.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			NavUtils.navigateUpFromSameTask(this);
+			break;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+		return true;
+	}
+
+	@Override
+	public boolean onMenuItemClick(MenuItem item) {
+		int itemId = item.getItemId();
+		switch (itemId) {
+		case 4:
+			int monthNumber = month.get(Calendar.MONTH);
+			List<DayORM> goodDaysByMonth = DayORM.getGoodDaysByMonth(this,
+					monthNumber + 1);
+			Log.v(Constants.TAG, "GOOD DAYS" + goodDaysByMonth);
+			Set<Integer> goodDays = new HashSet<Integer>();
+			for (DayORM dayORM : goodDaysByMonth) {
+				goodDays.add(dayORM.day);
+			}
+			adapter.setGoodDays(goodDays);
+			adapter.notifyDataSetChanged();
+			break;
+		case 5:
+			break;
+		default:
+			break;
+		}
+		return true;
+	}
 
 	protected void setNextMonth() {
 		if (month.get(GregorianCalendar.MONTH) == month

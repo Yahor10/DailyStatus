@@ -1,26 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/ic_calendar_cell"
-    android:gravity="center"
     android:orientation="vertical"
     android:padding="2dip" >
 
-    <TextView
-        android:id="@+id/date"
+    <ImageView
+        android:id="@+id/goodDayImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#0000D7"
-        android:textSize="14dip"
-        android:textStyle="bold" >
-    </TextView>
+         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_good_day"
+        android:contentDescription="calendarItem" 
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/badDayImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_bad_day"
+        android:visibility="gone"
+         android:contentDescription="calendarItem" />
 
     <ImageView
         android:id="@+id/date_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/date"
         android:src="@drawable/dot"
         android:visibility="gone" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="23"
+        android:textColor="#0000D7"
+        android:textSize="14dip"
+        android:textStyle="bold" />
+
+</RelativeLayout>

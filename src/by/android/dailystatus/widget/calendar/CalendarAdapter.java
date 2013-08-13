@@ -1,16 +1,25 @@
 package by.android.dailystatus.widget.calendar;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
+
+import org.joda.time.LocalDate;
 
 import by.android.dailystatus.R;
+import by.android.dailystatus.application.Constants;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,9 +51,15 @@ public class CalendarAdapter extends BaseAdapter {
 	public static List<String> dayString;
 	private View previousView;
 
+	private int firstMonthDay;
+	private int lastMonthDay;
+
+	private Set<Integer> goodDays = new HashSet<Integer>();
+	private Set<Integer> badDays = new HashSet<Integer>();
+
 	public CalendarAdapter(Context c, GregorianCalendar monthCalendar) {
 		CalendarAdapter.dayString = new ArrayList<String>();
-		 Locale.setDefault( Locale.US );
+		Locale.setDefault(Locale.US);
 		month = monthCalendar;
 		selectedDate = (GregorianCalendar) monthCalendar.clone();
 		mContext = c;
@@ -80,6 +95,8 @@ public class CalendarAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 		TextView dayView;
+		ImageView goodDayImage;
+		ImageView badDayImage;
 		if (convertView == null) { // if it's not recycled, initialize some
 									// attributes
 			LayoutInflater vi = (LayoutInflater) mContext
@@ -88,6 +105,8 @@ public class CalendarAdapter extends BaseAdapter {
 
 		}
 		dayView = (TextView) v.findViewById(R.id.date);
+		goodDayImage = (ImageView)v.findViewById(R.id.goodDayImage);
+		badDayImage = (ImageView)v.findViewById(R.id.badDayImage);
 		// separates daystring into parts.
 		String[] separatedTime = dayString.get(position).split("-");
 		// taking last part of date. ie; 2 from 2012-12-02
@@ -118,6 +137,20 @@ public class CalendarAdapter extends BaseAdapter {
 		// create date string for comparison
 		String date = dayString.get(position);
 
+		Date date2;
+		try {
+			date2 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+			LocalDate local = new LocalDate(date2);
+			int dayOfYear = local.getDayOfYear();
+			if (goodDays.contains(dayOfYear)) {
+				goodDayImage.setVisibility(View.VISIBLE);
+			} else {
+				goodDayImage.setVisibility(View.GONE);
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
 		if (date.length() == 1) {
 			date = "0" + date;
 		}
@@ -138,7 +171,8 @@ public class CalendarAdapter extends BaseAdapter {
 
 	public View setSelected(View view) {
 		if (previousView != null) {
-			previousView.setBackgroundResource(R.drawable.calendar_item_background);
+			previousView
+					.setBackgroundResource(R.drawable.calendar_item_background);
 		}
 		previousView = view;
 		view.setBackgroundResource(R.drawable.calendar_cel_selectl);
@@ -149,7 +183,7 @@ public class CalendarAdapter extends BaseAdapter {
 		// clear items
 		items.clear();
 		dayString.clear();
-		Locale.setDefault( Locale.US );
+		Locale.setDefault(Locale.US);
 		pmonth = (GregorianCalendar) month.clone();
 		// month start day. ie; sun, mon, etc
 		firstDay = month.get(GregorianCalendar.DAY_OF_WEEK);
@@ -159,6 +193,17 @@ public class CalendarAdapter extends BaseAdapter {
 		mnthlength = maxWeeknumber * 7;
 		maxP = getMaxP(); // previous month maximum day 31,30....
 		calMaxP = maxP - (firstDay - 1);// calendar offday starting 24,25 ...
+
+		Calendar cal = (Calendar) month.clone();
+		cal.set(Calendar.DAY_OF_MONTH,
+				Calendar.getInstance().getActualMinimum(Calendar.DAY_OF_MONTH));
+		firstMonthDay = cal.get(Calendar.DAY_OF_YEAR);
+		cal.set(Calendar.DAY_OF_MONTH,
+				Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH));
+		lastMonthDay = cal.get(Calendar.DAY_OF_YEAR);
+
+		Log.v(Constants.TAG, "FIRST" + firstMonthDay);
+		Log.v(Constants.TAG, "LAST" + lastMonthDay);
 		/**
 		 * Calendar instance for getting a complete gridview including the three
 		 * month's (previous,current,next) dates.
@@ -194,6 +239,16 @@ public class CalendarAdapter extends BaseAdapter {
 		maxP = pmonth.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
 
 		return maxP;
+	}
+
+	public void setGoodDays(Set<Integer> goodDays) {
+		this.badDays.clear();
+		this.goodDays = goodDays;
+	}
+
+	public void setBadDays(Set<Integer> badDays) {
+		this.goodDays.clear();
+		this.badDays = badDays;
 	}
 
 }
