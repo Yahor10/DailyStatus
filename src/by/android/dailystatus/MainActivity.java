@@ -112,7 +112,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		now = DateTime.now();
 		mCache = DailyStatusApplication.getApplication(this).getImageCache();
-		
+
 		initPageModel();
 		initDayLaybels();
 
@@ -135,7 +135,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		subChoosePhoto.add(0, 1, Menu.NONE, "Add Day Picture")
 				.setOnMenuItemClickListener(this);
 		subChoosePhoto.add(0, 3, Menu.NONE, "Add Day Event")
-		.setOnMenuItemClickListener(this);
+				.setOnMenuItemClickListener(this);
 		subChoosePhoto.getItem()
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
@@ -152,11 +152,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 		subMyProfile.add(0, 6, Menu.NONE, "Profile")
 				.setIcon(R.drawable.ic_menu_profile)
 				.setOnMenuItemClickListener(this);
-		subMyProfile.add(0, 7, Menu.NONE, "Alarm")
-		.setOnMenuItemClickListener(this);
+		subMyProfile.add(0, 7, Menu.NONE, "Alarm").setOnMenuItemClickListener(
+				this);
 		subMyProfile.add(0, 8, Menu.NONE, "Settings")
-			.setIcon(R.drawable.ic_settings)
-			.setOnMenuItemClickListener(this);
+				.setIcon(R.drawable.ic_settings)
+				.setOnMenuItemClickListener(this);
 		subMyProfile.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -171,18 +171,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 		switch (item.getItemId()) {
 		case 1:
 			DialogChosePhoto();
-		case 2:
-			// ColorPickerDialog colorPickerDialog = new ColorPickerDialog();
-			// colorPickerDialog.initialize(R.string.dialog_title, new int[] {
-			// Color.CYAN, Color.LTGRAY, Color.BLACK, Color.BLUE, Color.GREEN,
-			// Color.MAGENTA, Color.RED, Color.GRAY }, Color.YELLOW, 3, 2);
-			// colorPickerDialog.showPaletteView();
-			break;
 		case 3:
 			DialogAddDayEvent();
-			break;	
+			break;
 		case 4:
-			startActivity(ChartsActivity.buintIntent(this));
+			startActivity(ChartsActivity.buintIntent(this, 1, 1, 1));
 			break;
 		case 5:
 			startActivity(CalendarView.buintIntent(this));
@@ -192,11 +185,13 @@ public class MainActivity extends SherlockFragmentActivity implements
 			startActivity(intent);
 			break;
 		case 7:
-			Intent intentAlarm = new Intent(MainActivity.this, AlarmActivity.class);
+			Intent intentAlarm = new Intent(MainActivity.this,
+					AlarmActivity.class);
 			startActivity(intentAlarm);
 			break;
 		case 8:
-			Intent intantSettings = new Intent(MainActivity.this, SettingsActivity.class);
+			Intent intantSettings = new Intent(MainActivity.this,
+					SettingsActivity.class);
 			startActivity(intantSettings);
 			break;
 		default:
@@ -353,8 +348,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		DateTime date = model.getDate();
 		DayORM day = DayORM.getDay(this, date.getDayOfYear(), date.getYear());
-		if(day != null)
-		Log.v(TAG, "DAY" + day);
+		if (day != null)
+			Log.v(TAG, "DAY" + day);
 		if (day != null) {
 			if (day.pictureURL != null) {
 				final CacheableBitmapWrapper cacheableBitmapWrapper = mCache
@@ -401,7 +396,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		DialogFragment dialog = new AddDayEvent();
 		dialog.show(getSupportFragmentManager(), "");
 	}
-	
+
 	private void updateDateStep() {
 
 		View prevDay = findViewById(DAY_OF_WEEK_LABEL_IDS[dayStep]);
@@ -594,7 +589,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 				DayORM day = new DayORM(currentUser, now.getDayOfYear(),
 						now.getMonthOfYear(), now.getYear());
 				day.status = 1;
-				
+
 				DayORM.insertOrUpdateDay(getApplicationContext(), day);
 				Toast.makeText(getApplicationContext(), "GOOD DAY",
 						Toast.LENGTH_SHORT).show();

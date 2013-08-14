@@ -10,17 +10,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
-import com.actionbarsherlock.view.SubMenu;
-
-import by.android.dailystatus.R;
-import by.android.dailystatus.application.Constants;
-import by.android.dailystatus.orm.model.DayORM;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -37,6 +26,15 @@ import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import by.android.dailystatus.R;
+import by.android.dailystatus.application.Constants;
+import by.android.dailystatus.orm.model.DayORM;
+
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
+import com.actionbarsherlock.view.SubMenu;
 
 public class CalendarView extends SherlockActivity implements
 		OnMenuItemClickListener {
@@ -57,6 +55,7 @@ public class CalendarView extends SherlockActivity implements
 				new ColorDrawable(Color.parseColor("#0e78c9")));
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+		// TODO find correct place for show events button
 		month = (GregorianCalendar) GregorianCalendar.getInstance();
 		itemmonth = (GregorianCalendar) month.clone();
 
@@ -152,12 +151,12 @@ public class CalendarView extends SherlockActivity implements
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		int itemId = item.getItemId();
+		int monthNumber = 0;
 		switch (itemId) {
 		case 4:
-			int monthNumber = month.get(Calendar.MONTH);
+			 monthNumber = month.get(Calendar.MONTH);
 			List<DayORM> goodDaysByMonth = DayORM.getGoodDaysByMonth(this,
 					monthNumber + 1);
-			Log.v(Constants.TAG, "GOOD DAYS" + goodDaysByMonth);
 			Set<Integer> goodDays = new HashSet<Integer>();
 			for (DayORM dayORM : goodDaysByMonth) {
 				goodDays.add(dayORM.day);
@@ -166,6 +165,15 @@ public class CalendarView extends SherlockActivity implements
 			adapter.notifyDataSetChanged();
 			break;
 		case 5:
+			 monthNumber = month.get(Calendar.MONTH);
+			List<DayORM> badDaysByMonth = DayORM.getBadDaysByMonth(this,
+					monthNumber + 1);
+			Set<Integer> badDays = new HashSet<Integer>();
+			for (DayORM dayORM : badDaysByMonth) {
+				badDays.add(dayORM.day);
+			}
+			adapter.setBadDays(badDays);
+			adapter.notifyDataSetChanged();
 			break;
 		default:
 			break;

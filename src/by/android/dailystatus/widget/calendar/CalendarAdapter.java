@@ -105,8 +105,8 @@ public class CalendarAdapter extends BaseAdapter {
 
 		}
 		dayView = (TextView) v.findViewById(R.id.date);
-		goodDayImage = (ImageView)v.findViewById(R.id.goodDayImage);
-		badDayImage = (ImageView)v.findViewById(R.id.badDayImage);
+		goodDayImage = (ImageView) v.findViewById(R.id.goodDayImage);
+		badDayImage = (ImageView) v.findViewById(R.id.badDayImage);
 		// separates daystring into parts.
 		String[] separatedTime = dayString.get(position).split("-");
 		// taking last part of date. ie; 2 from 2012-12-02
@@ -142,10 +142,17 @@ public class CalendarAdapter extends BaseAdapter {
 			date2 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 			LocalDate local = new LocalDate(date2);
 			int dayOfYear = local.getDayOfYear();
+			
 			if (goodDays.contains(dayOfYear)) {
 				goodDayImage.setVisibility(View.VISIBLE);
 			} else {
 				goodDayImage.setVisibility(View.GONE);
+			}
+
+			if (badDays.contains(dayOfYear)) {
+				badDayImage.setVisibility(View.VISIBLE);
+			} else {
+				badDayImage.setVisibility(View.GONE);
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();

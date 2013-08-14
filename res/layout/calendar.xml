@@ -58,18 +58,16 @@
         android:layout_width="match_parent"
         android:layout_height="260dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
         android:listSelector="@android:color/transparent"
         android:numColumns="7"
-        android:stretchMode="columnWidth"
-        android:layout_marginBottom="5dp" 
-        />
-
+        android:stretchMode="columnWidth" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/ic_calendar_b3"
-        android:gravity="top|right"
+        android:gravity="right"
         android:orientation="vertical" >
 
         <Button
