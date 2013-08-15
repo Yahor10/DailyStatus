@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import android.content.Context;
+import android.util.Log;
+import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.preference.PreferenceUtils;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -71,8 +73,10 @@ public class DayORM {
 						.updateBuilder();
 				updateBuilder.updateColumnValue(DayORM.STATUS, day.status);
 				updateBuilder.updateColumnValue(DayORM.PICTURE, day.pictureURL);
+				updateBuilder.where().eq(DayORM.USER, day.user).and().eq(DayORM.DAY, day.day)
+				.and().eq(DayORM.YEAR, day.year);
 				PreparedUpdate<DayORM> prepare2 = updateBuilder.prepare();
-				int update = dao.update(prepare2);
+				dao.update(prepare2);
 			}
 
 		} catch (Exception e1) {
@@ -174,6 +178,6 @@ public class DayORM {
 	@Override
 	public String toString() {
 		return "DayORM [day=" + day + ", month=" + month + ", year=" + year
-				+ ", pictureURL=" + pictureURL + ", color=" + status + "]";
+				+ ", pictureURL=" + pictureURL + ", statu=" + status + "]";
 	}
 }

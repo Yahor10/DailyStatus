@@ -23,7 +23,7 @@ import com.viewpagerindicator.TabPageIndicator;
 
 public class ChartsActivity extends SherlockFragmentActivity {
 
-	public static final String WEEK = "Week";
+	public static final String WEEK = "Week_day";
 	public static final String MONTH = "Month";
 	public static final String YEAR = "Year";
 

@@ -171,11 +171,13 @@ public class MainActivity extends SherlockFragmentActivity implements
 		switch (item.getItemId()) {
 		case 1:
 			DialogChosePhoto();
+			break;
 		case 3:
 			DialogAddDayEvent();
 			break;
 		case 4:
-			startActivity(ChartsActivity.buintIntent(this, 1, 1, 1));
+			int dayOfWeek = now.getDayOfYear();
+			startActivity(ChartsActivity.buintIntent(this, dayOfWeek, 1, 1));
 			break;
 		case 5:
 			startActivity(CalendarView.buintIntent(this));
@@ -345,11 +347,13 @@ public class MainActivity extends SherlockFragmentActivity implements
 		final DayModel model = dayPageModel[index];
 		String dayText = model.getDayText();
 		model.dayText.setText(dayText);
-
+		
+		int violetColor = getResources().getColor(R.color.violet);
+		model.goodDay.setBackgroundColor(violetColor);
+		model.badDay.setBackgroundColor(violetColor);
+		
 		DateTime date = model.getDate();
 		DayORM day = DayORM.getDay(this, date.getDayOfYear(), date.getYear());
-		if (day != null)
-			Log.v(TAG, "DAY" + day);
 		if (day != null) {
 			if (day.pictureURL != null) {
 				final CacheableBitmapWrapper cacheableBitmapWrapper = mCache
@@ -361,29 +365,25 @@ public class MainActivity extends SherlockFragmentActivity implements
 				}
 			}
 
+			Log.i(TAG, "DAY" + day);
 			int status = day.status;
 			int color = 0;
 			switch (status) {
 			case 1:
 				color = getResources().getColor(android.R.color.white);
 				model.goodDay.setBackgroundColor(color);
-				color = getResources().getColor(R.color.violet);
-				model.badDay.setBackgroundColor(color);
 				break;
 			case -1:
 				color = getResources().getColor(android.R.color.black);
 				model.badDay.setBackgroundColor(color);
-				color = getResources().getColor(R.color.violet);
-				model.goodDay.setBackgroundColor(color);
 				break;
 			default:
 				break;
 			}
 		} else {
 			model.dayImage.setImageResource(R.drawable.ic_launcher);
-			int color = getResources().getColor(R.color.violet);
-			model.goodDay.setBackgroundColor(color);
-			model.badDay.setBackgroundColor(color);
+			model.goodDay.setBackgroundColor(violetColor);
+			model.badDay.setBackgroundColor(violetColor);
 		}
 	}
 
@@ -567,6 +567,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 			inflate.findViewById(R.id.bad_day).setOnClickListener(this);
 			inflate.findViewById(R.id.back_day).setOnClickListener(this);
 			inflate.findViewById(R.id.next_day).setOnClickListener(this);
+			inflate.findViewById(R.id.addDayEvent).setOnClickListener(this);
 
 			dayImage.setOnClickListener(this);
 
@@ -617,6 +618,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 				break;
 			case R.id.next_day:
 				viewPager.setCurrentItem(PAGE_RIGHT);
+				break;
+			case R.id.addDayEvent:
+				DialogAddDayEvent();
+				break;
 			default:
 				break;
 			}

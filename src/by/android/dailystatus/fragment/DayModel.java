@@ -46,14 +46,11 @@ public class DayModel {
 		setDate(now);
 		
 		DateTime.Property pDoW = now.dayOfWeek();
-		String day = pDoW.getAsText();
 		Property pMoY = now.monthOfYear();
 		String month = pMoY.getAsText();
 		int dayOfMonth = now.getDayOfMonth();
 		
 		StringBuffer dataBuilder = new StringBuffer();
-		dataBuilder.append(day);
-		dataBuilder.append(" ");
 		dataBuilder.append(dayOfMonth);
 		dataBuilder.append(". ");
 		dataBuilder.append(month);

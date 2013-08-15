@@ -19,13 +19,14 @@ import com.j256.ormlite.table.TableUtils;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 	private static final Class<?>[] DATA_CLASSES = { DayORM.class,
-			UserORM.class };
+			UserORM.class,EventORM.class };
 
 	public static final String DATABASE_NAME = "daystatus.db";
 	private static final int DATABASE_VERSION = 1;
 
 	private Dao<DayORM, String> dayDao = null;
 	private Dao<UserORM, String> userDao = null;
+	private Dao<EventORM, String> eventDao = null;
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -89,6 +90,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			userDao = getDao(UserORM.class);
 		}
 		return userDao;
+	}
+	
+	public Dao<EventORM, String> getEventDao() throws SQLException {
+		if (eventDao == null) {
+			eventDao = getDao(EventORM.class);
+		}
+		return eventDao;
 	}
 
 }
