@@ -13,6 +13,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -38,13 +39,13 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import by.android.dailystatus.R.color;
 import by.android.dailystatus.alarm.AlarmActivity;
 import by.android.dailystatus.application.DailyStatusApplication;
-import by.android.dailystatus.dialog.AddDayEvent;
 import by.android.dailystatus.dialog.ImageChoiseDialog;
 import by.android.dailystatus.fragment.DayModel;
 import by.android.dailystatus.orm.model.DayORM;
@@ -181,7 +182,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 			// colorPickerDialog.showPaletteView();
 			break;
 		case 3:
-			DialogAddDayEvent();
+			AddDayEvent();
 			break;	
 		case 4:
 			startActivity(ChartsActivity.buintIntent(this));
@@ -392,16 +393,26 @@ public class MainActivity extends SherlockFragmentActivity implements
 		}
 	}
 
+	private void AddDayEvent() {
+		final Dialog dialog = new Dialog(this);
+		dialog.setContentView(R.layout.add_day_event);
+		
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+		dialogButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+
+		dialog.show();
+	}
+	
 	private void DialogChosePhoto() {
 		DialogFragment dialog = new ImageChoiseDialog();
 		dialog.show(getSupportFragmentManager(), "");
 	}
 
-	private void DialogAddDayEvent() {
-		DialogFragment dialog = new AddDayEvent();
-		dialog.show(getSupportFragmentManager(), "");
-	}
-	
 	private void updateDateStep() {
 
 		View prevDay = findViewById(DAY_OF_WEEK_LABEL_IDS[dayStep]);
