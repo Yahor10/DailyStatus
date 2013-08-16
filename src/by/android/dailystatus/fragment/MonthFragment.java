@@ -1,23 +1,33 @@
 package by.android.dailystatus.fragment;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.model.CategorySeries;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
+import org.joda.time.LocalDate;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import by.android.dailystatus.ChartsActivity;
 import by.android.dailystatus.R;
+import by.android.dailystatus.application.Constants;
+import by.android.dailystatus.orm.model.DayORM;
 
 public class MonthFragment extends BaseChartsFragment {
 
@@ -49,20 +59,50 @@ public class MonthFragment extends BaseChartsFragment {
 
 		Context applicationContext = getActivity().getApplicationContext();
 		LinearLayout layout = (LinearLayout) inflate.findViewById(R.id.chart);
+		TextView chartName = (TextView) inflate.findViewById(R.id.chartName);
 		mChartView = ChartFactory.getPieChartView(applicationContext, mSeries,
 				mRenderer);
 
 		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT);
 		layout.addView(mChartView, params);
+		int month = getActivity().getIntent().getIntExtra(ChartsActivity.MONTH,
+				0);
+		int year = getActivity().getIntent()
+				.getIntExtra(ChartsActivity.YEAR, 0);
+		
+		Calendar instance = Calendar.getInstance();
+		instance.set(Calendar.MONTH, month - 1);
+		Date time = instance.getTime();
+		LocalDate date = new LocalDate(time);
+		chartName.setText(date.monthOfYear().getAsText());
+		
+		int badDaysCount = 0;
+		List<DayORM> badDays = DayORM.getBadDaysByMonth(getActivity(), month,
+				year);
+		
+		if (badDays != null && !badDays.isEmpty()) {
+			badDaysCount = badDays.size();
+		}
 
-		mSeries.add("Bad" + (mSeries.getItemCount() + 1), 5);
+		mSeries.add("Bad" + (mSeries.getItemCount() + 1), badDaysCount);
 
 		SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
 		renderer.setColor(COLORS[(mSeries.getItemCount() - 1) % COLORS.length]);
 		mRenderer.addSeriesRenderer(renderer);
 
-		mSeries.add("Good " + (mSeries.getItemCount() + 1), 17);
+		int goodDaysCount = 0;
+		List<DayORM> goodDays = DayORM.getGoodDaysByMonth(getActivity(), month,
+				year);
+		if (goodDays != null && !goodDays.isEmpty()) {
+			goodDaysCount = goodDays.size();
+		}
+		
+		
+		Log.v(Constants.TAG, "BAD" + badDaysCount);
+		Log.v(Constants.TAG, "GOOD" + goodDaysCount);
+
+		mSeries.add("Good " + (mSeries.getItemCount() + 1), goodDaysCount);
 
 		SimpleSeriesRenderer renderer2 = new SimpleSeriesRenderer();
 		renderer2

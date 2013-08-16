@@ -177,7 +177,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 			break;
 		case 4:
 			int dayOfWeek = now.getDayOfYear();
-			startActivity(ChartsActivity.buintIntent(this, dayOfWeek, 1, 1));
+			int monthOfYear = now.getMonthOfYear();
+			Log.v(TAG, "NOW MONTH" + monthOfYear);
+			int year = now.getYear();
+			startActivity(ChartsActivity.buintIntent(this, dayOfWeek, monthOfYear, year));
 			break;
 		case 5:
 			startActivity(CalendarView.buintIntent(this));

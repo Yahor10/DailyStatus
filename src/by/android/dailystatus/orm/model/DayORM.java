@@ -73,8 +73,9 @@ public class DayORM {
 						.updateBuilder();
 				updateBuilder.updateColumnValue(DayORM.STATUS, day.status);
 				updateBuilder.updateColumnValue(DayORM.PICTURE, day.pictureURL);
-				updateBuilder.where().eq(DayORM.USER, day.user).and().eq(DayORM.DAY, day.day)
-				.and().eq(DayORM.YEAR, day.year);
+				updateBuilder.where().eq(DayORM.USER, day.user).and()
+						.eq(DayORM.DAY, day.day).and()
+						.eq(DayORM.YEAR, day.year);
 				PreparedUpdate<DayORM> prepare2 = updateBuilder.prepare();
 				dao.update(prepare2);
 			}
@@ -128,10 +129,12 @@ public class DayORM {
 		DatabaseHelper helper = OpenHelperManager.getHelper(context,
 				DatabaseHelper.class);
 		List<DayORM> query = null;
+		String currentUser = PreferenceUtils.getCurrentUser(context);
 		try {
 			final Dao<DayORM, String> dao = helper.getDayDao();
 			PreparedQuery<DayORM> prepare = dao.queryBuilder().where()
-					.eq(DayORM.MONTH, month).prepare();
+					.eq(DayORM.USER, currentUser).and().eq(DayORM.MONTH, month)
+					.prepare();
 			query = dao.query(prepare);
 		} catch (SQLException e) {
 			return null;
@@ -141,14 +144,16 @@ public class DayORM {
 		return query;
 	}
 
-	public static List<DayORM> getGoodDaysByMonth(Context context, int month) {
+	public static List<DayORM> getGoodDaysByMonth(Context context, int month,int year) {
 		DatabaseHelper helper = OpenHelperManager.getHelper(context,
 				DatabaseHelper.class);
 		List<DayORM> query = null;
+		String currentUser = PreferenceUtils.getCurrentUser(context);
 		try {
 			final Dao<DayORM, String> dao = helper.getDayDao();
 			PreparedQuery<DayORM> prepare = dao.queryBuilder().where()
-					.eq(DayORM.MONTH, month).and().eq(DayORM.STATUS, 1)
+					.eq(DayORM.USER, currentUser).and().eq(DayORM.MONTH, month)
+					.and().eq(DayORM.YEAR, year).and().eq(DayORM.STATUS, 1)
 					.prepare();
 			query = dao.query(prepare);
 		} catch (SQLException e) {
@@ -158,15 +163,54 @@ public class DayORM {
 		return query;
 	}
 
-	public static List<DayORM> getBadDaysByMonth(Context context, int month) {
+	public static List<DayORM> getBadDaysByMonth(Context context, int month,
+			int year) {
 		DatabaseHelper helper = OpenHelperManager.getHelper(context,
 				DatabaseHelper.class);
 		List<DayORM> query = null;
+		String currentUser = PreferenceUtils.getCurrentUser(context);
 		try {
 			final Dao<DayORM, String> dao = helper.getDayDao();
 			PreparedQuery<DayORM> prepare = dao.queryBuilder().where()
-					.eq(DayORM.MONTH, month).and().eq(DayORM.STATUS, -1)
+					.eq(DayORM.USER, currentUser).and().eq(DayORM.MONTH, month)
+					.and().eq(DayORM.STATUS, -1).and().eq(DayORM.YEAR, year)
 					.prepare();
+			query = dao.query(prepare);
+		} catch (SQLException e) {
+		} finally {
+			OpenHelperManager.releaseHelper();
+		}
+		return query;
+	}
+
+	public static List<DayORM> getBadDaysByYear(Context context, int year) {
+		DatabaseHelper helper = OpenHelperManager.getHelper(context,
+				DatabaseHelper.class);
+		List<DayORM> query = null;
+		String currentUser = PreferenceUtils.getCurrentUser(context);
+		try {
+			final Dao<DayORM, String> dao = helper.getDayDao();
+			PreparedQuery<DayORM> prepare = dao.queryBuilder().where()
+					.eq(DayORM.USER, currentUser).and().eq(DayORM.YEAR, year)
+					.and().eq(DayORM.STATUS, -1).prepare();
+			query = dao.query(prepare);
+		} catch (SQLException e) {
+		} finally {
+			OpenHelperManager.releaseHelper();
+		}
+		return query;
+	}
+
+	public static List<DayORM> getGoodDaysByYear(Context context, int year) {
+		DatabaseHelper helper = OpenHelperManager.getHelper(context,
+				DatabaseHelper.class);
+		List<DayORM> query = null;
+		String currentUser = PreferenceUtils.getCurrentUser(context);
+		try {
+			final Dao<DayORM, String> dao = helper.getDayDao();
+			PreparedQuery<DayORM> prepare = dao.queryBuilder().where()
+					.eq(DayORM.USER, currentUser).and().eq(DayORM.YEAR, year)
+					.and().eq(DayORM.STATUS, 1).prepare();
 			query = dao.query(prepare);
 		} catch (SQLException e) {
 		} finally {

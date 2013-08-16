@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import org.joda.time.LocalDate;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -26,6 +28,7 @@ import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import by.android.dailystatus.ChartsActivity;
 import by.android.dailystatus.R;
 import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.orm.model.DayORM;
@@ -132,6 +135,8 @@ public class CalendarView extends SherlockActivity implements
 		subMyProfile.add(0, 5, Menu.NONE, "Show Bad days")
 				.setIcon(R.drawable.ic_bad_day)
 				.setOnMenuItemClickListener(this);
+		subMyProfile.add(0, 6, Menu.NONE, "Show month chart")
+				.setOnMenuItemClickListener(this);
 		subMyProfile.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -151,12 +156,12 @@ public class CalendarView extends SherlockActivity implements
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		int itemId = item.getItemId();
-		int monthNumber = 0;
+		int monthNumber = month.get(Calendar.MONTH);
+		int yearNumber = month.get(Calendar.YEAR);
 		switch (itemId) {
 		case 4:
-			 monthNumber = month.get(Calendar.MONTH);
 			List<DayORM> goodDaysByMonth = DayORM.getGoodDaysByMonth(this,
-					monthNumber + 1);
+					monthNumber + 1,yearNumber);
 			Set<Integer> goodDays = new HashSet<Integer>();
 			for (DayORM dayORM : goodDaysByMonth) {
 				goodDays.add(dayORM.day);
@@ -165,15 +170,25 @@ public class CalendarView extends SherlockActivity implements
 			adapter.notifyDataSetChanged();
 			break;
 		case 5:
-			 monthNumber = month.get(Calendar.MONTH);
 			List<DayORM> badDaysByMonth = DayORM.getBadDaysByMonth(this,
-					monthNumber + 1);
+					monthNumber + 1,yearNumber);
 			Set<Integer> badDays = new HashSet<Integer>();
 			for (DayORM dayORM : badDaysByMonth) {
 				badDays.add(dayORM.day);
 			}
 			adapter.setBadDays(badDays);
 			adapter.notifyDataSetChanged();
+			break;
+		case 6:
+			LocalDate date = new LocalDate(month.getTime());
+			int dayOfYear = date.getDayOfYear();
+			int monthOfYear = date.getMonthOfYear();
+			int year = date.getYear();
+			Log.i(Constants.TAG, "DATE" + date);
+//			Intent buintIntent = ChartsActivity
+//					.buintIntent(this, dayOfYear, monthOfYear, year, true);
+//			startActivity(buintIntent);
+			// TODO check activity stack
 			break;
 		default:
 			break;

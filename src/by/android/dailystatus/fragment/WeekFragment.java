@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import by.android.dailystatus.ChartsActivity;
 import by.android.dailystatus.R;
 import by.android.dailystatus.application.Constants;
@@ -54,6 +55,7 @@ public class WeekFragment extends BaseChartsFragment {
 	public void onResume() {
 
 		LinearLayout layout = (LinearLayout) inflate.findViewById(R.id.chart);
+		TextView chartName = (TextView) inflate.findViewById(R.id.chartName);
 		Context applicationContext = getActivity().getApplicationContext();
 		mChartView = ChartFactory.getPieChartView(applicationContext, mSeries,
 				mRenderer);
@@ -67,31 +69,46 @@ public class WeekFragment extends BaseChartsFragment {
 				ChartsActivity.WEEK, 0);
 		Calendar instance = Calendar.getInstance();
 		instance.set(Calendar.DAY_OF_YEAR, weekDay);
-		
+
+		StringBuilder builder = new StringBuilder();
+
 		LocalDate date = new LocalDate(instance.getTime());
+		String month = date.monthOfYear().getAsText();
+
+		builder.append(month);
 		int year = date.getYear();
 		short badDays = 0;
 		short goodDays = 0;
 
-		do {
+		while(date.getDayOfWeek() != 1){
 			date = date.minusDays(1);
-		} while (date.getDayOfWeek() != 1);
-		
+		} 
+
+		builder.append(".");
+		int firstWeekDay = date.getDayOfMonth();
+		int lastWeekDay = 0;
+		builder.append(firstWeekDay).append("-");
+
 		for (int i = 0; i < 7; i++) {
+			
 			LocalDate plusDays = date.plusDays(i);
 			DayORM day = DayORM.getDay(applicationContext,
 					plusDays.getDayOfYear(), year);
 			if (day != null && day.status == 1) {
 				goodDays++;
-				Log.v(Constants.TAG, "GOOD DAY" + day);
 			} else if (day != null && day.status == -1) {
 				badDays++;
-				Log.v(Constants.TAG, "BAD DAY" + day);
+			}
+			
+			if (i == 6) {
+				lastWeekDay = plusDays.getDayOfMonth();
 			}
 		}
 
-		mSeries.add("Bad" + (mSeries.getItemCount() + 1), badDays);
+		builder.append(lastWeekDay);
+		chartName.setText(builder.toString());
 
+		mSeries.add("Bad" + (mSeries.getItemCount() + 1), badDays);
 		SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
 		renderer.setColor(COLORS[(mSeries.getItemCount() - 1) % COLORS.length]);
 		mRenderer.addSeriesRenderer(renderer);

@@ -26,6 +26,7 @@ public class ChartsActivity extends SherlockFragmentActivity {
 	public static final String WEEK = "Week_day";
 	public static final String MONTH = "Month";
 	public static final String YEAR = "Year";
+	private static final String FROM_CALENDAR = "from_calendar";
 
 	private static final String[] CONTENT = new String[] { "Week", "Month",
 			"Year" };
@@ -34,12 +35,6 @@ public class ChartsActivity extends SherlockFragmentActivity {
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setContentView(R.layout.simple_tabs);
-
-		// TODO create correct time and update series colors
-		Intent intent = getIntent();
-		int week = intent.getIntExtra(WEEK, 0);
-		int month = intent.getIntExtra(MONTH, 0);
-		int year = intent.getIntExtra(YEAR, 0);
 
 		getSupportActionBar().setBackgroundDrawable(
 				new ColorDrawable(Color.parseColor("#0e78c9")));
@@ -53,6 +48,14 @@ public class ChartsActivity extends SherlockFragmentActivity {
 
 		TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
 		indicator.setViewPager(pager);
+		boolean fromCalendar = getIntent()
+				.getBooleanExtra(FROM_CALENDAR, false);
+		
+		if (fromCalendar) {
+			pager.setCurrentItem(1);
+		} else {
+			pager.setCurrentItem(0);
+		}
 	}
 
 	@Override
@@ -103,6 +106,16 @@ public class ChartsActivity extends SherlockFragmentActivity {
 		intent.putExtra(WEEK, week);
 		intent.putExtra(MONTH, month);
 		intent.putExtra(YEAR, year);
+		return intent;
+	}
+
+	public static Intent buintIntent(Context context, int week, int month,
+			int year, boolean fromCalendar) {
+		Intent intent = new Intent(context, ChartsActivity.class);
+		intent.putExtra(WEEK, week);
+		intent.putExtra(MONTH, month);
+		intent.putExtra(YEAR, year);
+		intent.putExtra(FROM_CALENDAR, fromCalendar);
 		return intent;
 	}
 }
