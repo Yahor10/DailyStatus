@@ -1,37 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
     android:layout_width="fill_parent"
     android:layout_height="200dp"
-    android:background="@drawable/background" >
+    android:background="@drawable/background"
+    android:orientation="vertical" >
 
     <EditText
         android:id="@+id/txtEdit"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_margin="10dp"
+        android:layout_height="90dp"
+        android:hint="What happens with you today"
         android:textColor="#FFF" />
- 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtEdit"
-        android:layout_marginLeft="55dp"
-        android:layout_marginRight="5dp"
-        android:background="@drawable/ic_rainbow" />
 
-/>
- 
-     <Button
-         android:id="@+id/dialogButtonOK"
-         android:layout_width="100px"
-         android:layout_height="wrap_content"
-         android:layout_alignParentLeft="true"
-         android:layout_alignTop="@+id/image"
-         android:layout_marginLeft="38dp"
-         android:layout_marginTop="15dp"
-         android:background="@color/violet_new"
-         android:text="OK"
-         android:textColor="@android:color/white" />
-     
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.75" >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/ic_rainbow" />
+
+        <Button
+            android:id="@+id/addEventOK"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_alignLeft="@+id/image"
+            android:layout_centerVertical="true"
+            android:background="@color/violet_new"
+            android:text="@android:string/ok"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/addEventCancel"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_alignRight="@+id/image"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="44dp"
+            android:background="@color/violet_new"
+            android:text="@android:string/cancel"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
+
+</LinearLayout>

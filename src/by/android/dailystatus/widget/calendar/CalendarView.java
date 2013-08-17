@@ -1,9 +1,11 @@
 package by.android.dailystatus.widget.calendar;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
@@ -50,6 +52,8 @@ public class CalendarView extends SherlockActivity implements
 	public ArrayList<String> items; // container to store calendar items which
 									// needs showing the event marker
 
+	private String selectedDate;
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calendar);
@@ -97,6 +101,7 @@ public class CalendarView extends SherlockActivity implements
 		});
 
 		gridview.setOnItemClickListener(new OnItemClickListener() {
+
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 
@@ -116,9 +121,8 @@ public class CalendarView extends SherlockActivity implements
 					refreshCalendar();
 				}
 				((CalendarAdapter) parent.getAdapter()).setSelected(v);
-
+				selectedDate = selectedGridDate;
 				showToast(selectedGridDate);
-
 			}
 		});
 	}
@@ -136,7 +140,7 @@ public class CalendarView extends SherlockActivity implements
 				.setIcon(R.drawable.ic_bad_day)
 				.setOnMenuItemClickListener(this);
 		subMyProfile.add(0, 6, Menu.NONE, "Show month chart")
-				.setOnMenuItemClickListener(this);
+				.setIcon(R.drawable.ic_chart).setOnMenuItemClickListener(this);
 		subMyProfile.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -161,17 +165,18 @@ public class CalendarView extends SherlockActivity implements
 		switch (itemId) {
 		case 4:
 			List<DayORM> goodDaysByMonth = DayORM.getGoodDaysByMonth(this,
-					monthNumber + 1,yearNumber);
+					monthNumber + 1, yearNumber);
 			Set<Integer> goodDays = new HashSet<Integer>();
 			for (DayORM dayORM : goodDaysByMonth) {
 				goodDays.add(dayORM.day);
 			}
 			adapter.setGoodDays(goodDays);
+			adapter.setCurentDateString(selectedDate);
 			adapter.notifyDataSetChanged();
 			break;
 		case 5:
 			List<DayORM> badDaysByMonth = DayORM.getBadDaysByMonth(this,
-					monthNumber + 1,yearNumber);
+					monthNumber + 1, yearNumber);
 			Set<Integer> badDays = new HashSet<Integer>();
 			for (DayORM dayORM : badDaysByMonth) {
 				badDays.add(dayORM.day);
@@ -180,14 +185,21 @@ public class CalendarView extends SherlockActivity implements
 			adapter.notifyDataSetChanged();
 			break;
 		case 6:
-			LocalDate date = new LocalDate(month.getTime());
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			Date parse = new Date();
+			try {
+				parse = format.parse(selectedDate);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			LocalDate date = new LocalDate(parse);
+			Log.i(Constants.TAG, "DATE" + date);
 			int dayOfYear = date.getDayOfYear();
 			int monthOfYear = date.getMonthOfYear();
 			int year = date.getYear();
-			Log.i(Constants.TAG, "DATE" + date);
-//			Intent buintIntent = ChartsActivity
-//					.buintIntent(this, dayOfYear, monthOfYear, year, true);
-//			startActivity(buintIntent);
+			Intent buintIntent = ChartsActivity.buintIntent(this, dayOfYear,
+					monthOfYear, year, true);
+			startActivity(buintIntent);
 			// TODO check activity stack
 			break;
 		default:

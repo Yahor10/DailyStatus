@@ -258,4 +258,8 @@ public class CalendarAdapter extends BaseAdapter {
 		this.badDays = badDays;
 	}
 
+	public void setCurentDateString(String curentDateString) {
+		this.curentDateString = curentDateString;
+	}
+
 }
