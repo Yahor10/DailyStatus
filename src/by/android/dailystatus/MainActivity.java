@@ -8,11 +8,11 @@ import org.joda.time.DateTime;
 
 import uk.co.senab.bitmapcache.BitmapLruCache;
 import uk.co.senab.bitmapcache.CacheableBitmapWrapper;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -20,12 +20,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.PagerAdapter;
@@ -41,7 +38,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import by.android.dailystatus.R.color;
 import by.android.dailystatus.alarm.AlarmActivity;
 import by.android.dailystatus.application.DailyStatusApplication;
 import by.android.dailystatus.dialog.AddDayEvent;
@@ -180,7 +176,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 			int monthOfYear = now.getMonthOfYear();
 			Log.v(TAG, "NOW MONTH" + monthOfYear);
 			int year = now.getYear();
-			startActivity(ChartsActivity.buintIntent(this, dayOfWeek, monthOfYear, year));
+			startActivity(ChartsActivity.buintIntent(this, dayOfWeek,
+					monthOfYear, year));
 			break;
 		case 5:
 			startActivity(CalendarView.buintIntent(this));
@@ -350,11 +347,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 		final DayModel model = dayPageModel[index];
 		String dayText = model.getDayText();
 		model.dayText.setText(dayText);
-		
+
 		int violetColor = getResources().getColor(R.color.violet);
 		model.goodDay.setBackgroundColor(violetColor);
 		model.badDay.setBackgroundColor(violetColor);
-		
+
 		DateTime date = model.getDate();
 		DayORM day = DayORM.getDay(this, date.getDayOfYear(), date.getYear());
 		if (day != null) {
@@ -388,6 +385,21 @@ public class MainActivity extends SherlockFragmentActivity implements
 			model.goodDay.setBackgroundColor(violetColor);
 			model.badDay.setBackgroundColor(violetColor);
 		}
+	}
+
+	private void AddDayEvent() {
+		final Dialog dialog = new Dialog(this);
+		dialog.setContentView(R.layout.add_day_event);
+
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+		dialogButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+
+		dialog.show();
 	}
 
 	private void DialogChosePhoto() {

@@ -11,5 +11,6 @@
     <string name="good_day">Good Day</string>
     <string name="bad_day">Bad day</string>
     <string name="charts">Charts</string>
+    <string name="logout">Logout</string>
 
 </resources>
