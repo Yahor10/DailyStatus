@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="daynames_background">#67CBEE</color><!--  #FFDDDDDD -->
+    <color name="daynames_background">#67CBEE</color>
+ <!-- #FFDDDDDD -->
     <color name="daynames_text_color">#ff000000</color>
     <color name="sunday_text_color">#ff446688</color>
     <color name="saturday_text_color">#ff446688</color>
@@ -11,5 +12,6 @@
     <color name="cian">#67CBEE</color>
     <color name="red">#DC0305</color>
     <color name="violet_new">#AE2B6D</color>
+    <color name="separate">#ac9d93</color>
 
 </resources>

@@ -980,41 +980,42 @@ containing a value of this type.
         public static final int abs__bright_foreground_inverse_holo_dark=0x7f070006;
         public static final int abs__bright_foreground_inverse_holo_light=0x7f070007;
         public static final int abs__holo_blue_light=0x7f070008;
-        public static final int abs__primary_text_disable_only_holo_dark=0x7f070024;
-        public static final int abs__primary_text_disable_only_holo_light=0x7f070025;
-        public static final int abs__primary_text_holo_dark=0x7f070026;
-        public static final int abs__primary_text_holo_light=0x7f070027;
+        public static final int abs__primary_text_disable_only_holo_dark=0x7f070025;
+        public static final int abs__primary_text_disable_only_holo_light=0x7f070026;
+        public static final int abs__primary_text_holo_dark=0x7f070027;
+        public static final int abs__primary_text_holo_light=0x7f070028;
         public static final int bg_gray=0x7f07000e;
         public static final int bg_text_color=0x7f07000d;
         public static final int cian=0x7f070010;
         public static final int daynames_background=0x7f070009;
-        /**   #FFDDDDDD 
+        /**  #FFDDDDDD 
          */
         public static final int daynames_text_color=0x7f07000a;
-        public static final int default_circle_indicator_fill_color=0x7f07001b;
-        public static final int default_circle_indicator_page_color=0x7f07001c;
-        public static final int default_circle_indicator_stroke_color=0x7f07001d;
-        public static final int default_line_indicator_selected_color=0x7f07001e;
-        public static final int default_line_indicator_unselected_color=0x7f07001f;
-        public static final int default_title_indicator_footer_color=0x7f070020;
-        public static final int default_title_indicator_selected_color=0x7f070021;
-        public static final int default_title_indicator_text_color=0x7f070022;
-        public static final int default_underline_indicator_selected_color=0x7f070023;
+        public static final int default_circle_indicator_fill_color=0x7f07001c;
+        public static final int default_circle_indicator_page_color=0x7f07001d;
+        public static final int default_circle_indicator_stroke_color=0x7f07001e;
+        public static final int default_line_indicator_selected_color=0x7f07001f;
+        public static final int default_line_indicator_unselected_color=0x7f070020;
+        public static final int default_title_indicator_footer_color=0x7f070021;
+        public static final int default_title_indicator_selected_color=0x7f070022;
+        public static final int default_title_indicator_text_color=0x7f070023;
+        public static final int default_underline_indicator_selected_color=0x7f070024;
         public static final int red=0x7f070011;
         public static final int saturday_text_color=0x7f07000c;
+        public static final int separate=0x7f070013;
         public static final int sunday_text_color=0x7f07000b;
         public static final int violet=0x7f07000f;
         public static final int violet_new=0x7f070012;
-        public static final int vpi__background_holo_dark=0x7f070013;
-        public static final int vpi__background_holo_light=0x7f070014;
-        public static final int vpi__bright_foreground_disabled_holo_dark=0x7f070017;
-        public static final int vpi__bright_foreground_disabled_holo_light=0x7f070018;
-        public static final int vpi__bright_foreground_holo_dark=0x7f070015;
-        public static final int vpi__bright_foreground_holo_light=0x7f070016;
-        public static final int vpi__bright_foreground_inverse_holo_dark=0x7f070019;
-        public static final int vpi__bright_foreground_inverse_holo_light=0x7f07001a;
-        public static final int vpi__dark_theme=0x7f070028;
-        public static final int vpi__light_theme=0x7f070029;
+        public static final int vpi__background_holo_dark=0x7f070014;
+        public static final int vpi__background_holo_light=0x7f070015;
+        public static final int vpi__bright_foreground_disabled_holo_dark=0x7f070018;
+        public static final int vpi__bright_foreground_disabled_holo_light=0x7f070019;
+        public static final int vpi__bright_foreground_holo_dark=0x7f070016;
+        public static final int vpi__bright_foreground_holo_light=0x7f070017;
+        public static final int vpi__bright_foreground_inverse_holo_dark=0x7f07001a;
+        public static final int vpi__bright_foreground_inverse_holo_light=0x7f07001b;
+        public static final int vpi__dark_theme=0x7f070029;
+        public static final int vpi__light_theme=0x7f07002a;
     }
     public static final class dimen {
         /**  Default height of an action bar. 

@@ -3,6 +3,7 @@ package by.android.dailystatus;
 import static by.android.dailystatus.application.Constants.TAG;
 
 import java.io.File;
+import java.util.List;
 
 import org.joda.time.DateTime;
 
@@ -45,6 +46,7 @@ import by.android.dailystatus.dialog.AddDayEvent;
 import by.android.dailystatus.dialog.ImageChoiseDialog;
 import by.android.dailystatus.fragment.DayModel;
 import by.android.dailystatus.orm.model.DayORM;
+import by.android.dailystatus.orm.model.EventORM;
 import by.android.dailystatus.preference.PreferenceUtils;
 import by.android.dailystatus.widget.calendar.CalendarView;
 import by.android.dailystatus.widget.calendar.Utils;
@@ -345,6 +347,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 		}
 	}
 
+	public void updateContent() {
+		setContent(PAGE_MIDDLE);
+	}
+
 	private void setContent(int index) {
 		final DayModel model = dayPageModel[index];
 		String dayText = model.getDayText();
@@ -387,10 +393,25 @@ public class MainActivity extends SherlockFragmentActivity implements
 			model.goodDay.setBackgroundColor(violetColor);
 			model.badDay.setBackgroundColor(violetColor);
 		}
+
+		int dayOfYear = now.getDayOfYear();
+		int year = now.getYear();
+
+//		List<EventORM> eventsByDay = EventORM.getEventsByDay(
+//				getApplicationContext(), dayOfYear, year);
+//		if (eventsByDay != null && !eventsByDay.isEmpty()) {
+//			for (EventORM eventORM : eventsByDay) {
+//				Log.i(TAG,"eventORM" + eventORM);
+//				eventLayout.addEventView(getApplicationContext(),
+//						eventORM.description);
+//			}
+//		} else {
+//			eventLayout.removeAllViews();
+//		}
 	}
 
 	private void DialogDayEvent() {
-		AddDayEvent dialog = new AddDayEvent();
+		AddDayEvent dialog = new AddDayEvent(this);
 		dialog.show(getSupportFragmentManager(), "");
 	}
 
@@ -556,6 +577,14 @@ public class MainActivity extends SherlockFragmentActivity implements
 			badDay = (Button) inflate.findViewById(R.id.bad_day);
 			eventLayout = (EventLayout) inflate.findViewById(R.id.eventLayout);
 
+			eventLayout.addEventView(getApplicationContext(),
+					"T1");
+			eventLayout.addEventView(getApplicationContext(),
+					"T2");
+			eventLayout.addEventView(getApplicationContext(),
+					"T3");
+
+			
 			currentPage.dayText = currentDay;
 			currentPage.dayImage = dayImage;
 			currentPage.goodDay = goodDay;
@@ -597,7 +626,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 				DayORM.insertOrUpdateDay(getApplicationContext(), day);
 				Toast.makeText(getApplicationContext(), "GOOD DAY",
 						Toast.LENGTH_SHORT).show();
-				// TODO update when click
+				setContent(PAGE_MIDDLE);
 				break;
 			case R.id.bad_day:
 				currentUser = PreferenceUtils
@@ -610,6 +639,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 				DayORM.insertOrUpdateDay(getApplicationContext(), day);
 				Toast.makeText(getApplicationContext(), "BAD DAY",
 						Toast.LENGTH_SHORT).show();
+				setContent(PAGE_MIDDLE);
 				break;
 			case R.id.dayImage:
 				// BitmapDrawable bitmapDrawable = (BitmapDrawable) dayImage
@@ -629,5 +659,9 @@ public class MainActivity extends SherlockFragmentActivity implements
 				break;
 			}
 		}
+	}
+
+	public DateTime getNow() {
+		return now;
 	}
 }

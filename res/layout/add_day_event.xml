@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:hint="What happens with you today"
-        android:textColor="#FFF" />
+        android:textColor="@android:color/black" />
 
     <RelativeLayout
         android:layout_width="match_parent"
