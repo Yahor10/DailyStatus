@@ -1,0 +1,8 @@
+<resources>
+
+    <dimen name="margin_left_welcome">50dp</dimen>
+    <dimen name="margin_top_welcome">250dp</dimen>
+    <dimen name="welcome_size">35sp</dimen>
+    <dimen name="dayli_size">50sp</dimen>
+
+</resources>

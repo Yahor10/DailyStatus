@@ -12,5 +12,9 @@
     <string name="bad_day">Bad day</string>
     <string name="charts">Charts</string>
     <string name="logout">Logout</string>
+    <string name="welcome">welcome to</string>
+    <string name="daily_status">Daily Status</string>
+    <string name="log_in">Log in</string>
+    <string name="create_account">Create account</string>
 
 </resources>
