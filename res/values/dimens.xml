@@ -7,5 +7,7 @@
     <dimen name="margin_top_welcome">125dp</dimen>
     <dimen name="welcome_size">17sp</dimen>
     <dimen name="dayli_size">30sp</dimen>
+    <dimen name="reg_margins">25dp</dimen>
+    <dimen name="reg_top_margin">25dp</dimen>
 
 </resources>
