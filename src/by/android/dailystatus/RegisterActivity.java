@@ -1,7 +1,9 @@
 package by.android.dailystatus;
 
 import by.android.dailystatus.orm.model.UserORM;
+import by.android.dailystatus.preference.PreferenceUtils;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,7 +32,6 @@ public class RegisterActivity extends Activity  {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
-		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		
@@ -60,6 +61,7 @@ public class RegisterActivity extends Activity  {
 				lastName = etLastName.getText().toString();
 				email = etEmail.getText().toString();
 				password = etPassword.getText().toString();
+				PreferenceUtils.setCurrentUser(getApplicationContext(), firstName);
 				//не знаю что присваивать полю id
 				//насколько я понимаю мы id должны автоматом генерить 
 				//в зависимости от того, какой последний у нас в базе, 
@@ -67,7 +69,8 @@ public class RegisterActivity extends Activity  {
 				//но я не знаю где брать это значение
 				//может чего тут неправильно я делаю
 				int id = 0;
-				UserORM.insertUser(RegisterActivity.this, new UserORM(id, firstName, lastName, password, email));
+				UserORM.insertUser(RegisterActivity.this, new UserORM(firstName, lastName, password, email));
+				UserORM.getAllFirstNames(RegisterActivity.this, firstName);
 			}
 		});
 		

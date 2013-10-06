@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
@@ -23,7 +24,7 @@ public class UserORM {
 	public static final String PASSWORD = "password";
 	public static final String EMAIL = "email";
 
-	@DatabaseField(columnName = KEY_ID)
+	@DatabaseField(generatedId=true,columnName = KEY_ID)
 	public int id;
 	@DatabaseField(columnName = NAME)
 	public String name;
@@ -38,10 +39,9 @@ public class UserORM {
 
 	}
 
-	public UserORM(int id, String name, String lastName, String password,
+	public UserORM(String name, String lastName, String password,
 			String email) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.lastName = lastName;
 		this.password = password;
@@ -59,6 +59,19 @@ public class UserORM {
 		} catch (Exception e1) {
 		} finally {
 			OpenHelperManager.releaseHelper();
+		}
+	}
+	
+	public static void getAllFirstNames(Context context, String currentUser) {
+		DatabaseHelper helper = OpenHelperManager.getHelper(context,
+				DatabaseHelper.class);
+		Dao<UserORM, String> dao = null;
+		try {
+			dao = helper.getUserDao();
+			PreparedQuery<UserORM> prepare = dao.queryBuilder().where()
+			     .eq(UserORM.NAME, currentUser).prepare();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
