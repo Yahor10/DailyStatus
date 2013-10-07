@@ -21,10 +21,12 @@ public class UserORM {
 	public static final String KEY_ID = "id";
 	public static final String NAME = "name";
 	public static final String LAST_NAME = "last_name";
+	public static final String SEX = "sex";
 	public static final String PASSWORD = "password";
 	public static final String EMAIL = "email";
 
-	@DatabaseField(generatedId=true,columnName = KEY_ID)
+
+	@DatabaseField(generatedId = true, columnName = KEY_ID)
 	public int id;
 	@DatabaseField(columnName = NAME)
 	public String name;
@@ -34,18 +36,20 @@ public class UserORM {
 	public String password;
 	@DatabaseField(columnName = EMAIL)
 	public String email;
+	@DatabaseField(columnName = SEX)
+	public int sex;
 
 	public UserORM() {
 
 	}
 
-	public UserORM(String name, String lastName, String password,
-			String email) {
+	public UserORM(String name, String lastName,int sex, String password, String email) {
 		super();
 		this.name = name;
 		this.lastName = lastName;
 		this.password = password;
 		this.email = email;
+		this.sex = sex;
 	}
 
 	public static void insertUser(Context context, UserORM user) {
@@ -61,18 +65,20 @@ public class UserORM {
 			OpenHelperManager.releaseHelper();
 		}
 	}
-	
-	public static void getAllFirstNames(Context context, String currentUser) {
+
+	public static List<UserORM> getAllFirstNames(Context context) {
 		DatabaseHelper helper = OpenHelperManager.getHelper(context,
 				DatabaseHelper.class);
 		Dao<UserORM, String> dao = null;
+		List<UserORM> query = null;
 		try {
 			dao = helper.getUserDao();
-			PreparedQuery<UserORM> prepare = dao.queryBuilder().where()
-			     .eq(UserORM.NAME, currentUser).prepare();
+			PreparedQuery<UserORM> prepare = dao.queryBuilder().prepare();
+			query = dao.query(prepare);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return query;
 	}
 
 }

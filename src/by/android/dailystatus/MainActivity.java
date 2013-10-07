@@ -14,6 +14,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -97,6 +98,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 	private DayPageAdapter adapter;
 
 	private BitmapLruCache mCache;
+
+	public static Intent buildIntent(Context context) {
+		return new Intent(context, MainActivity.class);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -397,17 +402,17 @@ public class MainActivity extends SherlockFragmentActivity implements
 		int dayOfYear = now.getDayOfYear();
 		int year = now.getYear();
 
-//		List<EventORM> eventsByDay = EventORM.getEventsByDay(
-//				getApplicationContext(), dayOfYear, year);
-//		if (eventsByDay != null && !eventsByDay.isEmpty()) {
-//			for (EventORM eventORM : eventsByDay) {
-//				Log.i(TAG,"eventORM" + eventORM);
-//				eventLayout.addEventView(getApplicationContext(),
-//						eventORM.description);
-//			}
-//		} else {
-//			eventLayout.removeAllViews();
-//		}
+		// List<EventORM> eventsByDay = EventORM.getEventsByDay(
+		// getApplicationContext(), dayOfYear, year);
+		// if (eventsByDay != null && !eventsByDay.isEmpty()) {
+		// for (EventORM eventORM : eventsByDay) {
+		// Log.i(TAG,"eventORM" + eventORM);
+		// eventLayout.addEventView(getApplicationContext(),
+		// eventORM.description);
+		// }
+		// } else {
+		// eventLayout.removeAllViews();
+		// }
 	}
 
 	private void DialogDayEvent() {
@@ -577,14 +582,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 			badDay = (Button) inflate.findViewById(R.id.bad_day);
 			eventLayout = (EventLayout) inflate.findViewById(R.id.eventLayout);
 
-			eventLayout.addEventView(getApplicationContext(),
-					"T1");
-			eventLayout.addEventView(getApplicationContext(),
-					"T2");
-			eventLayout.addEventView(getApplicationContext(),
-					"T3");
+			eventLayout.addEventView(getApplicationContext(), "T1");
+			eventLayout.addEventView(getApplicationContext(), "T2");
+			eventLayout.addEventView(getApplicationContext(), "T3");
 
-			
 			currentPage.dayText = currentDay;
 			currentPage.dayImage = dayImage;
 			currentPage.goodDay = goodDay;
