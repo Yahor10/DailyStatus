@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DailyStatus</string>
+    <string name="action_settings">Настройки</string>
+    <string name="month_year">m</string>
+    <string name="dialog_title">Выберите цвет</string>
+    <string name="name_profile">Людмила</string>
+    <string name="stats">Статистика</string>
+    <string name="good_day">Хороший день</string>
+    <string name="bad_day">Плохой день</string>
+    <string name="charts">Графики</string>
+    <string name="logout">Выход</string>
+    <string name="welcome">Добро пожаловать</string>
+    <string name="daily_status">Daily Status</string>
+    <string name="log_in">Вход</string>
+    <string name="create_account">Создать аккаунт</string>
+    <string name="first_name">Имя</string>
+    <string name="last_name">Фамилия</string>
+    <string name="email">Почта</string>
+    <string name="password">Пароль</string>
+    <string name="registration">Регистрация</string>
+    <string name="please_enter_first_name">пожалуйста, введите имя</string>
+    <string name="sex">пол</string>
+    <string name="man">мужчина</string>
+    <string name="woman">женщина</string>
+    <string-array name="sex">
+        <item>@string/man</item>
+        <item>@string/woman</item>
+    </string-array>
+    
+
+</resources>

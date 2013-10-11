@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 public class RegisterActivity extends Activity {
 
-	private String[] data = { "woman", "man" };
 	private int sex;
 	private String firstName;
 	private String lastName;
@@ -36,11 +35,13 @@ public class RegisterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
+		String[] data = getResources().getStringArray(R.array.sex);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, data);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		etFirstName = (EditText) findViewById(R.id.etFirstName);
+		etFirstName.setError(getResources().getString(R.string.please_enter_first_name));
 		etLastName = (EditText) findViewById(R.id.etFirstName);
 		etEmail = (EditText) findViewById(R.id.etFirstName);
 		etPassword = (EditText) findViewById(R.id.etFirstName);
@@ -86,7 +87,7 @@ public class RegisterActivity extends Activity {
 		});
 
 	}
-	
+
 	@Override
 	protected void onResume() {
 		allFirstNames = UserORM

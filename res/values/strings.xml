@@ -21,6 +21,15 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="registration">Registration</string>
+    <string name="please_enter_first_name">Please, enter firstname</string>
     <string name="sex">sex</string>
+
+    <string name="man">man</string>
+    <string name="woman">woman</string>
+    
+    <string-array name="sex">
+        <item>@string/man</item>
+        <item>@string/woman</item>
+    </string-array>
 
 </resources>
