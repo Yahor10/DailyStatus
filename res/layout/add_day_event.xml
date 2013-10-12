@@ -7,7 +7,7 @@
     android:orientation="vertical" >
 
     <EditText
-        android:id="@+id/txtEdit"
+        android:id="@+id/eventText"
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:hint="What happens with you today"

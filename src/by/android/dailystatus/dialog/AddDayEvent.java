@@ -52,7 +52,8 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 			int day = now.getDayOfYear();
 			int month = now.getMonthOfYear();
 			int year = now.getYear();
-			EventORM event = new EventORM(currentUser, day, month, year, 1, "Test D");
+			EditText eventText = (EditText)getDialog().findViewById(R.id.eventText);
+			EventORM event = new EventORM(currentUser, day, month, year, 1, eventText.getText().toString());
 			EventORM.insertEvent(mainActivity, event);
 			mainActivity.updateContent();
 			getDialog().dismiss();

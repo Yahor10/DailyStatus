@@ -18,6 +18,8 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 		
+//		startActivity(MainActivity.buildIntent(this));
+//		finish();
 		Button btnCreateAccount = (Button) findViewById(R.id.btnCreateAccount);
 		btnCreateAccount.setOnClickListener(new OnClickListener() {
 			

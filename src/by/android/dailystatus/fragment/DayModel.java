@@ -3,6 +3,9 @@ package by.android.dailystatus.fragment;
 import org.joda.time.DateTime;
 import org.joda.time.DateTime.Property;
 
+import by.android.dailystatus.widget.container.EventLayout;
+
+import android.provider.CalendarContract.EventDays;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +18,7 @@ public class DayModel {
 	public ImageView dayImage;
 	public Button goodDay;
 	public Button badDay;
+	public EventLayout eventLayout;
 	public DateTime date;
 	
 

@@ -75,10 +75,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	private TextView currentDay;
 	private ImageView dayImage;
-	private EventLayout eventLayout;
-
-	private Button badDay;
-	private Button goodDay;
 
 	private int dayStep = 0;
 
@@ -402,17 +398,18 @@ public class MainActivity extends SherlockFragmentActivity implements
 		int dayOfYear = now.getDayOfYear();
 		int year = now.getYear();
 
-		// List<EventORM> eventsByDay = EventORM.getEventsByDay(
-		// getApplicationContext(), dayOfYear, year);
-		// if (eventsByDay != null && !eventsByDay.isEmpty()) {
-		// for (EventORM eventORM : eventsByDay) {
-		// Log.i(TAG,"eventORM" + eventORM);
-		// eventLayout.addEventView(getApplicationContext(),
-		// eventORM.description);
-		// }
-		// } else {
-		// eventLayout.removeAllViews();
-		// }
+		model.eventLayout.removeAllViews();
+		List<EventORM> eventsByDay = EventORM.getEventsByDay(
+				getApplicationContext(), dayOfYear, year);
+		Log.v(TAG, "EVENT LIST" + eventsByDay);
+		if (eventsByDay != null && !eventsByDay.isEmpty()) {
+			for (EventORM eventORM : eventsByDay) {
+				model.eventLayout.addEventView(getApplicationContext(),
+						eventORM.description);
+			}
+		} else {
+			model.eventLayout.removeAllViews();
+		}
 	}
 
 	private void DialogDayEvent() {
@@ -578,18 +575,15 @@ public class MainActivity extends SherlockFragmentActivity implements
 			currentDay = (TextView) inflate.findViewById(R.id.currentDay);
 			dayImage = (ImageView) inflate.findViewById(R.id.dayImage);
 
-			goodDay = (Button) inflate.findViewById(R.id.good_day);
-			badDay = (Button) inflate.findViewById(R.id.bad_day);
-			eventLayout = (EventLayout) inflate.findViewById(R.id.eventLayout);
-
-			eventLayout.addEventView(getApplicationContext(), "T1");
-			eventLayout.addEventView(getApplicationContext(), "T2");
-			eventLayout.addEventView(getApplicationContext(), "T3");
+			Button goodDay = (Button) inflate.findViewById(R.id.good_day);
+			Button badDay = (Button) inflate.findViewById(R.id.bad_day);
+			EventLayout eventLayout = (EventLayout) inflate.findViewById(R.id.eventLayout);
 
 			currentPage.dayText = currentDay;
 			currentPage.dayImage = dayImage;
 			currentPage.goodDay = goodDay;
 			currentPage.badDay = badDay;
+			currentPage.eventLayout = eventLayout;
 
 			currentDay.setText(currentPage.getDayText());
 			container.addView(inflate);
