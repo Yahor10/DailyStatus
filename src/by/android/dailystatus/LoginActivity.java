@@ -11,7 +11,6 @@ import android.widget.Spinner;
 
 public class LoginActivity extends Activity {
 
-	//private Spinner mCountView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

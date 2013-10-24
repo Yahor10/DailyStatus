@@ -9,11 +9,12 @@ import org.joda.time.DateTime;
 
 import uk.co.senab.bitmapcache.BitmapLruCache;
 import uk.co.senab.bitmapcache.CacheableBitmapWrapper;
+import vn.com.enclaveit.phatbeo.quickaction.ActionItem;
+import vn.com.enclaveit.phatbeo.quickaction.QuickAction;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -40,8 +41,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.LinearLayout.LayoutParams;
-import by.android.dailystatus.alarm.AlarmActivity;
 import by.android.dailystatus.application.DailyStatusApplication;
 import by.android.dailystatus.dialog.AddDayEvent;
 import by.android.dailystatus.dialog.ImageChoiseDialog;
@@ -192,9 +191,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 			startActivity(intent);
 			break;
 		case 7:
-			Intent intentAlarm = new Intent(MainActivity.this,
-					AlarmActivity.class);
-			startActivity(intentAlarm);
 			break;
 		case 8:
 			Intent intantSettings = new Intent(MainActivity.this,
