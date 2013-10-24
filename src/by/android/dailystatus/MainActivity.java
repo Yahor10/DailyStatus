@@ -136,7 +136,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		subChoosePhoto.add(0, 1, Menu.NONE, "Add Day Picture")
 				.setOnMenuItemClickListener(this);
 		subChoosePhoto.add(0, 3, Menu.NONE, "Add Day Event")
-				.setOnMenuItemClickListener(this);
+				.setOnMenuItemClickListener(this).setIcon(R.drawable.ic_star_full_action_bar);
 		subChoosePhoto.getItem()
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
@@ -162,10 +162,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		return true;
-	}
 
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
