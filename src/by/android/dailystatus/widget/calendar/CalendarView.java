@@ -21,6 +21,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.NavUtils;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,8 +42,10 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
 import com.actionbarsherlock.view.SubMenu;
 
+import static by.android.dailystatus.application.Constants.TAG;
+
 public class CalendarView extends SherlockActivity implements
-		OnMenuItemClickListener {
+		OnMenuItemClickListener, View.OnClickListener {
 
 	public GregorianCalendar month, itemmonth;// calendar instances.
 
@@ -53,7 +56,7 @@ public class CalendarView extends SherlockActivity implements
 									// needs showing the event marker
 
 	private String selectedDate;
-	
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calendar);
@@ -77,28 +80,6 @@ public class CalendarView extends SherlockActivity implements
 
 		TextView title = (TextView) findViewById(R.id.title);
 		title.setText(android.text.format.DateFormat.format("MMMM yyyy", month));
-
-		RelativeLayout previous = (RelativeLayout) findViewById(R.id.previous);
-
-		previous.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				setPreviousMonth();
-				refreshCalendar();
-			}
-		});
-
-		RelativeLayout next = (RelativeLayout) findViewById(R.id.next);
-		next.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				setNextMonth();
-				refreshCalendar();
-
-			}
-		});
 
 		gridview.setOnItemClickListener(new OnItemClickListener() {
 
@@ -125,6 +106,16 @@ public class CalendarView extends SherlockActivity implements
 				showToast(selectedGridDate);
 			}
 		});
+
+		findViewById(R.id.next).setOnClickListener(this);
+		findViewById(R.id.previous).setOnClickListener(this);
+
+	}
+
+	@Override
+	protected void onResume() {
+		selectedDate = adapter.getCurentDateString();
+		super.onResume();
 	}
 
 	@Override
@@ -185,6 +176,10 @@ public class CalendarView extends SherlockActivity implements
 			adapter.notifyDataSetChanged();
 			break;
 		case 6:
+			if (TextUtils.isEmpty(selectedDate)) {
+				Log.e(Constants.TAG, "SHOW ALL DAYS");
+				break;
+			}
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Date parse = new Date();
 			try {
@@ -206,6 +201,24 @@ public class CalendarView extends SherlockActivity implements
 			break;
 		}
 		return true;
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.previous:
+			setPreviousMonth();
+			refreshCalendar();
+			break;
+		case R.id.next:
+			setNextMonth();
+			refreshCalendar();
+			break;
+
+		default:
+			break;
+		}
+
 	}
 
 	protected void setNextMonth() {
