@@ -262,9 +262,4 @@ public class CalendarAdapter extends BaseAdapter {
 		this.curentDateString = curentDateString;
 	}
 
-	public String getCurentDateString() {
-		return curentDateString;
-	}
-	
-
 }

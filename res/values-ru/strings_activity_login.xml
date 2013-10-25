@@ -14,7 +14,9 @@
     <string name="error_invalid_password">Этот пароль слишком короткий</string>
     <string name="error_incorrect_password">Этот пароль не правильный</string>
     <string name="error_field_required">Это поле обязательно</string>
-
+     <string name="error_name_does_not_exist">Пользователь с таким именем не был зарегистрирован</string>
+ <string name="error_name_exist">Пользователь с таким именем уже зарегистрирован</string>
+     
     <string-array name="users">
         <item>Пользователь1</item>
         <item>Пользователь2</item>

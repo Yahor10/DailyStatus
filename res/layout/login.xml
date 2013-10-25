@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:orientation="vertical" >
+    android:background="@drawable/background" >
 
     <TextView
         android:id="@+id/txtViewReg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/textView2"
         android:layout_marginLeft="@dimen/margin_left_welcome"
-        android:layout_marginTop="@dimen/margin_top_welcome"
         android:text="@string/welcome"
         android:textSize="@dimen/welcome_size" />
 
@@ -18,7 +17,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/edtLogin"
+        android:layout_centerHorizontal="true"
         android:text="@string/daily_status"
         android:textColor="@color/saturday_text_color"
         android:textSize="@dimen/dayli_size" />
@@ -27,11 +27,13 @@
         android:id="@+id/edtLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/edtPassword"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
-        android:ems="10" >
+        android:ems="10"
+        android:hint="Login" >
 
         <requestFocus />
     </EditText>
@@ -40,15 +42,19 @@
         android:id="@+id/edtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:ems="10" />
+        android:ems="10"
+        android:hint="Password"
+        android:password="true" />
 
     <Button
         android:id="@+id/btnOk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/edtPassword"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
@@ -59,10 +65,11 @@
         android:id="@+id/btnCreateAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/btnOk"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginTop="5dp"
         android:text="@string/create_account" />
 
-</LinearLayout>
+</RelativeLayout>

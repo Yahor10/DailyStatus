@@ -9,8 +9,6 @@ import org.joda.time.DateTime;
 
 import uk.co.senab.bitmapcache.BitmapLruCache;
 import uk.co.senab.bitmapcache.CacheableBitmapWrapper;
-import vn.com.enclaveit.phatbeo.quickaction.ActionItem;
-import vn.com.enclaveit.phatbeo.quickaction.QuickAction;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -41,6 +39,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import by.android.dailystatus.alarm.AlarmActivity;
 import by.android.dailystatus.application.DailyStatusApplication;
 import by.android.dailystatus.dialog.AddDayEvent;
 import by.android.dailystatus.dialog.ImageChoiseDialog;
@@ -66,6 +65,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	public static final int RESULT_TAKE_IMAGE = 0;
 	public static final int RESULT_LOAD_IMAGE = 1;
+	public static final int RESULT_LOG_OUT = 2;
 
 	private Uri takePictureUri;
 
@@ -136,7 +136,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		subChoosePhoto.add(0, 1, Menu.NONE, "Add Day Picture")
 				.setOnMenuItemClickListener(this);
 		subChoosePhoto.add(0, 3, Menu.NONE, "Add Day Event")
-				.setOnMenuItemClickListener(this).setIcon(R.drawable.ic_star_full_action_bar);
+				.setOnMenuItemClickListener(this);
 		subChoosePhoto.getItem()
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
@@ -162,6 +162,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 		return super.onCreateOptionsMenu(menu);
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		return true;
+	}
 
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
@@ -184,9 +188,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 			break;
 		case 6:
 			Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-			startActivity(intent);
+			startActivityForResult(intent, RESULT_LOG_OUT);
 			break;
 		case 7:
+			Intent intentAlarm = new Intent(MainActivity.this,
+					AlarmActivity.class);
+			startActivity(intentAlarm);
 			break;
 		case 8:
 			Intent intantSettings = new Intent(MainActivity.this,
@@ -293,6 +300,15 @@ public class MainActivity extends SherlockFragmentActivity implements
 			day.pictureURL = picturePath;
 			DayORM.insertOrUpdateDay(this, day);
 			adapter.notifyDataSetChanged();
+
+		}
+
+		if (requestCode == RESULT_LOG_OUT  && resultCode == RESULT_OK) {
+
+			Intent intent = new Intent(getApplicationContext(),
+					LoginActivity.class);
+			startActivity(intent);
+			finish();
 
 		}
 		super.onActivityResult(requestCode, resultCode, data);
@@ -569,7 +585,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 			Button goodDay = (Button) inflate.findViewById(R.id.good_day);
 			Button badDay = (Button) inflate.findViewById(R.id.bad_day);
-			EventLayout eventLayout = (EventLayout) inflate.findViewById(R.id.eventLayout);
+			EventLayout eventLayout = (EventLayout) inflate
+					.findViewById(R.id.eventLayout);
 
 			currentPage.dayText = currentDay;
 			currentPage.dayImage = dayImage;

@@ -10,9 +10,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
-import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.fragment.MonthFragment;
 import by.android.dailystatus.fragment.WeekFragment;
 import by.android.dailystatus.fragment.YearFragment;
@@ -50,7 +47,7 @@ public class ChartsActivity extends SherlockFragmentActivity {
 		indicator.setViewPager(pager);
 		boolean fromCalendar = getIntent()
 				.getBooleanExtra(FROM_CALENDAR, false);
-		
+
 		if (fromCalendar) {
 			pager.setCurrentItem(1);
 		} else {
