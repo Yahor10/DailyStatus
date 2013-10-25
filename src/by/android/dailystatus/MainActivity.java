@@ -73,7 +73,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 	private int mShortAnimationDuration;
 
 	private TextView currentDay;
-	private ImageView dayImage;
 
 	private int dayStep = 0;
 
@@ -581,8 +580,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 			DayModel currentPage = dayPageModel[position];
 			Log.v(TAG, "instantiateItem");
 			currentDay = (TextView) inflate.findViewById(R.id.currentDay);
-			dayImage = (ImageView) inflate.findViewById(R.id.dayImage);
-
+			
+			ImageView dayImage = (ImageView) inflate.findViewById(R.id.dayImage);
 			Button goodDay = (Button) inflate.findViewById(R.id.good_day);
 			Button badDay = (Button) inflate.findViewById(R.id.bad_day);
 			EventLayout eventLayout = (EventLayout) inflate
