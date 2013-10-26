@@ -13,7 +13,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -40,7 +39,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.LinearLayout.LayoutParams;
 import by.android.dailystatus.alarm.AlarmActivity;
 import by.android.dailystatus.application.DailyStatusApplication;
 import by.android.dailystatus.dialog.AddDayEvent;
@@ -67,6 +65,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	public static final int RESULT_TAKE_IMAGE = 0;
 	public static final int RESULT_LOAD_IMAGE = 1;
+	public static final int RESULT_LOG_OUT = 2;
 
 	private Uri takePictureUri;
 
@@ -189,7 +188,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 			break;
 		case 6:
 			Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-			startActivity(intent);
+			startActivityForResult(intent, RESULT_LOG_OUT);
 			break;
 		case 7:
 			Intent intentAlarm = new Intent(MainActivity.this,
@@ -301,6 +300,15 @@ public class MainActivity extends SherlockFragmentActivity implements
 			day.pictureURL = picturePath;
 			DayORM.insertOrUpdateDay(this, day);
 			adapter.notifyDataSetChanged();
+
+		}
+
+		if (requestCode == RESULT_LOG_OUT  && resultCode == RESULT_OK) {
+
+			Intent intent = new Intent(getApplicationContext(),
+					LoginActivity.class);
+			startActivity(intent);
+			finish();
 
 		}
 		super.onActivityResult(requestCode, resultCode, data);
@@ -577,7 +585,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 			Button goodDay = (Button) inflate.findViewById(R.id.good_day);
 			Button badDay = (Button) inflate.findViewById(R.id.bad_day);
-			EventLayout eventLayout = (EventLayout) inflate.findViewById(R.id.eventLayout);
+			EventLayout eventLayout = (EventLayout) inflate
+					.findViewById(R.id.eventLayout);
 
 			currentPage.dayText = currentDay;
 			currentPage.dayImage = dayImage;

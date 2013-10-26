@@ -24,10 +24,10 @@
     <string name="sex">пол</string>
     <string name="man">мужчина</string>
     <string name="woman">женщина</string>
+
     <string-array name="sex">
         <item>@string/man</item>
         <item>@string/woman</item>
     </string-array>
-    
 
 </resources>

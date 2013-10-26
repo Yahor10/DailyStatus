@@ -1,14 +1,16 @@
 package by.android.dailystatus;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import by.android.dailystatus.orm.model.UserORM;
-import by.android.dailystatus.preference.PreferenceUtils;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -16,8 +18,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import by.android.dailystatus.orm.model.UserORM;
 
 public class RegisterActivity extends Activity {
+
+	private final static int MIN_COUNT_PASSWORD_SIZE = 5;
 
 	private int sex;
 	private String firstName;
@@ -29,10 +34,13 @@ public class RegisterActivity extends Activity {
 	private EditText etLastName;
 	private EditText etEmail;
 	private EditText etPassword;
-	private List<UserORM> allFirstNames;
+
+	private EmailValidator emailValidator;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
+		emailValidator = new EmailValidator();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
 		String[] data = getResources().getStringArray(R.array.sex);
@@ -41,10 +49,21 @@ public class RegisterActivity extends Activity {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		etFirstName = (EditText) findViewById(R.id.etFirstName);
-		etFirstName.setError(getResources().getString(R.string.please_enter_first_name));
-		etLastName = (EditText) findViewById(R.id.etFirstName);
-		etEmail = (EditText) findViewById(R.id.etFirstName);
-		etPassword = (EditText) findViewById(R.id.etFirstName);
+
+		etFirstName.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (!hasFocus && etFirstName.getText().toString().length() < 1) {
+					etFirstName.setError(getResources().getString(
+							R.string.please_enter_first_name));
+				}
+
+			}
+		});
+		etLastName = (EditText) findViewById(R.id.etLastName);
+		etEmail = (EditText) findViewById(R.id.etEmail);
+		etPassword = (EditText) findViewById(R.id.etPassword);
 		Spinner spinnerSex = (Spinner) findViewById(R.id.spinner);
 		Button btnOk = (Button) findViewById(R.id.btnOk);
 
@@ -69,20 +88,45 @@ public class RegisterActivity extends Activity {
 				lastName = etLastName.getText().toString();
 				email = etEmail.getText().toString();
 				password = etPassword.getText().toString();
+
 				Context applicationContext = getApplicationContext();
-				for (UserORM userORM : allFirstNames) {
-					if (userORM.name.equals(firstName)) {
-						Toast.makeText(applicationContext, "NAME EXIST",
-								Toast.LENGTH_SHORT).show();
-						return;
-					}
+				if (UserORM.checkContainName(applicationContext, firstName)) {
+
+					Toast.makeText(applicationContext,
+							R.string.error_name_exist, Toast.LENGTH_SHORT)
+							.show();
+					return;
+				}
+
+				if (!emailValidator.validate(email) && email.length() > 0) {
+					Toast.makeText(RegisterActivity.this,
+							R.string.error_invalid_email, Toast.LENGTH_SHORT)
+							.show();
+					return;
+				}
+
+				if (password.length() < MIN_COUNT_PASSWORD_SIZE
+						&& password.length() > 0) {
+					Toast.makeText(RegisterActivity.this,
+							R.string.error_invalid_password, Toast.LENGTH_SHORT)
+							.show();
+					return;
 				}
 				UserORM.insertUser(RegisterActivity.this, new UserORM(
 						firstName, lastName, sex, password, email));
-				PreferenceUtils.setCurrentUser(applicationContext, firstName);
-				startActivity(MainActivity.buildIntent(applicationContext));
+				// PreferenceUtils.setCurrentUser(applicationContext,
+				// firstName);
+
+				// Intent intent = MainActivity.buildIntent(applicationContext);
+				// intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+				// | Intent.FLAG_ACTIVITY_NEW_TASK);
+				// startActivity(intent);
+				Intent intent = new Intent();
+				intent.putExtra("login", firstName);
+				setResult(RESULT_OK, intent);
+
 				finish();
-				// send broadcast to close login activity
+
 			}
 		});
 
@@ -90,9 +134,36 @@ public class RegisterActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		allFirstNames = UserORM
-				.getAllFirstNames(RegisterActivity.this);
+		// allFirstNames = UserORM.getAllFirstNames(RegisterActivity.this);
 		super.onResume();
+	}
+
+	// ////////////////////////////////////////
+	public class EmailValidator {
+
+		private Pattern pattern;
+		private Matcher matcher;
+
+		private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+		public EmailValidator() {
+			pattern = Pattern.compile(EMAIL_PATTERN);
+		}
+
+		/**
+		 * Validate hex with regular expression
+		 * 
+		 * @param hex
+		 *            hex for validation
+		 * @return true valid hex, false invalid hex
+		 */
+		public boolean validate(final String hex) {
+
+			matcher = pattern.matcher(hex);
+			return matcher.matches();
+
+		}
 	}
 
 }

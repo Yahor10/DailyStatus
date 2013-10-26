@@ -25,7 +25,6 @@ public class UserORM {
 	public static final String PASSWORD = "password";
 	public static final String EMAIL = "email";
 
-
 	@DatabaseField(generatedId = true, columnName = KEY_ID)
 	public int id;
 	@DatabaseField(columnName = NAME)
@@ -43,7 +42,8 @@ public class UserORM {
 
 	}
 
-	public UserORM(String name, String lastName,int sex, String password, String email) {
+	public UserORM(String name, String lastName, int sex, String password,
+			String email) {
 		super();
 		this.name = name;
 		this.lastName = lastName;
@@ -58,6 +58,7 @@ public class UserORM {
 		try {
 			final Dao<UserORM, String> dao = helper.getUserDao();
 			if (dao.create(user) == 0) {
+
 				throw new IllegalArgumentException("cannot create");
 			}
 		} catch (Exception e1) {
@@ -79,6 +80,46 @@ public class UserORM {
 			e.printStackTrace();
 		}
 		return query;
+	}
+
+	public static UserORM getUserByName(Context context, String name) {
+		DatabaseHelper helper = OpenHelperManager.getHelper(context,
+				DatabaseHelper.class);
+		Dao<UserORM, String> dao = null;
+		List<UserORM> query = null;
+		try {
+			dao = helper.getUserDao();
+			PreparedQuery<UserORM> prepare = dao.queryBuilder().where()
+					.eq(NAME, name).prepare();
+			query = dao.query(prepare);
+			if (query.size() > 1) {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return query.get(0);
+	}
+
+	public static boolean checkContainName(Context context, String name) {
+		DatabaseHelper helper = OpenHelperManager.getHelper(context,
+				DatabaseHelper.class);
+		Dao<UserORM, String> dao = null;
+		List<UserORM> query = null;
+		try {
+			dao = helper.getUserDao();
+			PreparedQuery<UserORM> prepare = dao.queryBuilder().where()
+					.eq(NAME, name).prepare();
+			query = dao.query(prepare);
+			if (query.size() >= 1) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return true;
+		}
+		return false;
 	}
 
 }

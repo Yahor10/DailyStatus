@@ -37,6 +37,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	 * call createTable statements here to create the tables that will store
 	 * your data.
 	 */
+	
 	@Override
 	public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
 		try {
@@ -88,6 +89,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	public Dao<UserORM, String> getUserDao() throws SQLException {
 		if (userDao == null) {
 			userDao = getDao(UserORM.class);
+			
 		}
 		return userDao;
 	}
@@ -95,6 +97,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	public Dao<EventORM, String> getEventDao() throws SQLException {
 		if (eventDao == null) {
 			eventDao = getDao(EventORM.class);
+			
+			
 		}
 		return eventDao;
 	}

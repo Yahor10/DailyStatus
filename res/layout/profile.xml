@@ -2,122 +2,130 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@drawable/ic_background_profile">
+    android:background="@drawable/ic_background_profile"
+    android:orientation="vertical" >
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/round_corner" >
+        android:layout_height="wrap_content" >
 
-        <ImageView
-            android:id="@+id/imgProfile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="false"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_profile" />
-
-        <TextView
-            android:id="@+id/txtProfile"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="25dp"
-            android:layout_toRightOf="@id/imgProfile"
-            android:text="@string/name_profile"
-            android:textSize="25sp"
-            android:textStyle="bold|italic" />
+            android:orientation="vertical" >
 
-    </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/round_corner" >
 
-    <RelativeLayout
-        style="@style/text_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/round_corner"
-        android:paddingBottom="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="20dp" >
+                <ImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="false"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_profile" />
 
-        <TextView
-            android:id="@+id/textView1"
-            style="@style/text_style"
-            android:text="@string/name_profile" />
+                <TextView
+                    android:id="@+id/txtProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="25dp"
+                    android:layout_toRightOf="@id/imgProfile"
+                    android:text="@string/name_profile"
+                    android:textSize="25sp"
+                    android:textStyle="bold|italic" />
+            </RelativeLayout>
 
-    </RelativeLayout>
+            <RelativeLayout
+                style="@style/text_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/round_corner"
+                android:paddingBottom="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp" >
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="25dp"
-        android:text="@string/stats"
-        style="@style/text_style"/>
+                <TextView
+                    android:id="@+id/textView1"
+                    style="@style/text_style"
+                    android:text="@string/name_profile" />
+            </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/round_corner"
-        android:paddingBottom="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="20dp" >
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/text_style"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/stats" />
 
-        <TextView
-            android:id="@+id/txtGoodDay"
-            android:text="@string/good_day"
-            style="@style/text_style" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/round_corner"
+                android:paddingBottom="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp" >
 
-        <TextView
-            android:id="@+id/textView3"
-            style="@style/text_style_count"
-            android:text="7" />
+                <TextView
+                    android:id="@+id/txtGoodDay"
+                    style="@style/text_style"
+                    android:text="@string/good_day" />
 
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/textView3"
+                    style="@style/text_style_count"
+                    android:text="7" />
+            </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/round_corner"
-        android:paddingBottom="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="20dp" >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/round_corner"
+                android:paddingBottom="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="20dp" >
 
-        <TextView
-            android:id="@+id/txtBadDay"
-            style="@style/text_style"
-            android:text="@string/bad_day"/>
+                <TextView
+                    android:id="@+id/txtBadDay"
+                    style="@style/text_style"
+                    android:text="@string/bad_day" />
 
-        <TextView
-            android:id="@+id/textView4"
-            style="@style/text_style_count"
-            android:text="1" />
+                <TextView
+                    android:id="@+id/textView4"
+                    style="@style/text_style_count"
+                    android:text="1" />
+            </RelativeLayout>
 
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:background="@color/violet_new"
-        android:padding="10dp"
-        android:text="@string/logout"
-        android:textColor="@android:color/white" />
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/violet_new"
+                android:padding="10dp"
+                android:text="@string/logout"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

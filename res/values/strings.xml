@@ -3,7 +3,6 @@
 
     <string name="app_name">DailyStatus</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="month_year">m</string>
     <string name="dialog_title">Pick a color</string>
     <string name="name_profile">Lyudmila</string>
@@ -12,7 +11,7 @@
     <string name="bad_day">Bad day</string>
     <string name="charts">Charts</string>
     <string name="logout">Logout</string>
-    <string name="welcome">welcome to</string>
+    <string name="welcome">Welcome to</string>
     <string name="daily_status">Daily Status</string>
     <string name="log_in">Log in</string>
     <string name="create_account">Create account</string>
@@ -23,10 +22,9 @@
     <string name="registration">Registration</string>
     <string name="please_enter_first_name">Please, enter firstname</string>
     <string name="sex">sex</string>
-
     <string name="man">man</string>
     <string name="woman">woman</string>
-    
+
     <string-array name="sex">
         <item>@string/man</item>
         <item>@string/woman</item>
