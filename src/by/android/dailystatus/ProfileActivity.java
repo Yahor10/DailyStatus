@@ -30,6 +30,7 @@ public class ProfileActivity extends SherlockActivity {
 	TextView txtGoodDay;
 	TextView txtBadDay;
 
+
 	UserORM currentUser;
 	int goodDayCount, badDayCount;
 	private DateTime date;

@@ -25,6 +25,8 @@
     <string name="man">man</string>
     <string name="woman">woman</string>
 
+    <string name="contentdesc4pic1">Content</string>
+
     <string-array name="sex">
         <item>@string/man</item>
         <item>@string/woman</item>

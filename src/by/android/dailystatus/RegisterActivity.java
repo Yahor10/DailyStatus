@@ -18,7 +18,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.orm.model.UserORM;
+import by.android.dailystatus.preference.PreferenceUtils;
 
 public class RegisterActivity extends Activity {
 
@@ -34,6 +37,8 @@ public class RegisterActivity extends Activity {
 	private EditText etLastName;
 	private EditText etEmail;
 	private EditText etPassword;
+
+	private EmailValidator emailValidator;
 
 	private EmailValidator emailValidator;
 
@@ -90,6 +95,7 @@ public class RegisterActivity extends Activity {
 				password = etPassword.getText().toString();
 
 				Context applicationContext = getApplicationContext();
+<<<<<<< HEAD
 				if (UserORM.checkContainName(applicationContext, firstName)) {
 
 					Toast.makeText(applicationContext,
@@ -112,15 +118,11 @@ public class RegisterActivity extends Activity {
 							.show();
 					return;
 				}
+
+
 				UserORM.insertUser(RegisterActivity.this, new UserORM(
 						firstName, lastName, sex, password, email));
-				// PreferenceUtils.setCurrentUser(applicationContext,
-				// firstName);
-
-				// Intent intent = MainActivity.buildIntent(applicationContext);
-				// intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-				// | Intent.FLAG_ACTIVITY_NEW_TASK);
-				// startActivity(intent);
+				
 				Intent intent = new Intent();
 				intent.putExtra("login", firstName);
 				setResult(RESULT_OK, intent);
@@ -132,11 +134,7 @@ public class RegisterActivity extends Activity {
 
 	}
 
-	@Override
-	protected void onResume() {
-		// allFirstNames = UserORM.getAllFirstNames(RegisterActivity.this);
-		super.onResume();
-	}
+
 
 	// ////////////////////////////////////////
 	public class EmailValidator {
