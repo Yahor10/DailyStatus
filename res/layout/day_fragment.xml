@@ -74,10 +74,7 @@
                     android:contentDescription="Day Image"
                     android:padding="10dip"
                     android:scaleType="center"
-                    android:src="@drawable/photo1"
-                    app:border_color="@color/roundimage_border"
-                    app:border_width="2dip"
-                    app:corner_radius="30dip" />
+                    android:src="@drawable/round_corner" />
             </FrameLayout>
 
             <View

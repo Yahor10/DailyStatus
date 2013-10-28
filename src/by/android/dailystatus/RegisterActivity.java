@@ -40,8 +40,6 @@ public class RegisterActivity extends Activity {
 
 	private EmailValidator emailValidator;
 
-	private EmailValidator emailValidator;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -95,7 +93,6 @@ public class RegisterActivity extends Activity {
 				password = etPassword.getText().toString();
 
 				Context applicationContext = getApplicationContext();
-<<<<<<< HEAD
 				if (UserORM.checkContainName(applicationContext, firstName)) {
 
 					Toast.makeText(applicationContext,
