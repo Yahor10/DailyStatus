@@ -2,23 +2,18 @@ package by.android.dailystatus.dialog;
 
 import org.joda.time.DateTime;
 
-import by.android.dailystatus.MainActivity;
-import by.android.dailystatus.R;
-import by.android.dailystatus.orm.model.EventORM;
-import by.android.dailystatus.preference.PreferenceUtils;
-import by.android.dailystatus.widget.container.EventLayout;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.view.Window;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.LinearLayout.LayoutParams;
+import by.android.dailystatus.MainActivity;
+import by.android.dailystatus.R;
+import by.android.dailystatus.orm.model.EventORM;
+import by.android.dailystatus.preference.PreferenceUtils;
 
 public class AddDayEvent extends DialogFragment implements OnClickListener {
 
@@ -32,7 +27,8 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 		final FragmentActivity activity = getActivity();
 
 		final Dialog dialog = new Dialog(activity);
-		dialog.setTitle(R.string.title_dialog_add_event);
+		// dialog.setTitle(R.string.title_dialog_add_event);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.add_day_event);
 
 		dialog.findViewById(R.id.addEventOK).setOnClickListener(this);

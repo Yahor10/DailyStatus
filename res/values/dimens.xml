@@ -10,4 +10,19 @@
     <dimen name="reg_margins">25dp</dimen>
     <dimen name="reg_top_margin">25dp</dimen>
 
+    <!-- settings_activity -->
+    <dimen name="height_head_group">25dp</dimen>
+    <dimen name="left_padding_head_group">10dp</dimen>
+    <dimen name="height_child_group">60dp</dimen>
+    <dimen name="left_padding_child_group">15dp</dimen>
+    <dimen name="size_text_group">15sp</dimen>
+    <dimen name="size_text_child">21sp</dimen>
+    <dimen name="size_text_child_desctibe">14sp</dimen>
+    <dimen name="size_icon">30dp</dimen>
+    
+    <!--dialog_add_event  -->
+    <dimen name="height_title">50dp</dimen>
+    <dimen name="size_text_title">20sp</dimen>
+    <dimen name="left_padding_title">20dp</dimen>
+
 </resources>

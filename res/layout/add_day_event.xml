@@ -6,6 +6,27 @@
     android:background="@drawable/background"
     android:orientation="vertical" >
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/height_title"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/left_padding_title" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/title_dialog_add_event"
+            android:textColor="@color/daynames_background"
+            android:textSize="@dimen/size_text_title"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_gray" />
+
     <EditText
         android:id="@+id/eventText"
         android:layout_width="match_parent"
@@ -46,7 +67,6 @@
             android:background="@color/violet_new"
             android:text="@android:string/cancel"
             android:textColor="@android:color/white" />
-
     </RelativeLayout>
 
 </LinearLayout>
