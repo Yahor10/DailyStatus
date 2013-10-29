@@ -24,6 +24,7 @@
     <string name="sex">sex</string>
     <string name="man">man</string>
     <string name="woman">woman</string>
+     <string name="title_dialog_add_event">Add day event</string>
 
     <string name="contentdesc4pic1">Content</string>
 

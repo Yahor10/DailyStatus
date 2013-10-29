@@ -22,9 +22,8 @@ import android.widget.LinearLayout.LayoutParams;
 
 public class AddDayEvent extends DialogFragment implements OnClickListener {
 
-
 	private MainActivity mainActivity;
-	
+
 	public AddDayEvent(MainActivity mainActivity) {
 		this.mainActivity = mainActivity;
 	}
@@ -33,7 +32,7 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 		final FragmentActivity activity = getActivity();
 
 		final Dialog dialog = new Dialog(activity);
-		dialog.setTitle("Add day event");
+		dialog.setTitle(R.string.title_dialog_add_event);
 		dialog.setContentView(R.layout.add_day_event);
 
 		dialog.findViewById(R.id.addEventOK).setOnClickListener(this);
@@ -52,8 +51,10 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 			int day = now.getDayOfYear();
 			int month = now.getMonthOfYear();
 			int year = now.getYear();
-			EditText eventText = (EditText)getDialog().findViewById(R.id.eventText);
-			EventORM event = new EventORM(currentUser, day, month, year, 1, eventText.getText().toString());
+			EditText eventText = (EditText) getDialog().findViewById(
+					R.id.eventText);
+			EventORM event = new EventORM(currentUser, day, month, year, 1,
+					eventText.getText().toString());
 			EventORM.insertEvent(mainActivity, event);
 			mainActivity.updateContent();
 			getDialog().dismiss();

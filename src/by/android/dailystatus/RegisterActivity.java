@@ -102,24 +102,20 @@ public class RegisterActivity extends Activity {
 				}
 
 				if (!emailValidator.validate(email) && email.length() > 0) {
-					Toast.makeText(RegisterActivity.this,
-							R.string.error_invalid_email, Toast.LENGTH_SHORT)
-							.show();
+					etEmail.setError(getResources().getString(R.string.error_invalid_email));
 					return;
 				}
 
 				if (password.length() < MIN_COUNT_PASSWORD_SIZE
 						&& password.length() > 0) {
-					Toast.makeText(RegisterActivity.this,
-							R.string.error_invalid_password, Toast.LENGTH_SHORT)
-							.show();
+					etPassword.setError(getResources().getString(R.string.error_invalid_password));
+					
 					return;
 				}
 
-
 				UserORM.insertUser(RegisterActivity.this, new UserORM(
 						firstName, lastName, sex, password, email));
-				
+
 				Intent intent = new Intent();
 				intent.putExtra("login", firstName);
 				setResult(RESULT_OK, intent);
@@ -131,9 +127,6 @@ public class RegisterActivity extends Activity {
 
 	}
 
-
-
-	// ////////////////////////////////////////
 	public class EmailValidator {
 
 		private Pattern pattern;
