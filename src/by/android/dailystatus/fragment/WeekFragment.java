@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import by.android.dailystatus.ChartsActivity;
 import by.android.dailystatus.R;
@@ -56,6 +57,13 @@ public class WeekFragment extends BaseChartsFragment {
 
 		LinearLayout layout = (LinearLayout) inflate.findViewById(R.id.chart);
 		TextView chartName = (TextView) inflate.findViewById(R.id.chartName);
+
+		LinearLayout mainChartLayout = (LinearLayout) inflate
+				.findViewById(R.id.main_chart_layout);
+		RelativeLayout layoutWithEmptyView = (RelativeLayout) inflate
+				.findViewById(R.id.view_for_empty_data);
+		TextView emptyView = (TextView) inflate.findViewById(R.id.txt_empty);
+
 		Context applicationContext = getActivity().getApplicationContext();
 		mChartView = ChartFactory.getPieChartView(applicationContext, mSeries,
 				mRenderer);
@@ -80,9 +88,9 @@ public class WeekFragment extends BaseChartsFragment {
 		short badDays = 0;
 		short goodDays = 0;
 
-		while(date.getDayOfWeek() != 1){
+		while (date.getDayOfWeek() != 1) {
 			date = date.minusDays(1);
-		} 
+		}
 
 		builder.append(".");
 		int firstWeekDay = date.getDayOfMonth();
@@ -90,7 +98,7 @@ public class WeekFragment extends BaseChartsFragment {
 		builder.append(firstWeekDay).append("-");
 
 		for (int i = 0; i < 7; i++) {
-			
+
 			LocalDate plusDays = date.plusDays(i);
 			DayORM day = DayORM.getDay(applicationContext,
 					plusDays.getDayOfYear(), year);
@@ -99,10 +107,19 @@ public class WeekFragment extends BaseChartsFragment {
 			} else if (day != null && day.status == -1) {
 				badDays++;
 			}
-			
+
 			if (i == 6) {
 				lastWeekDay = plusDays.getDayOfMonth();
 			}
+		}
+
+		if (badDays == 0 && goodDays == 0) {
+			mainChartLayout.setVisibility(View.GONE);
+			emptyView.setText(emptyView.getText() + " "
+					+ getResources().getString(R.string.week_for_chart_act));
+
+		} else {
+			layoutWithEmptyView.setVisibility(View.GONE);
 		}
 
 		builder.append(lastWeekDay);

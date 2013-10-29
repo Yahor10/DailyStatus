@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import by.android.dailystatus.ChartsActivity;
 import by.android.dailystatus.R;
@@ -60,6 +61,13 @@ public class MonthFragment extends BaseChartsFragment {
 		Context applicationContext = getActivity().getApplicationContext();
 		LinearLayout layout = (LinearLayout) inflate.findViewById(R.id.chart);
 		TextView chartName = (TextView) inflate.findViewById(R.id.chartName);
+
+		LinearLayout mainChartLayout = (LinearLayout) inflate
+				.findViewById(R.id.main_chart_layout);
+		RelativeLayout layoutWithEmptyView = (RelativeLayout) inflate
+				.findViewById(R.id.view_for_empty_data);
+		TextView emptyView = (TextView) inflate.findViewById(R.id.txt_empty);
+
 		mChartView = ChartFactory.getPieChartView(applicationContext, mSeries,
 				mRenderer);
 
@@ -70,19 +78,37 @@ public class MonthFragment extends BaseChartsFragment {
 				0);
 		int year = getActivity().getIntent()
 				.getIntExtra(ChartsActivity.YEAR, 0);
-		
+
 		Calendar instance = Calendar.getInstance();
 		instance.set(Calendar.MONTH, month - 1);
 		Date time = instance.getTime();
 		LocalDate date = new LocalDate(time);
 		chartName.setText(date.monthOfYear().getAsText());
-		
+
 		int badDaysCount = 0;
 		List<DayORM> badDays = DayORM.getBadDaysByMonth(getActivity(), month,
 				year);
-		
+
 		if (badDays != null && !badDays.isEmpty()) {
 			badDaysCount = badDays.size();
+		}
+
+		int goodDaysCount = 0;
+		List<DayORM> goodDays = DayORM.getGoodDaysByMonth(getActivity(), month,
+				year);
+		if (goodDays != null && !goodDays.isEmpty()) {
+			goodDaysCount = goodDays.size();
+		}
+
+		if (badDaysCount == 0 && goodDaysCount == 0) {
+			mainChartLayout.setVisibility(View.GONE);
+			emptyView.setText(emptyView.getText() + " "
+					+ getResources().getString(R.string.week_for_chart_act));
+			layoutWithEmptyView.setVisibility(View.VISIBLE);
+
+		} else {
+			mainChartLayout.setVisibility(View.VISIBLE);
+			layoutWithEmptyView.setVisibility(View.GONE);
 		}
 
 		mSeries.add("Bad" + (mSeries.getItemCount() + 1), badDaysCount);
@@ -91,14 +117,6 @@ public class MonthFragment extends BaseChartsFragment {
 		renderer.setColor(COLORS[(mSeries.getItemCount() - 1) % COLORS.length]);
 		mRenderer.addSeriesRenderer(renderer);
 
-		int goodDaysCount = 0;
-		List<DayORM> goodDays = DayORM.getGoodDaysByMonth(getActivity(), month,
-				year);
-		if (goodDays != null && !goodDays.isEmpty()) {
-			goodDaysCount = goodDays.size();
-		}
-		
-		
 		Log.v(Constants.TAG, "BAD" + badDaysCount);
 		Log.v(Constants.TAG, "GOOD" + goodDaysCount);
 

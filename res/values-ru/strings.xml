@@ -25,6 +25,8 @@
     <string name="man">мужчина</string>
     <string name="woman">женщина</string>
     <string name="title_dialog_add_event">Добавьте событие</string>
+    <string name="no_data_about_days">Нету ни хороших, ни плохих дней за </string>
+    <string name="week_for_chart_act">неделю</string>
 
     <string-array name="sex">
         <item>@string/man</item>
