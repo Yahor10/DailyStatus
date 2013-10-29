@@ -40,6 +40,10 @@ public class RegisterActivity extends Activity {
 
 	private EmailValidator emailValidator;
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -92,7 +96,11 @@ public class RegisterActivity extends Activity {
 				email = etEmail.getText().toString();
 				password = etPassword.getText().toString();
 
+<<<<<<< Updated upstream
 				Context applicationContext = getApplicationContext();
+=======
+				Context applicationContext = getApplicationContext();
+>>>>>>> Stashed changes
 				if (UserORM.checkContainName(applicationContext, firstName)) {
 
 					Toast.makeText(applicationContext,
