@@ -9,6 +9,8 @@ import org.joda.time.DateTime;
 
 import uk.co.senab.bitmapcache.BitmapLruCache;
 import uk.co.senab.bitmapcache.CacheableBitmapWrapper;
+import vn.com.enclaveit.phatbeo.quickaction.ActionItem;
+import vn.com.enclaveit.phatbeo.quickaction.QuickAction;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -124,6 +126,60 @@ public class MainActivity extends SherlockFragmentActivity implements
 		viewPager.setCurrentItem(PAGE_MIDDLE, false);
 
 		viewPager.setOnPageChangeListener(this);
+		initQuickAction();
+	}
+
+	public QuickAction mQuickAction;
+
+	public void initQuickAction() {
+		ActionItem addAction = new ActionItem();
+		addAction.setTitle("View");
+		addAction.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
+
+		ActionItem aeeAction = new ActionItem();
+		aeeAction.setTitle("Edit");
+		aeeAction.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
+
+		ActionItem auuAction = new ActionItem();
+		auuAction.setTitle("Delete");
+		auuAction.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
+
+		mQuickAction = new QuickAction(this);
+		mQuickAction.addActionItem(addAction);
+		mQuickAction.addActionItem(aeeAction);
+		mQuickAction.addActionItem(auuAction);
+
+		mQuickAction
+				.setOnActionItemClickListener(new QuickAction.OnActionItemClickListener() {
+					public void onItemClick(int pos) {
+						EventORM ormEbent = mQuickAction.getEventORM();
+						if (ormEbent == null) {
+							mQuickAction.dismiss();
+							Toast.makeText(MainActivity.this, "SORRYYYY =(",
+									Toast.LENGTH_SHORT).show();
+							return;
+						}
+
+						if (pos == 0) { // Phone item selected
+							Toast.makeText(MainActivity.this,
+									"View EVENT FOR :" + ormEbent.description,
+									Toast.LENGTH_SHORT).show();
+							// Place code handling for Phone action here
+						} else if (pos == 1) { // Gmail item selected
+							Toast.makeText(MainActivity.this,
+									"EDIT EVENT FOR :" + ormEbent.description,
+									Toast.LENGTH_SHORT).show();
+							// Place code handling for Gmail action here
+						} else if (pos == 2) { // Talk item selected
+							Toast.makeText(
+									MainActivity.this,
+									"DELETE EVENT FOR :" + ormEbent.description,
+									Toast.LENGTH_SHORT).show();
+							// Place code handling for Talk action here
+						}
+					}
+				});
+
 	}
 
 	@Override
@@ -302,7 +358,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		}
 
-		if (requestCode == RESULT_LOG_OUT  && resultCode == RESULT_OK) {
+		if (requestCode == RESULT_LOG_OUT && resultCode == RESULT_OK) {
 
 			Intent intent = new Intent(getApplicationContext(),
 					LoginActivity.class);
@@ -412,7 +468,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		if (eventsByDay != null && !eventsByDay.isEmpty()) {
 			for (EventORM eventORM : eventsByDay) {
 				model.eventLayout.addEventView(getApplicationContext(),
-						eventORM.description);
+						eventORM, mQuickAction);
 			}
 		} else {
 			model.eventLayout.removeAllViews();
@@ -580,8 +636,9 @@ public class MainActivity extends SherlockFragmentActivity implements
 			DayModel currentPage = dayPageModel[position];
 			Log.v(TAG, "instantiateItem");
 			currentDay = (TextView) inflate.findViewById(R.id.currentDay);
-			
-			ImageView dayImage = (ImageView) inflate.findViewById(R.id.dayImage);
+
+			ImageView dayImage = (ImageView) inflate
+					.findViewById(R.id.dayImage);
 			Button goodDay = (Button) inflate.findViewById(R.id.good_day);
 			Button badDay = (Button) inflate.findViewById(R.id.bad_day);
 			EventLayout eventLayout = (EventLayout) inflate

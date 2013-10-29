@@ -1,6 +1,7 @@
 package vn.com.enclaveit.phatbeo.quickaction;
 
 import by.android.dailystatus.R;
+import by.android.dailystatus.orm.model.EventORM;
 import android.content.Context;
 
 import android.graphics.Rect;
@@ -38,6 +39,16 @@ public class QuickAction extends PopupWindows {
 	public static final int ANIM_GROW_FROM_RIGHT = 2;
 	public static final int ANIM_GROW_FROM_CENTER = 3;
 	public static final int ANIM_AUTO = 4;
+
+	public EventORM currentEvent;
+
+	public void setEvent(EventORM eventORM) {
+		currentEvent = eventORM;
+	}
+
+	public EventORM getEventORM() {
+		return currentEvent;
+	}
 
 	public QuickAction(Context context) {
 		super(context);

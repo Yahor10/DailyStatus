@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="group_about_programm">About Application</string>
+    <string name="version">Version</string>
+    <string name="license">License</string>
+    <string name="group_sharing">Sharing</string>
+    <string name="not_authorized">Not authorized</string>
+    <string name="group_contacts">Contacts</string>
+    <string name="connect_with_developers">Contacts to developers</string>
+    <string name="connect_with_developers_description">Request new information from developers</string>
+    
+    
+</resources>
