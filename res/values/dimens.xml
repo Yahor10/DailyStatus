@@ -19,10 +19,16 @@
     <dimen name="size_text_child">21sp</dimen>
     <dimen name="size_text_child_desctibe">14sp</dimen>
     <dimen name="size_icon">30dp</dimen>
-    
-    <!--dialog_add_event  -->
+
+    <!-- dialog_add_event -->
     <dimen name="height_title">50dp</dimen>
     <dimen name="size_text_title">20sp</dimen>
     <dimen name="left_padding_title">20dp</dimen>
+
+    <!-- event_activity -->
+    <dimen name="height_item">60dp</dimen>
+    <dimen name="size_max_image_item">40dp</dimen>
+    <dimen name="size_text_item">16sp</dimen>
+    <dimen name="left_padding_item_event">10dp</dimen>
 
 </resources>

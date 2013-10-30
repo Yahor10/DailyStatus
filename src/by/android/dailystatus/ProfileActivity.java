@@ -30,7 +30,6 @@ public class ProfileActivity extends SherlockActivity {
 	TextView txtGoodDay;
 	TextView txtBadDay;
 
-
 	UserORM currentUser;
 	int goodDayCount, badDayCount;
 	private DateTime date;
@@ -125,12 +124,6 @@ public class ProfileActivity extends SherlockActivity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-	}
-
-	@Override
-	public void onBackPressed() {
-		NavUtils.navigateUpFromSameTask(this);
-		super.onBackPressed();
 	}
 
 }

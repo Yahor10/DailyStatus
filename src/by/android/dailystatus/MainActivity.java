@@ -160,23 +160,29 @@ public class MainActivity extends SherlockFragmentActivity implements
 							return;
 						}
 
-						if (pos == 0) { // Phone item selected
+						switch (pos) {
+						case 0:
 							Toast.makeText(MainActivity.this,
 									"View EVENT FOR :" + ormEbent.description,
 									Toast.LENGTH_SHORT).show();
-							// Place code handling for Phone action here
-						} else if (pos == 1) { // Gmail item selected
+							break;
+						case 1:
 							Toast.makeText(MainActivity.this,
 									"EDIT EVENT FOR :" + ormEbent.description,
 									Toast.LENGTH_SHORT).show();
-							// Place code handling for Gmail action here
-						} else if (pos == 2) { // Talk item selected
+
+							break;
+						case 2:
 							Toast.makeText(
 									MainActivity.this,
 									"DELETE EVENT FOR :" + ormEbent.description,
 									Toast.LENGTH_SHORT).show();
-							// Place code handling for Talk action here
+							break;
+
+						default:
+							break;
 						}
+
 					}
 				});
 
@@ -246,9 +252,14 @@ public class MainActivity extends SherlockFragmentActivity implements
 			startActivityForResult(intent, RESULT_LOG_OUT);
 			break;
 		case 7:
-			Intent intentAlarm = new Intent(MainActivity.this,
-					AlarmActivity.class);
-			startActivity(intentAlarm);
+			// Intent intentAlarm = new Intent(MainActivity.this,
+			// AlarmActivity.class);
+			// startActivity(intentAlarm);
+			int dayOfWeek1 = now.getDayOfYear();
+			int monthOfYear1 = now.getMonthOfYear();
+			int year1 = now.getYear();
+			startActivity(EventActivity.buintIntent(this, dayOfWeek1,
+					monthOfYear1, year1));
 			break;
 		case 8:
 			Intent intantSettings = new Intent(MainActivity.this,

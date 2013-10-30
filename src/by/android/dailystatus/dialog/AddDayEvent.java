@@ -19,6 +19,10 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 
 	private MainActivity mainActivity;
 
+	public AddDayEvent() {
+
+	}
+
 	public AddDayEvent(MainActivity mainActivity) {
 		this.mainActivity = mainActivity;
 	}

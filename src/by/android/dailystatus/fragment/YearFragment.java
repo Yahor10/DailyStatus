@@ -54,6 +54,7 @@ public class YearFragment extends BaseChartsFragment {
 
 		Context applicationContext = getActivity().getApplicationContext();
 		LinearLayout layout = (LinearLayout) inflate.findViewById(R.id.chart);
+		TextView chartName = (TextView) inflate.findViewById(R.id.chartName);
 		mChartView = ChartFactory.getPieChartView(getActivity(), mSeries,
 				mRenderer);
 
@@ -65,6 +66,8 @@ public class YearFragment extends BaseChartsFragment {
 
 		int year = getActivity().getIntent()
 				.getIntExtra(ChartsActivity.YEAR, 0);
+
+		chartName.setText("" + year);
 		int badDaysCount = 0;
 		List<DayORM> badDays = DayORM
 				.getBadDaysByYear(applicationContext, year);
