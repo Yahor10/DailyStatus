@@ -214,7 +214,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		subMyProfile.add(0, 6, Menu.NONE, "Profile")
 				.setIcon(R.drawable.ic_menu_profile)
 				.setOnMenuItemClickListener(this);
-		subMyProfile.add(0, 7, Menu.NONE, "Alarm").setOnMenuItemClickListener(
+		subMyProfile.add(0, 7, Menu.NONE, "Events").setOnMenuItemClickListener(
 				this);
 		subMyProfile.add(0, 8, Menu.NONE, "Settings")
 				.setIcon(R.drawable.ic_settings)
@@ -252,9 +252,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 			startActivityForResult(intent, RESULT_LOG_OUT);
 			break;
 		case 7:
-			// Intent intentAlarm = new Intent(MainActivity.this,
-			// AlarmActivity.class);
-			// startActivity(intentAlarm);
 			int dayOfWeek1 = now.getDayOfYear();
 			int monthOfYear1 = now.getMonthOfYear();
 			int year1 = now.getYear();
