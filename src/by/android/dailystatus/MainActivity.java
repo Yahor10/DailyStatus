@@ -365,6 +365,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 			day.pictureURL = picturePath;
 			DayORM.insertOrUpdateDay(this, day);
+
 			adapter.notifyDataSetChanged();
 
 		}
