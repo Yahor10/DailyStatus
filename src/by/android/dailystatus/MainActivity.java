@@ -3,6 +3,8 @@ package by.android.dailystatus;
 import static by.android.dailystatus.application.Constants.TAG;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -41,7 +43,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import by.android.dailystatus.alarm.AlarmActivity;
 import by.android.dailystatus.application.DailyStatusApplication;
 import by.android.dailystatus.dialog.AddDayEvent;
 import by.android.dailystatus.dialog.ImageChoiseDialog;
@@ -50,7 +51,6 @@ import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.orm.model.EventORM;
 import by.android.dailystatus.preference.PreferenceUtils;
 import by.android.dailystatus.widget.calendar.CalendarView;
-import by.android.dailystatus.widget.calendar.Utils;
 import by.android.dailystatus.widget.container.EventLayout;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -325,19 +325,73 @@ public class MainActivity extends SherlockFragmentActivity implements
 		mSelectedPageIndex = position;
 	}
 
+	private Bitmap decodeFile(File f) {
+		try {
+			// Decode image size
+			BitmapFactory.Options o = new BitmapFactory.Options();
+			o.inJustDecodeBounds = true;
+			BitmapFactory.decodeStream(new FileInputStream(f), null, o);
+
+			// The new size we want to scale to
+			final int REQUIRED_SIZE_WIGHT = 300;
+			final int REQUIRED_SIZE_HEIGHT = 300;
+
+			// Find the correct scale value. It should be the power of 2.
+			int scale = 1;
+			while (o.outWidth / scale / 2 >= REQUIRED_SIZE_WIGHT
+					&& o.outHeight / scale / 2 >= REQUIRED_SIZE_HEIGHT)
+				scale *= 2;
+
+			// Decode with inSampleSize
+			BitmapFactory.Options o2 = new BitmapFactory.Options();
+			o2.inSampleSize = scale;
+			return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
+		} catch (FileNotFoundException e) {
+		}
+		return null;
+	}
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == RESULT_TAKE_IMAGE && resultCode == RESULT_OK
-				&& null != data) {
-			File file = Utils.getTempFile(this);
-			takePictureUri = Uri.fromFile(file);
-			Log.v(TAG, "TEMP FILE");
-			// Bitmap bitmap =
-			// BitmapFactory.decodeStream(takePictureUri.toString());
-			// notify
+		if (requestCode == RESULT_TAKE_IMAGE && resultCode == RESULT_OK) {
+
+			// Uri selectedImage = Uri.parse("file:/"
+			// + PreferenceUtils
+			// .getImageFromCameraURL(getApplicationContext()));
+			//
+			// String[] filePathColumn = { MediaStore.Images.Media.DATA };
+			// Cursor cursor = getContentResolver().query(selectedImage,
+			// filePathColumn, null, null, null);
+			// cursor.moveToFirst();
+			// int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+			String picturePath = PreferenceUtils
+					.getImageFromCameraURL(getApplicationContext());
+			File newdir = new File(picturePath);
+			// cursor.close();
+			Log.v(TAG,
+					"PICTURE PATH " + picturePath + " DAY "
+							+ now.getDayOfYear());
+
+			Bitmap bitmap = decodeFile(newdir);
+
+			CacheableBitmapWrapper newValue = new CacheableBitmapWrapper(bitmap);
+			mCache.put(picturePath, newValue);
+
+			Log.v(TAG, "LRU CACHE SIZE" + mCache.size());
+
+			String currentUser = PreferenceUtils.getCurrentUser(this);
+
+			DayORM day = new DayORM(currentUser, now.getDayOfYear(),
+					now.getMonthOfYear(), now.getYear());
+
+			day.pictureURL = picturePath;
+			DayORM.insertOrUpdateDay(this, day);
+
+			adapter.notifyDataSetChanged();
+
 		}
-		if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK
-				&& null != data) {
+		if ((requestCode == RESULT_LOAD_IMAGE || requestCode == RESULT_TAKE_IMAGE)
+				&& resultCode == RESULT_OK && null != data) {
 			Uri selectedImage = data.getData();
 			String[] filePathColumn = { MediaStore.Images.Media.DATA };
 			Cursor cursor = getContentResolver().query(selectedImage,
@@ -346,7 +400,14 @@ public class MainActivity extends SherlockFragmentActivity implements
 			int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
 			String picturePath = cursor.getString(columnIndex);
 			cursor.close();
-			Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
+
+			File newdir = new File(picturePath);
+			// cursor.close();
+			Log.v(TAG,
+					"PICTURE PATH " + picturePath + " DAY "
+							+ now.getDayOfYear());
+
+			Bitmap bitmap = decodeFile(newdir);
 
 			Log.v(TAG,
 					"PICTURE PATH" + picturePath + "DAY" + now.getDayOfYear());
@@ -416,7 +477,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	private void initPageModel() {
 		for (int i = 0; i < dayPageModel.length; i++) {
 			// initing the pagemodel with indexes of -1, 0 and 1
-			dayPageModel[i] = new DayModel(i - 1);
+			dayPageModel[i] = new DayModel(i - 1, getApplicationContext());
 		}
 	}
 
@@ -443,6 +504,25 @@ public class MainActivity extends SherlockFragmentActivity implements
 						&& cacheableBitmapWrapper.hasValidBitmap()) {
 					model.dayImage.setImageBitmap(cacheableBitmapWrapper
 							.getBitmap());
+				} else {
+					String picturePath = day.pictureURL;
+					// cursor.close();
+					File newdir = new File(picturePath);
+					// cursor.close();
+					Log.v(TAG,
+							"PICTURE PATH " + picturePath + " DAY "
+									+ now.getDayOfYear());
+
+					Bitmap bitmap = decodeFile(newdir);
+					if (bitmap != null) {
+						CacheableBitmapWrapper newValue = new CacheableBitmapWrapper(
+								bitmap);
+						mCache.put(picturePath, newValue);
+						model.dayImage.setImageBitmap(bitmap);
+					} else {
+						model.dayImage.setImageResource(R.drawable.ic_launcher);
+					}
+
 				}
 			}
 
@@ -490,7 +570,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	}
 
 	private void DialogChosePhoto() {
-		DialogFragment dialog = new ImageChoiseDialog();
+		DialogFragment dialog = new ImageChoiseDialog(this);
 		dialog.show(getSupportFragmentManager(), "");
 	}
 

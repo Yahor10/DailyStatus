@@ -8,8 +8,11 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import by.android.dailystatus.MainActivity;
 import by.android.dailystatus.R;
 import by.android.dailystatus.orm.model.EventORM;
@@ -18,6 +21,7 @@ import by.android.dailystatus.preference.PreferenceUtils;
 public class AddDayEvent extends DialogFragment implements OnClickListener {
 
 	private MainActivity mainActivity;
+	ImageView imageBack;
 
 	public AddDayEvent() {
 
@@ -34,6 +38,13 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 		// dialog.setTitle(R.string.title_dialog_add_event);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.add_day_event);
+
+		imageBack = (ImageView) dialog.findViewById(R.id.image);
+
+		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) imageBack
+				.getLayoutParams();
+		params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+		imageBack.setLayoutParams(params);
 
 		dialog.findViewById(R.id.addEventOK).setOnClickListener(this);
 		dialog.findViewById(R.id.addEventCancel).setOnClickListener(this);

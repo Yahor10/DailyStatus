@@ -21,7 +21,8 @@
     <dimen name="size_icon">30dp</dimen>
 
     <!-- dialog_add_event -->
-    <dimen name="height_title">50dp</dimen>
+    <dimen name="height_title">45dp</dimen>
+    <dimen name="height_dialog_item">60dp</dimen>
     <dimen name="size_text_title">20sp</dimen>
     <dimen name="left_padding_title">20dp</dimen>
 

@@ -87,6 +87,31 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_gray" />
+
+        <LinearLayout
+            android:id="@+id/lay_rate"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:minHeight="@dimen/height_child_group"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/left_padding_child_group" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:singleLine="true"
+                android:text="@string/rate"
+                android:textColor="@color/daynames_background"
+                android:textSize="@dimen/size_text_child"
+                android:textStyle="bold" />
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="@dimen/height_head_group"
@@ -255,6 +280,79 @@
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="@color/bg_gray" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/height_head_group"
+            android:background="@color/bg_gray"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/left_padding_head_group" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:singleLine="true"
+                android:text="@string/group_about_programm"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_text_group"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/rad_group"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@+id/radbtn_do_not_notify" >
+
+            <RadioButton
+                android:id="@+id/radbtn_six_hours"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/left_padding_child_group"
+                android:minHeight="@dimen/height_child_group"
+                android:singleLine="true"
+                android:text="@string/every_6_hours"
+                android:textColor="@color/daynames_background"
+                android:textSize="@dimen/size_text_child"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray" />
+
+            <RadioButton
+                android:id="@+id/radbtn_three_hours"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/left_padding_child_group"
+                android:minHeight="@dimen/height_child_group"
+                android:singleLine="true"
+                android:text="@string/every_3_hours"
+                android:textColor="@color/daynames_background"
+                android:textSize="@dimen/size_text_child"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray" />
+
+            <RadioButton
+                android:id="@+id/radbtn_do_not_notify"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/left_padding_child_group"
+                android:minHeight="@dimen/height_child_group"
+                android:text="@string/do_not_notify"
+                android:textColor="@color/daynames_background"
+                android:textSize="@dimen/size_text_child"
+                android:textStyle="bold" />
+        </RadioGroup>
     </LinearLayout>
 
 </ScrollView>

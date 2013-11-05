@@ -10,6 +10,7 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name="by.android.dailystatus.application.DailyStatusApplication"
@@ -56,7 +57,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="by.android.dailystatus.MainActivity" />
         </activity>
-               <activity
+        <activity
             android:name="by.android.dailystatus.EventActivity"
             android:icon="@drawable/ic_launcher"
             android:label="EvEnt" >

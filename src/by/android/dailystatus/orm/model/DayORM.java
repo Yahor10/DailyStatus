@@ -1,6 +1,7 @@
 package by.android.dailystatus.orm.model;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -144,7 +145,8 @@ public class DayORM {
 		return query;
 	}
 
-	public static List<DayORM> getGoodDaysByMonth(Context context, int month,int year) {
+	public static List<DayORM> getGoodDaysByMonth(Context context, int month,
+			int year) {
 		DatabaseHelper helper = OpenHelperManager.getHelper(context,
 				DatabaseHelper.class);
 		List<DayORM> query = null;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="group_about_programm">About Application</string>
     <string name="version">Version</string>
     <string name="license">License</string>
@@ -8,6 +9,9 @@
     <string name="group_contacts">Contacts</string>
     <string name="connect_with_developers">Contacts to developers</string>
     <string name="connect_with_developers_description">Request new information from developers</string>
-    
-    
+    <string name="every_6_hours">Every 6 hours</string>
+    <string name="every_3_hours">Every 3 hours</string>
+    <string name="do_not_notify">Do not notify me of the good / bad days</string>
+    <string name="notifications">Notifications</string>
+
 </resources>

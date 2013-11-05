@@ -28,6 +28,13 @@
     <string name="no_data_about_days">There are no good or bad days selected in this </string>
     <string name="contentdesc4pic1">Content</string>
     <string name="week_for_chart_act">week</string>
+    <string name="title_add_image">Please, choose or take photo</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="alarm_message">How was your day? What happend with you today?</string>
+    <string name="rate">Rate</string>
+    
+    
 
     <string-array name="sex">
         <item>@string/man</item>

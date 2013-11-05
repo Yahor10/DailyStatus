@@ -33,27 +33,40 @@ public class AlarmActivity extends SherlockFragmentActivity {
 		Intent intent = new Intent(this, TimeAlarm.class);
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,
 				intent, PendingIntent.FLAG_ONE_SHOT);
-		am.set(AlarmManager.RTC_WAKEUP,
-				System.currentTimeMillis() + (5 * 100), pendingIntent);
+		am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (5 * 100),
+				pendingIntent);
 	}
 
-	public void setRepeatingAlarm() {
-		Intent intent = new Intent(this, TimeAlarm.class);
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,
+	public static void setRepeatingAlarm(Context context, int indexOfInterval) {
+
+		AlarmManager am = (AlarmManager) context
+				.getSystemService(Context.ALARM_SERVICE);
+		Intent intent = new Intent(context, TimeAlarm.class);
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
 				intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
 		am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-				(5 * 100), pendingIntent);
+				(10800000) + indexOfInterval * 1, pendingIntent);
 	}
-	
+
+	public static void CancelAlarm(Context context) {
+		Intent intent = new Intent(context, TimeAlarm.class);
+		PendingIntent sender = PendingIntent
+				.getBroadcast(context, 0, intent, 0);
+		AlarmManager alarmManager = (AlarmManager) context
+				.getSystemService(Context.ALARM_SERVICE);
+		alarmManager.cancel(sender);
+	}
+
 	@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case android.R.id.home:
-        	NavUtils.navigateUpFromSameTask(this);
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
-        }
-    }
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
 
 }
