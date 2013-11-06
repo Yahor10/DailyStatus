@@ -143,7 +143,7 @@
                 android:layout_width="@dimen/size_icon"
                 android:layout_height="@dimen/size_icon"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/facebook" />
+                android:src="@drawable/facebook1" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -190,7 +190,7 @@
                 android:layout_width="@dimen/size_icon"
                 android:layout_height="@dimen/size_icon"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/twitter" />
+                android:src="@drawable/twitter1" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
