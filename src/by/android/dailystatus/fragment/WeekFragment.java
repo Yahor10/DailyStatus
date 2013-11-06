@@ -67,6 +67,7 @@ public class WeekFragment extends BaseChartsFragment {
 		Context applicationContext = getActivity().getApplicationContext();
 		mChartView = ChartFactory.getPieChartView(applicationContext, mSeries,
 				mRenderer);
+		mChartView.setZoomRate(5);
 
 		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT);
@@ -125,12 +126,12 @@ public class WeekFragment extends BaseChartsFragment {
 		builder.append(lastWeekDay);
 		chartName.setText(builder.toString());
 
-		mSeries.add("Bad" + (mSeries.getItemCount() + 1), badDays);
+		mSeries.add("Bad", badDays);
 		SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
 		renderer.setColor(COLORS[(mSeries.getItemCount() - 1) % COLORS.length]);
 		mRenderer.addSeriesRenderer(renderer);
 
-		mSeries.add("Good " + (mSeries.getItemCount() + 1), goodDays);
+		mSeries.add("Good ", goodDays);
 
 		SimpleSeriesRenderer renderer2 = new SimpleSeriesRenderer();
 		renderer2

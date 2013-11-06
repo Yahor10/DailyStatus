@@ -111,7 +111,7 @@ public class MonthFragment extends BaseChartsFragment {
 			layoutWithEmptyView.setVisibility(View.GONE);
 		}
 
-		mSeries.add("Bad" + (mSeries.getItemCount() + 1), badDaysCount);
+		mSeries.add("Bad", badDaysCount);
 
 		SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
 		renderer.setColor(COLORS[(mSeries.getItemCount() - 1) % COLORS.length]);
@@ -120,7 +120,7 @@ public class MonthFragment extends BaseChartsFragment {
 		Log.v(Constants.TAG, "BAD" + badDaysCount);
 		Log.v(Constants.TAG, "GOOD" + goodDaysCount);
 
-		mSeries.add("Good " + (mSeries.getItemCount() + 1), goodDaysCount);
+		mSeries.add("Good ", goodDaysCount);
 
 		SimpleSeriesRenderer renderer2 = new SimpleSeriesRenderer();
 		renderer2

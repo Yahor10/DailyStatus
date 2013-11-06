@@ -520,7 +520,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 						mCache.put(picturePath, newValue);
 						model.dayImage.setImageBitmap(bitmap);
 					} else {
-						model.dayImage.setImageResource(R.drawable.ic_launcher);
+						model.dayImage.setImageResource(R.drawable.photo1);
 					}
 
 				}
@@ -542,7 +542,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 				break;
 			}
 		} else {
-			model.dayImage.setImageResource(R.drawable.ic_launcher);
+			model.dayImage.setImageResource(R.drawable.photo1);
 			model.goodDay.setBackgroundColor(violetColor);
 			model.badDay.setBackgroundColor(violetColor);
 		}
@@ -721,6 +721,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
+
 			View inflate = inflater.inflate(R.layout.day_fragment, null);
 			DayModel currentPage = dayPageModel[position];
 			Log.v(TAG, "instantiateItem");
@@ -743,6 +744,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 			container.addView(inflate);
 
 			updateDateStep();
+			setContent(position);
 
 			inflate.findViewById(R.id.good_day).setOnClickListener(this);
 			inflate.findViewById(R.id.bad_day).setOnClickListener(this);

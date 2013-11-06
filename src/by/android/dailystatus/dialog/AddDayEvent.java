@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import by.android.dailystatus.MainActivity;
 import by.android.dailystatus.R;
+import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.orm.model.EventORM;
 import by.android.dailystatus.preference.PreferenceUtils;
 
@@ -41,9 +42,37 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 
 		imageBack = (ImageView) dialog.findViewById(R.id.image);
 
+		DateTime now = mainActivity.getNow();
+		int day = now.getDayOfYear();
+		int year = now.getYear();
+		DayORM dayORM = DayORM.getDay(activity, day, year);
 		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) imageBack
 				.getLayoutParams();
-		params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+
+		switch (dayORM.status) {
+		case 0:
+			params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+			params.setMargins(60, 0, 0, 0);
+
+			break;
+
+		case -1:
+			params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+			params.setMargins(0, 0, 60, 0);
+			imageBack.setBackgroundResource(R.drawable.cloud);
+
+			break;
+
+		case 1:
+			params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+			params.setMargins(100, 0, 100, 0);
+			imageBack.setBackgroundResource(R.drawable.sun);
+			break;
+
+		default:
+			break;
+		}
+
 		imageBack.setLayoutParams(params);
 
 		dialog.findViewById(R.id.addEventOK).setOnClickListener(this);

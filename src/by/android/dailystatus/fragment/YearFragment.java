@@ -94,13 +94,13 @@ public class YearFragment extends BaseChartsFragment {
 		layout.addView(mChartView, new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT));
 
-		mSeries.add("Bad" + (mSeries.getItemCount() + 1), badDaysCount);
+		mSeries.add("Bad", badDaysCount);
 
 		SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
 		renderer.setColor(COLORS[(mSeries.getItemCount() - 1) % COLORS.length]);
 		mRenderer.addSeriesRenderer(renderer);
 
-		mSeries.add("Good " + (mSeries.getItemCount() + 1), goodDaysCount);
+		mSeries.add("Good ", goodDaysCount);
 
 		SimpleSeriesRenderer renderer2 = new SimpleSeriesRenderer();
 		renderer2

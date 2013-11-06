@@ -1,20 +1,39 @@
 package by.android.dailystatus;
 
+import oauth.signpost.OAuthConsumer;
+import oauth.signpost.OAuthProvider;
+import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
+import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
+import twitter4j.Twitter;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 import by.android.dailystatus.alarm.AlarmActivity;
+import by.android.dailystatus.dialog.TwitterDialog;
 import by.android.dailystatus.preference.PreferenceUtils;
+import by.android.dailystatus.social.twitter.OAuthRequestTokenTask;
+import by.android.dailystatus.social.twitter.RetrieveAccessTokenTask;
+import by.android.dailystatus.social.twitter.TwitterConstants;
+import by.android.dailystatus.social.twitter.TwitterUtils;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
@@ -22,9 +41,17 @@ import com.tjeannin.apprate.AppRate;
 
 public class SettingsActivity extends SherlockFragmentActivity implements
 		OnClickListener {
-
 	RadioGroup radioGroup;
 	TextView versionTextView;
+
+	public ProgressDialog progressDialog;
+	public static Twitter twitter;
+	public static OAuthConsumer consumer;
+	public static OAuthProvider provider;
+	// this variable is used to temporary store twitter message when the
+	// application starts new Intent
+	// to authenticate twitter
+	public String twitterMessage;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -91,10 +118,11 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 		}
 
 		versionTextView = (TextView) findViewById(R.id.txt_version_description);
-		versionTextView.setText(vers);
+		versionTextView.setText("v"+vers);
 
 		findViewById(R.id.lay_rate).setOnClickListener(this);
 		findViewById(R.id.lay_connect_with_developer).setOnClickListener(this);
+		findViewById(R.id.lay_twitter).setOnClickListener(this);
 
 	}
 
@@ -126,14 +154,131 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 			Intent intent = new Intent(Intent.ACTION_SENDTO);
 			intent.setData(Uri.parse("mailto:" + recepientEmail));
 
-			startActivity(Intent.createChooser(intent, "Send Email"));
+			try {
+				startActivity(Intent.createChooser(intent, "Send Email"));
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 
+			break;
+
+		case R.id.lay_twitter:
+
+			if (isOnline()) {
+				if (twitter == null) {
+					signOnTwitter();
+
+				}
+			} else {
+				Toast.makeText(this, "НЕТУ ИНТЕРЕНЕТА", Toast.LENGTH_SHORT)
+						.show();
+			}
 			break;
 
 		default:
 			break;
 		}
 
+	}
+
+	public void signOnTwitter() {
+
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(this);
+
+		if (twitter == null) {
+			twitter = TwitterUtils.isAuthenticated(prefs);
+		}
+
+		if (twitter == null) {
+			progressDialog = ProgressDialog.show(this, "", "Please wait");
+			twitterMessage = null;
+			Toast.makeText(this, "Please authorize this app!",
+					Toast.LENGTH_LONG).show();
+			consumer = new CommonsHttpOAuthConsumer(
+					TwitterConstants.CONSUMER_KEY,
+					TwitterConstants.CONSUMER_SECRET);
+			provider = new CommonsHttpOAuthProvider(
+					TwitterConstants.REQUEST_URL, TwitterConstants.ACCESS_URL,
+					TwitterConstants.AUTHORIZE_URL);
+			new OAuthRequestTokenTask(this, consumer, provider, new Handler() {
+
+				@Override
+				public void handleMessage(Message msg) {
+					if (progressDialog != null) {
+						progressDialog.dismiss();
+						progressDialog = null;
+					}
+					Toast.makeText(
+							SettingsActivity.this,
+							"Error during Twitter Authorization: "
+									+ "OAUth retrieve request token failed",
+							Toast.LENGTH_LONG).show();
+				}
+
+			}).execute();
+		}
+	}
+
+	public void showTwitterDialog(String url) {
+		new TwitterDialog(this, url).show();
+	}
+
+	public boolean wasOffline;
+
+	public boolean isOnline() {
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+			wasOffline = false;
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+
+		if (intent != null && intent.getData() != null) {
+			Uri uri = intent.getData();
+			if (uri != null
+					&& uri.toString().startsWith(
+							TwitterConstants.OAUTH_CALLBACK_URL)) {
+				new RetrieveAccessTokenTask(this, consumer, provider,
+						twitterMessage, new Handler() {
+
+							@Override
+							public void handleMessage(Message msg) {
+								if (msg != null && msg.obj != null) {
+									if (msg.arg1 == RetrieveAccessTokenTask.RETRIEVAL_FAIL) {
+										// Log.d(TAG, (String) msg.obj);
+										Toast.makeText(
+												SettingsActivity.this,
+												"Failed to retrieve access token",
+												Toast.LENGTH_LONG).show();
+									} else if (msg.arg1 == RetrieveAccessTokenTask.RETRIEVAL_SUCCESS) {
+										Toast.makeText(SettingsActivity.this,
+												"чё-то не так",
+												Toast.LENGTH_SHORT).show();
+									}
+								}
+
+								if (progressDialog != null) {
+									progressDialog.dismiss();
+									progressDialog = null;
+								}
+							}
+
+						}).execute(uri);
+			}
+		} else {
+			// HIDE progress dialog (can be visible after twitter authorization
+			if (progressDialog != null) {
+				progressDialog.dismiss();
+				progressDialog = null;
+			}
+		}
 	}
 
 }
