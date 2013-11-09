@@ -153,6 +153,7 @@
                 android:paddingLeft="@dimen/left_padding_head_group" >
 
                 <TextView
+                    android:id="@+id/txt_face_user_name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -162,7 +163,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txt_facebook_connektion"
+                    android:id="@+id/txt_facebook_descroption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="3dp"

@@ -37,6 +37,12 @@ import by.android.dailystatus.social.twitter.TwitterUtils;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.facebook.Request;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.model.GraphUser;
+import com.facebook.widget.WebDialog;
 import com.tjeannin.apprate.AppRate;
 
 public class SettingsActivity extends SherlockFragmentActivity implements
@@ -48,15 +54,19 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 	public static Twitter twitter;
 	public static OAuthConsumer consumer;
 	public static OAuthProvider provider;
-	// this variable is used to temporary store twitter message when the
-	// application starts new Intent
-	// to authenticate twitter
+
+	TextView faceUserName;
+	TextView facebookDescription;
+	boolean faceLogin = false;
+
 	public String twitterMessage;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.settings);
+
 		getSupportActionBar().setBackgroundDrawable(
 				new ColorDrawable(Color.parseColor("#0e78c9")));
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -118,12 +128,54 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 		}
 
 		versionTextView = (TextView) findViewById(R.id.txt_version_description);
-		versionTextView.setText("v"+vers);
+		versionTextView.setText("v" + vers);
+		faceUserName = (TextView) findViewById(R.id.txt_face_user_name);
+		facebookDescription = (TextView) findViewById(R.id.txt_facebook_descroption);
 
 		findViewById(R.id.lay_rate).setOnClickListener(this);
 		findViewById(R.id.lay_connect_with_developer).setOnClickListener(this);
 		findViewById(R.id.lay_twitter).setOnClickListener(this);
+		findViewById(R.id.lay_facebook).setOnClickListener(this);
 
+		Session.openActiveSession(this, false, new Session.StatusCallback() {
+
+			// callback when session changes state
+			@Override
+			public void call(Session session, SessionState state,
+					Exception exception) {
+
+				if (session.isOpened()) {
+
+					Request.newMeRequest(session,
+							new Request.GraphUserCallback() {
+
+								@Override
+								public void onCompleted(GraphUser user,
+										Response response) {
+
+									if (user != null) {
+										faceUserName.setText(user
+												.getFirstName()
+												+ " "
+												+ user.getLastName());
+										facebookDescription
+												.setText("Нажмите чтобы выйти");
+										faceLogin = true;
+									}
+								}
+							}).executeAsync();
+				}
+
+			}
+		});
+
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		Session.getActiveSession().onActivityResult(this, requestCode,
+				resultCode, data);
 	}
 
 	@Override
@@ -143,6 +195,67 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 		switch (v.getId()) {
 		case R.id.lay_rate:
 			new AppRate(this).setShowIfAppHasCrashed(false).init();
+
+			break;
+
+		case R.id.lay_facebook:
+			// start Facebook Login
+			Session.openActiveSession(this, true, new Session.StatusCallback() {
+
+				// callback when session changes state
+				@Override
+				public void call(Session session, SessionState state,
+						Exception exception) {
+
+					if (session.isOpened()) {
+
+						try {
+							Bundle params = new Bundle();
+							params.putString("name", "Facebook SDK for Android");// title
+							params.putString("caption",
+									"Build great social apps and get more installs.");//
+							params.putString(
+									"description",
+									"The Facebook SDK for Android makes it easier and faster to develop Facebook integrated Android apps.");
+
+							WebDialog feedDialog = (new WebDialog.FeedDialogBuilder(
+									SettingsActivity.this, Session
+											.getActiveSession(), params))
+									.setOnCompleteListener(null).build();
+							feedDialog.show();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						// if (!faceLogin) {
+						// Request.newMeRequest(session,
+						// new Request.GraphUserCallback() {
+						//
+						// @Override
+						// public void onCompleted(GraphUser user,
+						// Response response) {
+						//
+						// if (user != null) {
+						// faceUserName.setText(user
+						// .getFirstName()
+						// + " "
+						// + user.getLastName());
+						// facebookDescription
+						// .setText("Нажмите чтобы выйти");
+						// }
+						// }
+						// }).executeAsync();
+						// } else {
+						// session.closeAndClearTokenInformation();
+						//
+						// faceUserName.setText(getResources().getString(
+						// R.string.facebook));
+						// facebookDescription.setText("Нажмите чтобы войти");
+						//
+						// }
+					}
+
+				}
+			});
 
 			break;
 
