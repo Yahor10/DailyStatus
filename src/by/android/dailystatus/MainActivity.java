@@ -69,6 +69,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	public static final int RESULT_LOAD_IMAGE = 1;
 	public static final int RESULT_LOG_OUT = 2;
 
+	private static final String DAY_MILLS = "DAY_MILLS";
 	private Uri takePictureUri;
 
 	private Animator mCurrentAnimator;
@@ -112,7 +113,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 		mShortAnimationDuration = getResources().getInteger(
 				android.R.integer.config_shortAnimTime);
 
-		now = DateTime.now();
+		if (savedInstanceState == null) {
+			now = DateTime.now();
+		} else {
+			long dayMills = savedInstanceState.getLong(DAY_MILLS);
+			now = new DateTime(dayMills);
+		}
 		mCache = DailyStatusApplication.getApplication(this).getImageCache();
 
 		initPageModel();
@@ -271,7 +277,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 	@Override
 	public void onPageScrollStateChanged(int state) {
 		if (state == ViewPager.SCROLL_STATE_IDLE) {
-			Log.v(TAG, "onPageScrollStateChanged");
 			final DayModel leftPage = dayPageModel[PAGE_LEFT];
 			final DayModel middlePage = dayPageModel[PAGE_MIDDLE];
 			final DayModel rightPage = dayPageModel[PAGE_RIGHT];
@@ -284,11 +289,13 @@ public class MainActivity extends SherlockFragmentActivity implements
 			if (mSelectedPageIndex == PAGE_LEFT) {
 
 				// moving each page content one page to the right
-				leftPage.setIndex(oldLeftIndex - 1);
-				middlePage.setIndex(oldLeftIndex);
-				rightPage.setIndex(oldMiddleIndex);
 
 				now = now.minusDays(1);
+
+				leftPage.setIndex(oldLeftIndex - 1, now.minusDays(1));
+				middlePage.setIndex(oldLeftIndex, now);
+				rightPage.setIndex(oldMiddleIndex, now.plusDays(1));
+
 				updateDateStep();
 
 				setContent(PAGE_RIGHT);
@@ -298,11 +305,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 				// user swiped to left direction --> right page
 			} else if (mSelectedPageIndex == PAGE_RIGHT) {
 
-				leftPage.setIndex(oldMiddleIndex);
-				middlePage.setIndex(oldRightIndex);
-				rightPage.setIndex(oldRightIndex + 1);
-
 				now = now.plusDays(1);
+
+				leftPage.setIndex(oldMiddleIndex, now.minusDays(1));
+				middlePage.setIndex(oldRightIndex, now);
+				rightPage.setIndex(oldRightIndex + 1, now.plusDays(1));
+
 				updateDateStep();
 
 				setContent(PAGE_LEFT);
@@ -355,6 +363,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == RESULT_TAKE_IMAGE && resultCode == RESULT_OK) {
 
+			Log.v(TAG, "RESULT_TAKE IMAGE");
 			// Uri selectedImage = Uri.parse("file:/"
 			// + PreferenceUtils
 			// .getImageFromCameraURL(getApplicationContext()));
@@ -392,6 +401,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		}
 		if ((requestCode == RESULT_LOAD_IMAGE || requestCode == RESULT_TAKE_IMAGE)
 				&& resultCode == RESULT_OK && null != data) {
+			Log.v(TAG, "RESULT_LOAD IMAGE");
 			Uri selectedImage = data.getData();
 			String[] filePathColumn = { MediaStore.Images.Media.DATA };
 			Cursor cursor = getContentResolver().query(selectedImage,
@@ -403,18 +413,13 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 			File newdir = new File(picturePath);
 			// cursor.close();
-			Log.v(TAG,
-					"PICTURE PATH " + picturePath + " DAY "
-							+ now.getDayOfYear());
 
 			Bitmap bitmap = decodeFile(newdir);
 
-			Log.v(TAG,
-					"PICTURE PATH" + picturePath + "DAY" + now.getDayOfYear());
+			Log.v(TAG, "PICTURE PATH" + picturePath + "DAY"
+					+ now.dayOfWeek().getAsShortText());
 			CacheableBitmapWrapper newValue = new CacheableBitmapWrapper(bitmap);
 			mCache.put(picturePath, newValue);
-
-			Log.v(TAG, "LRU CACHE SIZE" + mCache.size());
 
 			String currentUser = PreferenceUtils.getCurrentUser(this);
 
@@ -437,6 +442,22 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		}
 		super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putLong(DAY_MILLS, now.getMillis());
+		Log.i(TAG, "SAVE INSTANCE");
+
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		long dayMills = savedInstanceState.getLong(DAY_MILLS);
+		Log.i(TAG, "RESTORE INSTANCE" + dayMills);
+		now = new DateTime(dayMills);
 	}
 
 	private void initDayLaybels() {
@@ -477,7 +498,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	private void initPageModel() {
 		for (int i = 0; i < dayPageModel.length; i++) {
 			// initing the pagemodel with indexes of -1, 0 and 1
-			dayPageModel[i] = new DayModel(i - 1, getApplicationContext());
+			dayPageModel[i] = new DayModel(i - 1, getApplicationContext(), now);
 		}
 	}
 
@@ -495,7 +516,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 		model.badDay.setBackgroundColor(violetColor);
 
 		DateTime date = model.getDate();
-		DayORM day = DayORM.getDay(this, date.getDayOfYear(), date.getYear());
+		int dayOfYear = date.getDayOfYear();
+		int year = date.getYear();
+
+		Log.i(TAG, "CONTENT DAY NAME:" + date.dayOfWeek().getAsShortText());
+		DayORM day = DayORM.getDay(this, dayOfYear, year);
 		if (day != null) {
 			if (day.pictureURL != null) {
 				final CacheableBitmapWrapper cacheableBitmapWrapper = mCache
@@ -525,8 +550,19 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 				}
 			}
+			model.eventLayout.removeAllViews();
+			List<EventORM> eventsByDay = EventORM.getEventsByDay(
+					getApplicationContext(), dayOfYear, year);
+			Log.v(TAG, "EVENT LIST" + eventsByDay);
+			if (eventsByDay != null && !eventsByDay.isEmpty()) {
+				for (EventORM eventORM : eventsByDay) {
+					model.eventLayout.addEventView(getApplicationContext(),
+							eventORM, mQuickAction);
+				}
+			} else {
+				model.eventLayout.removeAllViews();
+			}
 
-			Log.i(TAG, "DAY" + day);
 			int status = day.status;
 			int color = 0;
 			switch (status) {
@@ -545,23 +581,9 @@ public class MainActivity extends SherlockFragmentActivity implements
 			model.dayImage.setImageResource(R.drawable.photo1);
 			model.goodDay.setBackgroundColor(violetColor);
 			model.badDay.setBackgroundColor(violetColor);
-		}
-
-		int dayOfYear = now.getDayOfYear();
-		int year = now.getYear();
-
-		model.eventLayout.removeAllViews();
-		List<EventORM> eventsByDay = EventORM.getEventsByDay(
-				getApplicationContext(), dayOfYear, year);
-		Log.v(TAG, "EVENT LIST" + eventsByDay);
-		if (eventsByDay != null && !eventsByDay.isEmpty()) {
-			for (EventORM eventORM : eventsByDay) {
-				model.eventLayout.addEventView(getApplicationContext(),
-						eventORM, mQuickAction);
-			}
-		} else {
 			model.eventLayout.removeAllViews();
 		}
+
 	}
 
 	private void DialogDayEvent() {
@@ -570,6 +592,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	}
 
 	private void DialogChosePhoto() {
+		Log.v(TAG, "NOW DAY:" + now.dayOfWeek().getAsShortText());
 		DialogFragment dialog = new ImageChoiseDialog(this);
 		dialog.show(getSupportFragmentManager(), "");
 	}
@@ -691,15 +714,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 		});
 	}
 
-	// public void onSaveInstanceState(Bundle bundle) {
-	// super.onSaveInstanceState(bundle);
-	// if(takePictureUri != null) {
-	// bundle.putString("takePictureUri", takePictureUri.getPath());
-	// }
-	// bundle.putString("picturePath", picturePath);
-	// bundle.putBoolean("takePhoto", takePhoto);
-	// }
-
 	private class DayPageAdapter extends PagerAdapter implements
 			OnClickListener {
 
@@ -724,7 +738,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 			View inflate = inflater.inflate(R.layout.day_fragment, null);
 			DayModel currentPage = dayPageModel[position];
-			Log.v(TAG, "instantiateItem");
+			Log.v(TAG, "instantiateItem position" + position);
 			currentDay = (TextView) inflate.findViewById(R.id.currentDay);
 
 			ImageView dayImage = (ImageView) inflate
