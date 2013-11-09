@@ -549,7 +549,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 					}
 
 				}
+			}else{
+				model.dayImage.setImageResource(R.drawable.photo1);
 			}
+			
+			
 			model.eventLayout.removeAllViews();
 			List<EventORM> eventsByDay = EventORM.getEventsByDay(
 					getApplicationContext(), dayOfYear, year);
