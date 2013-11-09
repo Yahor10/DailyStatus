@@ -43,7 +43,6 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.WebDialog;
-import com.tjeannin.apprate.AppRate;
 
 public class SettingsActivity extends SherlockFragmentActivity implements
 		OnClickListener {
@@ -194,7 +193,7 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 
 		switch (v.getId()) {
 		case R.id.lay_rate:
-			new AppRate(this).setShowIfAppHasCrashed(false).init();
+			// new AppRate(this).setShowIfAppHasCrashed(false).init();
 
 			break;
 
@@ -283,8 +282,8 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 
 				}
 			} else {
-				Toast.makeText(this, "НЕТУ ИНТЕРЕНЕТА", Toast.LENGTH_SHORT)
-						.show();
+				Toast.makeText(this, "РќР•РўРЈ Р�РќРўР•Р Р•РќР•РўРђ",
+						Toast.LENGTH_SHORT).show();
 			}
 			break;
 
@@ -372,7 +371,7 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 												Toast.LENGTH_LONG).show();
 									} else if (msg.arg1 == RetrieveAccessTokenTask.RETRIEVAL_SUCCESS) {
 										Toast.makeText(SettingsActivity.this,
-												"чё-то не так",
+												"С‡С‘-С‚Рѕ РЅРµ С‚Р°Рє",
 												Toast.LENGTH_SHORT).show();
 									}
 								}

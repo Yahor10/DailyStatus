@@ -61,6 +61,7 @@ public class LoginActivity extends Activity {
 		// finish();
 
 		loginEdit = (EditText) findViewById(R.id.edtLogin);
+		loginEdit.setText(PreferenceUtils.getCurrentUser(this));
 		passwordEdit = (EditText) findViewById(R.id.edtPassword);
 
 		findViewById(R.id.btnOk).setOnClickListener(new OnClickListener() {

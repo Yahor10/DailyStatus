@@ -4,6 +4,8 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTime.Property;
 
 import android.content.Context;
+import android.provider.SyncStateContract.Constants;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,21 +23,28 @@ public class DayModel {
 	public EventLayout eventLayout;
 	public DateTime date;
 
-	private Context context;
-
 	public DayModel(int index, Context context) {
 		this.index = index;
-		this.context = context;
 		setIndex(index);
 	}
 
-	public int getIndex() {
-		return index;
+	public DayModel(int index, Context applicationContext, DateTime now) {
+		this.index = index;
+		setIndex(index, now);
 	}
 
 	public void setIndex(int index) {
 		this.index = index;
 		setDayText(index);
+	}
+
+	public void setIndex(int index, DateTime now) {
+		this.index = index;
+		setDayText(index, now);
+	}
+
+	public int getIndex() {
+		return index;
 	}
 
 	public String getDayText() {
@@ -51,7 +60,6 @@ public class DayModel {
 		}
 		setDate(now);
 
-		DateTime.Property pDoW = now.dayOfWeek();
 		Property pMoY = now.monthOfYear();
 		String month = pMoY.getAsText();
 		int dayOfMonth = now.getDayOfMonth();
@@ -61,13 +69,20 @@ public class DayModel {
 		dataBuilder.append(". ");
 		dataBuilder.append(month);
 
-		int day = now.getDayOfYear();
-		int year = now.getYear();
+		this.text = dataBuilder.toString();
+	}
 
-		DayORM dayORM = DayORM.getDay(context, day, year);
-		
-		// тут достать из базы картинку
+	private void setDayText(int index, DateTime now) {
+		setDate(now);
 
+		Property pMoY = now.monthOfYear();
+		String month = pMoY.getAsText();
+		int dayOfMonth = now.getDayOfMonth();
+
+		StringBuffer dataBuilder = new StringBuffer();
+		dataBuilder.append(dayOfMonth);
+		dataBuilder.append(". ");
+		dataBuilder.append(month);
 		this.text = dataBuilder.toString();
 	}
 
@@ -77,5 +92,21 @@ public class DayModel {
 
 	public void setDate(DateTime date) {
 		this.date = date;
+	}
+
+	public void setDayText(DateTime now) {
+		setDate(now);
+
+		// DateTime.Property pDoW = now.dayOfWeek();
+		Property pMoY = now.monthOfYear();
+		String month = pMoY.getAsText();
+		int dayOfMonth = now.getDayOfMonth();
+
+		StringBuffer dataBuilder = new StringBuffer();
+		dataBuilder.append(dayOfMonth);
+		dataBuilder.append(". ");
+		dataBuilder.append(month);
+
+		this.text = dataBuilder.toString();
 	}
 }
