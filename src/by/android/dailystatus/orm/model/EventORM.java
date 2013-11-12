@@ -113,7 +113,7 @@ public class EventORM {
 		return query;
 	}
 
-	public static boolean deleteEventById(Context context, String discr, int day) {
+	public static boolean deleteEventByName(Context context, String discr, int day) {
 		try {
 			DatabaseHelper helper = OpenHelperManager.getHelper(context,
 					DatabaseHelper.class);

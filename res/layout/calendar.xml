@@ -71,14 +71,14 @@
             android:gravity="right|top"
             android:orientation="vertical" >
 
-            <Button
+            <Button android:id="@+id/but_good"
                 style="@style/ButtonStyle"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Good day" />
 
-            <Button
+            <Button android:id="@+id/but_bad"
                 style="@style/ButtonStyle"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"

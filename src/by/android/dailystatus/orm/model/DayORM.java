@@ -66,9 +66,11 @@ public class DayORM {
 					.and().eq(DayORM.YEAR, day.year).prepare();
 			List<DayORM> query = dao.query(prepare);
 			if (query.isEmpty()) {
-				if (dao.create(day) == 0) {
+				
+				if (insertDay(context, day) == 0) {
 					throw new IllegalArgumentException("cannot create");
 				}
+
 			} else {
 				UpdateBuilder<DayORM, String> updateBuilder = dao
 						.updateBuilder();
@@ -85,6 +87,21 @@ public class DayORM {
 		} finally {
 			OpenHelperManager.releaseHelper();
 		}
+	}
+
+	public static int insertDay(Context context, DayORM day) {
+		int result;
+		try {
+			DatabaseHelper helper = OpenHelperManager.getHelper(context,
+					DatabaseHelper.class);
+			final Dao<DayORM, String> dao = helper.getDayDao();
+			result = dao.create(day);
+		} catch (Exception e1) {
+			return 0;
+		} finally {
+			OpenHelperManager.releaseHelper();
+		}
+		return result;
 	}
 
 	public static void insertDays(Context context, List<DayORM> arrayList) {

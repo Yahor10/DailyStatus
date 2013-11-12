@@ -142,7 +142,7 @@ public class CalendarAdapter extends BaseAdapter {
 			date2 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 			LocalDate local = new LocalDate(date2);
 			int dayOfYear = local.getDayOfYear();
-			
+
 			if (goodDays.contains(dayOfYear)) {
 				goodDayImage.setVisibility(View.VISIBLE);
 			} else {
@@ -253,9 +253,23 @@ public class CalendarAdapter extends BaseAdapter {
 		this.goodDays = goodDays;
 	}
 
+	public void addGoodDays(Set<Integer> goodDays) {
+		for (Integer integer : goodDays) {
+			this.goodDays.add(integer);
+		}
+
+	}
+
 	public void setBadDays(Set<Integer> badDays) {
 		this.goodDays.clear();
 		this.badDays = badDays;
+	}
+
+	public void addBadDays(Set<Integer> badDays) {
+		for (Integer integer : badDays) {
+			this.badDays.add(integer);
+		}
+
 	}
 
 	public void setCurentDateString(String curentDateString) {

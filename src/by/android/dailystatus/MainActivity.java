@@ -186,7 +186,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 							break;
 						case 2:
 
-							boolean deleted = EventORM.deleteEventById(
+							boolean deleted = EventORM.deleteEventByName(
 									getApplicationContext(),
 									ormEbent.description, ormEbent.day);
 							updateContent();

@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ import by.android.dailystatus.ChartsActivity;
 import by.android.dailystatus.R;
 import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.orm.model.DayORM;
+import by.android.dailystatus.preference.PreferenceUtils;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -42,7 +44,7 @@ import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
 import com.actionbarsherlock.view.SubMenu;
 
 public class CalendarView extends SherlockActivity implements
-		OnMenuItemClickListener {
+		OnMenuItemClickListener, OnClickListener {
 
 	public GregorianCalendar month, itemmonth;// calendar instances.
 
@@ -53,7 +55,10 @@ public class CalendarView extends SherlockActivity implements
 									// needs showing the event marker
 
 	private String selectedDate;
-	
+
+	Button butGood;
+	Button butBad;
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calendar);
@@ -69,11 +74,23 @@ public class CalendarView extends SherlockActivity implements
 		items = new ArrayList<String>();
 		adapter = new CalendarAdapter(this, month);
 
+		Calendar calendar = Calendar.getInstance();
+
+		selectedDate = "" + calendar.get(Calendar.YEAR) + "-"
+				+ (calendar.get(Calendar.MONTH) + 1) + "-"
+				+ calendar.get(Calendar.DAY_OF_MONTH);
+
 		GridView gridview = (GridView) findViewById(R.id.gridview);
 		gridview.setAdapter(adapter);
 
 		handler = new Handler();
 		handler.post(calendarUpdater);
+
+		butBad = (Button) findViewById(R.id.but_bad);
+		butGood = (Button) findViewById(R.id.but_good);
+
+		butBad.setOnClickListener(this);
+		butGood.setOnClickListener(this);
 
 		TextView title = (TextView) findViewById(R.id.title);
 		title.setText(android.text.format.DateFormat.format("MMMM yyyy", month));
@@ -165,7 +182,7 @@ public class CalendarView extends SherlockActivity implements
 		switch (itemId) {
 		case 4:
 			List<DayORM> goodDaysByMonth = DayORM.getGoodDaysByMonth(this,
-					monthNumber + 1, yearNumber);
+					monthNumber, yearNumber);
 			Set<Integer> goodDays = new HashSet<Integer>();
 			for (DayORM dayORM : goodDaysByMonth) {
 				goodDays.add(dayORM.day);
@@ -176,7 +193,7 @@ public class CalendarView extends SherlockActivity implements
 			break;
 		case 5:
 			List<DayORM> badDaysByMonth = DayORM.getBadDaysByMonth(this,
-					monthNumber + 1, yearNumber);
+					monthNumber, yearNumber);
 			Set<Integer> badDays = new HashSet<Integer>();
 			for (DayORM dayORM : badDaysByMonth) {
 				badDays.add(dayORM.day);
@@ -275,4 +292,63 @@ public class CalendarView extends SherlockActivity implements
 	public static Intent buintIntent(Context context) {
 		return new Intent(context, CalendarView.class);
 	}
+
+	@Override
+	public void onClick(View v) {
+
+		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date d1 = null;
+		Calendar tdy1;
+
+		try {
+			d1 = form.parse(selectedDate);
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		tdy1 = Calendar.getInstance();
+		tdy1.setTime(d1);
+
+		int day = tdy1.get(Calendar.DAY_OF_YEAR);
+		int monthNumber = tdy1.get(Calendar.MONTH);
+		int yearNumber = tdy1.get(Calendar.YEAR);
+		String currentUser = PreferenceUtils.getCurrentUser(this);
+		DayORM dayORM = new DayORM(currentUser, day, monthNumber, yearNumber);
+		switch (v.getId()) {
+		case R.id.but_bad:
+
+			dayORM.status = -1;
+
+			DayORM.insertOrUpdateDay(this, dayORM);
+
+			Set<Integer> badDays = new HashSet<Integer>();
+			badDays.add(dayORM.day);
+
+			adapter.addBadDays(badDays);
+			adapter.setCurentDateString(selectedDate);
+			adapter.notifyDataSetChanged();
+
+			break;
+		case R.id.but_good:
+
+			dayORM.status = 1;
+
+			DayORM.insertOrUpdateDay(getApplicationContext(), dayORM);
+
+			Set<Integer> goodDays = new HashSet<Integer>();
+			goodDays.add(dayORM.day);
+
+			adapter.addGoodDays(goodDays);
+			adapter.setCurentDateString(selectedDate);
+			adapter.notifyDataSetChanged();
+
+			break;
+
+		default:
+			break;
+		}
+
+	}
+
 }
