@@ -33,18 +33,16 @@
     <string name="gallery">Gallery</string>
     <string name="alarm_message">How was your day? What happend with you today?</string>
     <string name="rate">Rate</string>
+    <string name="error_internet_off">Connect Internet</string>
+    
     <string name="app_id">422879181145153</string>
-    
-    
-    
 
     <string-array name="sex">
         <item>@string/man</item>
         <item>@string/woman</item>
     </string-array>
 
-    
-    <!-- Empty View  -->
+    <!-- Empty View -->
     <string name="empty_message">No items yet</string>
     <string name="loading_message">Please wait</string>
     <string name="error_message">Oops! Something wrong happened</string>

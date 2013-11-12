@@ -168,9 +168,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 						switch (pos) {
 						case 0:
-							Toast.makeText(MainActivity.this,
-									"View EVENT FOR :" + ormEbent.description,
-									Toast.LENGTH_SHORT).show();
+
+							AddDayEvent dialog = new AddDayEvent(
+									MainActivity.this, ormEbent.description);
+							dialog.show(getSupportFragmentManager(), "");
+
 							break;
 						case 1:
 							Toast.makeText(MainActivity.this,
@@ -179,10 +181,18 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 							break;
 						case 2:
-							Toast.makeText(
-									MainActivity.this,
-									"DELETE EVENT FOR :" + ormEbent.description,
-									Toast.LENGTH_SHORT).show();
+
+							boolean deleted = EventORM.deleteEventById(
+									getApplicationContext(),
+									ormEbent.description, ormEbent.day);
+							updateContent();
+							if (deleted)
+								Toast.makeText(MainActivity.this, "DELETED",
+										Toast.LENGTH_SHORT).show();
+							else
+								Toast.makeText(MainActivity.this,
+										"FAIL DELETE", Toast.LENGTH_SHORT)
+										.show();
 							break;
 
 						default:
@@ -549,23 +559,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 					}
 
 				}
-			}else{
+			} else {
 				model.dayImage.setImageResource(R.drawable.photo1);
 			}
-			
-			
+
 			model.eventLayout.removeAllViews();
-			List<EventORM> eventsByDay = EventORM.getEventsByDay(
-					getApplicationContext(), dayOfYear, year);
-			Log.v(TAG, "EVENT LIST" + eventsByDay);
-			if (eventsByDay != null && !eventsByDay.isEmpty()) {
-				for (EventORM eventORM : eventsByDay) {
-					model.eventLayout.addEventView(getApplicationContext(),
-							eventORM, mQuickAction);
-				}
-			} else {
-				model.eventLayout.removeAllViews();
-			}
 
 			int status = day.status;
 			int color = 0;
@@ -585,6 +583,18 @@ public class MainActivity extends SherlockFragmentActivity implements
 			model.dayImage.setImageResource(R.drawable.photo1);
 			model.goodDay.setBackgroundColor(violetColor);
 			model.badDay.setBackgroundColor(violetColor);
+			model.eventLayout.removeAllViews();
+		}
+
+		List<EventORM> eventsByDay = EventORM.getEventsByDay(
+				getApplicationContext(), dayOfYear, year);
+		Log.v(TAG, "EVENT LIST" + eventsByDay);
+		if (eventsByDay != null && !eventsByDay.isEmpty()) {
+			for (EventORM eventORM : eventsByDay) {
+				model.eventLayout.addEventView(getApplicationContext(),
+						eventORM, mQuickAction);
+			}
+		} else {
 			model.eventLayout.removeAllViews();
 		}
 

@@ -9,6 +9,7 @@ import by.android.dailystatus.preference.PreferenceUtils;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -93,7 +94,8 @@ public class EventORM {
 		return query;
 	}
 
-	public static List<EventORM> getEventsByDay(Context context, int day, int year) {
+	public static List<EventORM> getEventsByDay(Context context, int day,
+			int year) {
 		List<EventORM> query = null;
 		try {
 			DatabaseHelper helper = OpenHelperManager.getHelper(context,
@@ -109,6 +111,25 @@ public class EventORM {
 			OpenHelperManager.releaseHelper();
 		}
 		return query;
+	}
+
+	public static boolean deleteEventById(Context context, String discr, int day) {
+		try {
+			DatabaseHelper helper = OpenHelperManager.getHelper(context,
+					DatabaseHelper.class);
+			final Dao<EventORM, String> dao = helper.getEventDao();
+
+			DeleteBuilder<EventORM, String> deleteBuilder = dao.deleteBuilder();
+			deleteBuilder.where().eq(DESCRIPTION, discr).and().eq(DAY, day);
+			int key = deleteBuilder.delete();
+			if (key < 0)
+				return false;
+
+		} catch (SQLException e) {
+		} finally {
+			OpenHelperManager.releaseHelper();
+		}
+		return true;
 	}
 
 	@Override

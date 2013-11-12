@@ -31,7 +31,7 @@
     <string name="camera">Камера</string>
     <string name="gallery">Галерея</string>
     <string name="alarm_message">Как прошел твой день? Что случилось с вами сегодня?</string>
-    <string name="rate">Оценить</string>
+    <string name="error_internet_off">Подключите интернет</string>
 
     <string-array name="sex">
         <item>@string/man</item>

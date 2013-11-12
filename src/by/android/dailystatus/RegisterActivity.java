@@ -1,6 +1,5 @@
 package by.android.dailystatus;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,11 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
-
-import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.orm.model.UserORM;
-import by.android.dailystatus.preference.PreferenceUtils;
 
 public class RegisterActivity extends Activity {
 
@@ -95,21 +90,27 @@ public class RegisterActivity extends Activity {
 				Context applicationContext = getApplicationContext();
 				if (UserORM.checkContainName(applicationContext, firstName)) {
 
-					Toast.makeText(applicationContext,
-							R.string.error_name_exist, Toast.LENGTH_SHORT)
-							.show();
+					etFirstName.setError(getResources().getString(
+							R.string.error_name_exist));
+
 					return;
 				}
 
 				if (!emailValidator.validate(email) && email.length() > 0) {
-					etEmail.setError(getResources().getString(R.string.error_invalid_email));
+					etEmail.setError(getResources().getString(
+							R.string.error_invalid_email));
 					return;
 				}
 
 				if (password.length() < MIN_COUNT_PASSWORD_SIZE
 						&& password.length() > 0) {
-					etPassword.setError(getResources().getString(R.string.error_invalid_password));
-					
+					etPassword.setError(getResources().getString(
+							R.string.error_invalid_password));
+
+					return;
+				} else if (email.length() == 0) {
+					etEmail.setError(getResources().getString(
+							R.string.error_invalid_email));
 					return;
 				}
 

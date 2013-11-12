@@ -1,32 +1,32 @@
 package by.android.dailystatus;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.Signature;
+import android.graphics.Paint;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+import by.android.dailystatus.dialog.ForgotPasswordDialog;
 import by.android.dailystatus.orm.model.UserORM;
 import by.android.dailystatus.preference.PreferenceUtils;
 
-public class LoginActivity extends Activity {
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+
+public class LoginActivity extends SherlockFragmentActivity {
 
 	// private Spinner mCountView;
 
 	EditText loginEdit;
 	EditText passwordEdit;
+	TextView txtForgotPassword;
 
 	private List<UserORM> allUsers;
 
@@ -34,6 +34,7 @@ public class LoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
+		getSupportActionBar().hide();
 
 		// //////////////////// get sha for facebook////////////////////////
 		// PackageInfo info;
@@ -57,12 +58,37 @@ public class LoginActivity extends Activity {
 		// }
 		// //////////////////////////////////////////////////////////////////////
 
-		// startActivity(MainActivity.buildIntent(this));
-		// finish();
-
 		loginEdit = (EditText) findViewById(R.id.edtLogin);
 		loginEdit.setText(PreferenceUtils.getCurrentUser(this));
 		passwordEdit = (EditText) findViewById(R.id.edtPassword);
+		txtForgotPassword = (TextView) findViewById(R.id.txt_forgot_password);
+		txtForgotPassword.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+		txtForgotPassword.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				if (isOnline(getApplicationContext())) {
+
+					UserORM user = UserORM.getUserByName(
+							getApplicationContext(), loginEdit.getText()
+									.toString());
+					if (user == null) {
+						Toast.makeText(LoginActivity.this,
+								R.string.error_name_does_not_exist,
+								Toast.LENGTH_SHORT).show();
+					} else {
+						ForgotPasswordDialog dialog = new ForgotPasswordDialog(
+								LoginActivity.this, user);
+						dialog.show(getSupportFragmentManager(), "");
+					}
+				} else {
+					Toast.makeText(LoginActivity.this,
+							R.string.error_internet_off, Toast.LENGTH_SHORT)
+							.show();
+				}
+			}
+		});
 
 		findViewById(R.id.btnOk).setOnClickListener(new OnClickListener() {
 
@@ -129,6 +155,16 @@ public class LoginActivity extends Activity {
 		startActivity(MainActivity.buildIntent(getApplicationContext()));
 		finish();
 
+	}
+
+	public static boolean isOnline(Context cont) {
+		ConnectivityManager cm = (ConnectivityManager) cont
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override

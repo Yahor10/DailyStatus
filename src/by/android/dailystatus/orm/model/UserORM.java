@@ -92,7 +92,7 @@ public class UserORM {
 			PreparedQuery<UserORM> prepare = dao.queryBuilder().where()
 					.eq(NAME, name).prepare();
 			query = dao.query(prepare);
-			if (query.size() > 1) {
+			if (query.size() != 1) {
 				return null;
 			}
 		} catch (SQLException e) {

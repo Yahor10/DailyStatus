@@ -16,6 +16,10 @@
     <string name="error_field_required">This field is required</string>
     <string name="error_name_does_not_exist">This user name is not registered</string>
 	<string name="error_name_exist">This username is already registered</string>
+	<string name="forgot_password">Forgot your password?</string>
+    <string name="send_forgot_password">Send the password to your email?</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
     
     <string-array name="users">
         <item>User1</item>

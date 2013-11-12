@@ -40,7 +40,8 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="10dp"
-                android:ems="10" >
+                android:ems="10"
+                android:hint="@string/first_name" >
 
                 <requestFocus />
             </EditText>
@@ -52,7 +53,17 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:ems="10" />
+                android:ems="10"
+                android:hint="@string/password" />
+
+            <TextView
+                android:id="@+id/txt_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingRight="15dp"
+                android:text="@string/forgot_password"
+                android:textColor="@color/saturday_text_color" />
 
             <Button
                 android:id="@+id/btnOk"

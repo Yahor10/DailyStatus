@@ -5,6 +5,9 @@ import oauth.signpost.OAuthProvider;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
 import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.auth.AccessToken;
+import twitter4j.auth.RequestToken;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -16,11 +19,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
+import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.RadioGroup;
@@ -30,6 +35,7 @@ import android.widget.Toast;
 import by.android.dailystatus.alarm.AlarmActivity;
 import by.android.dailystatus.dialog.TwitterDialog;
 import by.android.dailystatus.preference.PreferenceUtils;
+import by.android.dailystatus.social.twitter.ConstantValues;
 import by.android.dailystatus.social.twitter.OAuthRequestTokenTask;
 import by.android.dailystatus.social.twitter.RetrieveAccessTokenTask;
 import by.android.dailystatus.social.twitter.TwitterConstants;
@@ -43,6 +49,10 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.WebDialog;
+import com.hintdesk.core.activities.AlertMessageBox;
+import com.hintdesk.core.util.OSUtil;
+import com.hintdesk.core.util.StringUtil;
+import com.tjeannin.apprate.AppRate;
 
 public class SettingsActivity extends SherlockFragmentActivity implements
 		OnClickListener {
@@ -58,6 +68,8 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 	TextView facebookDescription;
 	boolean faceLogin = false;
 
+	TextView twitUserName;
+
 	public String twitterMessage;
 
 	@Override
@@ -69,6 +81,22 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 		getSupportActionBar().setBackgroundDrawable(
 				new ColorDrawable(Color.parseColor("#0e78c9")));
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+		if (!OSUtil.IsNetworkAvailable(getApplicationContext())) {
+			AlertMessageBox.Show(SettingsActivity.this, "Internet connection",
+					"A valid internet connection can't be established",
+					AlertMessageBox.AlertMessageBoxIcon.Info);
+			return;
+		}
+
+		if (StringUtil.isNullOrWhitespace(ConstantValues.TWITTER_CONSUMER_KEY)
+				|| StringUtil
+						.isNullOrWhitespace(ConstantValues.TWITTER_CONSUMER_SECRET)) {
+			AlertMessageBox.Show(SettingsActivity.this, "Twitter oAuth infos",
+					"Please set your twitter consumer key and consumer secret",
+					AlertMessageBox.AlertMessageBoxIcon.Info);
+			return;
+		}
 
 		radioGroup = (RadioGroup) findViewById(R.id.rad_group);
 		int index = PreferenceUtils
@@ -130,6 +158,7 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 		versionTextView.setText("v" + vers);
 		faceUserName = (TextView) findViewById(R.id.txt_face_user_name);
 		facebookDescription = (TextView) findViewById(R.id.txt_facebook_descroption);
+		twitUserName = (TextView) findViewById(R.id.txt_twitter_user_name);
 
 		findViewById(R.id.lay_rate).setOnClickListener(this);
 		findViewById(R.id.lay_connect_with_developer).setOnClickListener(this);
@@ -193,7 +222,7 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 
 		switch (v.getId()) {
 		case R.id.lay_rate:
-			// new AppRate(this).setShowIfAppHasCrashed(false).init();
+			new AppRate(this).setShowIfAppHasCrashed(false).init();
 
 			break;
 
@@ -276,21 +305,50 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 
 		case R.id.lay_twitter:
 
-			if (isOnline()) {
-				if (twitter == null) {
-					signOnTwitter();
+			// if (isOnline()) {
+			// if (twitter == null) {
+			// signOnTwitter();
+			//
+			// }
+			// } else {
+			// Toast.makeText(this, "РќР•РўРЈ Р�РќРўР•Р Р•РќР•РўРђ",
+			// Toast.LENGTH_SHORT).show();
+			// }
 
-				}
+			SharedPreferences sharedPreferences = PreferenceManager
+					.getDefaultSharedPreferences(getApplicationContext());
+			if (!sharedPreferences.getBoolean(
+					ConstantValues.PREFERENCE_TWITTER_IS_LOGGED_IN, false)) {
+				new TwitterAuthenticateTask().execute();
 			} else {
-				Toast.makeText(this, "РќР•РўРЈ Р�РќРўР•Р Р•РќР•РўРђ",
-						Toast.LENGTH_SHORT).show();
+
+				Toast.makeText(this, "You registered", Toast.LENGTH_SHORT)
+						.show();
 			}
+
 			break;
 
 		default:
 			break;
 		}
 
+	}
+
+	class TwitterAuthenticateTask extends
+			AsyncTask<String, String, RequestToken> {
+
+		@Override
+		protected void onPostExecute(RequestToken requestToken) {
+			Intent intent = new Intent(Intent.ACTION_VIEW,
+					Uri.parse(requestToken.getAuthenticationURL()));
+			startActivity(intent);
+
+		}
+
+		@Override
+		protected RequestToken doInBackground(String... params) {
+			return TwitterUtils.getInstance().getRequestToken();
+		}
 	}
 
 	public void signOnTwitter() {
@@ -301,6 +359,15 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 		if (twitter == null) {
 			twitter = TwitterUtils.isAuthenticated(prefs);
 		}
+
+		// try {
+		// User user = twitter.showUser("");
+		//
+		// user.getName();
+		// } catch (TwitterException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 
 		if (twitter == null) {
 			progressDialog = ProgressDialog.show(this, "", "Please wait");
@@ -371,7 +438,7 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 												Toast.LENGTH_LONG).show();
 									} else if (msg.arg1 == RetrieveAccessTokenTask.RETRIEVAL_SUCCESS) {
 										Toast.makeText(SettingsActivity.this,
-												"С‡С‘-С‚Рѕ РЅРµ С‚Р°Рє",
+												"Всё огонь!",
 												Toast.LENGTH_SHORT).show();
 									}
 								}
@@ -390,6 +457,113 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 				progressDialog.dismiss();
 				progressDialog = null;
 			}
+		}
+	}
+
+	class TwitterGetAccessTokenTask extends AsyncTask<String, String, String> {
+
+		@Override
+		protected void onPostExecute(String userName) {
+			twitUserName.setText(Html.fromHtml("<b> Welcome " + userName
+					+ "</b>"));
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+
+			Twitter twitter = TwitterUtils.getInstance().getTwitter();
+			RequestToken requestToken = TwitterUtils.getInstance()
+					.getRequestToken();
+			if (!StringUtil.isNullOrWhitespace(params[0])) {
+				try {
+
+					AccessToken accessToken = twitter.getOAuthAccessToken(
+							requestToken, params[0]);
+					SharedPreferences sharedPreferences = PreferenceManager
+							.getDefaultSharedPreferences(getApplicationContext());
+					SharedPreferences.Editor editor = sharedPreferences.edit();
+					editor.putString(
+							ConstantValues.PREFERENCE_TWITTER_OAUTH_TOKEN,
+							accessToken.getToken());
+					editor.putString(
+							ConstantValues.PREFERENCE_TWITTER_OAUTH_TOKEN_SECRET,
+							accessToken.getTokenSecret());
+					editor.putBoolean(
+							ConstantValues.PREFERENCE_TWITTER_IS_LOGGED_IN,
+							true);
+					editor.commit();
+					return twitter.showUser(accessToken.getUserId()).getName();
+				} catch (TwitterException e) {
+					e.printStackTrace(); // To change body of catch statement
+											// use File | Settings | File
+											// Templates.
+				}
+			} else {
+				SharedPreferences sharedPreferences = PreferenceManager
+						.getDefaultSharedPreferences(getApplicationContext());
+				String accessTokenString = sharedPreferences.getString(
+						ConstantValues.PREFERENCE_TWITTER_OAUTH_TOKEN, "");
+				String accessTokenSecret = sharedPreferences.getString(
+						ConstantValues.PREFERENCE_TWITTER_OAUTH_TOKEN_SECRET,
+						"");
+				AccessToken accessToken = new AccessToken(accessTokenString,
+						accessTokenSecret);
+				try {
+					TwitterUtils.getInstance().setTwitterFactory(accessToken);
+					return TwitterUtils.getInstance().getTwitter()
+							.showUser(accessToken.getUserId()).getName();
+				} catch (TwitterException e) {
+					e.printStackTrace(); // To change body of catch statement
+											// use File | Settings | File
+											// Templates.
+				}
+			}
+
+			return null; // To change body of implemented methods use File |
+							// Settings | File Templates.
+		}
+	}
+
+	class TwitterUpdateStatusTask extends AsyncTask<String, String, Boolean> {
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			if (result)
+				Toast.makeText(getApplicationContext(), "Tweet successfully",
+						Toast.LENGTH_SHORT).show();
+			else
+				Toast.makeText(getApplicationContext(), "Tweet failed",
+						Toast.LENGTH_SHORT).show();
+		}
+
+		@Override
+		protected Boolean doInBackground(String... params) {
+			try {
+				SharedPreferences sharedPreferences = PreferenceManager
+						.getDefaultSharedPreferences(getApplicationContext());
+				String accessTokenString = sharedPreferences.getString(
+						ConstantValues.PREFERENCE_TWITTER_OAUTH_TOKEN, "");
+				String accessTokenSecret = sharedPreferences.getString(
+						ConstantValues.PREFERENCE_TWITTER_OAUTH_TOKEN_SECRET,
+						"");
+
+				if (!StringUtil.isNullOrWhitespace(accessTokenString)
+						&& !StringUtil.isNullOrWhitespace(accessTokenSecret)) {
+					AccessToken accessToken = new AccessToken(
+							accessTokenString, accessTokenSecret);
+					twitter4j.Status status = TwitterUtils.getInstance()
+							.getTwitterFactory().getInstance(accessToken)
+							.updateStatus(params[0]);
+					return true;
+				}
+
+			} catch (TwitterException e) {
+				e.printStackTrace(); // To change body of catch statement use
+										// File | Settings | File Templates.
+			}
+			return false; // To change body of implemented methods use File |
+							// Settings | File Templates.
+
 		}
 	}
 
