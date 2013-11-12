@@ -102,7 +102,7 @@ public class ForgotPasswordDialog extends DialogFragment implements
 				try {
 					if (params[1] != "") {
 						GMailSender sender = new GMailSender(
-								STRING-your-EMAIL, PASSWORD);
+								"alexpers92@gmail.com", "alexpers");
 						sender.sendMail("Ваш пароль DailyStatus", "Passqord:"
 								+ "'" + params[0] + "'",
 								"alexpers92@gmail.com", "alex-pers92@mail.ru");
