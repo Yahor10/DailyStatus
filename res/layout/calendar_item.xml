@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/ic_calendar_cell"
     android:orientation="vertical"
-    android:padding="2dip" >
+     >
 
     <ImageView
         android:id="@+id/goodDayImage"
