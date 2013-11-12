@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="testArray">  
+    <item>Улыбался</item>  
+    <item>Бегал</item>  
+    <item>Разговаривал с друзьями</item>  
+    <item>Поднялся рано утром</item>  
+     </array>
+</resources>

@@ -26,9 +26,7 @@ import by.android.dailystatus.orm.model.EventORM;
 import com.kanak.emptylayout.EmptyLayout;
 
 public class EventListFragment extends Fragment {
-	public static final String WEEK = "Week_day";
-	public static final String MONTH = "Month";
-	public static final String YEAR = "Year";
+
 
 	int typeFragment;
 	private View view;

@@ -35,9 +35,10 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 		this.mainActivity = mainActivity;
 	}
 
-	public AddDayEvent(MainActivity mainActivity, String startText) {
+	public AddDayEvent(MainActivity mainActivity, String startText,
+			boolean flagEditEvent) {
 		this.mainActivity = mainActivity;
-		this.flagEditEvent = true;
+		this.flagEditEvent = flagEditEvent;
 		this.startText = startText;
 	}
 
@@ -89,7 +90,7 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 
 		imageBack.setLayoutParams(params);
 		eventText = (EditText) dialog.findViewById(R.id.eventText);
-		if (flagEditEvent) {
+		if (startText != null) {
 			eventText.setText(startText);
 		}
 

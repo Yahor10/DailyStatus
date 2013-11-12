@@ -30,6 +30,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -68,6 +69,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	public static final int RESULT_TAKE_IMAGE = 0;
 	public static final int RESULT_LOAD_IMAGE = 1;
 	public static final int RESULT_LOG_OUT = 2;
+	public static final int RESULT_GET_STANDART_EVENT = 3;
 
 	private static final String DAY_MILLS = "DAY_MILLS";
 	private Uri takePictureUri;
@@ -169,15 +171,17 @@ public class MainActivity extends SherlockFragmentActivity implements
 						switch (pos) {
 						case 0:
 
-							AddDayEvent dialog = new AddDayEvent(
-									MainActivity.this, ormEbent.description);
-							dialog.show(getSupportFragmentManager(), "");
+							Toast.makeText(MainActivity.this,
+									"VIEW EVENT FOR :" + ormEbent.description,
+									Toast.LENGTH_SHORT).show();
 
 							break;
 						case 1:
-							Toast.makeText(MainActivity.this,
-									"EDIT EVENT FOR :" + ormEbent.description,
-									Toast.LENGTH_SHORT).show();
+
+							AddDayEvent dialog = new AddDayEvent(
+									MainActivity.this, ormEbent.description,
+									true);
+							dialog.show(getSupportFragmentManager(), "");
 
 							break;
 						case 2:
@@ -211,6 +215,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 				getResources().getDrawable(R.drawable.ic_menu_add));
 
 		subChoosePhoto.add(0, 1, Menu.NONE, "Add Day Picture")
+				.setOnMenuItemClickListener(this);
+		subChoosePhoto.add(0, 2, Menu.NONE, "Add standart Event")
 				.setOnMenuItemClickListener(this);
 		subChoosePhoto.add(0, 3, Menu.NONE, "Add Day Event")
 				.setOnMenuItemClickListener(this);
@@ -249,6 +255,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 		switch (item.getItemId()) {
 		case 1:
 			DialogChosePhoto();
+			break;
+		case 2:
+			Intent intentEvents = new Intent(MainActivity.this,
+					EventsListStandartActivity.class);
+			startActivityForResult(intentEvents, RESULT_GET_STANDART_EVENT);
 			break;
 		case 3:
 			DialogDayEvent();
@@ -451,14 +462,30 @@ public class MainActivity extends SherlockFragmentActivity implements
 			finish();
 
 		}
+		if (requestCode == RESULT_GET_STANDART_EVENT && resultCode == RESULT_OK) {
+			if (data != null) {
+				String str = data
+						.getStringExtra(EventsListStandartActivity.MESSAGE_KEY);
+				AddDayEvent dialog = new AddDayEvent(this, str, false);
+				// dialog.show(getSupportFragmentManager(), "");
+
+				FragmentTransaction transaction = getSupportFragmentManager()
+						.beginTransaction();
+				transaction.add(dialog, "");
+				transaction.commitAllowingStateLoss();
+			}
+
+		}
+
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
+
 		outState.putLong(DAY_MILLS, now.getMillis());
 		Log.i(TAG, "SAVE INSTANCE");
+		super.onSaveInstanceState(outState);
 
 	}
 

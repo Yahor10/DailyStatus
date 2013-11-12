@@ -92,7 +92,15 @@
         <activity
             android:name="by.android.dailystatus.EventActivity"
             android:icon="@drawable/ic_launcher"
-            android:label="EvEnt" >
+            android:label="Event" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="by.android.dailystatus.MainActivity" />
+        </activity>
+        <activity
+            android:name="by.android.dailystatus.EventsListStandartActivity"
+            android:icon="@drawable/ic_launcher"
+            android:label="Standarts events" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="by.android.dailystatus.MainActivity" />
