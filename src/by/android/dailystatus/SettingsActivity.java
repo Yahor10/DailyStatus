@@ -52,7 +52,7 @@ import com.facebook.widget.WebDialog;
 import com.hintdesk.core.activities.AlertMessageBox;
 import com.hintdesk.core.util.OSUtil;
 import com.hintdesk.core.util.StringUtil;
-import com.tjeannin.apprate.AppRate;
+import com.kskkbys.rate.RateThisApp;
 
 public class SettingsActivity extends SherlockFragmentActivity implements
 		OnClickListener {
@@ -200,6 +200,12 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 	}
 
 	@Override
+	protected void onStart() {
+		super.onStart();
+		RateThisApp.onStart(this);
+	}
+
+	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		Session.getActiveSession().onActivityResult(this, requestCode,
@@ -222,8 +228,7 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 
 		switch (v.getId()) {
 		case R.id.lay_rate:
-			new AppRate(this).setShowIfAppHasCrashed(false).init();
-
+			RateThisApp.showRateDialog(this);
 			break;
 
 		case R.id.lay_facebook:
