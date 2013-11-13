@@ -8,16 +8,14 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="10dip"
-        android:background="@drawable/quickaction_top_frame" 
-        />
+        android:background="@drawable/quickaction_top_frame" />
 
     <ImageView
         android:id="@+id/arrow_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/contentdesc4pic1"
-        android:src="@drawable/quickaction_arrow_up"
-        />
+        android:src="@drawable/quickaction_arrow_up" />
 
     <HorizontalScrollView
         android:id="@+id/scroll"
@@ -33,6 +31,7 @@
             android:id="@+id/tracks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
             android:orientation="horizontal"
             android:paddingBottom="4dip"
             android:paddingTop="4dip" >

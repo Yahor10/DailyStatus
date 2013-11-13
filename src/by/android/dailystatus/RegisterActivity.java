@@ -108,7 +108,7 @@ public class RegisterActivity extends Activity {
 							R.string.error_invalid_password));
 
 					return;
-				} else if (email.length() == 0) {
+				} else if (email.isEmpty()) {
 					etEmail.setError(getResources().getString(
 							R.string.error_invalid_email));
 					return;

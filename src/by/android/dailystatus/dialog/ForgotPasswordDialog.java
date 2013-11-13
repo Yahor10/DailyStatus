@@ -14,6 +14,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.Toast;
 import by.android.dailystatus.R;
+import by.android.dailystatus.interfaces.FragmentActivityCallback;
 import by.android.dailystatus.orm.model.UserORM;
 import by.android.dailystatus.social.email.GMailSender;
 
@@ -31,6 +32,12 @@ public class ForgotPasswordDialog extends DialogFragment implements
 	public ForgotPasswordDialog(Context mainActivity, UserORM user) {
 		this.mainActivity = mainActivity;
 		this.user = user;
+	}
+
+	FragmentActivityCallback activityCallback;
+
+	public void setListener(FragmentActivityCallback callback) {
+		activityCallback = callback;
 	}
 
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -53,7 +60,7 @@ public class ForgotPasswordDialog extends DialogFragment implements
 
 			if (user != null) {
 				String[] data = { user.password, user.email };
-				new SendEmail().execute(data);
+				new SendEmail(activityCallback).execute(data);
 			}
 			break;
 		case R.id.btn_cancel_send_password:
@@ -70,7 +77,10 @@ public class ForgotPasswordDialog extends DialogFragment implements
 		ProgressDialog progressDialog;
 		String email;
 
-		public SendEmail() {
+		FragmentActivityCallback activityCallback;
+
+		public SendEmail(FragmentActivityCallback callback) {
+			activityCallback = callback;
 			progressDialog = new ProgressDialog(getActivity());
 		}
 
@@ -88,12 +98,14 @@ public class ForgotPasswordDialog extends DialogFragment implements
 				progressDialog.dismiss();
 			}
 			if (result)
-				Toast.makeText(getActivity().getApplicationContext(),
-						"Email successfully", Toast.LENGTH_SHORT).show();
+				activityCallback.callToActivity("Email successfully");
+
 			else
-				Toast.makeText(getActivity().getApplicationContext(),
-						"Email failed", Toast.LENGTH_SHORT).show();
-			getDialog().dismiss();
+				activityCallback.callToActivity("Email fail");
+
+			if (getDialog() != null) {
+				getDialog().dismiss();
+			}
 		}
 
 		@Override
@@ -102,7 +114,7 @@ public class ForgotPasswordDialog extends DialogFragment implements
 				try {
 					if (params[1] != "") {
 						GMailSender sender = new GMailSender(
-								"alexpers92@gmail.com", "alexpers");
+								, );
 						sender.sendMail("Ваш пароль DailyStatus", "Passqord:"
 								+ "'" + params[0] + "'",
 								"alexpers92@gmail.com", "alex-pers92@mail.ru");

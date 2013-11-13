@@ -322,10 +322,7 @@ public class CalendarView extends SherlockActivity implements
 
 			DayORM.insertOrUpdateDay(this, dayORM);
 
-			Set<Integer> badDays = new HashSet<Integer>();
-			badDays.add(dayORM.day);
-
-			adapter.addBadDays(badDays);
+			adapter.addBadDays(dayORM.day);
 			adapter.setCurentDateString(selectedDate);
 			adapter.notifyDataSetChanged();
 
@@ -336,10 +333,7 @@ public class CalendarView extends SherlockActivity implements
 
 			DayORM.insertOrUpdateDay(getApplicationContext(), dayORM);
 
-			Set<Integer> goodDays = new HashSet<Integer>();
-			goodDays.add(dayORM.day);
-
-			adapter.addGoodDays(goodDays);
+			adapter.addGoodDays(dayORM.day);
 			adapter.setCurentDateString(selectedDate);
 			adapter.notifyDataSetChanged();
 

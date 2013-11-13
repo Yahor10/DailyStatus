@@ -253,11 +253,11 @@ public class CalendarAdapter extends BaseAdapter {
 		this.goodDays = goodDays;
 	}
 
-	public void addGoodDays(Set<Integer> goodDays) {
-		for (Integer integer : goodDays) {
-			this.goodDays.add(integer);
+	public void addGoodDays(int goodDays) {
+		this.goodDays.add(goodDays);
+		if (this.badDays.contains(goodDays)) {
+			this.badDays.remove(goodDays);
 		}
-
 	}
 
 	public void setBadDays(Set<Integer> badDays) {
@@ -265,9 +265,10 @@ public class CalendarAdapter extends BaseAdapter {
 		this.badDays = badDays;
 	}
 
-	public void addBadDays(Set<Integer> badDays) {
-		for (Integer integer : badDays) {
-			this.badDays.add(integer);
+	public void addBadDays(int badDays) {
+		this.badDays.add(badDays);
+		if (this.goodDays.contains(badDays)) {
+			this.goodDays.remove(badDays);
 		}
 
 	}

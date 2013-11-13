@@ -26,6 +26,9 @@ public class ImageChoiseDialog extends DialogFragment implements
 
 	private MainActivity mainActivity;
 
+	public ImageChoiseDialog() {
+	}
+
 	public ImageChoiseDialog(MainActivity mainActivity) {
 		this.mainActivity = mainActivity;
 	}

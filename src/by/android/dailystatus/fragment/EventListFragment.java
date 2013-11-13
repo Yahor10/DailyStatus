@@ -7,26 +7,26 @@ import java.util.List;
 import org.joda.time.LocalDate;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import by.android.dailystatus.ChartsActivity;
-import by.android.dailystatus.MainActivity;
 import by.android.dailystatus.R;
+import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.orm.model.EventORM;
 
 import com.kanak.emptylayout.EmptyLayout;
 
 public class EventListFragment extends Fragment {
-
 
 	int typeFragment;
 	private View view;
@@ -38,13 +38,28 @@ public class EventListFragment extends Fragment {
 		this.typeFragment = type;
 	}
 
+	public int getTypeFragment() {
+		return typeFragment;
+	}
+
+	// public EventListFragment(int type, int filter) {
+	// typeFragment = type;
+	// this.filter = filter;
+	//
+	// }
+
 	public EventListFragment(int type) {
 		typeFragment = type;
-
 	}
 
 	public EventListFragment() {
 
+	}
+
+	int filter = 0;
+
+	public void setFilterNews(int filter) {
+		this.filter = filter;
 	}
 
 	@Override
@@ -53,13 +68,42 @@ public class EventListFragment extends Fragment {
 
 		view = inflater.inflate(R.layout.event_fragment, null);
 		list = (ListView) view.findViewById(R.id.list_event);
+		list.setOnScrollListener(new OnScrollListener() {
+
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				adapter.cleanFlagDrawItems();
+				adapter.notifyDataSetChanged();
+
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 		adapter = new ListAdapter(inflater);
 		emptyLayout = new EmptyLayout(getActivity(), list);
 
 		// ArrayList<EventORM> events = new ArrayList<EventORM>();
-		new LoadDBAsync(typeFragment).execute();
+		updateFragment();
 
 		return view;
+	}
+
+	public void updateFragment() {
+		new LoadDBAsync(typeFragment).execute();
+	}
+
+	public void findEventsByDate(int dayOfYear, int year) {
+		int item = adapter.findItemByDate(dayOfYear, year);
+		if (item >= 0) {
+			adapter.notifyDataSetChanged();
+			list.setSelection(item);
+		}
+
 	}
 
 	private class ListAdapter extends BaseAdapter {
@@ -67,6 +111,29 @@ public class EventListFragment extends Fragment {
 		LayoutInflater inflater;
 
 		ArrayList<EventORM> events;
+
+		boolean flagDrawItems = false;
+		int day;
+		int year;
+
+		public void cleanFlagDrawItems() {
+			flagDrawItems = false;
+		}
+
+		public int findItemByDate(int dayOfYear, int year1) {
+			day = dayOfYear;
+			this.year = year1;
+			flagDrawItems = true;
+			for (int i = 0; i < events.size(); i++) {
+
+				if (events.get(i).day == day && events.get(i).year == year) {
+					return i;
+				}
+
+			}
+
+			return -1;
+		}
 
 		public ListAdapter(LayoutInflater inflater) {
 			this.inflater = inflater;
@@ -109,6 +176,14 @@ public class EventListFragment extends Fragment {
 				holder = (Holder) convertView.getTag();
 			}
 
+			if (events.get(position).day == day
+					&& events.get(position).year == year
+					&& flagDrawItems == true) {
+				holder.describeTest.setTextColor(Color.RED);
+			} else {
+				holder.describeTest.setTextColor(Color.BLACK);
+			}
+
 			holder.describeTest.setText(events.get(position).description);
 
 			return convertView;
@@ -121,6 +196,9 @@ public class EventListFragment extends Fragment {
 
 	}
 
+	// public static Fragment newInstance(int type, int filter) {
+	// return new EventListFragment(type, filter);
+	// }
 	public static Fragment newInstance(int type) {
 		return new EventListFragment(type);
 	}
@@ -160,12 +238,23 @@ public class EventListFragment extends Fragment {
 					for (int i = 0; i < 7; i++) {
 
 						LocalDate plusDays = date.plusDays(i);
-						List<EventORM> event = EventORM.getEventsByDay(
-								applicationContext, plusDays.getDayOfYear(),
-								year);
-						if (event != null) {
-							for (EventORM eventORM : event) {
-								events.add(eventORM);
+
+						DayORM dayORM = DayORM.getDay(applicationContext,
+								plusDays.getDayOfYear(), plusDays.getYear());
+
+						int filterDAY = 0;
+						if (dayORM != null) {
+							filterDAY = dayORM.status;
+						}
+
+						if (filter == filterDAY || filter == 0) {
+							List<EventORM> event = EventORM.getEventsByDay(
+									applicationContext,
+									plusDays.getDayOfYear(), year);
+							if (event != null) {
+								for (EventORM eventORM : event) {
+									events.add(eventORM);
+								}
 							}
 						}
 
@@ -192,12 +281,23 @@ public class EventListFragment extends Fragment {
 					for (int i = 0; i < sizeMounth; i++) {
 
 						LocalDate plusDays = date.plusDays(i);
-						List<EventORM> event = EventORM.getEventsByDay(
-								applicationContext, plusDays.getDayOfYear(),
-								year);
-						if (event != null) {
-							for (EventORM eventORM : event) {
-								events.add(eventORM);
+
+						DayORM dayORM = DayORM.getDay(applicationContext,
+								plusDays.getDayOfYear(), plusDays.getYear());
+
+						int filterDAY = 0;
+						if (dayORM != null) {
+							filterDAY = dayORM.status;
+						}
+
+						if (filter == filterDAY || filter == 0) {
+							List<EventORM> event = EventORM.getEventsByDay(
+									applicationContext,
+									plusDays.getDayOfYear(), year);
+							if (event != null) {
+								for (EventORM eventORM : event) {
+									events.add(eventORM);
+								}
 							}
 						}
 
@@ -214,12 +314,23 @@ public class EventListFragment extends Fragment {
 					for (int i = 0; i < 365; i++) {
 
 						LocalDate plusDays = date.plusDays(i);
-						List<EventORM> event = EventORM.getEventsByDay(
-								applicationContext, plusDays.getDayOfYear(),
-								year);
-						if (event != null) {
-							for (EventORM eventORM : event) {
-								events.add(eventORM);
+
+						DayORM dayORM = DayORM.getDay(applicationContext,
+								plusDays.getDayOfYear(), plusDays.getYear());
+
+						int filterDAY = 0;
+						if (dayORM != null) {
+							filterDAY = dayORM.status;
+						}
+
+						if (filter == filterDAY || filter == 0) {
+							List<EventORM> event = EventORM.getEventsByDay(
+									applicationContext,
+									plusDays.getDayOfYear(), year);
+							if (event != null) {
+								for (EventORM eventORM : event) {
+									events.add(eventORM);
+								}
 							}
 						}
 
@@ -248,6 +359,7 @@ public class EventListFragment extends Fragment {
 				if (result.size() != 0) {
 					adapter.setData(result);
 					list.setAdapter(adapter);
+					adapter.notifyDataSetChanged();
 				} else {
 					emptyLayout.showEmpty();
 

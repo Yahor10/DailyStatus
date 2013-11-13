@@ -15,12 +15,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import by.android.dailystatus.dialog.ForgotPasswordDialog;
+import by.android.dailystatus.interfaces.FragmentActivityCallback;
 import by.android.dailystatus.orm.model.UserORM;
 import by.android.dailystatus.preference.PreferenceUtils;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 
-public class LoginActivity extends SherlockFragmentActivity {
+public class LoginActivity extends SherlockFragmentActivity implements
+		FragmentActivityCallback {
 
 	// private Spinner mCountView;
 
@@ -80,6 +82,7 @@ public class LoginActivity extends SherlockFragmentActivity {
 					} else {
 						ForgotPasswordDialog dialog = new ForgotPasswordDialog(
 								LoginActivity.this, user);
+						dialog.setListener(LoginActivity.this);
 						dialog.show(getSupportFragmentManager(), "");
 					}
 				} else {
@@ -171,6 +174,12 @@ public class LoginActivity extends SherlockFragmentActivity {
 	protected void onResume() {
 		allUsers = UserORM.getAllFirstNames(this);
 		super.onResume();
+	}
+
+	@Override
+	public void callToActivity(String str) {
+		Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+
 	}
 
 }

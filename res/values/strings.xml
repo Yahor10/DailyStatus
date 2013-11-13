@@ -34,7 +34,10 @@
     <string name="alarm_message">How was your day? What happend with you today?</string>
     <string name="rate">Rate</string>
     <string name="error_internet_off">Connect Internet</string>
-    
+    <string name="show_all_events">Show all Events</string>
+    <string name="show_good_events">Show Good Events</string>
+    <string name="show_bad_events">Show Bad Events</string>
+    <string name="show_data_picker">Choose a date</string>
     <string name="app_id">422879181145153</string>
 
     <string-array name="sex">
