@@ -49,6 +49,8 @@ public class EventLayout extends LinearLayout {
 		layoutParamsText.setMargins(10, 0, 0, 0);
 		TextView textView = new TextView(context);
 		textView.setLayoutParams(layoutParamsText);
+		textView.setTextSize(20);
+//		textView.setTextAppearance(context, android.R.attr.textAppearanceMedium);
 		textView.setText(eventORM.description);
 
 		layoutEvent.addView(image, 0);

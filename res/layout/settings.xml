@@ -294,7 +294,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:singleLine="true"
-                android:text="@string/group_about_programm"
+                android:text="@string/notifications"
                 android:textColor="@color/white"
                 android:textSize="@dimen/size_text_group"
                 android:textStyle="bold" />
