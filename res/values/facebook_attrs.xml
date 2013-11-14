@@ -42,7 +42,7 @@
     </declare-styleable>
     <declare-styleable name="com_facebook_profile_picture_view">
         <attr name="preset_size">
-            <!-- Keep in sync with constants in ProfilePictureView -->
+            Keep in sync with constants in ProfilePictureView
             <enum name="small" value="-2" />
             <enum name="normal" value="-3" />
             <enum name="large" value="-4" />
