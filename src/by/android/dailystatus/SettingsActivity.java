@@ -1,5 +1,6 @@
 package by.android.dailystatus;
 
+import kskkbys.rate.RateThisApp;
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
@@ -52,7 +53,6 @@ import com.facebook.widget.WebDialog;
 import com.hintdesk.core.activities.AlertMessageBox;
 import com.hintdesk.core.util.OSUtil;
 import com.hintdesk.core.util.StringUtil;
-import com.kskkbys.rate.RateThisApp;
 
 public class SettingsActivity extends SherlockFragmentActivity implements
 		OnClickListener {
@@ -229,6 +229,7 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 		switch (v.getId()) {
 		case R.id.lay_rate:
 			RateThisApp.showRateDialog(this);
+
 			break;
 
 		case R.id.lay_facebook:
