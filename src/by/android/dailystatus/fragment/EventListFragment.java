@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import by.android.dailystatus.R;
 import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.orm.model.EventORM;
 
+import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 import com.kanak.emptylayout.EmptyLayout;
 
 public class EventListFragment extends Fragment {
@@ -56,18 +58,56 @@ public class EventListFragment extends Fragment {
 
 	}
 
-	int filter = 0;
+	public int filter = 0;
 
 	public void setFilterNews(int filter) {
 		this.filter = filter;
 	}
 
 	@Override
+	public void onDestroy() {
+		Log.d("BUG", "FRAGMENT : " + typeFragment + " DESCTROY");
+		super.onDestroy();
+	}
+
+	@Override
+	public void onPause() {
+		Log.d("BUG", "FRAGMENT : " + typeFragment + " PAUSE");
+		super.onPause();
+	}
+
+	@Override
+	public void onResume() {
+		Log.d("BUG", "FRAGMENT : " + typeFragment + " RESUME");
+		super.onResume();
+	}
+
+	@Override
+	public void onStart() {
+		Log.d("BUG", "FRAGMENT : " + typeFragment + " START");
+		super.onStart();
+	}
+
+	@Override
+	public void onStop() {
+		Log.d("BUG", "FRAGMENT : " + typeFragment + " STOP");
+		super.onStop();
+	}
+
+	// SwingBottomInAnimationAdapter swingBottomInAnimationAdapter;
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		Log.d("BUG", "FRAGMENT : " + typeFragment + " CREATE");
 
 		view = inflater.inflate(R.layout.event_fragment, null);
+
+		adapter = new ListAdapter(inflater);
+
 		list = (ListView) view.findViewById(R.id.list_event);
+		list.setAdapter(adapter);
+
 		list.setOnScrollListener(new OnScrollListener() {
 
 			@Override
@@ -84,10 +124,9 @@ public class EventListFragment extends Fragment {
 
 			}
 		});
-		adapter = new ListAdapter(inflater);
-		emptyLayout = new EmptyLayout(getActivity(), list);
 
-		// ArrayList<EventORM> events = new ArrayList<EventORM>();
+		// emptyLayout = new EmptyLayout(getActivity(), list);
+
 		updateFragment();
 
 		return view;
@@ -356,23 +395,36 @@ public class EventListFragment extends Fragment {
 			super.onPostExecute(result);
 
 			if (result != null) {
+				Log.d("BUG", "FRAGMENT : " + typeFragment + " Size result"
+						+ result.size());
 				if (result.size() != 0) {
 					adapter.setData(result);
-					list.setAdapter(adapter);
+					// swingBottomInAnimationAdapter = new
+					// SwingBottomInAnimationAdapter(
+					// adapter);
+					// swingBottomInAnimationAdapter.setAbsListView(list);
+
+					// list.setAdapter(swingBottomInAnimationAdapter);
 					adapter.notifyDataSetChanged();
 				} else {
 					emptyLayout.showEmpty();
 
 				}
 			} else {
+				Log.d("BUG", "FRAGMENT : " + typeFragment
+						+ " Size result = NULL");
 				emptyLayout.showError();
 			}
-
+			Log.d("BUG",
+					"FRAGMENT : " + typeFragment + " Size LIST"
+							+ list.getCount());
 		}
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
+			Log.d("BUG", "FRAGMENT : " + typeFragment + " START LOAD");
+			emptyLayout = new EmptyLayout(getActivity(), list);
 			emptyLayout.showLoading();
 			emptyLayout.setLoadingMessage("Please wait...");
 

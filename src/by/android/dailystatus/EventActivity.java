@@ -17,6 +17,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import by.android.dailystatus.fragment.EventListFragment;
@@ -26,6 +27,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
 import com.actionbarsherlock.view.SubMenu;
+import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 import com.viewpagerindicator.TabPageIndicator;
 
 public class EventActivity extends SherlockFragmentActivity implements
@@ -65,6 +67,7 @@ public class EventActivity extends SherlockFragmentActivity implements
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		adapter = new AppsAdapter(getSupportFragmentManager());
+
 		pager = (ViewPager) findViewById(R.id.pager);
 		pager.setAdapter(adapter);
 
@@ -123,13 +126,13 @@ public class EventActivity extends SherlockFragmentActivity implements
 		case 4:
 
 			// adapter = new AppsAdapter(getSupportFragmentManager());
-			adapter.showBadEvents();
+			adapter.showGoodEvents();
 			// pager.setAdapter(adapter);
 
 			break;
 		case 5:
 			// adapter = new AppsAdapter(getSupportFragmentManager());
-			adapter.showGoodEvents();
+			adapter.showBadEvents();
 			// pager.setAdapter(adapter);
 
 			break;
@@ -208,8 +211,9 @@ public class EventActivity extends SherlockFragmentActivity implements
 		public Fragment getItem(int position) {
 			EventListFragment fragment = (EventListFragment) EventListFragment
 					.newInstance(position);
-			fragments.put(position, fragment);
+			Log.d("BUG", "PAGER position : " + position);
 
+			fragments.put(position, fragment);
 			return fragment;
 
 		}
@@ -222,7 +226,8 @@ public class EventActivity extends SherlockFragmentActivity implements
 				FragmentTransaction trans = manager.beginTransaction();
 				trans.remove((Fragment) object);
 				trans.commit();
-				fragments.remove(position);
+				// fragments.remove(position);
+				Log.d("BUG", "PAGER DESTROY position : " + position);
 			}
 		}
 
