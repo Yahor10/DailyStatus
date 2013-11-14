@@ -48,5 +48,5 @@
             <enum name="large" value="-4" />
         </attr>
         <attr name="is_cropped" format="boolean" />
-    </declare-styleable>
+    </declare-styleable> 
 </resources>
