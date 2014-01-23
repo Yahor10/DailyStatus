@@ -1,6 +1,5 @@
 package by.android.dailystatus;
 
-import kskkbys.rate.RateThisApp;
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
@@ -53,6 +52,7 @@ import com.facebook.widget.WebDialog;
 import com.hintdesk.core.activities.AlertMessageBox;
 import com.hintdesk.core.util.OSUtil;
 import com.hintdesk.core.util.StringUtil;
+import com.kskkbys.rate.RateThisApp;
 
 public class SettingsActivity extends SherlockFragmentActivity implements
 		OnClickListener {
@@ -295,8 +295,8 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 
 		case R.id.lay_connect_with_developer:
 
-			String recepientEmail = "sekt88@gmail.com"; // either set to
-														// destination
+			// String recepientEmail = "sekt88@gmail.com"; // either set to
+			String recepientEmail = "alex-pers92@mail.ru"; // destination
 			// email or leave empty
 			Intent intent = new Intent(Intent.ACTION_SENDTO);
 			intent.setData(Uri.parse("mailto:" + recepientEmail));

@@ -158,7 +158,7 @@ public class QuickAction extends PopupWindows {
 
 		boolean onTop = true;
 
-		if (rootHeight > anchor.getTop()) {
+		if (rootHeight > location[1]) {
 			yPos = anchorRect.bottom;
 			onTop = false;
 		}

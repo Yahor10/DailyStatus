@@ -25,7 +25,6 @@ import by.android.dailystatus.R;
 import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.orm.model.EventORM;
 
-import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 import com.kanak.emptylayout.EmptyLayout;
 
 public class EventListFragment extends Fragment {
@@ -49,13 +48,12 @@ public class EventListFragment extends Fragment {
 	// this.filter = filter;
 	//
 	// }
+	public EventListFragment() {
+
+	}
 
 	public EventListFragment(int type) {
 		typeFragment = type;
-	}
-
-	public EventListFragment() {
-
 	}
 
 	public int filter = 0;
