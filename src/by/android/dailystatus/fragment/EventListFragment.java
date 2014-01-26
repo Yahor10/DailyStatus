@@ -2,6 +2,8 @@ package by.android.dailystatus.fragment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.joda.time.LocalDate;
@@ -18,10 +20,11 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 import by.android.dailystatus.ChartsActivity;
 import by.android.dailystatus.R;
+import by.android.dailystatus.adapters.EventExpandableListAdapter;
 import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.orm.model.EventORM;
 
@@ -31,8 +34,8 @@ public class EventListFragment extends Fragment {
 
 	int typeFragment;
 	private View view;
-	public ListView list;
-	ListAdapter adapter;
+	public ExpandableListView list;
+	EventExpandableListAdapter adapter;
 	EmptyLayout emptyLayout;
 
 	public void setTypeFragment(int type) {
@@ -101,10 +104,7 @@ public class EventListFragment extends Fragment {
 
 		view = inflater.inflate(R.layout.event_fragment, null);
 
-		adapter = new ListAdapter(inflater);
-
-		list = (ListView) view.findViewById(R.id.list_event);
-		list.setAdapter(adapter);
+		list = (ExpandableListView) view.findViewById(R.id.list_event);
 
 		list.setOnScrollListener(new OnScrollListener() {
 
@@ -128,6 +128,11 @@ public class EventListFragment extends Fragment {
 		updateFragment();
 
 		return view;
+	}
+
+	public void refreshAdapter(ArrayList<ArrayList<EventORM>> data) {
+		adapter = new EventExpandableListAdapter(getActivity(), data);
+		list.setAdapter(adapter);
 	}
 
 	public void updateFragment() {
@@ -238,6 +243,50 @@ public class EventListFragment extends Fragment {
 	// }
 	public static Fragment newInstance(int type) {
 		return new EventListFragment(type);
+	}
+
+	public static ArrayList<ArrayList<EventORM>> divideOnGroup(
+			ArrayList<EventORM> events) {
+		if (events == null)
+			return null;
+		class CustomComparator implements Comparator<EventORM> {
+			@Override
+			public int compare(EventORM o1, EventORM o2) {
+				int x1 = (int) o1.description.trim().toCharArray()[0];
+				int x2 = (int) o2.description.trim().toCharArray()[0];
+				if (x1 < x2) {
+					return -1;
+				} else if (x2 > x1) {
+					return 1;
+				}
+
+				return 0;
+			}
+		}
+
+		Collections.sort(events, new CustomComparator());
+
+		ArrayList<ArrayList<EventORM>> result = new ArrayList<ArrayList<EventORM>>();
+
+		while (events.size() != 0) {
+			ArrayList<EventORM> childs = new ArrayList<EventORM>();
+
+			char group = events.get(0).description.trim().toCharArray()[0];
+			int a = (int) group;
+
+			for (int i = 0; i < events.size(); i++) {
+
+				if (events.get(i).description.indexOf(group) == 0) {
+					childs.add(events.remove(i));
+					i--;
+				}
+
+			}
+			result.add(childs);
+
+		}
+
+		return result;
 	}
 
 	class LoadDBAsync extends AsyncTask<Void, Void, ArrayList<EventORM>> {
@@ -396,7 +445,8 @@ public class EventListFragment extends Fragment {
 				Log.d("BUG", "FRAGMENT : " + typeFragment + " Size result"
 						+ result.size());
 				if (result.size() != 0) {
-					adapter.setData(result);
+					// adapter.setData(result);
+					refreshAdapter(divideOnGroup(result));
 					// swingBottomInAnimationAdapter = new
 					// SwingBottomInAnimationAdapter(
 					// adapter);
