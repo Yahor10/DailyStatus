@@ -5,6 +5,7 @@ import static by.android.dailystatus.application.Constants.TAG;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Calendar;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -17,6 +18,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -44,6 +47,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import by.android.dailystatus.alarm.EveryDayTimeAlarm;
+import by.android.dailystatus.alarm.TimeAlarm;
 import by.android.dailystatus.application.DailyStatusApplication;
 import by.android.dailystatus.dialog.AddDayEvent;
 import by.android.dailystatus.dialog.ImageChoiseDialog;
@@ -107,6 +112,15 @@ public class MainActivity extends SherlockFragmentActivity implements
 		super.onCreate(savedInstanceState);
 		Log.v(TAG, "Main activity created");
 		setContentView(R.layout.activity_main);
+		
+
+		if (!PreferenceUtils
+				.getFlagApplicationWasLaunched(getApplicationContext())) {
+			PreferenceUtils
+					.setFlagApplicationWasLaunched(getApplicationContext());
+			setRepeatingAlarm(getApplicationContext());
+
+		}
 
 		inflater = getLayoutInflater();
 		getSupportActionBar().setBackgroundDrawable(
@@ -135,6 +149,18 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		viewPager.setOnPageChangeListener(this);
 		initQuickAction();
+	}
+
+	public static void setRepeatingAlarm(Context context) {
+
+		AlarmManager am = (AlarmManager) context
+				.getSystemService(Context.ALARM_SERVICE);
+		Intent intent = new Intent(context, EveryDayTimeAlarm.class);
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+				intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+		am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+				30000, pendingIntent);
 	}
 
 	public QuickAction mQuickAction;

@@ -32,6 +32,8 @@
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="alarm_message">How was your day? What happend with you today?</string>
+    <string name="alarm_bad_days_message">You have a lot of bad days. It is time to change something.</string>
+    <string name="alarm_empty_days_message">You have not mentioned your days. What was the day for you?</string>
     <string name="rate">Rate</string>
     <string name="error_internet_off">Connect Internet</string>
     <string name="show_all_events">Show all Events</string>
@@ -52,8 +54,8 @@
     <string name="empty_button">Try again</string>
     <string name="loading_button">Cancel</string>
     <string name="error_button">Try again</string>
-    
-    <!--  Rate dialog -->
+
+    <!-- Rate dialog -->
     <string name="rta_dialog_title">Rate this app</string>
     <string name="rta_dialog_message">If you enjoy this app, please take a moment to rate this app. It won\'t take more than a minute. Thank you for your support!</string>
     <string name="rta_dialog_ok">Rate now</string>

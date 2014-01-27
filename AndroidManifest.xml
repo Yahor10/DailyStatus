@@ -114,6 +114,7 @@
         <activity android:name="by.android.dailystatus.RegisterActivity" />
 
         <receiver android:name="by.android.dailystatus.alarm.TimeAlarm" />
+         <receiver android:name="by.android.dailystatus.alarm.EveryDayTimeAlarm" />
     </application>
 
 </manifest>

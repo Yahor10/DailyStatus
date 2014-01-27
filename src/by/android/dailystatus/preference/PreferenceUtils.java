@@ -21,6 +21,20 @@ public class PreferenceUtils {
 				"Johny");
 	}
 
+	public static void setFlagApplicationWasLaunched(Context context) {
+		Editor pEditor = PreferenceManager.getDefaultSharedPreferences(context)
+				.edit();
+		pEditor.putBoolean(PreferenceKeys.FLAG_APPLICATION, true);
+		pEditor.commit();
+	}
+
+	public static boolean getFlagApplicationWasLaunched(Context context) {
+		SharedPreferences defaultSharedPreferences = PreferenceManager
+				.getDefaultSharedPreferences(context);
+		return defaultSharedPreferences.getBoolean(
+				PreferenceKeys.FLAG_APPLICATION, false);
+	}
+
 	public static void setImageFromCameraURL(Context context, String url) {
 		Editor pEditor = PreferenceManager.getDefaultSharedPreferences(context)
 				.edit();
