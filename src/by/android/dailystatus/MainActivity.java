@@ -160,7 +160,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 				intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
 		am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
-				30000, pendingIntent);
+				10800000, pendingIntent);
 	}
 
 	public QuickAction mQuickAction;
