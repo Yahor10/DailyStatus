@@ -148,99 +148,6 @@ public class EventListFragment extends Fragment {
 
 	}
 
-	private class ListAdapter extends BaseAdapter {
-
-		LayoutInflater inflater;
-
-		ArrayList<EventORM> events;
-
-		boolean flagDrawItems = false;
-		int day;
-		int year;
-
-		public void cleanFlagDrawItems() {
-			flagDrawItems = false;
-		}
-
-		public int findItemByDate(int dayOfYear, int year1) {
-			day = dayOfYear;
-			this.year = year1;
-			flagDrawItems = true;
-			for (int i = 0; i < events.size(); i++) {
-
-				if (events.get(i).day == day && events.get(i).year == year) {
-					return i;
-				}
-
-			}
-
-			return -1;
-		}
-
-		public ListAdapter(LayoutInflater inflater) {
-			this.inflater = inflater;
-		}
-
-		public void setData(ArrayList<EventORM> tests) {
-			this.events = tests;
-		}
-
-		@Override
-		public int getCount() {
-			if (events != null)
-				return events.size();
-			return 0;
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return events.get(position);
-		}
-
-		@Override
-		public long getItemId(int position) {
-
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			Holder holder;
-			if (convertView == null) {
-				holder = new Holder();
-				convertView = inflater.inflate(R.layout.item_event_list, null);
-				convertView.setTag(holder);
-
-				holder.describeTest = (TextView) convertView
-						.findViewById(R.id.txt_item_event);
-
-			} else {
-				holder = (Holder) convertView.getTag();
-			}
-
-			if (events.get(position).day == day
-					&& events.get(position).year == year
-					&& flagDrawItems == true) {
-				holder.describeTest.setTextColor(Color.RED);
-			} else {
-				holder.describeTest.setTextColor(Color.BLACK);
-			}
-
-			holder.describeTest.setText(events.get(position).description);
-
-			return convertView;
-		}
-
-		public class Holder {
-			TextView describeTest;
-
-		}
-
-	}
-
-	// public static Fragment newInstance(int type, int filter) {
-	// return new EventListFragment(type, filter);
-	// }
 	public static Fragment newInstance(int type) {
 		return new EventListFragment(type);
 	}
@@ -252,11 +159,11 @@ public class EventListFragment extends Fragment {
 		class CustomComparator implements Comparator<EventORM> {
 			@Override
 			public int compare(EventORM o1, EventORM o2) {
-				int x1 = (int) o1.description.trim().toCharArray()[0];
-				int x2 = (int) o2.description.trim().toCharArray()[0];
-				if (x1 < x2) {
+				int char1 = (int) o1.description.trim().toCharArray()[0];
+				int char2 = (int) o2.description.trim().toCharArray()[0];
+				if (char1 < char2) {
 					return -1;
-				} else if (x2 > x1) {
+				} else if (char2 > char1) {
 					return 1;
 				}
 
