@@ -177,14 +177,40 @@ public class CalendarView extends SherlockActivity implements
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		int itemId = item.getItemId();
-		int monthNumber = month.get(Calendar.MONTH);
+
+		int month1, month3;
+		int year1, year3;
+		int monthNumber = month.get(Calendar.MONTH) + 1;
 		int yearNumber = month.get(Calendar.YEAR);
+		month1 = monthNumber - 1;
+		month3 = monthNumber + 1;
+		year1 = year3 = yearNumber;
+		if (month1 <= 0) {
+			year1--;
+			month1 = 12;
+		}
+
+		if (month1 > 12) {
+			year1++;
+			month1 = 1;
+		}
+
 		switch (itemId) {
 		case 4:
 			List<DayORM> goodDaysByMonth = DayORM.getGoodDaysByMonth(this,
 					monthNumber, yearNumber);
+			List<DayORM> goodDaysByLastMonth = DayORM.getGoodDaysByMonth(this,
+					month1, year1);
+			List<DayORM> goodDaysByNextMonth = DayORM.getGoodDaysByMonth(this,
+					month3, year3);
 			Set<Integer> goodDays = new HashSet<Integer>();
 			for (DayORM dayORM : goodDaysByMonth) {
+				goodDays.add(dayORM.day);
+			}
+			for (DayORM dayORM : goodDaysByLastMonth) {
+				goodDays.add(dayORM.day);
+			}
+			for (DayORM dayORM : goodDaysByNextMonth) {
 				goodDays.add(dayORM.day);
 			}
 			adapter.setGoodDays(goodDays);
@@ -194,8 +220,18 @@ public class CalendarView extends SherlockActivity implements
 		case 5:
 			List<DayORM> badDaysByMonth = DayORM.getBadDaysByMonth(this,
 					monthNumber, yearNumber);
+			List<DayORM> badDaysByLastMonth = DayORM.getBadDaysByMonth(this,
+					month1, year1);
+			List<DayORM> badDaysByNextMonth = DayORM.getBadDaysByMonth(this,
+					month3, year3);
 			Set<Integer> badDays = new HashSet<Integer>();
 			for (DayORM dayORM : badDaysByMonth) {
+				badDays.add(dayORM.day);
+			}
+			for (DayORM dayORM : badDaysByLastMonth) {
+				badDays.add(dayORM.day);
+			}
+			for (DayORM dayORM : badDaysByNextMonth) {
 				badDays.add(dayORM.day);
 			}
 			adapter.setBadDays(badDays);
@@ -299,6 +335,7 @@ public class CalendarView extends SherlockActivity implements
 		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
 		java.util.Date d1 = null;
 		Calendar tdy1;
+		// /bla bla
 
 		try {
 			d1 = form.parse(selectedDate);
