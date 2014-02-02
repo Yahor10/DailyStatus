@@ -74,11 +74,8 @@ public class CalendarView extends SherlockActivity implements
 		items = new ArrayList<String>();
 		adapter = new CalendarAdapter(this, month);
 
-		Calendar calendar = Calendar.getInstance();
 
-		selectedDate = "" + calendar.get(Calendar.YEAR) + "-"
-				+ (calendar.get(Calendar.MONTH) + 1) + "-"
-				+ calendar.get(Calendar.DAY_OF_MONTH);
+		selectedDate = adapter.getCurrentDateString();
 
 		GridView gridview = (GridView) findViewById(R.id.gridview);
 		gridview.setAdapter(adapter);
@@ -195,6 +192,21 @@ public class CalendarView extends SherlockActivity implements
 			month1 = 1;
 		}
 
+		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date d1 = null;
+		Calendar tdy1;
+		// /bla bla
+
+		try {
+			d1 = form.parse(selectedDate);
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		tdy1 = Calendar.getInstance();
+		tdy1.setTime(d1);
+
 		switch (itemId) {
 		case 4:
 			List<DayORM> goodDaysByMonth = DayORM.getGoodDaysByMonth(this,
@@ -235,6 +247,7 @@ public class CalendarView extends SherlockActivity implements
 				badDays.add(dayORM.day);
 			}
 			adapter.setBadDays(badDays);
+			adapter.setCurentDateString(selectedDate);
 			adapter.notifyDataSetChanged();
 			break;
 		case 6:

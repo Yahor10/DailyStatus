@@ -70,6 +70,10 @@ public class CalendarAdapter extends BaseAdapter {
 		refreshDays();
 	}
 
+	public String getCurrentDateString() {
+		return curentDateString;
+	}
+
 	public void setItems(ArrayList<String> items) {
 		for (int i = 0; i != items.size(); i++) {
 			if (items.get(i).length() == 1) {
@@ -274,6 +278,7 @@ public class CalendarAdapter extends BaseAdapter {
 	}
 
 	public void setCurentDateString(String curentDateString) {
+
 		this.curentDateString = curentDateString;
 	}
 

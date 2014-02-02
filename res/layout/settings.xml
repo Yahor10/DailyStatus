@@ -173,52 +173,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="@color/bg_gray" />
 
-        <LinearLayout
-            android:id="@+id/lay_twitter"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:minHeight="@dimen/height_child_group"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/left_padding_child_group" >
-
-            <ImageView
-                android:layout_width="@dimen/size_icon"
-                android:layout_height="@dimen/size_icon"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/twitter1" />
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/left_padding_head_group" >
-
-                <TextView android:id="@+id/txt_twitter_user_name"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/twitter"
-                    android:textColor="@color/daynames_background"
-                    android:textSize="@dimen/size_text_child"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt_twitter_connektion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="3dp"
-                    android:text="@string/not_authorized"
-                    android:textColor="@color/daynames_text_color"
-                    android:textSize="@dimen/size_text_child_desctibe" />
-            </LinearLayout>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
