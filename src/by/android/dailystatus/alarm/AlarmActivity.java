@@ -26,16 +26,16 @@ public class AlarmActivity extends SherlockFragmentActivity {
 				new ColorDrawable(Color.parseColor("#0e78c9")));
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-		setOneTimeAlarm();
+//		setOneTimeAlarm();
 	}
 
-	public void setOneTimeAlarm() {
-		Intent intent = new Intent(this, TimeAlarm.class);
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,
-				intent, PendingIntent.FLAG_ONE_SHOT);
-		am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (5 * 100),
-				pendingIntent);
-	}
+//	public void setOneTimeAlarm() {
+//		Intent intent = new Intent(this, TimeAlarm.class);
+//		PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,
+//				intent, PendingIntent.FLAG_ONE_SHOT);
+//		am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (5 * 100),
+//				pendingIntent);
+//	}
 
 	public static void setRepeatingAlarm(Context context, int indexOfInterval) {
 
@@ -45,7 +45,7 @@ public class AlarmActivity extends SherlockFragmentActivity {
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
 				intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-		am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+		am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+(10800000) + indexOfInterval * 1,
 				(10800000) + indexOfInterval * 1, pendingIntent);
 	}
 

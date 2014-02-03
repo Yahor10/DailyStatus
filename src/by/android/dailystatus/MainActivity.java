@@ -22,6 +22,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -112,7 +113,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 		super.onCreate(savedInstanceState);
 		Log.v(TAG, "Main activity created");
 		setContentView(R.layout.activity_main);
-		
 
 		if (!PreferenceUtils
 				.getFlagApplicationWasLaunched(getApplicationContext())) {
@@ -159,7 +159,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
 				intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-		am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),
+		am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+10800000,
 				10800000, pendingIntent);
 	}
 
@@ -651,6 +651,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 			model.eventLayout.removeAllViews();
 		}
 
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		// TODO Auto-generated method stub
+		super.onConfigurationChanged(newConfig);
 	}
 
 	private void DialogDayEvent() {

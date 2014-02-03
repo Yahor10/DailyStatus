@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import by.android.dailystatus.fragment.EventStandartListFragment;
 import by.android.dailystatus.interfaces.FragmentActivityCallback;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.viewpagerindicator.TabPageIndicator;
 
 public class EventsListStandartActivity extends SherlockFragmentActivity
@@ -62,6 +64,17 @@ public class EventsListStandartActivity extends SherlockFragmentActivity
 		@Override
 		public int getCount() {
 			return CONTENT.length;
+		}
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
 	}
 

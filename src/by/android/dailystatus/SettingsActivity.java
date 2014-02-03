@@ -94,6 +94,7 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 				case 0:
 
 				case 2:
+					AlarmActivity.CancelAlarm(getApplicationContext());
 					AlarmActivity.setRepeatingAlarm(getApplicationContext(),
 							idx);
 

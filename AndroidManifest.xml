@@ -36,7 +36,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="by.android.dailystatus.MainActivity" >
+        <activity
+            android:name="by.android.dailystatus.MainActivity"
+            android:configChanges="keyboardHidden|orientation" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="by.android.dailystatus.MainActivity" />
@@ -91,9 +93,9 @@
         </activity>
         <activity
             android:name="by.android.dailystatus.EventActivity"
+            android:configChanges="orientation"
             android:icon="@drawable/ic_launcher"
-            android:label="Event" 
-            android:configChanges="orientation">
+            android:label="Event" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="by.android.dailystatus.MainActivity" />
@@ -114,7 +116,7 @@
         <activity android:name="by.android.dailystatus.RegisterActivity" />
 
         <receiver android:name="by.android.dailystatus.alarm.TimeAlarm" />
-         <receiver android:name="by.android.dailystatus.alarm.EveryDayTimeAlarm" />
+        <receiver android:name="by.android.dailystatus.alarm.EveryDayTimeAlarm" />
     </application>
 
 </manifest>

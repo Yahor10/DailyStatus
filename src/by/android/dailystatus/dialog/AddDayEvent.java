@@ -8,7 +8,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -105,21 +104,25 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 		int id = v.getId();
 		switch (id) {
 		case R.id.addEventOK:
-			DateTime now = mainActivity.getNow();
-			String currentUser = PreferenceUtils.getCurrentUser(mainActivity);
-			int day = now.getDayOfYear();
-			int month = now.getMonthOfYear();
-			int year = now.getYear();
+			if (eventText.getText().toString().trim().length() != 0) {
+				DateTime now = mainActivity.getNow();
+				String currentUser = PreferenceUtils
+						.getCurrentUser(mainActivity);
+				int day = now.getDayOfYear();
+				int month = now.getMonthOfYear();
+				int year = now.getYear();
 
-			EventORM event = new EventORM(currentUser, day, month, year, 1,
-					eventText.getText().toString());
-			if (flagEditEvent) {
-				EventORM.deleteEventByName(mainActivity, startText, event.day);
+				EventORM event = new EventORM(currentUser, day, month, year, 1,
+						eventText.getText().toString());
+				if (flagEditEvent) {
+					EventORM.deleteEventByName(mainActivity, startText,
+							event.day);
+				}
+
+				EventORM.insertEvent(mainActivity, event);
+				mainActivity.updateContent();
+				getDialog().dismiss();
 			}
-
-			EventORM.insertEvent(mainActivity, event);
-			mainActivity.updateContent();
-			getDialog().dismiss();
 			break;
 		case R.id.addEventCancel:
 			getDialog().dismiss();

@@ -170,7 +170,6 @@ public class EventListFragment extends Fragment {
 				return 0;
 			}
 		}
-
 		Collections.sort(events, new CustomComparator());
 
 		ArrayList<ArrayList<EventORM>> result = new ArrayList<ArrayList<EventORM>>();
