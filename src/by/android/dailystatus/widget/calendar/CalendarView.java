@@ -45,6 +45,9 @@ import com.actionbarsherlock.view.SubMenu;
 
 public class CalendarView extends SherlockActivity implements
 		OnMenuItemClickListener, OnClickListener {
+	private String KEY_WAS_SHOWED_GOOD_DAYS = "key_good";
+	private String KEY_WAS_SHOWED_BAD_DAYS = "key_bad";
+	private String KEY_SELECT_DATE = "key_select_date";
 
 	public GregorianCalendar month, itemmonth;// calendar instances.
 
@@ -62,6 +65,10 @@ public class CalendarView extends SherlockActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calendar);
+
+		if (savedInstanceState != null) {
+			boolean abv = savedInstanceState.getBoolean("MyBoolean");
+		}
 		Locale.setDefault(Locale.US);
 		getSupportActionBar().setBackgroundDrawable(
 				new ColorDrawable(Color.parseColor("#0e78c9")));
@@ -73,7 +80,6 @@ public class CalendarView extends SherlockActivity implements
 
 		items = new ArrayList<String>();
 		adapter = new CalendarAdapter(this, month);
-
 
 		selectedDate = adapter.getCurrentDateString();
 
@@ -141,6 +147,38 @@ public class CalendarView extends SherlockActivity implements
 		});
 	}
 
+	boolean flag_showed_good_day = false;
+	boolean flag_showed_bad_day = false;
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putBoolean(KEY_WAS_SHOWED_BAD_DAYS, flag_showed_bad_day);
+		outState.putBoolean(KEY_WAS_SHOWED_GOOD_DAYS, flag_showed_good_day);
+		outState.putString(KEY_SELECT_DATE, selectedDate);
+		super.onSaveInstanceState(outState);
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		flag_showed_bad_day = savedInstanceState
+				.getBoolean(KEY_WAS_SHOWED_BAD_DAYS);
+		flag_showed_good_day = savedInstanceState
+				.getBoolean(KEY_WAS_SHOWED_GOOD_DAYS);
+		selectedDate = savedInstanceState.getString(KEY_SELECT_DATE);
+
+		if (flag_showed_bad_day) {
+			adapter.setBadDays(getBadDays());
+			adapter.setCurentDateString(selectedDate);
+			adapter.notifyDataSetChanged();
+		} else if (flag_showed_good_day) {
+			adapter.setGoodDays(getGoodDays());
+			adapter.setCurentDateString(selectedDate);
+			adapter.notifyDataSetChanged();
+		}
+
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		SubMenu subMyProfile = menu.addSubMenu("").setIcon(
@@ -169,6 +207,110 @@ public class CalendarView extends SherlockActivity implements
 			return super.onOptionsItemSelected(item);
 		}
 		return true;
+	}
+
+	public Set<Integer> getGoodDays() {
+		int month1, month3;
+		int year1, year3;
+		int monthNumber = month.get(Calendar.MONTH) + 1;
+		int yearNumber = month.get(Calendar.YEAR);
+		month1 = monthNumber - 1;
+		month3 = monthNumber + 1;
+		year1 = year3 = yearNumber;
+		if (month1 <= 0) {
+			year1--;
+			month1 = 12;
+		}
+
+		if (month1 > 12) {
+			year1++;
+			month1 = 1;
+		}
+
+		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date d1 = null;
+		Calendar tdy1;
+		// /bla bla
+
+		try {
+			d1 = form.parse(selectedDate);
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		tdy1 = Calendar.getInstance();
+		tdy1.setTime(d1);
+
+		List<DayORM> goodDaysByMonth = DayORM.getGoodDaysByMonth(this,
+				monthNumber, yearNumber);
+		List<DayORM> goodDaysByLastMonth = DayORM.getGoodDaysByMonth(this,
+				month1, year1);
+		List<DayORM> goodDaysByNextMonth = DayORM.getGoodDaysByMonth(this,
+				month3, year3);
+		Set<Integer> goodDays = new HashSet<Integer>();
+		for (DayORM dayORM : goodDaysByMonth) {
+			goodDays.add(dayORM.day);
+		}
+		for (DayORM dayORM : goodDaysByLastMonth) {
+			goodDays.add(dayORM.day);
+		}
+		for (DayORM dayORM : goodDaysByNextMonth) {
+			goodDays.add(dayORM.day);
+		}
+		return goodDays;
+	}
+
+	public Set<Integer> getBadDays() {
+		int month1, month3;
+		int year1, year3;
+		int monthNumber = month.get(Calendar.MONTH) + 1;
+		int yearNumber = month.get(Calendar.YEAR);
+		month1 = monthNumber - 1;
+		month3 = monthNumber + 1;
+		year1 = year3 = yearNumber;
+		if (month1 <= 0) {
+			year1--;
+			month1 = 12;
+		}
+
+		if (month1 > 12) {
+			year1++;
+			month1 = 1;
+		}
+
+		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date d1 = null;
+		Calendar tdy1;
+		// /bla bla
+
+		try {
+			d1 = form.parse(selectedDate);
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		tdy1 = Calendar.getInstance();
+		tdy1.setTime(d1);
+
+		List<DayORM> badDaysByMonth = DayORM.getBadDaysByMonth(this,
+				monthNumber, yearNumber);
+		List<DayORM> badDaysByLastMonth = DayORM.getBadDaysByMonth(this,
+				month1, year1);
+		List<DayORM> badDaysByNextMonth = DayORM.getBadDaysByMonth(this,
+				month3, year3);
+		Set<Integer> badDays = new HashSet<Integer>();
+		for (DayORM dayORM : badDaysByMonth) {
+			badDays.add(dayORM.day);
+		}
+		for (DayORM dayORM : badDaysByLastMonth) {
+			badDays.add(dayORM.day);
+		}
+		for (DayORM dayORM : badDaysByNextMonth) {
+			badDays.add(dayORM.day);
+		}
+		return badDays;
 	}
 
 	@Override
@@ -209,44 +351,18 @@ public class CalendarView extends SherlockActivity implements
 
 		switch (itemId) {
 		case 4:
-			List<DayORM> goodDaysByMonth = DayORM.getGoodDaysByMonth(this,
-					monthNumber, yearNumber);
-			List<DayORM> goodDaysByLastMonth = DayORM.getGoodDaysByMonth(this,
-					month1, year1);
-			List<DayORM> goodDaysByNextMonth = DayORM.getGoodDaysByMonth(this,
-					month3, year3);
-			Set<Integer> goodDays = new HashSet<Integer>();
-			for (DayORM dayORM : goodDaysByMonth) {
-				goodDays.add(dayORM.day);
-			}
-			for (DayORM dayORM : goodDaysByLastMonth) {
-				goodDays.add(dayORM.day);
-			}
-			for (DayORM dayORM : goodDaysByNextMonth) {
-				goodDays.add(dayORM.day);
-			}
-			adapter.setGoodDays(goodDays);
+			flag_showed_bad_day = false;
+			flag_showed_good_day = true;
+
+			adapter.setGoodDays(getGoodDays());
 			adapter.setCurentDateString(selectedDate);
 			adapter.notifyDataSetChanged();
 			break;
 		case 5:
-			List<DayORM> badDaysByMonth = DayORM.getBadDaysByMonth(this,
-					monthNumber, yearNumber);
-			List<DayORM> badDaysByLastMonth = DayORM.getBadDaysByMonth(this,
-					month1, year1);
-			List<DayORM> badDaysByNextMonth = DayORM.getBadDaysByMonth(this,
-					month3, year3);
-			Set<Integer> badDays = new HashSet<Integer>();
-			for (DayORM dayORM : badDaysByMonth) {
-				badDays.add(dayORM.day);
-			}
-			for (DayORM dayORM : badDaysByLastMonth) {
-				badDays.add(dayORM.day);
-			}
-			for (DayORM dayORM : badDaysByNextMonth) {
-				badDays.add(dayORM.day);
-			}
-			adapter.setBadDays(badDays);
+			flag_showed_bad_day = true;
+			flag_showed_good_day = false;
+
+			adapter.setBadDays(getBadDays());
 			adapter.setCurentDateString(selectedDate);
 			adapter.notifyDataSetChanged();
 			break;

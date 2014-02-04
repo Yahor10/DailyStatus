@@ -1,7 +1,6 @@
 package by.android.dailystatus.dialog;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
-import android.widget.Toast;
 import by.android.dailystatus.R;
 import by.android.dailystatus.interfaces.FragmentActivityCallback;
 import by.android.dailystatus.orm.model.UserORM;
@@ -81,13 +79,13 @@ public class ForgotPasswordDialog extends DialogFragment implements
 
 		public SendEmail(FragmentActivityCallback callback) {
 			activityCallback = callback;
-			progressDialog = new ProgressDialog(getActivity());
+			progressDialog = new ProgressDialog();
 		}
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			progressDialog.show();
+			progressDialog.show(getActivity().getSupportFragmentManager(), "");
 
 		}
 
@@ -116,8 +114,8 @@ public class ForgotPasswordDialog extends DialogFragment implements
 						GMailSender sender = new GMailSender(
 								"alexpers92@gmail.com", "alexpers");
 
-						sender.sendMail("Ваш пароль DailyStatus", "Passqord:"
-								+ "'" + params[0] + "'",
+						sender.sendMail("Ваш пароль DailyStatus",
+								"Passqord:" + "'" + params[0] + "'",
 								"alexpers92@gmail.com", "alex-pers92@mail.ru");
 						return true;
 					} else {

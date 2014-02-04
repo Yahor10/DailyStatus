@@ -16,8 +16,10 @@
     <string name="error_field_required">Это поле обязательно</string>
     <string name="error_name_does_not_exist">Пользователь с таким именем не был зарегистрирован</string>
     <string name="error_name_exist">Пользователь с таким именем уже зарегистрирован</string>
+    <string name="error_name_empty">Имя не может быть пустым</string>
     <string name="forgot_password">Забыли пароль?</string>
     <string name="send_forgot_password">Отправить пароль на вашу почту?</string>
+    <string name="progress_dialog_wait">Подождите... </string>
     <string name="ok">Да</string>
     <string name="cancel">Отмена</string>
 

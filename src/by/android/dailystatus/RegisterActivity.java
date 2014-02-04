@@ -88,6 +88,12 @@ public class RegisterActivity extends Activity {
 				password = etPassword.getText().toString();
 
 				Context applicationContext = getApplicationContext();
+
+				if (firstName.trim().length() == 0) {
+					etFirstName.setError(getResources().getString(
+							R.string.error_name_empty));
+					return;
+				}
 				if (UserORM.checkContainName(applicationContext, firstName)) {
 
 					etFirstName.setError(getResources().getString(
@@ -108,7 +114,7 @@ public class RegisterActivity extends Activity {
 							R.string.error_invalid_password));
 
 					return;
-				} else if (email.isEmpty() && password.length() > 0) {
+				} else if (email.length() <= 0 && password.length() > 0) {
 					etEmail.setError(getResources().getString(
 							R.string.error_invalid_email));
 					return;
