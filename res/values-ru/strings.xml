@@ -36,6 +36,7 @@
     <string name="show_good_events">Показать хорошие события</string>
     <string name="show_bad_events">Показать плохие события</string>
     <string name="show_data_picker">Выбрать дату</string>
+    <string name="location">ru</string>
 
     <string-array name="sex">
         <item>@string/man</item>

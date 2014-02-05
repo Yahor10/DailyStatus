@@ -54,24 +54,26 @@ public class EventStandartListFragment extends Fragment {
 	public void refreshAdapter(ArrayList<ArrayList<String>> data) {
 		adapter = new StandartEventExpandableListAdapter(getActivity(), data);
 		list.setAdapter(adapter);
+		for (int i = 0; i < adapter.getGroupCount(); i++)
+		    list.expandGroup(i);
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		view = inflater.inflate(R.layout.event_fragment, null);
+		view = inflater.inflate(R.layout.event_standart_fragment, null);
 		list = (ExpandableListView) view.findViewById(R.id.list_event);
 		list.setOnChildClickListener(new OnChildClickListener() {
-			
+
 			@Override
-			public boolean onChildClick(ExpandableListView arg0, View arg1, int arg2,
-					int arg3, long arg4) {
-				callback.callToActivity((String)arg1.getTag(R.id.tag_standart_event));
+			public boolean onChildClick(ExpandableListView arg0, View arg1,
+					int arg2, int arg3, long arg4) {
+				callback.callToActivity((String) arg1
+						.getTag(R.id.tag_standart_event));
 				return false;
 			}
 		});
-		
 
 		emptyLayout = new EmptyLayout(getActivity(), list);
 
@@ -80,7 +82,6 @@ public class EventStandartListFragment extends Fragment {
 
 		return view;
 	}
-
 
 	class LoadXMLAsync extends AsyncTask<Void, Void, String[]> {
 		int type;

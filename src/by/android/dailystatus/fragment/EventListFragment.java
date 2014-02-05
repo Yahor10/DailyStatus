@@ -5,11 +5,14 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,23 +22,47 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
-import android.widget.BaseAdapter;
-import android.widget.ExpandableListView;
-import android.widget.TextView;
+import android.widget.ListView;
 import by.android.dailystatus.ChartsActivity;
 import by.android.dailystatus.R;
-import by.android.dailystatus.adapters.EventExpandableListAdapter;
+import by.android.dailystatus.adapters.EventListIndexedAdapter;
+import by.android.dailystatus.model.GroupEvent;
 import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.orm.model.EventORM;
+import by.android.dailystatus.widget.customlistview.AlphabetIndexerView;
+import by.android.dailystatus.widget.customlistview.AlphabetListView;
 
 import com.kanak.emptylayout.EmptyLayout;
 
 public class EventListFragment extends Fragment {
 
+	static String[] suffixesRU =
+	// 0 1 2 3 4 5 6 7 8 9
+	{ "th", "ое", "ое", "е", "ое", "ое", "ое", "ое", "ое", "ое",
+			// 10 11 12 13 14 15 16 17 18 19
+			"ое", "ое", "ое", "ое", "ое", "ое", "ое", "ое", "ое", "ое",
+			// 20 21 22 23 24 25 26 27 28 29
+			"ое", "ое", "ое", "е", "ое", "ое", "ое", "ое", "ое", "ое",
+			// 30 31
+			"ое", "ое" };
+
+	static String[] suffixesENG =
+	// 0 1 2 3 4 5 6 7 8 9
+	{ "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th",
+			// 10 11 12 13 14 15 16 17 18 19
+			"th", "th", "th", "th", "th", "th", "th", "th", "th", "th",
+			// 20 21 22 23 24 25 26 27 28 29
+			"th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th",
+			// 30 31
+			"th", "st" };
+
 	int typeFragment;
 	private View view;
-	public ExpandableListView list;
-	EventExpandableListAdapter adapter;
+	ListView list;
+	AlphabetListView frameContainer;
+	AlphabetIndexerView indexerView;
+	EventListIndexedAdapter adapter;
+
 	EmptyLayout emptyLayout;
 
 	public void setTypeFragment(int type) {
@@ -104,7 +131,10 @@ public class EventListFragment extends Fragment {
 
 		view = inflater.inflate(R.layout.event_fragment, null);
 
-		list = (ExpandableListView) view.findViewById(R.id.list_event);
+		frameContainer = (AlphabetListView) view.findViewById(R.id.list_event);
+
+		list = frameContainer.getListView();
+		indexerView = frameContainer.getIndexer();
 
 		list.setOnScrollListener(new OnScrollListener() {
 
@@ -130,9 +160,21 @@ public class EventListFragment extends Fragment {
 		return view;
 	}
 
-	public void refreshAdapter(ArrayList<ArrayList<EventORM>> data) {
-		adapter = new EventExpandableListAdapter(getActivity(), data);
-		list.setAdapter(adapter);
+	public void refreshAdapter(ArrayList<GroupEvent> data) {
+		if (data != null) {
+			if (data.isEmpty()) {
+				emptyLayout.showEmpty();
+			} else {
+
+				adapter = new EventListIndexedAdapter(getActivity(),
+						indexerView, data, list);
+				list.setAdapter(adapter);
+				indexerView.setIndexerListener(adapter);
+			}
+
+		} else {
+			emptyLayout.showError();
+		}
 	}
 
 	public void updateFragment() {
@@ -152,18 +194,24 @@ public class EventListFragment extends Fragment {
 		return new EventListFragment(type);
 	}
 
-	public static ArrayList<ArrayList<EventORM>> divideOnGroup(
-			ArrayList<EventORM> events) {
+	public String capitalizeFirstLetter(String original) {
+		if (original.length() == 0)
+			return original;
+		return original.substring(0, 1).toUpperCase() + original.substring(1);
+	}
+
+	public ArrayList<GroupEvent> divideOnGroup(ArrayList<EventORM> events) {
 		if (events == null)
 			return null;
 		class CustomComparator implements Comparator<EventORM> {
 			@Override
 			public int compare(EventORM o1, EventORM o2) {
-				int char1 = (int) o1.description.trim().toCharArray()[0];
-				int char2 = (int) o2.description.trim().toCharArray()[0];
-				if (char1 < char2) {
+
+				int day1 = o1.day;
+				int day2 = o2.day;
+				if (day1 < day2) {
 					return -1;
-				} else if (char2 > char1) {
+				} else if (day2 > day1) {
 					return 1;
 				}
 
@@ -172,27 +220,88 @@ public class EventListFragment extends Fragment {
 		}
 		Collections.sort(events, new CustomComparator());
 
-		ArrayList<ArrayList<EventORM>> result = new ArrayList<ArrayList<EventORM>>();
+		ArrayList<GroupEvent> groups = new ArrayList<GroupEvent>();
 
 		while (events.size() != 0) {
-			ArrayList<EventORM> childs = new ArrayList<EventORM>();
 
-			char group = events.get(0).description.trim().toCharArray()[0];
-			int a = (int) group;
+			switch (typeFragment) {
+			case 0:
+				int index = events.get(0).day;
+				DateTime time = new DateTime(events.get(0).date);
+				String nameIndex = time.dayOfWeek().getAsText();
+				GroupEvent group = new GroupEvent(index,
+						capitalizeFirstLetter(nameIndex));
 
-			for (int i = 0; i < events.size(); i++) {
+				for (int i = 0; i < events.size(); i++) {
 
-				if (events.get(i).description.indexOf(group) == 0) {
-					childs.add(events.remove(i));
-					i--;
+					if (events.get(i).day == index) {
+						group.events.add(events.remove(i));
+						i--;
+					}
+
 				}
+				groups.add(group);
 
+				break;
+			case 1:
+
+				int index1 = events.get(0).day;
+				DateTime time1 = new DateTime(events.get(0).date);
+				String nameIndex1;
+				String dayName = capitalizeFirstLetter(time1.dayOfWeek()
+						.getAsText());
+				if (getResources().getString(R.string.location).contains("ru")) {
+					nameIndex1 = time1.getDayOfMonth() + "-"
+							+ suffixesRU[time1.getDayOfMonth()] + ", "
+							+ dayName;
+				} else {
+					nameIndex1 = time1.getDayOfMonth() + "-"
+							+ suffixesENG[time1.getDayOfMonth()] + ", "
+							+ dayName;
+				}
+				GroupEvent group1 = new GroupEvent(index1,
+						capitalizeFirstLetter(nameIndex1));
+
+				for (int i = 0; i < events.size(); i++) {
+
+					if (events.get(i).day == index1) {
+						group1.events.add(events.remove(i));
+						i--;
+					}
+
+				}
+				groups.add(group1);
+
+				break;
+			case 2:
+
+				int index2 = events.get(0).month;
+				DateTime time2 = new DateTime(events.get(0).date);
+				DateTimeFormatter formatter2 = DateTimeFormat
+						.forPattern("MMMM");
+				String nameIndex2 = time2.toString(formatter2);
+				GroupEvent group2 = new GroupEvent(index2,
+						capitalizeFirstLetter(nameIndex2));
+
+				for (int i = 0; i < events.size(); i++) {
+
+					if (events.get(i).month == index2) {
+						group2.events.add(events.remove(i));
+						i--;
+					}
+
+				}
+				groups.add(group2);
+
+				break;
+
+			default:
+				break;
 			}
-			result.add(childs);
 
 		}
 
-		return result;
+		return groups;
 	}
 
 	class LoadDBAsync extends AsyncTask<Void, Void, ArrayList<EventORM>> {
@@ -347,31 +456,31 @@ public class EventListFragment extends Fragment {
 		protected void onPostExecute(ArrayList<EventORM> result) {
 			super.onPostExecute(result);
 
-			if (result != null) {
-				Log.d("BUG", "FRAGMENT : " + typeFragment + " Size result"
-						+ result.size());
-				if (result.size() != 0) {
-					// adapter.setData(result);
-					refreshAdapter(divideOnGroup(result));
-					// swingBottomInAnimationAdapter = new
-					// SwingBottomInAnimationAdapter(
-					// adapter);
-					// swingBottomInAnimationAdapter.setAbsListView(list);
+			// if (result != null) {
+			// Log.d("BUG", "FRAGMENT : " + typeFragment + " Size result"
+			// + result.size());
+			// if (result.size() != 0) {
+			// adapter.setData(result);
+			refreshAdapter(divideOnGroup(result));
+			// swingBottomInAnimationAdapter = new
+			// SwingBottomInAnimationAdapter(
+			// adapter);
+			// swingBottomInAnimationAdapter.setAbsListView(list);
 
-					// list.setAdapter(swingBottomInAnimationAdapter);
-					adapter.notifyDataSetChanged();
-				} else {
-					emptyLayout.showEmpty();
-
-				}
-			} else {
-				Log.d("BUG", "FRAGMENT : " + typeFragment
-						+ " Size result = NULL");
-				emptyLayout.showError();
-			}
-			Log.d("BUG",
-					"FRAGMENT : " + typeFragment + " Size LIST"
-							+ list.getCount());
+			// list.setAdapter(swingBottomInAnimationAdapter);
+			// adapter.notifyDataSetChanged();
+			// } else {
+			// emptyLayout.showEmpty();
+			//
+			// }
+			// } else {
+			// Log.d("BUG", "FRAGMENT : " + typeFragment
+			// + " Size result = NULL");
+			// emptyLayout.showError();
+			// }
+			// Log.d("BUG",
+			// "FRAGMENT : " + typeFragment + " Size LIST"
+			// + list.getCount());
 		}
 
 		@Override

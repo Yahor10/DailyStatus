@@ -41,6 +41,7 @@
     <string name="show_bad_events">Show Bad Events</string>
     <string name="show_data_picker">Choose a date</string>
     <string name="app_id">422879181145153</string>
+    <string name="location">en</string>
 
     <string-array name="sex">
         <item>@string/man</item>

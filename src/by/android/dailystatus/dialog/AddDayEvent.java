@@ -1,6 +1,7 @@
 package by.android.dailystatus.dialog;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTime.Property;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -106,14 +107,15 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 		case R.id.addEventOK:
 			if (eventText.getText().toString().trim().length() != 0) {
 				DateTime now = mainActivity.getNow();
+				
+				
 				String currentUser = PreferenceUtils
 						.getCurrentUser(mainActivity);
 				int day = now.getDayOfYear();
 				int month = now.getMonthOfYear();
 				int year = now.getYear();
-				int mon = now.getDayOfWeek();
-
-				EventORM event = new EventORM(currentUser, day, month, year, 1,
+				long date = now.getMillis();
+				EventORM event = new EventORM(currentUser, day, month, year, date,
 						eventText.getText().toString());
 				if (flagEditEvent) {
 					EventORM.deleteEventByName(mainActivity, startText,
