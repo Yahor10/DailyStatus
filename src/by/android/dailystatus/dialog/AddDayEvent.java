@@ -70,14 +70,14 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 			case -1:
 				params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 				params.setMargins(0, 0, 60, 0);
-				imageBack.setBackgroundResource(R.drawable.cloud);
+				imageBack.setBackgroundResource(R.drawable.ic_cloud);
 
 				break;
 
 			case 1:
 				params.addRule(RelativeLayout.CENTER_HORIZONTAL);
 				params.setMargins(100, 0, 100, 0);
-				imageBack.setBackgroundResource(R.drawable.sun);
+				imageBack.setBackgroundResource(R.drawable.ic_sun);
 				break;
 
 			default:

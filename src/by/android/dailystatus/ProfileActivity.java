@@ -54,7 +54,7 @@ public class ProfileActivity extends SherlockActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		date = DateTime.now();
 
-		findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
+		findViewById(R.id.logOutButton).setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {

@@ -25,6 +25,7 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 import by.android.dailystatus.ChartsActivity;
 import by.android.dailystatus.R;
+import by.android.dailystatus.adapters.EventExpandableListAdapter;
 import by.android.dailystatus.adapters.EventListIndexedAdapter;
 import by.android.dailystatus.model.GroupEvent;
 import by.android.dailystatus.orm.model.DayORM;
