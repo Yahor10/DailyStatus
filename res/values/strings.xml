@@ -13,6 +13,8 @@
     <string name="logout">Logout</string>
     <string name="welcome">Welcome to</string>
     <string name="daily_status">Daily Status</string>
+
+    <!-- Registration activity -->
     <string name="log_in">Log in</string>
     <string name="create_account">Create account</string>
     <string name="first_name">First Name</string>
@@ -42,6 +44,7 @@
     <string name="show_data_picker">Choose a date</string>
     <string name="app_id">422879181145153</string>
     <string name="location">en</string>
+    <string name="events">Events</string>
 
     <string-array name="sex">
         <item>@string/man</item>
@@ -64,5 +67,10 @@
     <string name="rta_dialog_ok">Rate now</string>
     <string name="rta_dialog_cancel">Remind later</string>
     <string name="rta_dialog_no">No, thanks</string>
+    
+     <!-- Popup menu -->
+    <string name="view">View</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
 
 </resources>

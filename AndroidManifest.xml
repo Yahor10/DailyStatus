@@ -95,7 +95,7 @@
             android:name="by.android.dailystatus.EventActivity"
             android:configChanges="orientation"
             android:icon="@drawable/ic_launcher"
-            android:label="Event" >
+            android:label="@string/events" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="by.android.dailystatus.MainActivity" />

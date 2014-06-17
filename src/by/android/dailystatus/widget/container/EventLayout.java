@@ -1,25 +1,29 @@
 package by.android.dailystatus.widget.container;
 
-import vn.com.enclaveit.phatbeo.quickaction.QuickAction;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import by.android.dailystatus.R;
+import by.android.dailystatus.application.Constants;
+import by.android.dailystatus.newpopup.MenuItem;
+import by.android.dailystatus.newpopup.PopupMenu;
+import by.android.dailystatus.newpopup.PopupMenu.OnItemSelectedListener;
 import by.android.dailystatus.orm.model.EventORM;
 
-public class EventLayout extends LinearLayout {
+public class EventLayout extends LinearLayout implements OnItemSelectedListener {
 
 	public EventLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
-	public void addEventView(Context context, EventORM eventORM,
-			final QuickAction quickAction) {
+	public void addEventView(final Context context, EventORM eventORM) {
 
 		android.view.ViewGroup.LayoutParams layoutParams = new LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -30,9 +34,27 @@ public class EventLayout extends LinearLayout {
 			@Override
 			public void onClick(View v) {
 				EventORM eventORM = (EventORM) v.getTag();
-				quickAction.setEvent(eventORM);
-				quickAction.show(v);
-				quickAction.setAnimStyle(QuickAction.ANIM_GROW_FROM_CENTER);
+
+				
+				PopupMenu menu = new PopupMenu(context);
+				menu.setHeaderTitle(eventORM.description);
+				// Set Listener
+				menu.setOnItemSelectedListener(EventLayout.this);
+
+				// quickAction.setEvent(eventORM);
+				// quickAction.show(v);
+				// quickAction.setAnimStyle(QuickAction.ANIM_GROW_FROM_CENTER);
+
+				Resources resources = getResources();
+				
+				// TODO find resources
+				menu.add(1, R.string.view,eventORM).setIcon(
+						resources.getDrawable(R.drawable.ic_edit));
+				menu.add(2, R.string.edit,eventORM).setIcon(
+						resources.getDrawable(R.drawable.ic_edit));
+				menu.add(3, R.string.delete,eventORM).setIcon(
+						resources.getDrawable(android.R.drawable.ic_delete));
+				menu.show(v);
 
 			}
 		});
@@ -50,7 +72,8 @@ public class EventLayout extends LinearLayout {
 		TextView textView = new TextView(context);
 		textView.setLayoutParams(layoutParamsText);
 		textView.setTextSize(20);
-//		textView.setTextAppearance(context, android.R.attr.textAppearanceMedium);
+		// textView.setTextAppearance(context,
+		// android.R.attr.textAppearanceMedium);
 		textView.setText(eventORM.description);
 
 		layoutEvent.addView(image, 0);
@@ -67,6 +90,19 @@ public class EventLayout extends LinearLayout {
 
 		addView(layoutEvent, 0);
 		addView(separatorDown, 1);
+	}
+
+	@Override
+	public void onItemSelected(MenuItem item) {
+
+		Log.v(Constants.TAG, "EVENT DESC" + item.getEventORM());
+		switch (item.getItemId()) {
+		case 1:
+			break;
+
+		default:
+			break;
+		}
 	}
 
 }

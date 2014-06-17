@@ -3,6 +3,7 @@ package by.android.dailystatus.dialog;
 import org.joda.time.DateTime;
 import org.joda.time.DateTime.Property;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -27,12 +28,14 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 	boolean flagEditEvent = false;
 	EditText eventText;
 
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.mainActivity = (MainActivity) activity;
+	}
 	public AddDayEvent() {
 
-	}
-
-	public AddDayEvent(MainActivity mainActivity) {
-		this.mainActivity = mainActivity;
 	}
 
 	public AddDayEvent(MainActivity mainActivity, String startText,
@@ -43,52 +46,34 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 	}
 
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		final FragmentActivity activity = getActivity();
-
-		final Dialog dialog = new Dialog(activity);
+		final Dialog dialog = new Dialog(mainActivity);
 		// dialog.setTitle(R.string.title_dialog_add_event);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.add_day_event);
 
 		imageBack = (ImageView) dialog.findViewById(R.id.image);
-		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) imageBack
-				.getLayoutParams();
 
 		DateTime now = mainActivity.getNow();
 		int day = now.getDayOfYear();
 		int year = now.getYear();
-		DayORM dayORM = DayORM.getDay(activity, day, year);
+		DayORM dayORM = DayORM.getDay(mainActivity, day, year);
 		if (dayORM != null) {
 
 			switch (dayORM.status) {
 			case 0:
-				params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-				params.setMargins(60, 0, 0, 0);
-
 				break;
-
 			case -1:
-				params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-				params.setMargins(0, 0, 60, 0);
 				imageBack.setBackgroundResource(R.drawable.ic_cloud);
-
 				break;
-
 			case 1:
-				params.addRule(RelativeLayout.CENTER_HORIZONTAL);
-				params.setMargins(100, 0, 100, 0);
 				imageBack.setBackgroundResource(R.drawable.ic_sun);
 				break;
 
 			default:
 				break;
 			}
-		} else {
-			params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-			params.setMargins(60, 0, 0, 0);
 		}
 
-		imageBack.setLayoutParams(params);
 		eventText = (EditText) dialog.findViewById(R.id.eventText);
 		if (startText != null) {
 			eventText.setText(startText);
@@ -133,6 +118,11 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 		default:
 			break;
 		}
-
+	}
+	
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		mainActivity = null;
 	}
 }

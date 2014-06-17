@@ -12,8 +12,6 @@ import org.joda.time.DateTime;
 
 import uk.co.senab.bitmapcache.BitmapLruCache;
 import uk.co.senab.bitmapcache.CacheableBitmapWrapper;
-import vn.com.enclaveit.phatbeo.quickaction.ActionItem;
-import vn.com.enclaveit.phatbeo.quickaction.QuickAction;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -148,7 +146,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 		viewPager.setCurrentItem(PAGE_MIDDLE, false);
 
 		viewPager.setOnPageChangeListener(this);
-		initQuickAction();
 	}
 
 	public static void setRepeatingAlarm(Context context) {
@@ -163,76 +160,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 				10800000, pendingIntent);
 	}
 
-	public QuickAction mQuickAction;
-
-	public void initQuickAction() {
-		ActionItem addAction = new ActionItem();
-		addAction.setTitle("View");
-		addAction.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
-
-		ActionItem aeeAction = new ActionItem();
-		aeeAction.setTitle("Edit");
-		aeeAction.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
-
-		ActionItem auuAction = new ActionItem();
-		auuAction.setTitle("Delete");
-		auuAction.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
-
-		mQuickAction = new QuickAction(this);
-		mQuickAction.addActionItem(addAction);
-		mQuickAction.addActionItem(aeeAction);
-		mQuickAction.addActionItem(auuAction);
-
-		mQuickAction
-				.setOnActionItemClickListener(new QuickAction.OnActionItemClickListener() {
-					public void onItemClick(int pos) {
-						EventORM ormEbent = mQuickAction.getEventORM();
-						if (ormEbent == null) {
-							mQuickAction.dismiss();
-							Toast.makeText(MainActivity.this, "SORRYYYY =(",
-									Toast.LENGTH_SHORT).show();
-							return;
-						}
-
-						switch (pos) {
-						case 0:
-
-							Toast.makeText(MainActivity.this,
-									"VIEW EVENT FOR :" + ormEbent.description,
-									Toast.LENGTH_SHORT).show();
-
-							break;
-						case 1:
-
-							AddDayEvent dialog = new AddDayEvent(
-									MainActivity.this, ormEbent.description,
-									true);
-							dialog.show(getSupportFragmentManager(), "");
-
-							break;
-						case 2:
-
-							boolean deleted = EventORM.deleteEventByName(
-									getApplicationContext(),
-									ormEbent.description, ormEbent.day);
-							updateContent();
-							if (deleted)
-								Toast.makeText(MainActivity.this, "DELETED",
-										Toast.LENGTH_SHORT).show();
-							else
-								Toast.makeText(MainActivity.this,
-										"FAIL DELETE", Toast.LENGTH_SHORT)
-										.show();
-							break;
-
-						default:
-							break;
-						}
-
-					}
-				});
-
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -645,7 +572,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		if (eventsByDay != null && !eventsByDay.isEmpty()) {
 			for (EventORM eventORM : eventsByDay) {
 				model.eventLayout.addEventView(getApplicationContext(),
-						eventORM, mQuickAction);
+						eventORM);
 			}
 		} else {
 			model.eventLayout.removeAllViews();
@@ -660,7 +587,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	}
 
 	private void DialogDayEvent() {
-		AddDayEvent dialog = new AddDayEvent(this);
+		AddDayEvent dialog = new AddDayEvent();
 		dialog.show(getSupportFragmentManager(), "");
 	}
 
