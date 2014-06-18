@@ -91,10 +91,11 @@ public class PopupMenu {
      *
      * @return item
      */
-    public MenuItem add(int itemId, int titleRes, EventORM eventORM) {
+    public MenuItem add(int itemId, int titleRes,int viewId, EventORM eventORM) {
         MenuItem item = new MenuItem();
         item.setItemId(itemId);
         item.setTitle(mContext.getString(titleRes));
+        item.setViewId(viewId);
         item.setEventORM(eventORM);
         mItems.add(item);
 

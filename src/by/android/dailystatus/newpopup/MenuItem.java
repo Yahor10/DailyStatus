@@ -8,6 +8,7 @@ public class MenuItem {
 
     private int itemId;
     private String title;
+    private int viewId;
     private Drawable icon;
     private Intent intent;
     private EventORM eventORM;
@@ -24,7 +25,13 @@ public class MenuItem {
     public String getTitle() {
         return title;
     }
-    public void setIcon(Drawable icon) {
+    public int getViewId() {
+		return viewId;
+	}
+	public void setViewId(int viewId) {
+		this.viewId = viewId;
+	}
+	public void setIcon(Drawable icon) {
         this.icon = icon;
     }
     public Drawable getIcon() {

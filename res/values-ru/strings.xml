@@ -42,5 +42,26 @@
         <item>@string/man</item>
         <item>@string/woman</item>
     </string-array>
+    
+    
+         <!-- Popup menu -->
+    <string name="view">Просмотреть</string>
+    <string name="delete">Удалить</string>
+    <string name="edit">Изменить</string>
+    
+    <!--  Main Activity add menu item -->
+    <string name="add_day_picture">Добавить изображение</string>
+    <string name="add_standart_event">Выбрать событие</string>
+    <string name="add_day_event">Добавить событие</string>
+    
+     <!-- Calendar activity -->
+    <string name="calendar">Календарь</string>
+    
+    <!-- Profile activity -->
+    <string name="profile">Профиль</string>
+    
+    
+     <!-- Settings activity -->
+    <string name="settings">Настройки</string>
 
 </resources>

@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import android.content.Context;
+import android.util.Log;
+import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.preference.PreferenceUtils;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -25,7 +27,7 @@ public class EventORM {
 	public static final String STATUS = "status"; // good ,bad
 	public static final String DESCRIPTION = "description";
 
-	@DatabaseField(columnName = KEY_ID)
+	@DatabaseField(generatedId = true,columnName = KEY_ID)
 	public int id;
 	@DatabaseField(columnName = USER)
 	public String user;
@@ -113,7 +115,8 @@ public class EventORM {
 		return query;
 	}
 
-	public static boolean deleteEventByName(Context context, String discr, int day) {
+	public static boolean deleteEventByName(Context context, String discr,
+			int day) {
 		try {
 			DatabaseHelper helper = OpenHelperManager.getHelper(context,
 					DatabaseHelper.class);
@@ -124,6 +127,29 @@ public class EventORM {
 			int key = deleteBuilder.delete();
 			if (key < 0)
 				return false;
+
+		} catch (SQLException e) {
+		} finally {
+			OpenHelperManager.releaseHelper();
+		}
+		return true;
+	}
+
+	public static boolean deleteEventByID(Context context, int id) {
+		try {
+			DatabaseHelper helper = OpenHelperManager.getHelper(context,
+					DatabaseHelper.class);
+			final Dao<EventORM, String> dao = helper.getEventDao();
+
+			DeleteBuilder<EventORM, String> deleteBuilder = dao.deleteBuilder();
+			deleteBuilder.where().eq(KEY_ID, id);
+			int key = deleteBuilder.delete();
+			Log.v(Constants.TAG, "KEY DEL:" + key);
+			Log.v(Constants.TAG, "KEY id:" + id);
+			if (key < 0) {
+				Log.e(Constants.TAG, "delete event by id");
+				return false;
+			}
 
 		} catch (SQLException e) {
 		} finally {

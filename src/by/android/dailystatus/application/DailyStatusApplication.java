@@ -1,9 +1,19 @@
 package by.android.dailystatus.application;
 
+import org.acra.ACRA;
+import org.acra.annotation.ReportsCrashes;
+
 import uk.co.senab.bitmapcache.BitmapLruCache;
 import android.app.Application;
 import android.content.Context;
 
+// TODO create correct data base
+//@ReportsCrashes( formKey = "",
+//formUri = "https://sekt.cloudant.com/acra-doroga/_design/acra-storage/_update/report",
+//reportType = org.acra.sender.HttpSender.Type.JSON,
+//httpMethod = org.acra.sender.HttpSender.Method.PUT,
+//formUriBasicAuthLogin="allionessinesirstedlefte",
+//formUriBasicAuthPassword="Tbuv86xe4mgTJjLNDEGH1orf")
 public class DailyStatusApplication extends Application {
 
 	private BitmapLruCache mImageCache;
@@ -11,6 +21,7 @@ public class DailyStatusApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+//		ACRA.init(this);
 	}
 
 	@Override

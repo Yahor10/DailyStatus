@@ -101,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Add Day Event"
+                    android:text="@string/add_day_event"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
 
