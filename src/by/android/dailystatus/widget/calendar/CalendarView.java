@@ -69,6 +69,8 @@ public class CalendarView extends SherlockActivity implements
 		if (savedInstanceState != null) {
 			boolean abv = savedInstanceState.getBoolean("MyBoolean");
 		}
+		
+		setTitle(R.string.calendar);
 		Locale.setDefault(Locale.US);
 		getSupportActionBar().setBackgroundDrawable(
 				new ColorDrawable(Color.parseColor("#0e78c9")));

@@ -29,23 +29,6 @@ public class StandartEventExpandableListAdapter extends
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
-	// public int findItemByDate(int dayOfYear, int year1) {
-	// day = dayOfYear;
-	// this.year = year1;
-	// flagDrawItems = true;
-	// for (ArrayList<String> events : mGroups) {
-	//
-	// for (int i = 0; i < events.size(); i++) {
-	//
-	// if (events.get(i).day == day && events.get(i).year == year) {
-	// return i;
-	// }
-	//
-	// }
-	// }
-	//
-	// return -1;
-	// }
 
 	public void cleanFlagDrawItems() {
 		flagDrawItems = false;

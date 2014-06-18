@@ -28,8 +28,7 @@
         <activity
             android:name="by.android.dailystatus.LoginActivity"
             android:label="@string/app_name"
-            android:noHistory="false"
-            android:windowSoftInputMode="adjustPan" >
+            android:noHistory="false" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,7 +47,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="by.android.dailystatus.MainActivity" />
         </activity>
-        <activity android:name="by.android.dailystatus.SettingsActivity" >
+        <activity android:name="by.android.dailystatus.SettingsActivity"
+            android:label="@string/settings" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="by.android.dailystatus.MainActivity" />
@@ -78,7 +78,8 @@
                     android:scheme="daylystatus" />
             </intent-filter>
         </activity>
-        <activity android:name="by.android.dailystatus.ProfileActivity" >
+        <activity android:name="by.android.dailystatus.ProfileActivity"
+            android:label="@string/profile" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="by.android.dailystatus.MainActivity" />

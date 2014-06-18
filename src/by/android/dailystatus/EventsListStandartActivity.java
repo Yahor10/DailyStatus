@@ -31,7 +31,7 @@ public class EventsListStandartActivity extends SherlockFragmentActivity
 				new ColorDrawable(Color.parseColor("#0e78c9")));
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-		FragmentPagerAdapter adapter = new AppsAdapter(
+		FragmentPagerAdapter adapter = new EventsAdapter(
 				getSupportFragmentManager());
 		ViewPager pager = (ViewPager) findViewById(R.id.pager);
 		pager.setAdapter(adapter);
@@ -40,9 +40,9 @@ public class EventsListStandartActivity extends SherlockFragmentActivity
 		indicator.setViewPager(pager);
 	}
 
-	private class AppsAdapter extends FragmentPagerAdapter {
+	private class EventsAdapter extends FragmentPagerAdapter {
 
-		public AppsAdapter(FragmentManager fm) {
+		public EventsAdapter(FragmentManager fm) {
 			super(fm);
 		}
 

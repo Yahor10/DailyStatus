@@ -167,11 +167,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 		SubMenu subChoosePhoto = menu.addSubMenu("").setIcon(
 				getResources().getDrawable(R.drawable.ic_menu_add));
 
-		subChoosePhoto.add(0, 1, Menu.NONE, "Add Day Picture")
+		subChoosePhoto.add(0, 1, Menu.NONE, R.string.add_day_picture)
 				.setOnMenuItemClickListener(this);
-		subChoosePhoto.add(0, 2, Menu.NONE, "Add standart Event")
+		subChoosePhoto.add(0, 2, Menu.NONE, R.string.add_standart_event)
 				.setOnMenuItemClickListener(this);
-		subChoosePhoto.add(0, 3, Menu.NONE, "Add Day Event")
+		subChoosePhoto.add(0, 3, Menu.NONE, R.string.add_day_event)
 				.setOnMenuItemClickListener(this);
 		subChoosePhoto.getItem()
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);

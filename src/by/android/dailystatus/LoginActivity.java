@@ -10,6 +10,8 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,30 +40,12 @@ public class LoginActivity extends SherlockFragmentActivity implements
 		setContentView(R.layout.login);
 		getSupportActionBar().hide();
 
-		// //////////////////// get sha for facebook////////////////////////
-		// PackageInfo info;
-		// try {
-		// info = getPackageManager().getPackageInfo("by.android.dailystatus",
-		// PackageManager.GET_SIGNATURES);
-		// for (Signature signature : info.signatures) {
-		// MessageDigest md;
-		// md = MessageDigest.getInstance("SHA");
-		// md.update(signature.toByteArray());
-		// String something = new String(Base64.encode(md.digest(), 0));
-		// //String something = new String(Base64.encodeBytes(md.digest()));
-		// Log.e("hash key", something);
-		// }
-		// } catch (NameNotFoundException e1) {
-		// Log.e("name not found", e1.toString());
-		// } catch (NoSuchAlgorithmException e) {
-		// Log.e("no such an algorithm", e.toString());
-		// } catch (Exception e) {
-		// Log.e("exception", e.toString());
-		// }
-		// //////////////////////////////////////////////////////////////////////
-
+		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		
 		loginEdit = (EditText) findViewById(R.id.edtLogin);
 		loginEdit.setText(PreferenceUtils.getCurrentUser(this));
+
+		loginEdit.clearFocus();
 		passwordEdit = (EditText) findViewById(R.id.edtPassword);
 		txtForgotPassword = (TextView) findViewById(R.id.txt_forgot_password);
 		txtForgotPassword.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
@@ -174,6 +158,7 @@ public class LoginActivity extends SherlockFragmentActivity implements
 	protected void onResume() {
 		allUsers = UserORM.getAllFirstNames(this);
 		super.onResume();
+
 	}
 
 	@Override

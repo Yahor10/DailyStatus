@@ -72,5 +72,20 @@
     <string name="view">View</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
+    
+    <!--  Main Activity add menu item -->
+    <string name="add_day_picture">Add Day Picture</string>
+    <string name="add_standart_event">Add standart Event</string>
+    <string name="add_day_event">Add Day Event</string>
+    
+     <!-- Calendar activity -->
+    <string name="calendar">Calendar</string>
+    
+    <!-- Profile activity -->
+    <string name="profile">Profile</string>
+    
+    
+     <!-- Settings activity -->
+    <string name="settings">Settings</string>
 
 </resources>

@@ -30,7 +30,7 @@ public class EventStandartListFragment extends Fragment {
 	public ExpandableListView list;
 	StandartEventExpandableListAdapter adapter;
 	EmptyLayout emptyLayout;
-	String[] mTestArray;
+	String[] mDaysArray;
 
 	public static Fragment newInstance(int type) {
 		return new EventStandartListFragment(type);
@@ -92,9 +92,8 @@ public class EventStandartListFragment extends Fragment {
 
 		@Override
 		protected String[] doInBackground(Void... params) {
-			Context applicationContext = getActivity().getApplicationContext();
 			String[] result;
-			result = getResources().getStringArray(R.array.testArray);
+			result = getResources().getStringArray(R.array.goodDaysArray);
 			return result;
 
 		}
