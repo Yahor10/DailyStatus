@@ -27,6 +27,7 @@ import by.android.dailystatus.ChartsActivity;
 import by.android.dailystatus.R;
 import by.android.dailystatus.adapters.EventExpandableListAdapter;
 import by.android.dailystatus.adapters.EventListIndexedAdapter;
+import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.model.GroupEvent;
 import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.orm.model.EventORM;
@@ -164,6 +165,7 @@ public class EventListFragment extends Fragment {
 	public void refreshAdapter(ArrayList<GroupEvent> data) {
 		if (data != null) {
 			if (data.isEmpty()) {
+				Log.v(Constants.TAG, "SHOW EMPTY");
 				emptyLayout.showEmpty();
 			} else {
 
@@ -454,44 +456,26 @@ public class EventListFragment extends Fragment {
 		}
 
 		@Override
-		protected void onPostExecute(ArrayList<EventORM> result) {
-			super.onPostExecute(result);
-
-			// if (result != null) {
-			// Log.d("BUG", "FRAGMENT : " + typeFragment + " Size result"
-			// + result.size());
-			// if (result.size() != 0) {
-			// adapter.setData(result);
-			refreshAdapter(divideOnGroup(result));
-			// swingBottomInAnimationAdapter = new
-			// SwingBottomInAnimationAdapter(
-			// adapter);
-			// swingBottomInAnimationAdapter.setAbsListView(list);
-
-			// list.setAdapter(swingBottomInAnimationAdapter);
-			// adapter.notifyDataSetChanged();
-			// } else {
-			// emptyLayout.showEmpty();
-			//
-			// }
-			// } else {
-			// Log.d("BUG", "FRAGMENT : " + typeFragment
-			// + " Size result = NULL");
-			// emptyLayout.showError();
-			// }
-			// Log.d("BUG",
-			// "FRAGMENT : " + typeFragment + " Size LIST"
-			// + list.getCount());
-		}
-
-		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
 			Log.d("BUG", "FRAGMENT : " + typeFragment + " START LOAD");
+			String loadingMessage = getString(R.string.loading_message);
 			emptyLayout = new EmptyLayout(getActivity(), list);
+			emptyLayout.setLoadingMessage(loadingMessage);
 			emptyLayout.showLoading();
-			emptyLayout.setLoadingMessage("Please wait...");
+			
+			String emptyMessage = getString(R.string.empty_message);
+			String errorMessage = getString(R.string.error_message);
+			
+			emptyLayout.setEmptyMessage(emptyMessage);
+			emptyLayout.setErrorMessage(errorMessage);
+		
+		}
 
+		@Override
+		protected void onPostExecute(ArrayList<EventORM> result) {
+			super.onPostExecute(result);
+			refreshAdapter(divideOnGroup(result));
 		}
 	}
 

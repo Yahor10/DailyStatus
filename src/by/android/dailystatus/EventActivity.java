@@ -39,7 +39,7 @@ public class EventActivity extends SherlockFragmentActivity implements
 
 	private static final String[] CONTENT = new String[] { "Week", "Month",
 			"Year" };
-	AppsAdapter adapter;
+	EventsAdapter adapter;
 	ViewPager pager;
 
 	OnDateSetListener myCallBack = new OnDateSetListener() {
@@ -65,7 +65,7 @@ public class EventActivity extends SherlockFragmentActivity implements
 				new ColorDrawable(Color.parseColor("#0e78c9")));
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-		adapter = new AppsAdapter(getSupportFragmentManager());
+		adapter = new EventsAdapter(getSupportFragmentManager());
 
 		pager = (ViewPager) findViewById(R.id.pager);
 		pager.setAdapter(adapter);
@@ -159,12 +159,12 @@ public class EventActivity extends SherlockFragmentActivity implements
 		}
 	}
 
-	private class AppsAdapter extends FragmentStatePagerAdapter {
+	private class EventsAdapter extends FragmentStatePagerAdapter {
 		int filterEvent = 0; // 0 - all, -1 - bad, 1- good
 
 		HashMap<Integer, EventListFragment> fragments;
 
-		public AppsAdapter(FragmentManager fm) {
+		public EventsAdapter(FragmentManager fm) {
 			super(fm);
 			fragments = new HashMap<Integer, EventListFragment>();
 		}

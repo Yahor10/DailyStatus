@@ -45,6 +45,14 @@
     </string-array>
     
     
+    <!-- Empty View -->
+    <string name="empty_message">Нет данных пока</string>
+    <string name="loading_message">Пожалуйста,подождите</string>
+    <string name="error_message">Упс! Что то пошло не так</string>
+    <string name="empty_button">Попробуйте снова</string>
+    <string name="loading_button">Отмена</string>
+    <string name="error_button">Попробуйте снова</string>
+    
          <!-- Popup menu -->
     <string name="view">Просмотреть</string>
     <string name="delete">Удалить</string>
