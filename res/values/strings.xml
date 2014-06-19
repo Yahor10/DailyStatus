@@ -87,5 +87,8 @@
     
      <!-- Settings activity -->
     <string name="settings">Settings</string>
+    
+    <!-- Standart events activity -->
+    <string name="standarts_events">Events from list</string>
 
 </resources>

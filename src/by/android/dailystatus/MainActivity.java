@@ -180,18 +180,18 @@ public class MainActivity extends SherlockFragmentActivity implements
 				getResources().getDrawable(
 						R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark));
 
-		subMyProfile.add(0, 4, Menu.NONE, "Charts")
+		subMyProfile.add(0, 4, Menu.NONE, R.string.charts)
 				.setIcon(R.drawable.ic_menu_chart)
 				.setOnMenuItemClickListener(this);
-		subMyProfile.add(0, 5, Menu.NONE, "Month")
+		subMyProfile.add(0, 5, Menu.NONE, R.string.calendar)
 				.setIcon(R.drawable.ic_menu_calendar)
 				.setOnMenuItemClickListener(this);
-		subMyProfile.add(0, 6, Menu.NONE, "Profile")
+		subMyProfile.add(0, 6, Menu.NONE, R.string.profile)
 				.setIcon(R.drawable.ic_menu_profile)
 				.setOnMenuItemClickListener(this);
-		subMyProfile.add(0, 7, Menu.NONE, "Events").setOnMenuItemClickListener(
+		subMyProfile.add(0, 7, Menu.NONE, R.string.events).setOnMenuItemClickListener(
 				this);
-		subMyProfile.add(0, 8, Menu.NONE, "Settings")
+		subMyProfile.add(0, 8, Menu.NONE, R.string.settings)
 				.setIcon(R.drawable.ic_settings)
 				.setOnMenuItemClickListener(this);
 		subMyProfile.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -368,7 +368,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 					now.getMonthOfYear(), now.getYear());
 
 			day.pictureURL = picturePath;
-			DayORM.insertOrUpdateDay(this, day);
+			DayORM.insertOrUpdateDayPicture(this, day);
 
 			adapter.notifyDataSetChanged();
 
@@ -401,7 +401,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 					now.getMonthOfYear(), now.getYear());
 
 			day.pictureURL = picturePath;
-			DayORM.insertOrUpdateDay(this, day);
+			DayORM.insertOrUpdateDayPicture(this, day);
 
 			adapter.notifyDataSetChanged();
 

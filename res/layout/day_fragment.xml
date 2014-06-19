@@ -131,7 +131,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Good Day" />
+            android:text="@string/good_day" />
 
         <Button
             android:id="@+id/bad_day"
@@ -139,7 +139,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Bad day" />
+            android:text="@string/bad_day" />
     </LinearLayout>
 
 </LinearLayout>

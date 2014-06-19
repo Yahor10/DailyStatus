@@ -75,7 +75,7 @@ public class DayORM {
 				UpdateBuilder<DayORM, String> updateBuilder = dao
 						.updateBuilder();
 				updateBuilder.updateColumnValue(DayORM.STATUS, day.status);
-				updateBuilder.updateColumnValue(DayORM.PICTURE, day.pictureURL);
+//				updateBuilder.updateColumnValue(DayORM.PICTURE, day.pictureURL);
 				updateBuilder.where().eq(DayORM.USER, day.user).and()
 						.eq(DayORM.DAY, day.day).and()
 						.eq(DayORM.YEAR, day.year);
@@ -83,6 +83,39 @@ public class DayORM {
 				dao.update(prepare2);
 			}
 
+		} catch (Exception e1) {
+		} finally {
+			OpenHelperManager.releaseHelper();
+		}
+	}
+
+	public static void insertOrUpdateDayPicture(Context context, DayORM day) {
+		DatabaseHelper helper = OpenHelperManager.getHelper(context,
+				DatabaseHelper.class);
+		try {
+			final Dao<DayORM, String> dao = helper.getDayDao();
+			PreparedQuery<DayORM> prepare = dao.queryBuilder().where()
+					.eq(DayORM.USER, day.user).and().eq(DayORM.DAY, day.day)
+					.and().eq(DayORM.YEAR, day.year).prepare();
+			List<DayORM> query = dao.query(prepare);
+			if (query.isEmpty()) {
+				
+				if (insertDay(context, day) == 0) {
+					throw new IllegalArgumentException("cannot create");
+				}
+	
+			} else {
+				UpdateBuilder<DayORM, String> updateBuilder = dao
+						.updateBuilder();
+				updateBuilder.updateColumnValue(DayORM.STATUS, day.status);
+				updateBuilder.updateColumnValue(DayORM.PICTURE, day.pictureURL);
+				updateBuilder.where().eq(DayORM.USER, day.user).and()
+						.eq(DayORM.DAY, day.day).and()
+						.eq(DayORM.YEAR, day.year);
+				PreparedUpdate<DayORM> prepare2 = updateBuilder.prepare();
+				dao.update(prepare2);
+			}
+	
 		} catch (Exception e1) {
 		} finally {
 			OpenHelperManager.releaseHelper();

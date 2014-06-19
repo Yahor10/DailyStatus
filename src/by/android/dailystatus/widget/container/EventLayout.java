@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import by.android.dailystatus.R;
+import by.android.dailystatus.ViewEventActivity;
 import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.newpopup.MenuItem;
 import by.android.dailystatus.newpopup.PopupMenu;
@@ -44,7 +45,7 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
 			@Override
 			public void onClick(View v) {
 				int viewId = v.getId();
-		
+
 				EventORM eventORM = (EventORM) v.getTag();
 				Log.v(Constants.TAG, "eventORM:" + eventORM.id);
 				PopupMenu menu = new PopupMenu(context);
@@ -52,7 +53,7 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
 				// Set Listener
 				menu.setOnItemSelectedListener(EventLayout.this);
 				Resources resources = getResources();
-				
+
 				// TODO find resources
 				menu.add(MENU_VIEW, R.string.view, viewId, eventORM).setIcon(
 						resources.getDrawable(R.drawable.ic_edit));
@@ -104,27 +105,36 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
 	public void onItemSelected(MenuItem item) {
 
 		Log.v(Constants.TAG, "MenuItem onItemSelected");
+		Context context = getContext();
+
 		switch (item.getItemId()) {
 		case MENU_VIEW:
+			if (context == null) {
+				return;
+			}
+			context.startActivity(ViewEventActivity.buildIntent(context));
 			break;
 
+		case MENU_EDIT:
+			// TODO edit;
+			break;
 		case MENU_DELETE:
-			Context context = getContext();
-			if(context == null){
+			if (context == null) {
 				return;
 			}
 			int viewId = item.getViewId();
 			EventORM eventORM = item.getEventORM();
 			EventORM.deleteEventByID(context, eventORM.id);
 			View findViewById = findViewById(viewId);
-			if(findViewById == null){
+			if (findViewById == null) {
 				return;
 			}
-			
-			int index = ((ViewGroup) findViewById.getParent()).indexOfChild(findViewById);
-			removeViewAt(index+ 1);
+
+			int index = ((ViewGroup) findViewById.getParent())
+					.indexOfChild(findViewById);
+			removeViewAt(index + 1);
 			removeView(findViewById);
-			
+
 			break;
 		default:
 			break;

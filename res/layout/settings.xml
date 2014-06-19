@@ -173,8 +173,6 @@
             </LinearLayout>
         </LinearLayout>
 
-
-
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="@dimen/height_head_group"

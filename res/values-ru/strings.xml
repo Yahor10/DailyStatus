@@ -37,6 +37,7 @@
     <string name="show_bad_events">Показать плохие события</string>
     <string name="show_data_picker">Выбрать дату</string>
     <string name="location">ru</string>
+    <string name="events">События</string>
 
     <string-array name="sex">
         <item>@string/man</item>
@@ -64,4 +65,7 @@
      <!-- Settings activity -->
     <string name="settings">Настройки</string>
 
+        <!-- Standart events activity -->
+    <string name="standarts_events">События из списка</string>
+    
 </resources>
