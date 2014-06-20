@@ -164,7 +164,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Used to put dark icons on light action bar
-		SubMenu subChoosePhoto = menu.addSubMenu("").setIcon(
+		SubMenu subChoosePhoto = menu.addSubMenu(R.string.menu_add_element).setIcon(
 				getResources().getDrawable(R.drawable.ic_menu_add));
 
 		subChoosePhoto.add(0, 1, Menu.NONE, R.string.add_day_picture)
@@ -176,7 +176,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		subChoosePhoto.getItem()
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
-		SubMenu subMyProfile = menu.addSubMenu("").setIcon(
+		SubMenu subMyProfile = menu.addSubMenu("Dropdown list").setIcon(
 				getResources().getDrawable(
 						R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark));
 
@@ -789,8 +789,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 				day.status = 1;
 
 				DayORM.insertOrUpdateDay(getApplicationContext(), day);
-				Toast.makeText(getApplicationContext(), "GOOD DAY",
-						Toast.LENGTH_SHORT).show();
 				setContent(PAGE_MIDDLE);
 				break;
 			case R.id.bad_day:
@@ -802,8 +800,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 				day.status = -1;
 
 				DayORM.insertOrUpdateDay(getApplicationContext(), day);
-				Toast.makeText(getApplicationContext(), "BAD DAY",
-						Toast.LENGTH_SHORT).show();
 				setContent(PAGE_MIDDLE);
 				break;
 			case R.id.dayImage:

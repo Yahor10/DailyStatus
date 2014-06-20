@@ -37,7 +37,6 @@
     <string name="show_bad_events">Показать плохие события</string>
     <string name="show_data_picker">Выбрать дату</string>
     <string name="location">ru</string>
-    <string name="events">События</string>
 
     <string-array name="sex">
         <item>@string/man</item>
@@ -62,6 +61,7 @@
     <string name="add_day_picture">Добавить изображение</string>
     <string name="add_standart_event">Выбрать событие</string>
     <string name="add_day_event">Добавить событие</string>
+    <string name="menu_add_element">Добавить элемент</string>
     
      <!-- Calendar activity -->
     <string name="calendar">Календарь</string>
@@ -73,7 +73,21 @@
      <!-- Settings activity -->
     <string name="settings">Настройки</string>
 
+      <!-- Events activity -->
+    <string name="events">События</string>
+    <string name="show_events">Показать события</string>
+    <string name="search_week">Искать на этой неделе</string>
+    <string name="search_week_events">Искать на этой неделе</string>
+    <string name="search_month">Искать в этом месяце</string>
+    <string name="search_month_events">Искать в этом месяце</string>
+    
+    <string name="week">Неделя</string>
+    <string name="month">Месяц</string>
+    <string name="year">Год</string>
+    
+    
         <!-- Standart events activity -->
     <string name="standarts_events">События из списка</string>
-    
+    <string name="search_week">Поиск на этой неделе</string>
+    <string name="search_events_">Поиск событий</string>
 </resources>

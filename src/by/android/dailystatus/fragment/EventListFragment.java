@@ -13,6 +13,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -89,6 +90,12 @@ public class EventListFragment extends Fragment {
 	}
 
 	public int filter = 0;
+	
+	private final DataSetObserver adapterDataObserver = new DataSetObserver() {
+		public void onChanged() {
+			emptyLayout.showEmpty();
+		};
+	};
 
 	public void setFilterNews(int filter) {
 		this.filter = filter;
@@ -122,6 +129,7 @@ public class EventListFragment extends Fragment {
 	public void onStop() {
 		Log.d("BUG", "FRAGMENT : " + typeFragment + " STOP");
 		super.onStop();
+		adapter.unregisterDataSetObserver(adapterDataObserver);
 	}
 
 	// SwingBottomInAnimationAdapter swingBottomInAnimationAdapter;
@@ -162,26 +170,12 @@ public class EventListFragment extends Fragment {
 		return view;
 	}
 
-	public void refreshAdapter(ArrayList<GroupEvent> data) {
-		if (data != null) {
-			if (data.isEmpty()) {
-				Log.v(Constants.TAG, "SHOW EMPTY");
-				emptyLayout.showEmpty();
-			} else {
-
-				adapter = new EventListIndexedAdapter(getActivity(),
-						indexerView, data, list);
-				list.setAdapter(adapter);
-				indexerView.setIndexerListener(adapter);
-			}
-
-		} else {
-			emptyLayout.showError();
-		}
-	}
-
 	public void updateFragment() {
 		new LoadDBAsync(typeFragment).execute();
+	}
+
+	public EventListIndexedAdapter getAdapter() {
+		return adapter;
 	}
 
 	public void findEventsByDate(int dayOfYear, int year) {
@@ -201,6 +195,22 @@ public class EventListFragment extends Fragment {
 		if (original.length() == 0)
 			return original;
 		return original.substring(0, 1).toUpperCase() + original.substring(1);
+	}
+
+	private void refreshAdapter(ArrayList<GroupEvent> data) {
+		if (data != null) {
+			if (data.isEmpty()) {
+				emptyLayout.showEmpty();
+			} else {
+				adapter = new EventListIndexedAdapter(getActivity(),
+						indexerView, data, list);
+				adapter.registerDataSetObserver(adapterDataObserver);
+				list.setAdapter(adapter);
+				indexerView.setIndexerListener(adapter);
+			}
+		} else {
+			emptyLayout.showError();
+		}
 	}
 
 	public ArrayList<GroupEvent> divideOnGroup(ArrayList<EventORM> events) {
@@ -463,13 +473,13 @@ public class EventListFragment extends Fragment {
 			emptyLayout = new EmptyLayout(getActivity(), list);
 			emptyLayout.setLoadingMessage(loadingMessage);
 			emptyLayout.showLoading();
-			
+
 			String emptyMessage = getString(R.string.empty_message);
 			String errorMessage = getString(R.string.error_message);
-			
+
 			emptyLayout.setEmptyMessage(emptyMessage);
 			emptyLayout.setErrorMessage(errorMessage);
-		
+
 		}
 
 		@Override

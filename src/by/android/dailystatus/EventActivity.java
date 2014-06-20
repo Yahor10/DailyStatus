@@ -17,9 +17,13 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
+import android.view.View.OnFocusChangeListener;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import by.android.dailystatus.adapters.EventListIndexedAdapter;
 import by.android.dailystatus.fragment.EventListFragment;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -27,20 +31,27 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
 import com.actionbarsherlock.view.SubMenu;
+import com.actionbarsherlock.widget.SearchView;
+import com.actionbarsherlock.widget.SearchView.OnQueryTextListener;
 import com.viewpagerindicator.TabPageIndicator;
 
+import static by.android.dailystatus.application.Constants.TAG;
+
 public class EventActivity extends SherlockFragmentActivity implements
-		OnMenuItemClickListener {
+		OnMenuItemClickListener, OnPageChangeListener {
 
 	public static final String WEEK = "Week_day";
 	public static final String MONTH = "Month";
 	public static final String YEAR = "Year";
 	private static final String FROM_CALENDAR = "from_calendar";
 
-	private static final String[] CONTENT = new String[] { "Week", "Month",
-			"Year" };
 	EventsAdapter adapter;
 	ViewPager pager;
+	private SearchView mSearchViewWeek;
+	private MenuItem mSearchWeek;
+
+	private SearchView mSearchViewMonth;
+	private MenuItem mSearchMonth;
 
 	OnDateSetListener myCallBack = new OnDateSetListener() {
 
@@ -65,13 +76,16 @@ public class EventActivity extends SherlockFragmentActivity implements
 				new ColorDrawable(Color.parseColor("#0e78c9")));
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-		adapter = new EventsAdapter(getSupportFragmentManager());
+		adapter = new EventsAdapter(this, getSupportFragmentManager());
 
 		pager = (ViewPager) findViewById(R.id.pager);
 		pager.setAdapter(adapter);
 
 		TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
 		indicator.setViewPager(pager);
+
+		indicator.setOnPageChangeListener(this);
+
 		boolean fromCalendar = getIntent()
 				.getBooleanExtra(FROM_CALENDAR, false);
 
@@ -80,6 +94,7 @@ public class EventActivity extends SherlockFragmentActivity implements
 		} else {
 			pager.setCurrentItem(0);
 		}
+
 	}
 
 	@Override
@@ -90,7 +105,73 @@ public class EventActivity extends SherlockFragmentActivity implements
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		SubMenu subMyProfile = menu.addSubMenu("").setIcon(
+
+		if (mSearchViewWeek == null) {
+			mSearchViewWeek = new SearchView(getSupportActionBar()
+					.getThemedContext());
+			mSearchViewWeek.setQueryHint(getString(R.string.search_week_events));
+			mSearchViewWeek.setOnQueryTextListener(new OnQueryTextListener() {
+
+				@Override
+				public boolean onQueryTextSubmit(String query) {
+					return false;
+				}
+
+				@Override
+				public boolean onQueryTextChange(String newText) {
+					EventListFragment fragmentAtPosition = adapter
+							.getFragmentAtPosition(0);
+					EventListIndexedAdapter listAdapter = fragmentAtPosition
+							.getAdapter();
+					if (listAdapter != null) {
+						listAdapter.getFilter().filter(newText);
+					} else {
+						Log.e(TAG, "listAdapter is null");
+					}
+					return false;
+				}
+			});
+
+			if (mSearchWeek == null) {
+				mSearchWeek = menu.add(R.string.search_week);
+				mSearchWeek
+						.setIcon(R.drawable.abs__ic_search)
+						.setActionView(mSearchViewWeek)
+						.setShowAsAction(
+								MenuItem.SHOW_AS_ACTION_ALWAYS
+										| MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+			}
+		}
+
+		if (mSearchViewMonth == null) {
+			mSearchViewMonth = new SearchView(getSupportActionBar()
+					.getThemedContext());
+			mSearchViewMonth.setQueryHint(getString(R.string.search_month_events));
+			mSearchViewMonth.setOnQueryTextListener(new OnQueryTextListener() {
+
+				@Override
+				public boolean onQueryTextSubmit(String query) {
+					return false;
+				}
+
+				@Override
+				public boolean onQueryTextChange(String newText) {
+					return false;
+				}
+			});
+
+			if (mSearchMonth == null) {
+				mSearchMonth = menu.add("Search month");
+				mSearchMonth
+						.setIcon(R.drawable.abs__ic_search)
+						.setActionView(mSearchViewMonth)
+						.setShowAsAction(
+								MenuItem.SHOW_AS_ACTION_ALWAYS
+										| MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+			}
+		}
+
+		SubMenu subMyProfile = menu.addSubMenu(R.string.show_events).setIcon(
 				getResources().getDrawable(
 						R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark));
 
@@ -107,6 +188,10 @@ public class EventActivity extends SherlockFragmentActivity implements
 				getResources().getString(R.string.show_data_picker))
 				.setOnMenuItemClickListener(this);
 		subMyProfile.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+		int currentItem = pager.getCurrentItem();
+		updateSearchView(currentItem);
+
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -116,23 +201,15 @@ public class EventActivity extends SherlockFragmentActivity implements
 		switch (item.getItemId()) {
 
 		case 3:
-			// adapter = new AppsAdapter(getSupportFragmentManager());
-			// adapter.showAllEvents();
-			// pager.setAdapter(adapter);
 			adapter.showAllEvents();
-
 			break;
 		case 4:
 
-			// adapter = new AppsAdapter(getSupportFragmentManager());
 			adapter.showGoodEvents();
-			// pager.setAdapter(adapter);
 
 			break;
 		case 5:
-			// adapter = new AppsAdapter(getSupportFragmentManager());
 			adapter.showBadEvents();
-			// pager.setAdapter(adapter);
 
 			break;
 		case 6:
@@ -159,14 +236,17 @@ public class EventActivity extends SherlockFragmentActivity implements
 		}
 	}
 
-	private class EventsAdapter extends FragmentStatePagerAdapter {
+	private static class EventsAdapter extends FragmentStatePagerAdapter {
 		int filterEvent = 0; // 0 - all, -1 - bad, 1- good
 
-		HashMap<Integer, EventListFragment> fragments;
+		private final HashMap<Integer, EventListFragment> fragments;
+		private final Context mContext;
 
-		public EventsAdapter(FragmentManager fm) {
+		public EventsAdapter(Context context, FragmentManager fm) {
 			super(fm);
 			fragments = new HashMap<Integer, EventListFragment>();
+			mContext = context;
+
 		}
 
 		public void showBadEvents() {
@@ -232,12 +312,26 @@ public class EventActivity extends SherlockFragmentActivity implements
 
 		@Override
 		public CharSequence getPageTitle(int position) {
-			return CONTENT[position % CONTENT.length].toUpperCase();
+			switch (position) {
+			case 0:
+				return mContext.getString(R.string.week);
+			case 1:
+				return mContext.getString(R.string.month);
+			case 2:
+				return mContext.getString(R.string.year);
+			default:
+				return "";
+			}
+
 		}
 
 		@Override
 		public int getCount() {
-			return CONTENT.length;
+			return 3;
+		}
+
+		public EventListFragment getFragmentAtPosition(int position) {
+			return fragments.get(position);
 		}
 	}
 
@@ -248,6 +342,46 @@ public class EventActivity extends SherlockFragmentActivity implements
 		intent.putExtra(MONTH, month);
 		intent.putExtra(YEAR, year);
 		return intent;
+	}
+
+	@Override
+	public void onPageScrollStateChanged(int arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onPageScrolled(int arg0, float arg1, int arg2) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onPageSelected(int page) {
+		updateSearchView(page);
+	}
+
+	private void updateSearchView(int page) {
+		switch (page) {
+		case 0:
+			enableSearchItem(mSearchWeek);
+			disableSearchItem(mSearchMonth);
+			break;
+		case 1:
+			enableSearchItem(mSearchMonth);
+			disableSearchItem(mSearchWeek);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void enableSearchItem(MenuItem item) {
+		item.setVisible(true);
+	}
+
+	private void disableSearchItem(MenuItem item) {
+		item.setVisible(false);
 	}
 
 }

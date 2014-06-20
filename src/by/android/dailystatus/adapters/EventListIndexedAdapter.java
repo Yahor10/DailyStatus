@@ -1,22 +1,34 @@
 package by.android.dailystatus.adapters;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
+import com.kanak.emptylayout.EmptyLayout;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.graphics.Color;
+import android.text.TextUtils;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 import by.android.dailystatus.R;
+import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.model.GroupEvent;
 import by.android.dailystatus.orm.model.EventORM;
 import by.android.dailystatus.widget.customlistview.AlphabetIndexerView;
+
+import static by.android.dailystatus.application.Constants.TAG;
 
 public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 		SectionIndexer {
@@ -29,7 +41,7 @@ public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 	private HashMap<GroupEvent, Integer> sectionPositions;
 	private SparseArray<GroupEvent> positionsOfSections;
 	private ArrayList<GroupEvent> groups;
-
+	private final ArrayList<GroupEvent> originalGroup;
 	private Context context;
 
 	private LayoutInflater inflater;
@@ -50,9 +62,11 @@ public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 		inflater = LayoutInflater.from(context);
 		positionsOfSections = new SparseArray<GroupEvent>();
 		this.groups = days;
+		originalGroup = new ArrayList<GroupEvent>(groups);
 		this.listViewRef = list;
-
 		init();
+		Log.v(TAG, "CONTRUCTOR INIT" + originalGroup.size());
+		
 	}
 
 	private void init() {
@@ -127,6 +141,73 @@ public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 	}
 
 	@Override
+	public Filter getFilter() {
+		Filter filter = new Filter() {
+
+			@SuppressWarnings("unchecked")
+			@Override
+			protected void publishResults(CharSequence constraint,
+					FilterResults results) {
+				if (results.count > 0) {
+					List<GroupEvent> eventsResult = (List<GroupEvent>) results.values;
+					groups.clear();
+					groups.addAll(eventsResult);
+
+					init();
+					notifyDataSetChanged();
+				} else{
+					groups.clear();
+					init();
+					notifyDataSetChanged();
+				}
+				
+			}
+
+			@Override
+			protected FilterResults performFiltering(CharSequence constraint) {
+				FilterResults results = new FilterResults();
+				List<GroupEvent> groupEvent = new ArrayList<GroupEvent>(
+						originalGroup);
+				
+				// TODO check empty filter;
+				
+				List<GroupEvent> groupEventFilter = new ArrayList<GroupEvent>();
+				Iterator<GroupEvent> iterator = groupEvent.iterator();
+
+				while (iterator.hasNext()) {
+					GroupEvent next = iterator.next();
+					boolean foundEvents = false;
+					GroupEvent tempGroup = new GroupEvent(next.numberGroup,
+							next.nameGroup);
+					ArrayList<EventORM> events = next.events;
+					Iterator<EventORM> iterator2 = events.iterator();
+					while (iterator2.hasNext()) {
+						EventORM eventORM = iterator2.next();
+						if (eventORM.description.startsWith(constraint
+								.toString())) {
+							tempGroup.events.add(eventORM);
+							foundEvents = true;
+						}
+					}
+					if (foundEvents) {
+						groupEventFilter.add(tempGroup);
+					}
+				}
+
+				for (GroupEvent groupEvent2 : groupEventFilter) {
+					Log.v(TAG, "groupEvent2:" + groupEvent2.events);
+				}
+
+				results.values = groupEventFilter;
+				results.count = groupEventFilter.size();
+
+				return results;
+			}
+		};
+		return filter;
+	}
+
+	@Override
 	public boolean areAllItemsEnabled() {
 		return false;
 	}
@@ -187,7 +268,8 @@ public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 			} else {
 				view = (TextView) convertView;
 			}
-			view.setBackgroundColor(context.getResources().getColor(R.color.daynames_background));
+			view.setBackgroundColor(context.getResources().getColor(
+					R.color.daynames_background));
 			view.setText(text);
 			return view;
 		}
@@ -206,16 +288,13 @@ public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		if (event.day == day
-				&& event.year == year
-				&& flagDrawItems == true) {
+		if (event.day == day && event.year == year && flagDrawItems == true) {
 			holder.describeTest.setTextColor(Color.RED);
 		} else {
 			holder.describeTest.setTextColor(Color.BLACK);
 		}
 
 		holder.describeTest.setText(event.description);
-
 
 		return convertView;
 	}
@@ -292,7 +371,7 @@ public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 		return indexes;
 	}
 
-	private class ViewHolder {
+	private static class ViewHolder {
 		TextView describeTest;
 	}
 }

@@ -44,7 +44,6 @@
     <string name="show_data_picker">Choose a date</string>
     <string name="app_id">422879181145153</string>
     <string name="location">en</string>
-    <string name="events">Events</string>
 
     <string-array name="sex">
         <item>@string/man</item>
@@ -67,27 +66,39 @@
     <string name="rta_dialog_ok">Rate now</string>
     <string name="rta_dialog_cancel">Remind later</string>
     <string name="rta_dialog_no">No, thanks</string>
-    
-     <!-- Popup menu -->
+
+    <!-- Popup menu -->
     <string name="view">View</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
-    
-    <!--  Main Activity add menu item -->
+
+    <!-- Main Activity add menu item -->
     <string name="add_day_picture">Add Day Picture</string>
     <string name="add_standart_event">Add standart Event</string>
     <string name="add_day_event">Add Day Event</string>
-    
-     <!-- Calendar activity -->
+    <string name="menu_add_element">Add element</string>
+
+    <!-- Calendar activity -->
     <string name="calendar">Calendar</string>
-    
+
     <!-- Profile activity -->
     <string name="profile">Profile</string>
-    
-    
-     <!-- Settings activity -->
+
+    <!-- Settings activity -->
     <string name="settings">Settings</string>
+
+    <!-- Events activity -->
+    <string name="events">Events</string>
+    <string name="show_events">Show Events</string>
+    <string name="search_week">Search week</string>
+    <string name="search_week_events">Search week events</string>
+    <string name="search_month">Search month</string>
+    <string name="search_month_events">Search month events</string>
     
+    <string name="week">Week</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+
     <!-- Standart events activity -->
     <string name="standarts_events">Events from list</string>
 
