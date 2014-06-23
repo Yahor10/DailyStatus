@@ -80,6 +80,9 @@
     <string name="search_week_events">Искать на этой неделе</string>
     <string name="search_month">Искать в этом месяце</string>
     <string name="search_month_events">Искать в этом месяце</string>
+    <string name="search_year_events">Искать в этом году</string>
+    <string name="search_year">Искать в этом году</string>
+    
     
     <string name="week">Неделя</string>
     <string name="month">Месяц</string>

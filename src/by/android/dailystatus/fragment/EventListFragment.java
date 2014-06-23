@@ -90,7 +90,7 @@ public class EventListFragment extends Fragment {
 	}
 
 	public int filter = 0;
-	
+
 	private final DataSetObserver adapterDataObserver = new DataSetObserver() {
 		public void onChanged() {
 			emptyLayout.showEmpty();
@@ -129,7 +129,10 @@ public class EventListFragment extends Fragment {
 	public void onStop() {
 		Log.d("BUG", "FRAGMENT : " + typeFragment + " STOP");
 		super.onStop();
-		adapter.unregisterDataSetObserver(adapterDataObserver);
+		if (adapter != null) {
+			adapter.unregisterDataSetObserver(adapterDataObserver);
+			// TODO check register
+		}
 	}
 
 	// SwingBottomInAnimationAdapter swingBottomInAnimationAdapter;

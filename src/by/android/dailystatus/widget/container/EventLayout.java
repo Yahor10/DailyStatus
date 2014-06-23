@@ -1,6 +1,7 @@
 package by.android.dailystatus.widget.container;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.util.AttributeSet;
@@ -112,9 +113,10 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
 			if (context == null) {
 				return;
 			}
-			context.startActivity(ViewEventActivity.buildIntent(context));
+			EventORM eventORMView = item.getEventORM();
+			Intent buildIntent = ViewEventActivity.buildIntent(context,eventORMView.date,eventORMView.description);
+			context.startActivity(buildIntent);
 			break;
-
 		case MENU_EDIT:
 			// TODO edit;
 			break;

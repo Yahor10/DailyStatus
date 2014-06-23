@@ -27,9 +27,6 @@ public class ChartsActivity extends SherlockFragmentActivity {
 	public static final String YEAR = "Year";
 	private static final String FROM_CALENDAR = "from_calendar";
 
-	private static final String[] CONTENT = new String[] { "Week", "Month",
-			"Year" };
-
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
@@ -91,12 +88,21 @@ public class ChartsActivity extends SherlockFragmentActivity {
 
 		@Override
 		public CharSequence getPageTitle(int position) {
-			return CONTENT[position % CONTENT.length].toUpperCase();
+			switch (position) {
+			case 0:
+				return getString(R.string.week);
+			case 1:
+				return getString(R.string.month);
+			case 2:
+				return getString(R.string.year);
+			default:
+				return "";
+			}
 		}
 
 		@Override
 		public int getCount() {
-			return CONTENT.length;
+			return 3;
 		}
 	}
 

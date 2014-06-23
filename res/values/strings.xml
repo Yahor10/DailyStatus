@@ -9,7 +9,6 @@
     <string name="stats">Stats</string>
     <string name="good_day">Good Day</string>
     <string name="bad_day">Bad day</string>
-    <string name="charts">Charts</string>
     <string name="logout">Logout</string>
     <string name="welcome">Welcome to</string>
     <string name="daily_status">Daily Status</string>
@@ -78,6 +77,11 @@
     <string name="add_day_event">Add Day Event</string>
     <string name="menu_add_element">Add element</string>
 
+    <!-- Charts activity -->
+    <string name="charts">Charts</string>
+    <string name="good_days_charts">Good</string>
+    <string name="bad_days_charts">Bad</string>
+    
     <!-- Calendar activity -->
     <string name="calendar">Calendar</string>
 
@@ -94,6 +98,8 @@
     <string name="search_week_events">Search week events</string>
     <string name="search_month">Search month</string>
     <string name="search_month_events">Search month events</string>
+    <string name="search_year_events">Search year events</string>
+    <string name="search_year">Search year</string>
     
     <string name="week">Week</string>
     <string name="month">Month</string>

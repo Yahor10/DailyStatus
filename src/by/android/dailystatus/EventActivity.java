@@ -53,6 +53,9 @@ public class EventActivity extends SherlockFragmentActivity implements
 	private SearchView mSearchViewMonth;
 	private MenuItem mSearchMonth;
 
+	private SearchView mSearchViewYear;
+	private MenuItem mSearchYear;
+
 	OnDateSetListener myCallBack = new OnDateSetListener() {
 
 		public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -109,7 +112,8 @@ public class EventActivity extends SherlockFragmentActivity implements
 		if (mSearchViewWeek == null) {
 			mSearchViewWeek = new SearchView(getSupportActionBar()
 					.getThemedContext());
-			mSearchViewWeek.setQueryHint(getString(R.string.search_week_events));
+			mSearchViewWeek
+					.setQueryHint(getString(R.string.search_week_events));
 			mSearchViewWeek.setOnQueryTextListener(new OnQueryTextListener() {
 
 				@Override
@@ -146,7 +150,8 @@ public class EventActivity extends SherlockFragmentActivity implements
 		if (mSearchViewMonth == null) {
 			mSearchViewMonth = new SearchView(getSupportActionBar()
 					.getThemedContext());
-			mSearchViewMonth.setQueryHint(getString(R.string.search_month_events));
+			mSearchViewMonth
+					.setQueryHint(getString(R.string.search_month_events));
 			mSearchViewMonth.setOnQueryTextListener(new OnQueryTextListener() {
 
 				@Override
@@ -156,15 +161,62 @@ public class EventActivity extends SherlockFragmentActivity implements
 
 				@Override
 				public boolean onQueryTextChange(String newText) {
+					EventListFragment fragmentAtPosition = adapter
+							.getFragmentAtPosition(1);
+					EventListIndexedAdapter listAdapter = fragmentAtPosition
+							.getAdapter();
+					if (listAdapter != null) {
+						listAdapter.getFilter().filter(newText);
+					} else {
+						Log.e(TAG, "listAdapter is null");
+					}
 					return false;
 				}
 			});
 
 			if (mSearchMonth == null) {
-				mSearchMonth = menu.add("Search month");
+				mSearchMonth = menu.add(R.string.search_month);
 				mSearchMonth
 						.setIcon(R.drawable.abs__ic_search)
 						.setActionView(mSearchViewMonth)
+						.setShowAsAction(
+								MenuItem.SHOW_AS_ACTION_ALWAYS
+										| MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+			}
+		}
+
+		if (mSearchViewYear == null) {
+			mSearchViewYear = new SearchView(getSupportActionBar()
+					.getThemedContext());
+			mSearchViewYear
+					.setQueryHint(getString(R.string.search_year_events));
+			mSearchViewYear.setOnQueryTextListener(new OnQueryTextListener() {
+
+				@Override
+				public boolean onQueryTextSubmit(String query) {
+					return false;
+				}
+
+				@Override
+				public boolean onQueryTextChange(String newText) {
+					EventListFragment fragmentAtPosition = adapter
+							.getFragmentAtPosition(2);
+					EventListIndexedAdapter listAdapter = fragmentAtPosition
+							.getAdapter();
+					if (listAdapter != null) {
+						listAdapter.getFilter().filter(newText);
+					} else {
+						Log.e(TAG, "listAdapter is null");
+					}
+					return false;
+				}
+			});
+
+			if (mSearchYear == null) {
+				mSearchYear = menu.add(R.string.search_year);
+				mSearchYear
+						.setIcon(R.drawable.abs__ic_search)
+						.setActionView(mSearchViewYear)
 						.setShowAsAction(
 								MenuItem.SHOW_AS_ACTION_ALWAYS
 										| MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
@@ -366,10 +418,17 @@ public class EventActivity extends SherlockFragmentActivity implements
 		case 0:
 			enableSearchItem(mSearchWeek);
 			disableSearchItem(mSearchMonth);
+			disableSearchItem(mSearchYear);
 			break;
 		case 1:
 			enableSearchItem(mSearchMonth);
 			disableSearchItem(mSearchWeek);
+			disableSearchItem(mSearchYear);
+			break;
+		case 2:
+			enableSearchItem(mSearchYear);
+			disableSearchItem(mSearchWeek);
+			disableSearchItem(mSearchMonth);
 			break;
 		default:
 			break;
