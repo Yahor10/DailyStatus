@@ -1,5 +1,7 @@
 package by.android.dailystatus;
 
+import static by.android.dailystatus.application.Constants.TAG;
+
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -19,10 +21,9 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
-import android.view.View.OnFocusChangeListener;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.Toast;
 import by.android.dailystatus.adapters.EventListIndexedAdapter;
 import by.android.dailystatus.fragment.EventListFragment;
 
@@ -34,8 +35,6 @@ import com.actionbarsherlock.view.SubMenu;
 import com.actionbarsherlock.widget.SearchView;
 import com.actionbarsherlock.widget.SearchView.OnQueryTextListener;
 import com.viewpagerindicator.TabPageIndicator;
-
-import static by.android.dailystatus.application.Constants.TAG;
 
 public class EventActivity extends SherlockFragmentActivity implements
 		OnMenuItemClickListener, OnPageChangeListener {
@@ -125,12 +124,14 @@ public class EventActivity extends SherlockFragmentActivity implements
 				public boolean onQueryTextChange(String newText) {
 					EventListFragment fragmentAtPosition = adapter
 							.getFragmentAtPosition(0);
-					EventListIndexedAdapter listAdapter = fragmentAtPosition
-							.getAdapter();
-					if (listAdapter != null) {
-						listAdapter.getFilter().filter(newText);
-					} else {
-						Log.e(TAG, "listAdapter is null");
+					if (fragmentAtPosition != null) {
+						EventListIndexedAdapter listAdapter = fragmentAtPosition
+								.getAdapter();
+						if (listAdapter != null) {
+							listAdapter.getFilter().filter(newText);
+						} else {
+							Log.e(TAG, "listAdapter is null");
+						}
 					}
 					return false;
 				}
@@ -163,12 +164,14 @@ public class EventActivity extends SherlockFragmentActivity implements
 				public boolean onQueryTextChange(String newText) {
 					EventListFragment fragmentAtPosition = adapter
 							.getFragmentAtPosition(1);
-					EventListIndexedAdapter listAdapter = fragmentAtPosition
-							.getAdapter();
-					if (listAdapter != null) {
-						listAdapter.getFilter().filter(newText);
-					} else {
-						Log.e(TAG, "listAdapter is null");
+					if (fragmentAtPosition != null) {
+						EventListIndexedAdapter listAdapter = fragmentAtPosition
+								.getAdapter();
+						if (listAdapter != null) {
+							listAdapter.getFilter().filter(newText);
+						} else {
+							Log.e(TAG, "listAdapter is null");
+						}
 					}
 					return false;
 				}
@@ -201,12 +204,14 @@ public class EventActivity extends SherlockFragmentActivity implements
 				public boolean onQueryTextChange(String newText) {
 					EventListFragment fragmentAtPosition = adapter
 							.getFragmentAtPosition(2);
-					EventListIndexedAdapter listAdapter = fragmentAtPosition
-							.getAdapter();
-					if (listAdapter != null) {
-						listAdapter.getFilter().filter(newText);
-					} else {
-						Log.e(TAG, "listAdapter is null");
+					if (fragmentAtPosition != null) {
+						EventListIndexedAdapter listAdapter = fragmentAtPosition
+								.getAdapter();
+						if (listAdapter != null) {
+							listAdapter.getFilter().filter(newText);
+						} else {
+							Log.e(TAG, "listAdapter is null");
+						}
 					}
 					return false;
 				}
@@ -404,13 +409,22 @@ public class EventActivity extends SherlockFragmentActivity implements
 
 	@Override
 	public void onPageScrolled(int arg0, float arg1, int arg2) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onPageSelected(int page) {
 		updateSearchView(page);
+		collapseSearchMenu();
+	}
+
+	private void collapseSearchMenu() {
+		mSearchWeek.collapseActionView();
+		mSearchMonth.collapseActionView();
+		mSearchYear.collapseActionView();
+		mSearchViewWeek.setQuery("", false);
+		mSearchViewMonth.setQuery("", false);
+		mSearchViewYear.setQuery("", false);
 	}
 
 	private void updateSearchView(int page) {

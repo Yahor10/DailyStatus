@@ -130,7 +130,12 @@ public class EventListFragment extends Fragment {
 		Log.d("BUG", "FRAGMENT : " + typeFragment + " STOP");
 		super.onStop();
 		if (adapter != null) {
-			adapter.unregisterDataSetObserver(adapterDataObserver);
+			try {
+				adapter.unregisterDataSetObserver(adapterDataObserver);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 			// TODO check register
 		}
 	}
