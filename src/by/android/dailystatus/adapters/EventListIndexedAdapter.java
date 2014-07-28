@@ -183,8 +183,8 @@ public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 					Iterator<EventORM> iterator2 = events.iterator();
 					while (iterator2.hasNext()) {
 						EventORM eventORM = iterator2.next();
-						if (eventORM.description.startsWith(constraint
-								.toString())) {
+						if (eventORM.description.toLowerCase().startsWith(constraint
+								.toString().toLowerCase())) {
 							tempGroup.events.add(eventORM);
 							foundEvents = true;
 						}
