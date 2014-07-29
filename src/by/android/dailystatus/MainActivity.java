@@ -571,7 +571,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		Log.v(TAG, "EVENT LIST" + eventsByDay);
 		if (eventsByDay != null && !eventsByDay.isEmpty()) {
 			for (EventORM eventORM : eventsByDay) {
-				model.eventLayout.addEventView(getApplicationContext(),
+				model.eventLayout.addEventView(this,
 						eventORM);
 			}
 		} else {
