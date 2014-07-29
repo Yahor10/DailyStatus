@@ -26,6 +26,7 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 import by.android.dailystatus.adapters.EventListIndexedAdapter;
 import by.android.dailystatus.fragment.EventListFragment;
+import by.android.dailystatus.widget.animations.AnimationViewPagerFragmentZoom;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -81,6 +82,7 @@ public class EventActivity extends SherlockFragmentActivity implements
 		adapter = new EventsAdapter(this, getSupportFragmentManager());
 
 		pager = (ViewPager) findViewById(R.id.pager);
+		pager.setPageTransformer(true, new AnimationViewPagerFragmentZoom());
 		pager.setAdapter(adapter);
 
 		TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
