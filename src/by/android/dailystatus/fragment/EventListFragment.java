@@ -158,8 +158,8 @@ public class EventListFragment extends Fragment {
 
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
-				adapter.cleanFlagDrawItems();
-				adapter.notifyDataSetChanged();
+//				adapter.cleanFlagDrawItems();
+//				adapter.notifyDataSetChanged();
 
 			}
 

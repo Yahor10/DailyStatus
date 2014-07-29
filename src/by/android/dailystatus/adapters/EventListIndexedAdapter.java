@@ -1,34 +1,30 @@
 package by.android.dailystatus.adapters;
 
+import static by.android.dailystatus.application.Constants.TAG;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import com.kanak.emptylayout.EmptyLayout;
-
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.graphics.Color;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 import by.android.dailystatus.R;
-import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.model.GroupEvent;
 import by.android.dailystatus.orm.model.EventORM;
 import by.android.dailystatus.widget.customlistview.AlphabetIndexerView;
-
-import static by.android.dailystatus.application.Constants.TAG;
 
 public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 		SectionIndexer {
@@ -66,7 +62,7 @@ public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 		this.listViewRef = list;
 		init();
 		Log.v(TAG, "CONTRUCTOR INIT" + originalGroup.size());
-		
+
 	}
 
 	private void init() {
@@ -155,12 +151,12 @@ public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 
 					init();
 					notifyDataSetChanged();
-				} else{
+				} else {
 					groups.clear();
 					init();
 					notifyDataSetChanged();
 				}
-				
+
 			}
 
 			@Override
@@ -168,9 +164,9 @@ public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 				FilterResults results = new FilterResults();
 				List<GroupEvent> groupEvent = new ArrayList<GroupEvent>(
 						originalGroup);
-				
+
 				// TODO check empty filter;
-				
+
 				List<GroupEvent> groupEventFilter = new ArrayList<GroupEvent>();
 				Iterator<GroupEvent> iterator = groupEvent.iterator();
 
@@ -183,8 +179,8 @@ public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 					Iterator<EventORM> iterator2 = events.iterator();
 					while (iterator2.hasNext()) {
 						EventORM eventORM = iterator2.next();
-						if (eventORM.description.toLowerCase().startsWith(constraint
-								.toString().toLowerCase())) {
+						if (eventORM.description.toLowerCase().startsWith(
+								constraint.toString().toLowerCase())) {
 							tempGroup.events.add(eventORM);
 							foundEvents = true;
 						}
@@ -271,6 +267,11 @@ public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 			view.setBackgroundColor(context.getResources().getColor(
 					R.color.daynames_background));
 			view.setText(text);
+			Animation animation = AnimationUtils.loadAnimation(context,
+					R.anim.event_list_item_animation);
+			animation.setDuration(500);
+			view.startAnimation(animation);
+			animation = null;
 			return view;
 		}
 		EventORM event = (EventORM) getItem(position);
@@ -296,6 +297,11 @@ public class EventListIndexedAdapter extends ArrayAdapter<Object> implements
 
 		holder.describeTest.setText(event.description);
 
+		Animation animation = AnimationUtils.loadAnimation(context,
+				R.anim.event_list_item_animation);
+		animation.setDuration(500);
+		convertView.startAnimation(animation);
+		animation = null;
 		return convertView;
 	}
 
