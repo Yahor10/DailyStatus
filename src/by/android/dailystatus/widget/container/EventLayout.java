@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -105,6 +107,19 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
 
 		addView(layoutEvent, 0);
 		addView(separatorDown, 1);
+		Animation animationSeparator = AnimationUtils.loadAnimation(
+				mainActivity.getApplicationContext(),
+				R.anim.event_list_item_animation);
+		animationSeparator.setDuration(500);
+		separatorDown.startAnimation(animationSeparator);
+		animationSeparator = null;
+
+		Animation animationEvent = AnimationUtils.loadAnimation(
+				mainActivity.getApplicationContext(),
+				R.anim.event_list_item_animation);
+		animationEvent.setDuration(500);
+		layoutEvent.startAnimation(animationEvent);
+		animationEvent = null;
 	}
 
 	@Override
@@ -125,8 +140,7 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
 			break;
 		case MENU_EDIT:
 			EventORM eventEdit = item.getEventORM();
-			AddDayEvent dialog = new AddDayEvent(
-					mainActivity,
+			AddDayEvent dialog = new AddDayEvent(mainActivity,
 					eventEdit.description, true);
 			dialog.show(mainActivity.getSupportFragmentManager(), "");
 			break;

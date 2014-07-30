@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="250dp"
+    android:background="@drawable/background"
+    android:minHeight="100dp"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/lin_title_dialog_version"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/height_title"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/left_padding_title" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/title_dialog_new_version"
+            android:textColor="@color/daynames_background"
+            android:textSize="@dimen/size_text_title"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_divider"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/lin_title_dialog_version"
+        android:background="@color/daynames_background" />
+
+    <ScrollView
+        android:id="@+id/scrl_dialog_version"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/but_dialog_version_ok"
+        android:layout_below="@+id/view_divider" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|top"
+            android:padding="20dp" >
+
+            <TextView
+                android:id="@+id/txt_dialog_version_description"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="New version!" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/but_dialog_version_ok"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/violet_new"
+        android:text="@android:string/ok"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>

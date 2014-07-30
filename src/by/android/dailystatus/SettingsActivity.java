@@ -20,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import by.android.dailystatus.alarm.AlarmActivity;
+import by.android.dailystatus.dialog.VersionDialog;
 import by.android.dailystatus.preference.PreferenceUtils;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -29,7 +30,6 @@ import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.model.GraphUser;
-import com.facebook.widget.WebDialog;
 import com.hintdesk.core.activities.AlertMessageBox;
 import com.hintdesk.core.util.OSUtil;
 import com.kskkbys.rate.RateThisApp;
@@ -161,6 +161,33 @@ public class SettingsActivity extends SherlockFragmentActivity implements
 
 			}
 		});
+
+		int versionCurrent = PreferenceUtils.getCurrentVersion(this);
+		int versionNew = 1;
+
+		try {
+			pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+			versionNew = pInfo.versionCode;
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (versionNew > versionCurrent) {
+			VersionDialog dialog = new VersionDialog();
+			switch (versionNew) {
+			case 1:
+				dialog.setText(this.getResources()
+						.getString(R.string.version_1));
+				break;
+
+			default:
+				break;
+			}
+			dialog.show(getSupportFragmentManager(), "");
+			PreferenceUtils.setCurrentVersion(getApplicationContext(),
+					versionNew);
+		}
 
 	}
 

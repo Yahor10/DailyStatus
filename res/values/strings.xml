@@ -26,6 +26,7 @@
     <string name="man">man</string>
     <string name="woman">woman</string>
     <string name="title_dialog_add_event">Add day event</string>
+    <string name="title_dialog_new_version">New Version</string>
     <string name="no_data_about_days">There are no good or bad days selected in this </string>
     <string name="contentdesc4pic1">Content</string>
     <string name="week_for_chart_act">week</string>

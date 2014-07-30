@@ -64,5 +64,22 @@ public class PreferenceUtils {
 		return defaultSharedPreferences.getInt(
 				PreferenceKeys.CURRENT_RADIO_BTN_NOTIFICATION, 4);
 	}
+	
+	
+	public static void setCurrentVersion(Context context,
+			int currentVersion) {
+		Editor pEditor = PreferenceManager.getDefaultSharedPreferences(context)
+				.edit();
+		pEditor.putInt(PreferenceKeys.VERSION,
+				currentVersion);
+		pEditor.commit();
+	}
+
+	public static int getCurrentVersion(Context context) {
+		SharedPreferences defaultSharedPreferences = PreferenceManager
+				.getDefaultSharedPreferences(context);
+		return defaultSharedPreferences.getInt(
+				PreferenceKeys.VERSION, 0);
+	}
 
 }
