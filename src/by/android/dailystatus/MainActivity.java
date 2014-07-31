@@ -5,7 +5,6 @@ import static by.android.dailystatus.application.Constants.TAG;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Calendar;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -16,6 +15,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -28,6 +28,7 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -41,13 +42,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import by.android.dailystatus.alarm.EveryDayTimeAlarm;
-import by.android.dailystatus.alarm.TimeAlarm;
 import by.android.dailystatus.application.DailyStatusApplication;
 import by.android.dailystatus.dialog.AddDayEvent;
 import by.android.dailystatus.dialog.ImageChoiseDialog;
@@ -156,16 +157,15 @@ public class MainActivity extends SherlockFragmentActivity implements
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
 				intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-		am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+10800000,
-				10800000, pendingIntent);
+		am.setRepeating(AlarmManager.RTC_WAKEUP,
+				System.currentTimeMillis() + 10800000, 10800000, pendingIntent);
 	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Used to put dark icons on light action bar
-		SubMenu subChoosePhoto = menu.addSubMenu(R.string.menu_add_element).setIcon(
-				getResources().getDrawable(R.drawable.ic_menu_add));
+		SubMenu subChoosePhoto = menu.addSubMenu(R.string.menu_add_element)
+				.setIcon(getResources().getDrawable(R.drawable.ic_menu_add));
 
 		subChoosePhoto.add(0, 1, Menu.NONE, R.string.add_day_picture)
 				.setOnMenuItemClickListener(this);
@@ -189,8 +189,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 		subMyProfile.add(0, 6, Menu.NONE, R.string.profile)
 				.setIcon(R.drawable.ic_menu_profile)
 				.setOnMenuItemClickListener(this);
-		subMyProfile.add(0, 7, Menu.NONE, R.string.events).setOnMenuItemClickListener(
-				this);
+		subMyProfile.add(0, 7, Menu.NONE, R.string.events)
+				.setOnMenuItemClickListener(this);
 		subMyProfile.add(0, 8, Menu.NONE, R.string.settings)
 				.setIcon(R.drawable.ic_settings)
 				.setOnMenuItemClickListener(this);
@@ -496,14 +496,17 @@ public class MainActivity extends SherlockFragmentActivity implements
 		setContent(PAGE_MIDDLE);
 	}
 
+	@SuppressLint("NewApi")
 	private void setContent(int index) {
 		final DayModel model = dayPageModel[index];
 		String dayText = model.getDayText();
 		model.dayText.setText(dayText);
+		
 
 		int violetColor = getResources().getColor(R.color.violet);
 		model.goodDay.setBackgroundColor(violetColor);
 		model.badDay.setBackgroundColor(violetColor);
+
 
 		DateTime date = model.getDate();
 		int dayOfYear = date.getDayOfYear();
@@ -551,10 +554,23 @@ public class MainActivity extends SherlockFragmentActivity implements
 			case 1:
 				color = getResources().getColor(android.R.color.white);
 				model.goodDay.setBackgroundColor(color);
+
+				Animation animation_good = AnimationUtils.loadAnimation(
+						MainActivity.this,
+						R.anim.button_clic_animation_zoom_small);
+				animation_good.setDuration(500);
+				model.goodDay.startAnimation(animation_good);
+				animation_good = null;
 				break;
 			case -1:
 				color = getResources().getColor(android.R.color.black);
 				model.badDay.setBackgroundColor(color);
+				Animation animation_bad = AnimationUtils.loadAnimation(
+						MainActivity.this,
+						R.anim.button_clic_animation_zoom_small);
+				animation_bad.setDuration(500);
+				model.badDay.startAnimation(animation_bad);
+				animation_bad = null;
 				break;
 			default:
 				break;
@@ -571,8 +587,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		Log.v(TAG, "EVENT LIST" + eventsByDay);
 		if (eventsByDay != null && !eventsByDay.isEmpty()) {
 			for (EventORM eventORM : eventsByDay) {
-				model.eventLayout.addEventView(this,
-						eventORM);
+				model.eventLayout.addEventView(this, eventORM);
 			}
 		} else {
 			model.eventLayout.removeAllViews();
@@ -765,6 +780,9 @@ public class MainActivity extends SherlockFragmentActivity implements
 			inflate.findViewById(R.id.back_day).setOnClickListener(this);
 			inflate.findViewById(R.id.next_day).setOnClickListener(this);
 			inflate.findViewById(R.id.addDayEvent).setOnClickListener(this);
+			
+			inflate.findViewById(R.id.good_day).setTag(inflate.findViewById(R.id.bad_day));
+			inflate.findViewById(R.id.bad_day).setTag(inflate.findViewById(R.id.good_day));
 
 			dayImage.setOnClickListener(this);
 
@@ -781,11 +799,23 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 			switch (v.getId()) {
 			case R.id.good_day:
+				
+
 				String currentUser = PreferenceUtils
 						.getCurrentUser(getApplicationContext());
 
-				DayORM day = new DayORM(currentUser, now.getDayOfYear(),
-						now.getMonthOfYear(), now.getYear());
+//				DayORM day = new DayORM(currentUser, now.getDayOfYear(),
+//						now.getMonthOfYear(), now.getYear());
+				DayORM day = DayORM.getDay(MainActivity.this, now.getDayOfYear(), now.getYear());
+				if (day.status == -1) {
+					View but_bad =(View) v.getTag();
+					Animation animation_bad = AnimationUtils.loadAnimation(
+							MainActivity.this, R.anim.button_clic_animation_zoom_small);
+					animation_bad.setDuration(500);
+					but_bad.startAnimation(animation_bad);
+					animation_bad = null;
+					
+				}
 				day.status = 1;
 
 				DayORM.insertOrUpdateDay(getApplicationContext(), day);
@@ -794,9 +824,21 @@ public class MainActivity extends SherlockFragmentActivity implements
 			case R.id.bad_day:
 				currentUser = PreferenceUtils
 						.getCurrentUser(getApplicationContext());
+				day = DayORM.getDay(MainActivity.this, now.getDayOfYear(), now.getYear());
 
-				day = new DayORM(currentUser, now.getDayOfYear(),
-						now.getMonthOfYear(), now.getYear());
+//				day = new DayORM(currentUser, now.getDayOfYear(),
+//						now.getMonthOfYear(), now.getYear());
+				
+				if (day.status == 1) {
+					View but_good =(View) v.getTag();
+					Animation animation_good= AnimationUtils.loadAnimation(
+							MainActivity.this, R.anim.button_clic_animation_zoom_small);
+					animation_good.setDuration(500);
+					but_good.startAnimation(animation_good);
+					animation_good = null;
+					
+				}
+
 				day.status = -1;
 
 				DayORM.insertOrUpdateDay(getApplicationContext(), day);
