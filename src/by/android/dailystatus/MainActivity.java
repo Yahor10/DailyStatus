@@ -56,6 +56,7 @@ import by.android.dailystatus.fragment.DayModel;
 import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.orm.model.EventORM;
 import by.android.dailystatus.preference.PreferenceUtils;
+import by.android.dailystatus.widget.animations.AnimationViewPagerFragmentZoom;
 import by.android.dailystatus.widget.calendar.CalendarView;
 import by.android.dailystatus.widget.container.EventLayout;
 
@@ -141,6 +142,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		adapter = new DayPageAdapter();
 		viewPager = (ViewPager) findViewById(R.id.pager);
+		viewPager
+				.setPageTransformer(true, new AnimationViewPagerFragmentZoom());
 		viewPager.setAdapter(adapter);
 		// we dont want any smoothscroll. This enables us to switch the page
 		// without the user notifiying this
@@ -501,12 +504,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 		final DayModel model = dayPageModel[index];
 		String dayText = model.getDayText();
 		model.dayText.setText(dayText);
-		
 
 		int violetColor = getResources().getColor(R.color.violet);
 		model.goodDay.setBackgroundColor(violetColor);
 		model.badDay.setBackgroundColor(violetColor);
-
 
 		DateTime date = model.getDate();
 		int dayOfYear = date.getDayOfYear();
@@ -780,9 +781,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 			inflate.findViewById(R.id.back_day).setOnClickListener(this);
 			inflate.findViewById(R.id.next_day).setOnClickListener(this);
 			inflate.findViewById(R.id.addDayEvent).setOnClickListener(this);
-			
-			inflate.findViewById(R.id.good_day).setTag(inflate.findViewById(R.id.bad_day));
-			inflate.findViewById(R.id.bad_day).setTag(inflate.findViewById(R.id.good_day));
+
+			inflate.findViewById(R.id.good_day).setTag(
+					inflate.findViewById(R.id.bad_day));
+			inflate.findViewById(R.id.bad_day).setTag(
+					inflate.findViewById(R.id.good_day));
 
 			dayImage.setOnClickListener(this);
 
@@ -799,22 +802,27 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 			switch (v.getId()) {
 			case R.id.good_day:
-				
 
 				String currentUser = PreferenceUtils
 						.getCurrentUser(getApplicationContext());
 
-//				DayORM day = new DayORM(currentUser, now.getDayOfYear(),
-//						now.getMonthOfYear(), now.getYear());
-				DayORM day = DayORM.getDay(MainActivity.this, now.getDayOfYear(), now.getYear());
+				// DayORM day = new DayORM(currentUser, now.getDayOfYear(),
+				// now.getMonthOfYear(), now.getYear());
+				DayORM day = DayORM.getDay(MainActivity.this,
+						now.getDayOfYear(), now.getYear());
+				if (day == null)
+					day = new DayORM(currentUser, now.getDayOfYear(),
+							now.getMonthOfYear(), now.getYear());
+
 				if (day.status == -1) {
-					View but_bad =(View) v.getTag();
+					View but_bad = (View) v.getTag();
 					Animation animation_bad = AnimationUtils.loadAnimation(
-							MainActivity.this, R.anim.button_clic_animation_zoom_small);
+							MainActivity.this,
+							R.anim.button_clic_animation_zoom_small);
 					animation_bad.setDuration(500);
 					but_bad.startAnimation(animation_bad);
 					animation_bad = null;
-					
+
 				}
 				day.status = 1;
 
@@ -824,19 +832,22 @@ public class MainActivity extends SherlockFragmentActivity implements
 			case R.id.bad_day:
 				currentUser = PreferenceUtils
 						.getCurrentUser(getApplicationContext());
-				day = DayORM.getDay(MainActivity.this, now.getDayOfYear(), now.getYear());
+				day = DayORM.getDay(MainActivity.this, now.getDayOfYear(),
+						now.getYear());
 
-//				day = new DayORM(currentUser, now.getDayOfYear(),
-//						now.getMonthOfYear(), now.getYear());
-				
+				if (day == null)
+					day = new DayORM(currentUser, now.getDayOfYear(),
+							now.getMonthOfYear(), now.getYear());
+
 				if (day.status == 1) {
-					View but_good =(View) v.getTag();
-					Animation animation_good= AnimationUtils.loadAnimation(
-							MainActivity.this, R.anim.button_clic_animation_zoom_small);
+					View but_good = (View) v.getTag();
+					Animation animation_good = AnimationUtils.loadAnimation(
+							MainActivity.this,
+							R.anim.button_clic_animation_zoom_small);
 					animation_good.setDuration(500);
 					but_good.startAnimation(animation_good);
 					animation_good = null;
-					
+
 				}
 
 				day.status = -1;
