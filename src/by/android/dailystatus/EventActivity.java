@@ -349,6 +349,7 @@ public class EventActivity extends SherlockFragmentActivity implements
 		public Fragment getItem(int position) {
 			EventListFragment fragment = (EventListFragment) EventListFragment
 					.newInstance(position);
+			fragment.setFilterNews(filterEvent);
 			Log.d("BUG", "PAGER position : " + position);
 
 			fragments.put(position, fragment);
@@ -421,12 +422,17 @@ public class EventActivity extends SherlockFragmentActivity implements
 	}
 
 	private void collapseSearchMenu() {
-		mSearchWeek.collapseActionView();
-		mSearchMonth.collapseActionView();
-		mSearchYear.collapseActionView();
-		mSearchViewWeek.setQuery("", false);
-		mSearchViewMonth.setQuery("", false);
-		mSearchViewYear.setQuery("", false);
+		try {
+			mSearchWeek.collapseActionView();
+			mSearchMonth.collapseActionView();
+			mSearchYear.collapseActionView();
+			mSearchViewWeek.setQuery("", false);
+			mSearchViewMonth.setQuery("", false);
+			mSearchViewYear.setQuery("", false);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 
 	private void updateSearchView(int page) {
@@ -452,10 +458,12 @@ public class EventActivity extends SherlockFragmentActivity implements
 	}
 
 	private void enableSearchItem(MenuItem item) {
+		if(item!=null)
 		item.setVisible(true);
 	}
 
 	private void disableSearchItem(MenuItem item) {
+		if(item!=null)
 		item.setVisible(false);
 	}
 
