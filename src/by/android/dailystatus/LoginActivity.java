@@ -5,6 +5,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -42,6 +43,10 @@ public class LoginActivity extends SherlockFragmentActivity implements
 
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		
+		TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
+//		Typeface type = Typeface.createFromAsset(getAssets(),"fonts/segoe-ui-1361529660.ttf"); 
+//		welcomeText.setTypeface(type);
+		   
 		loginEdit = (EditText) findViewById(R.id.edtLogin);
 		loginEdit.setText(PreferenceUtils.getCurrentUser(this));
 
