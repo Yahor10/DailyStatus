@@ -206,19 +206,27 @@ public class EventListFragment extends Fragment {
 	}
 
 	private void refreshAdapter(ArrayList<GroupEvent> data) {
+		String size = "null";
 		if (data != null) {
+			size = ""+data.size();
 			if (data.isEmpty()) {
 				emptyLayout.showEmpty();
 			} else {
 				adapter = new EventListIndexedAdapter(getActivity(),
 						indexerView, data, list);
 				adapter.registerDataSetObserver(adapterDataObserver);
-				list.setAdapter(adapter);
+//				list.setAdapter(adapter);
+				list.post(new Runnable() {
+				    public void run() {
+				    	list.setAdapter(adapter);
+				    }
+				});
 				indexerView.setIndexerListener(adapter);
 			}
 		} else {
 			emptyLayout.showError();
 		}
+		Log.d("Empty_list_bug", "Adapter have == "+size );
 	}
 
 	public ArrayList<GroupEvent> divideOnGroup(ArrayList<EventORM> events) {
@@ -468,7 +476,11 @@ public class EventListFragment extends Fragment {
 
 				return null;
 			}
-
+			String size = "null";
+			if(events!=null){
+				size =""+ events.size();
+			}
+			Log.d("Empty_list_bug", "Type fragment = "+ typeFragment+"; Filter = " + filter +"Size =  "+ size);
 			return events;
 
 		}
