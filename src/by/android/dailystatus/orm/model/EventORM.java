@@ -26,8 +26,9 @@ public class EventORM {
 	public static final String TIME = "time";
 	public static final String STATUS = "status"; // good ,bad
 	public static final String DESCRIPTION = "description";
+	public static final String NEW_ITEM = "new_item";
 
-	@DatabaseField(generatedId = true,columnName = KEY_ID)
+	@DatabaseField(generatedId = true, columnName = KEY_ID)
 	public int id;
 	@DatabaseField(columnName = USER)
 	public String user;
@@ -43,6 +44,8 @@ public class EventORM {
 	public int status;
 	@DatabaseField(columnName = DESCRIPTION)
 	public String description;
+	@DatabaseField(columnName = NEW_ITEM)
+	public boolean new_item = false;
 
 	public EventORM(String user, int day, int month, int year, long date,
 			String description) {

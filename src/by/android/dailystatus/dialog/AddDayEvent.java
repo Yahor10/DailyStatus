@@ -102,10 +102,12 @@ public class AddDayEvent extends DialogFragment implements OnClickListener {
 				long date = now.getMillis();
 				EventORM event = new EventORM(currentUser, day, month, year, date,
 						eventText.getText().toString());
+				
 				if (flagEditEvent) {
 					EventORM.deleteEventByName(mainActivity, startText,
 							event.day);
 				}
+				event.new_item=true;
 
 				EventORM.insertEvent(mainActivity, event);
 				mainActivity.updateContent();

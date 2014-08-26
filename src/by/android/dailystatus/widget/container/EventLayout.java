@@ -107,19 +107,27 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
 
 		addView(layoutEvent, 0);
 		addView(separatorDown, 1);
-		Animation animationSeparator = AnimationUtils.loadAnimation(
-				mainActivity.getApplicationContext(),
-				R.anim.event_list_item_animation);
-		animationSeparator.setDuration(500);
-		separatorDown.startAnimation(animationSeparator);
-		animationSeparator = null;
 
-		Animation animationEvent = AnimationUtils.loadAnimation(
-				mainActivity.getApplicationContext(),
-				R.anim.event_list_item_animation);
-		animationEvent.setDuration(500);
-		layoutEvent.startAnimation(animationEvent);
-		animationEvent = null;
+		if (eventORM.new_item) {
+			Animation animationSeparator = AnimationUtils.loadAnimation(
+					mainActivity.getApplicationContext(),
+					R.anim.event_list_item_animation);
+			animationSeparator.setDuration(500);
+			separatorDown.startAnimation(animationSeparator);
+			animationSeparator = null;
+
+			Animation animationEvent = AnimationUtils.loadAnimation(
+					mainActivity.getApplicationContext(),
+					R.anim.event_list_item_animation);
+			animationEvent.setDuration(500);
+			layoutEvent.startAnimation(animationEvent);
+			animationEvent = null;
+			Log.d("NEW_EVENT", "NEW_EVENT");
+			EventORM.deleteEventByName(mainActivity, eventORM.description,
+					eventORM.day);
+			eventORM.new_item = false;
+			EventORM.insertEvent(mainActivity, eventORM);
+		}
 	}
 
 	@Override
