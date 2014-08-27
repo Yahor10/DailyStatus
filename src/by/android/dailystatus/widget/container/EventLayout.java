@@ -1,5 +1,7 @@
 package by.android.dailystatus.widget.container;
 
+import java.util.Random;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -109,16 +111,30 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
 		addView(separatorDown, 1);
 
 		if (eventORM.new_item) {
+			Random random = new Random();
+			int ID_ANIMATION = R.anim.event_list_item_animation;
+			
+			switch (random.nextInt(2)) {
+			case 0:
+				ID_ANIMATION = R.anim.event_list_item_animation;
+				break;
+			case 1:
+				ID_ANIMATION = R.anim.event_list_left_right;
+				break;
+
+			default:
+				break;
+			}
+
 			Animation animationSeparator = AnimationUtils.loadAnimation(
-					mainActivity.getApplicationContext(),
-					R.anim.event_list_item_animation);
+					mainActivity.getApplicationContext(), ID_ANIMATION);
 			animationSeparator.setDuration(500);
 			separatorDown.startAnimation(animationSeparator);
 			animationSeparator = null;
 
 			Animation animationEvent = AnimationUtils.loadAnimation(
 					mainActivity.getApplicationContext(),
-					R.anim.event_list_item_animation);
+					ID_ANIMATION);
 			animationEvent.setDuration(500);
 			layoutEvent.startAnimation(animationEvent);
 			animationEvent = null;
