@@ -113,13 +113,25 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
 		if (eventORM.new_item) {
 			Random random = new Random();
 			int ID_ANIMATION = R.anim.event_list_item_animation;
-			
-			switch (random.nextInt(2)) {
+
+			switch (random.nextInt(6)) {
 			case 0:
 				ID_ANIMATION = R.anim.event_list_item_animation;
 				break;
 			case 1:
 				ID_ANIMATION = R.anim.event_list_left_right;
+				break;
+			case 2:
+				ID_ANIMATION = R.anim.grow_from_bottomleft_to_topright;
+				break;
+			case 3:
+				ID_ANIMATION = R.anim.grow_from_bottom;
+				break;
+			case 4:
+				ID_ANIMATION = R.anim.grow_from_top;
+				break;
+			case 5:
+				ID_ANIMATION = R.anim.button_clic_animation_zoom_small;
 				break;
 
 			default:
@@ -133,8 +145,7 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
 			animationSeparator = null;
 
 			Animation animationEvent = AnimationUtils.loadAnimation(
-					mainActivity.getApplicationContext(),
-					ID_ANIMATION);
+					mainActivity.getApplicationContext(), ID_ANIMATION);
 			animationEvent.setDuration(500);
 			layoutEvent.startAnimation(animationEvent);
 			animationEvent = null;
