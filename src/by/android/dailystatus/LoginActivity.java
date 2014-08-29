@@ -31,7 +31,7 @@ public class LoginActivity extends SherlockFragmentActivity implements
 
 	EditText loginEdit;
 	EditText passwordEdit;
-//	TextView txtForgotPassword;
+	TextView txtForgotPassword;
 
 	private List<UserORM> allUsers;
 
@@ -41,46 +41,48 @@ public class LoginActivity extends SherlockFragmentActivity implements
 		setContentView(R.layout.login);
 		getSupportActionBar().hide();
 
-		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-		
+		this.getWindow().setSoftInputMode(
+				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
 		TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
-//		Typeface type = Typeface.createFromAsset(getAssets(),"fonts/segoe-ui-1361529660.ttf"); 
-//		welcomeText.setTypeface(type);
-		   
+		// Typeface type =
+		// Typeface.createFromAsset(getAssets(),"fonts/segoe-ui-1361529660.ttf");
+		// welcomeText.setTypeface(type);
+
 		loginEdit = (EditText) findViewById(R.id.edtLogin);
 		loginEdit.setText(PreferenceUtils.getCurrentUser(this));
 
 		loginEdit.clearFocus();
 		passwordEdit = (EditText) findViewById(R.id.edtPassword);
-//		txtForgotPassword = (TextView) findViewById(R.id.txt_forgot_password);
-//		txtForgotPassword.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-		// txtForgotPassword.setOnClickListener(new OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		//
-		// if (isOnline(getApplicationContext())) {
-		//
-		// UserORM user = UserORM.getUserByName(
-		// getApplicationContext(), loginEdit.getText()
-		// .toString());
-		// if (user == null) {
-		// Toast.makeText(LoginActivity.this,
-		// R.string.error_name_does_not_exist,
-		// Toast.LENGTH_SHORT).show();
-		// } else {
-		// ForgotPasswordDialog dialog = new ForgotPasswordDialog(
-		// LoginActivity.this, user);
-		// dialog.setListener(LoginActivity.this);
-		// dialog.show(getSupportFragmentManager(), "");
-		// }
-		// } else {
-		// Toast.makeText(LoginActivity.this,
-		// R.string.error_internet_off, Toast.LENGTH_SHORT)
-		// .show();
-		// }
-		// }
-		// });
+		txtForgotPassword = (TextView) findViewById(R.id.txt_forgot_password);
+		txtForgotPassword.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+		txtForgotPassword.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				if (isOnline(getApplicationContext())) {
+
+					UserORM user = UserORM.getUserByName(
+							getApplicationContext(), loginEdit.getText()
+									.toString());
+					if (user == null) {
+						Toast.makeText(LoginActivity.this,
+								R.string.error_name_does_not_exist,
+								Toast.LENGTH_SHORT).show();
+					} else {
+						ForgotPasswordDialog dialog = new ForgotPasswordDialog(
+								LoginActivity.this, user);
+						dialog.setListener(LoginActivity.this);
+						dialog.show(getSupportFragmentManager(), "");
+					}
+				} else {
+					Toast.makeText(LoginActivity.this,
+							R.string.error_internet_off, Toast.LENGTH_SHORT)
+							.show();
+				}
+			}
+		});
 
 		findViewById(R.id.btnOk).setOnClickListener(new OnClickListener() {
 

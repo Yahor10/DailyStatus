@@ -15,6 +15,8 @@
     <color name="separate">#ac9d93</color>
     <color name="white">#ffffff</color>
     <color name="red_border">#EF2551</color>
+    <color name="yellow_border">#D2FF15</color>
+    <color name="gray_lite">#FCFCFC</color>
 
     <!-- #FACEBOOK colors -->
     <dimen name="com_facebook_picker_place_image_size">64dp</dimen>

@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="120dp"
+    android:background="@color/gray_lite" >
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/berry" />
 
     <TextView
+        android:id="@+id/txt_dialog_forgot_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="5dp"
         android:gravity="center_horizontal"
         android:text="@string/send_forgot_password"
         android:textColor="@color/daynames_background"
@@ -15,21 +26,28 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_dialog_forgot_title"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/btn_cancel_send_password"
             android:layout_width="1dp"
             android:layout_height="50dp"
+            android:layout_margin="3dp"
             android:layout_weight="1"
-            android:text="@string/cancel" />
+            android:background="@drawable/selector_yellow_rounded"
+            android:text="@string/cancel"
+            android:textColor="@color/cian" />
 
         <Button
             android:id="@+id/btn_send_password"
             android:layout_width="1dp"
             android:layout_height="50dp"
+            android:layout_margin="3dp"
             android:layout_weight="1"
-            android:text="@string/ok" />
+            android:background="@drawable/selector_but_red_rounded"
+            android:text="@string/ok"
+            android:textColor="@color/white" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

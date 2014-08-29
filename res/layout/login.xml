@@ -75,7 +75,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/selector_login_but"
+                android:background="@drawable/selector_but_red_rounded"
                 android:text="@string/log_in"
                 android:textColor="@color/white" />
 
@@ -90,6 +90,13 @@
                 android:text="@string/create_account"
                 android:textColor="@color/red_border"
                 android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/txt_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/forgot_password" />
         </LinearLayout>
     </ScrollView>
 
