@@ -1,26 +1,24 @@
 package by.android.dailystatus;
 
-import android.app.AlarmManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.provider.AlarmClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import by.android.dailystatus.fragment.MonthFragment;
 import by.android.dailystatus.fragment.WeekFragment;
 import by.android.dailystatus.fragment.YearFragment;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.viewpagerindicator.TabPageIndicator;
 
-public class ChartsActivity extends SherlockFragmentActivity {
+public class ChartsActivity extends ActionBarActivity {
 
 	public static final String WEEK = "Week_day";
 	public static final String MONTH = "Month";

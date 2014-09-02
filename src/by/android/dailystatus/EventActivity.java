@@ -5,6 +5,7 @@ import static by.android.dailystatus.application.Constants.TAG;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
@@ -20,24 +21,24 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
+import android.view.SubMenu;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
-import android.widget.Toast;
 import by.android.dailystatus.adapters.EventListIndexedAdapter;
 import by.android.dailystatus.fragment.EventListFragment;
 import by.android.dailystatus.widget.animations.AnimationViewPagerFragmentZoom;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
-import com.actionbarsherlock.view.SubMenu;
-import com.actionbarsherlock.widget.SearchView;
-import com.actionbarsherlock.widget.SearchView.OnQueryTextListener;
 import com.viewpagerindicator.TabPageIndicator;
 
-public class EventActivity extends SherlockFragmentActivity implements
+@SuppressLint("NewApi")
+public class EventActivity extends ActionBarActivity implements
 		OnMenuItemClickListener, OnPageChangeListener {
 
 	public static final String WEEK = "Week_day";
@@ -142,7 +143,7 @@ public class EventActivity extends SherlockFragmentActivity implements
 			if (mSearchWeek == null) {
 				mSearchWeek = menu.add(R.string.search_week);
 				mSearchWeek
-						.setIcon(R.drawable.abs__ic_search)
+						.setIcon(R.drawable.ic_launcher)
 						.setActionView(mSearchViewWeek)
 						.setShowAsAction(
 								MenuItem.SHOW_AS_ACTION_ALWAYS
@@ -182,7 +183,7 @@ public class EventActivity extends SherlockFragmentActivity implements
 			if (mSearchMonth == null) {
 				mSearchMonth = menu.add(R.string.search_month);
 				mSearchMonth
-						.setIcon(R.drawable.abs__ic_search)
+						.setIcon(android.R.drawable.ic_menu_search)
 						.setActionView(mSearchViewMonth)
 						.setShowAsAction(
 								MenuItem.SHOW_AS_ACTION_ALWAYS
@@ -222,7 +223,7 @@ public class EventActivity extends SherlockFragmentActivity implements
 			if (mSearchYear == null) {
 				mSearchYear = menu.add(R.string.search_year);
 				mSearchYear
-						.setIcon(R.drawable.abs__ic_search)
+						.setIcon(R.drawable.ic_launcher)
 						.setActionView(mSearchViewYear)
 						.setShowAsAction(
 								MenuItem.SHOW_AS_ACTION_ALWAYS
@@ -232,7 +233,7 @@ public class EventActivity extends SherlockFragmentActivity implements
 
 		SubMenu subMyProfile = menu.addSubMenu(R.string.show_events).setIcon(
 				getResources().getDrawable(
-						R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark));
+						R.drawable.ic_launcher));
 
 		subMyProfile.add(0, 3, Menu.NONE,
 				getResources().getString(R.string.show_all_events))
@@ -421,6 +422,7 @@ public class EventActivity extends SherlockFragmentActivity implements
 		collapseSearchMenu();
 	}
 
+	@SuppressLint("NewApi")
 	private void collapseSearchMenu() {
 		try {
 			mSearchWeek.collapseActionView();

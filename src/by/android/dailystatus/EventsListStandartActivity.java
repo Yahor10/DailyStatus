@@ -9,14 +9,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import by.android.dailystatus.fragment.EventStandartListFragment;
 import by.android.dailystatus.interfaces.FragmentActivityCallback;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.viewpagerindicator.TabPageIndicator;
 
-public class EventsListStandartActivity extends SherlockFragmentActivity
+public class EventsListStandartActivity extends ActionBarActivity
 		implements FragmentActivityCallback {
 
 	public static final String MESSAGE_KEY = "message_key";

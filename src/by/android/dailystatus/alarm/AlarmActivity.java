@@ -1,10 +1,5 @@
 package by.android.dailystatus.alarm;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.MenuItem;
-
-import by.android.dailystatus.R;
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -13,8 +8,11 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
+import by.android.dailystatus.R;
 
-public class AlarmActivity extends SherlockFragmentActivity {
+public class AlarmActivity extends ActionBarActivity {
 
 	AlarmManager am;
 

@@ -5,7 +5,7 @@
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-    <style name="AppBaseTheme" parent="Theme.Sherlock.Light">
+    <style name="AppBaseTheme" parent="@style/Theme.AppCompat">
 
         <!--
             Theme customizations available in newer API levels can go in
@@ -92,9 +92,9 @@
         <item name="@android:windowExitAnimation">@anim/shrink_from_top</item>
     </style>
 
-    <style name="ActivityTheme" parent="Theme.Sherlock.Light">
+    <!-- <style name="ActivityTheme" parent="@android:style/Theme.Light">
         <item name="searchViewSearchIcon">@drawable/abs__ic_search</item>
-    </style>
+    </style> -->
 
     <style name="RatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/ratingstars</item>

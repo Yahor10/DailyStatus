@@ -14,6 +14,7 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,7 +22,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -37,13 +43,8 @@ import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.preference.PreferenceUtils;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
-import com.actionbarsherlock.view.SubMenu;
-
-public class CalendarView extends SherlockActivity implements
+@SuppressLint("NewApi")
+public class CalendarView extends ActionBarActivity implements
 		OnMenuItemClickListener, OnClickListener {
 	private String KEY_WAS_SHOWED_GOOD_DAYS = "key_good";
 	private String KEY_WAS_SHOWED_BAD_DAYS = "key_bad";
@@ -185,7 +186,7 @@ public class CalendarView extends SherlockActivity implements
 	public boolean onCreateOptionsMenu(Menu menu) {
 		SubMenu subMyProfile = menu.addSubMenu("").setIcon(
 				getResources().getDrawable(
-						R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark));
+						R.drawable.ic_launcher));
 
 		subMyProfile.add(0, 4, Menu.NONE, "Show Good days")
 				.setIcon(R.drawable.ic_good_day)

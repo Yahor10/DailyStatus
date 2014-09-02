@@ -14,6 +14,8 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.RadioGroup;
@@ -23,8 +25,6 @@ import by.android.dailystatus.alarm.AlarmActivity;
 import by.android.dailystatus.dialog.VersionDialog;
 import by.android.dailystatus.preference.PreferenceUtils;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.facebook.Request;
 import com.facebook.Response;
 import com.facebook.Session;
@@ -34,7 +34,7 @@ import com.hintdesk.core.activities.AlertMessageBox;
 import com.hintdesk.core.util.OSUtil;
 import com.kskkbys.rate.RateThisApp;
 
-public class SettingsActivity extends SherlockFragmentActivity implements
+public class SettingsActivity extends ActionBarActivity implements
 		OnClickListener {
 	RadioGroup radioGroup;
 	TextView versionTextView;

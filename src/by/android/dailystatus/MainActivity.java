@@ -28,7 +28,6 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -37,8 +36,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -60,13 +64,7 @@ import by.android.dailystatus.widget.animations.AnimationViewPagerFragmentZoom;
 import by.android.dailystatus.widget.calendar.CalendarView;
 import by.android.dailystatus.widget.container.EventLayout;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
-import com.actionbarsherlock.view.SubMenu;
-
-public class MainActivity extends SherlockFragmentActivity implements
+public class MainActivity extends ActionBarActivity implements
 		OnMenuItemClickListener, OnPageChangeListener {
 
 	private static final int DAY_OF_WEEK_LABEL_IDS[] = { R.id.day1, R.id.day2,
@@ -181,7 +179,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		SubMenu subMyProfile = menu.addSubMenu("Dropdown list").setIcon(
 				getResources().getDrawable(
-						R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark));
+						R.drawable.ic_launcher));
 
 		subMyProfile.add(0, 4, Menu.NONE, R.string.charts)
 				.setIcon(R.drawable.ic_menu_chart)

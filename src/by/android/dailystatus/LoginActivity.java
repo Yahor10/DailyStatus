@@ -5,14 +5,13 @@ import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,9 +21,7 @@ import by.android.dailystatus.interfaces.FragmentActivityCallback;
 import by.android.dailystatus.orm.model.UserORM;
 import by.android.dailystatus.preference.PreferenceUtils;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-
-public class LoginActivity extends SherlockFragmentActivity implements
+public class LoginActivity extends ActionBarActivity implements
 		FragmentActivityCallback {
 
 	// private Spinner mCountView;

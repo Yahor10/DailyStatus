@@ -9,7 +9,10 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -18,11 +21,7 @@ import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.orm.model.UserORM;
 import by.android.dailystatus.preference.PreferenceUtils;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-
-public class ProfileActivity extends SherlockActivity {
+public class ProfileActivity extends ActionBarActivity {
 
 	ImageView imgProfile;
 	TextView txtProfile;

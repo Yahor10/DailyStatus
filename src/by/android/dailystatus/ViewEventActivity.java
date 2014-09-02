@@ -6,26 +6,23 @@ package by.android.dailystatus;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
-
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.SubMenu;
 
 /**
  * @author User
  * 
  */
-public class ViewEventActivity extends SherlockActivity {
+public class ViewEventActivity extends ActionBarActivity {
 
 	public static final String EXTRA_DATE = "extra_date";
 	public static final String EXTRA_DESCRIPTION = "extra_description";
@@ -66,6 +63,7 @@ public class ViewEventActivity extends SherlockActivity {
 
 	}
 
+	@SuppressLint("NewApi")
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		Resources resources = getResources();
