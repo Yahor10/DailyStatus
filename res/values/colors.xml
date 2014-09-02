@@ -8,6 +8,7 @@
     <color name="saturday_text_color">#ff446688</color>
     <color name="bg_text_color">#ff550000</color>
     <color name="bg_gray">#3d3d3d00</color>
+    <color name="bg_gray_new">#FCFCFC</color>
     <color name="violet">#54296E</color>
     <color name="cian">#67CBEE</color>
     <color name="red">#DC0305</color>
