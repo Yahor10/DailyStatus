@@ -27,7 +27,7 @@ public class RoundedImageView extends ImageView {
     };
     private int mCornerRadius = DEFAULT_RADIUS;
     private int mBorderWidth = DEFAULT_BORDER_WIDTH;
-    private ColorStateList mBorderColor = ColorStateList.valueOf(RoundedDrawable.DEFAULT_BORDER_COLOR);
+    private ColorStateList mBorderColor/* = ColorStateList.valueOf(RoundedDrawable.DEFAULT_BORDER_COLOR)*/;
     private boolean mRoundBackground = false;
     private boolean mOval = false;
     private Drawable mDrawable;
@@ -36,14 +36,17 @@ public class RoundedImageView extends ImageView {
 
     public RoundedImageView(Context context) {
         super(context);
+        mBorderColor = context.getResources().getColorStateList(R.color.red_border);
     }
 
     public RoundedImageView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
+        mBorderColor = context.getResources().getColorStateList(R.color.red_border);
     }
 
     public RoundedImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        mBorderColor = context.getResources().getColorStateList(R.color.red_border);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RoundedImageView, defStyle, 0);
 
@@ -63,10 +66,10 @@ public class RoundedImageView extends ImageView {
             mBorderWidth = DEFAULT_BORDER_WIDTH;
         }
 
-        mBorderColor = a.getColorStateList(R.styleable.RoundedImageView_border_color);
-        if (mBorderColor == null) {
-            mBorderColor = ColorStateList.valueOf(RoundedDrawable.DEFAULT_BORDER_COLOR);
-        }
+//        mBorderColor = a.getColorStateList(R.styleable.RoundedImageView_border_color);
+//        if (mBorderColor == null) {
+//            mBorderColor = ColorStateList.valueOf(RoundedDrawable.DEFAULT_BORDER_COLOR);
+//        }
 
         mRoundBackground = a.getBoolean(R.styleable.RoundedImageView_round_background, false);
         mOval = a.getBoolean(R.styleable.RoundedImageView_is_oval, false);

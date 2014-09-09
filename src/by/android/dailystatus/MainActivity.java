@@ -339,19 +339,10 @@ public class MainActivity extends ActionBarActivity implements
 		if (requestCode == RESULT_TAKE_IMAGE && resultCode == RESULT_OK) {
 
 			Log.v(TAG, "RESULT_TAKE IMAGE");
-			// Uri selectedImage = Uri.parse("file:/"
-			// + PreferenceUtils
-			// .getImageFromCameraURL(getApplicationContext()));
-			//
-			// String[] filePathColumn = { MediaStore.Images.Media.DATA };
-			// Cursor cursor = getContentResolver().query(selectedImage,
-			// filePathColumn, null, null, null);
-			// cursor.moveToFirst();
-			// int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+
 			String picturePath = PreferenceUtils
 					.getImageFromCameraURL(getApplicationContext());
 			File newdir = new File(picturePath);
-			// cursor.close();
 			Log.v(TAG,
 					"PICTURE PATH " + picturePath + " DAY "
 							+ now.getDayOfYear());
