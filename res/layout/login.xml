@@ -4,6 +4,60 @@
     android:layout_height="match_parent"
     android:background="@color/gray_lite" >
 
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="340dp"
+        android:paddingLeft="-15dp"
+        android:src="@drawable/ic_plum2" />
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/one_cherry" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/ic_plum" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="90dp"
+        android:paddingLeft="-5dp"
+        android:src="@drawable/ic_gooseberry" />
+
+    <ImageView
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="230dp"
+        android:paddingRight="-34dp"
+        android:src="@drawable/ic_cherry" />
+
+    <ImageView
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="420dp"
+        android:paddingLeft="-37dp"
+        android:src="@drawable/ic_lemon" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="160dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:paddingRight="-42dp"
+        android:src="@drawable/ic_grape" />
+
     <TextView
         android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
@@ -77,7 +131,8 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/selector_but_red_rounded"
                 android:text="@string/log_in"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/btnCreateAccount"
