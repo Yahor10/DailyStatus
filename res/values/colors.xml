@@ -17,6 +17,7 @@
     <color name="white">#ffffff</color>
     <color name="red_border">#EF2551</color>
     <color name="gray_lite">#FCFCFC</color>
+    <color name="invisible">#FFFFFFFF</color>
 
     <!-- NEW STYLE COLORS -->
     <color name="limon_color">#E1F930</color>

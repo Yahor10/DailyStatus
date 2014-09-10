@@ -19,9 +19,40 @@
         <item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>
         <item name="vpiUnderlinePageIndicatorStyle">@style/CustomUnderlinePageIndicator</item>
         <item name="android:style/Widget.Button">@style/ButtonStyle</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
+        <item name="android:actionMenuTextColor">@color/red_border</item>
+
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="actionBarTabTextStyle">@style/MyActionBarTabText</item>
+        <item name="actionMenuTextColor">@color/red_border</item>
     </style>
 
     <!-- Application theme. -->
+
+
+    <!-- ActionBar styles -->
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
+        <item name="android:background">@drawable/invisible_rect</item>
+
+        <!-- Support library compatibility -->
+        <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+        <item name="background">@drawable/invisible_rect</item>
+    </style>
+
+    <!-- ActionBar title text -->
+    <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/red_border</item>
+        <!-- The textColor property is backward compatible with the Support Library -->
+    </style>
+
+    <!-- ActionBar tabs text -->
+    <style name="MyActionBarTabText" parent="@style/Widget.AppCompat.ActionBar.TabText">
+        <item name="android:textColor">@color/red_border</item>
+        <!-- The textColor property is backward compatible with the Support Library -->
+    </style>
 
     <style name="LoginFormContainer">
         <item name="android:layout_width">match_parent</item>
@@ -92,9 +123,11 @@
         <item name="@android:windowExitAnimation">@anim/shrink_from_top</item>
     </style>
 
-    <!-- <style name="ActivityTheme" parent="@android:style/Theme.Light">
+    <!--
+    <style name="ActivityTheme" parent="@android:style/Theme.Light">
         <item name="searchViewSearchIcon">@drawable/abs__ic_search</item>
-    </style> -->
+    </style>
+    -->
 
     <style name="RatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/ratingstars</item>

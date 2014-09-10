@@ -122,7 +122,7 @@ public class MainActivity extends ActionBarActivity implements
 
 		inflater = getLayoutInflater();
 		getSupportActionBar().setBackgroundDrawable(
-				new ColorDrawable(Color.parseColor("#0e78c9")));
+				new ColorDrawable(Color.parseColor("#FFFFFFFF")));// "#0e78c9"
 
 		mShortAnimationDuration = getResources().getInteger(
 				android.R.integer.config_shortAnimTime);
@@ -178,8 +178,7 @@ public class MainActivity extends ActionBarActivity implements
 				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
 		SubMenu subMyProfile = menu.addSubMenu("Dropdown list").setIcon(
-				getResources().getDrawable(
-						R.drawable.ic_launcher));
+				getResources().getDrawable(R.drawable.ic_launcher));
 
 		subMyProfile.add(0, 4, Menu.NONE, R.string.charts)
 				.setIcon(R.drawable.ic_menu_chart)
