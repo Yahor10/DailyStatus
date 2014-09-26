@@ -305,6 +305,10 @@ public class MainActivity extends ActionBarActivity implements
 	@Override
 	public void onPageSelected(int position) {
 		mSelectedPageIndex = position;
+		final DayModel leftPage = dayPageModel[position];
+		leftPage.goodDay.clearAnimation();
+		leftPage.badDay.clearAnimation();
+
 	}
 
 	private Bitmap decodeFile(File f) {
@@ -544,22 +548,22 @@ public class MainActivity extends ActionBarActivity implements
 				color = getResources().getColor(android.R.color.white);
 				model.goodDay.setBackgroundColor(color);
 
-				Animation animation_good = AnimationUtils.loadAnimation(
-						MainActivity.this,
-						R.anim.button_clic_animation_zoom_small);
-				animation_good.setDuration(500);
-				model.goodDay.startAnimation(animation_good);
-				animation_good = null;
+				 Animation animation_good = AnimationUtils.loadAnimation(
+				 MainActivity.this,
+				 R.anim.button_clic_animation_zoom_small);
+				 animation_good.setDuration(500);
+				 model.goodDay.startAnimation(animation_good);
+				 animation_good = null;
 				break;
 			case -1:
 				color = getResources().getColor(android.R.color.black);
 				model.badDay.setBackgroundColor(color);
-				Animation animation_bad = AnimationUtils.loadAnimation(
-						MainActivity.this,
-						R.anim.button_clic_animation_zoom_small);
-				animation_bad.setDuration(500);
-				model.badDay.startAnimation(animation_bad);
-				animation_bad = null;
+				 Animation animation_bad = AnimationUtils.loadAnimation(
+				 MainActivity.this,
+				 R.anim.button_clic_animation_zoom_small);
+				 animation_bad.setDuration(500);
+				 model.badDay.startAnimation(animation_bad);
+				 animation_bad = null;
 				break;
 			default:
 				break;
