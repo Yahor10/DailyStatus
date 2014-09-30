@@ -1,9 +1,5 @@
 package by.android.dailystatus;
 
-import java.util.List;
-
-import org.joda.time.DateTime;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -20,109 +16,112 @@ import android.widget.TextView;
 import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.orm.model.UserORM;
 import by.android.dailystatus.preference.PreferenceUtils;
+import org.joda.time.DateTime;
+
+import java.util.List;
 
 public class ProfileActivity extends ActionBarActivity {
 
-	ImageView imgProfile;
-	TextView txtProfile;
-	TextView txtName;
-	TextView txtGoodDay;
-	TextView txtBadDay;
+    ImageView imgProfile;
+    TextView txtProfile;
+    TextView txtName;
+    TextView txtGoodDay;
+    TextView txtBadDay;
 
-	UserORM currentUser;
-	int goodDayCount, badDayCount;
-	private DateTime date;
+    UserORM currentUser;
+    int goodDayCount, badDayCount;
+    private DateTime date;
 
-	private LayoutInflater inflater;
+    private LayoutInflater inflater;
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
 
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.profile);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.profile);
 
-		inflater = getLayoutInflater();
-		getSupportActionBar().setBackgroundDrawable(
-				new ColorDrawable(Color.parseColor("#0e78c9")));
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		date = DateTime.now();
+        inflater = getLayoutInflater();
+        getSupportActionBar().setBackgroundDrawable(
+                new ColorDrawable(Color.parseColor("#0e78c9")));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        date = DateTime.now();
 
-		findViewById(R.id.logOutButton).setOnClickListener(new OnClickListener() {
+        findViewById(R.id.logOutButton).setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-				setResult(RESULT_OK, new Intent());
+                setResult(RESULT_OK, new Intent());
 
-				finish();
+                finish();
 
-			}
-		});
+            }
+        });
 
-		initial();
+        initial();
 
-		setData();
-		// setContent((TextView)findViewById(R.id.text));
-	}
+        setData();
+        // setContent((TextView)findViewById(R.id.text));
+    }
 
-	private void initial() {
+    private void initial() {
 
-		imgProfile = (ImageView) findViewById(R.id.imgProfile);
-		txtProfile = (TextView) findViewById(R.id.txtProfile);
-		txtName = (TextView) findViewById(R.id.textView1);
-		txtGoodDay = (TextView) findViewById(R.id.textView3);
-		txtBadDay = (TextView) findViewById(R.id.textView4);
+        imgProfile = (ImageView) findViewById(R.id.imgProfile);
+        txtProfile = (TextView) findViewById(R.id.txtProfile);
+        txtName = (TextView) findViewById(R.id.textView1);
+        txtGoodDay = (TextView) findViewById(R.id.textView3);
+        txtBadDay = (TextView) findViewById(R.id.textView4);
 
-		String currentName = PreferenceUtils
-				.getCurrentUser(getApplicationContext());
-		currentUser = UserORM.getUserByName(this, currentName);
+        String currentName = PreferenceUtils
+                .getCurrentUser(getApplicationContext());
+        currentUser = UserORM.getUserByName(this, currentName);
 
-		List<DayORM> badDays = DayORM.getBadDaysByYear(getApplicationContext(),
-				date.getYear());
-		if (badDays != null) {
-			badDayCount = badDays.size();
-		}
+        List<DayORM> badDays = DayORM.getBadDaysByYear(getApplicationContext(),
+                date.getYear());
+        if (badDays != null) {
+            badDayCount = badDays.size();
+        }
 
-		List<DayORM> goodDays = DayORM.getGoodDaysByYear(
-				getApplicationContext(), date.getYear());
-		if (goodDays != null) {
-			goodDayCount = goodDays.size();
-		}
+        List<DayORM> goodDays = DayORM.getGoodDaysByYear(
+                getApplicationContext(), date.getYear());
+        if (goodDays != null) {
+            goodDayCount = goodDays.size();
+        }
 
-	}
+    }
 
-	private void setData() {
-		if (currentUser != null) {
-			txtProfile.setText(currentUser.name + " " + currentUser.lastName);
-			txtName.setText(currentUser.name);
+    private void setData() {
+        if (currentUser != null) {
+            txtProfile.setText(currentUser.name + " " + currentUser.lastName);
+            txtName.setText(currentUser.name);
 
-		}
+        }
 
-		txtBadDay.setText("" + badDayCount);
-		txtGoodDay.setText("" + goodDayCount);
+        txtBadDay.setText("" + badDayCount);
+        txtGoodDay.setText("" + goodDayCount);
 
-	}
+    }
 
 	/*
-	 * protected void setContent(TextView view) {
+     * protected void setContent(TextView view) {
 	 * view.setText(R.string.action_items_content); }
 	 */
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }

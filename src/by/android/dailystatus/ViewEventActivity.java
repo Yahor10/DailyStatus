@@ -1,10 +1,7 @@
 /**
- * 
+ *
  */
 package by.android.dailystatus;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,70 +15,69 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-/**
- * @author User
- * 
- */
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ViewEventActivity extends ActionBarActivity {
 
-	public static final String EXTRA_DATE = "extra_date";
-	public static final String EXTRA_DESCRIPTION = "extra_description";
+    public static final String EXTRA_DATE = "extra_date";
+    public static final String EXTRA_DESCRIPTION = "extra_description";
 
-	private SimpleDateFormat formatter = new SimpleDateFormat("MM.dd.yyyy");
+    private SimpleDateFormat formatter = new SimpleDateFormat("MM.dd.yyyy");
 
-	public static Intent buildIntent(Context packageContext, long date,
-			String description) {
-		Intent intent = new Intent(packageContext, ViewEventActivity.class);
-		intent.putExtra(EXTRA_DATE, date);
-		intent.putExtra(EXTRA_DESCRIPTION, description);
+    public static Intent buildIntent(Context packageContext, long date,
+                                     String description) {
+        Intent intent = new Intent(packageContext, ViewEventActivity.class);
+        intent.putExtra(EXTRA_DATE, date);
+        intent.putExtra(EXTRA_DESCRIPTION, description);
 
-		return intent;
-	}
+        return intent;
+    }
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.activity_event_view);
-		getSupportActionBar().setBackgroundDrawable(
-				new ColorDrawable(Color.parseColor("#0e78c9")));
+        setContentView(R.layout.activity_event_view);
+        getSupportActionBar().setBackgroundDrawable(
+                new ColorDrawable(Color.parseColor("#0e78c9")));
 
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		TextView eventDescription = (TextView) findViewById(R.id.eventDescription);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        TextView eventDescription = (TextView) findViewById(R.id.eventDescription);
 
-		Intent intent = getIntent();
+        Intent intent = getIntent();
 
-		if (intent != null) {
-			long dateExtra = intent.getLongExtra(EXTRA_DATE, 0);
-			Date date = new Date(dateExtra);
-			String dateStr = formatter.format(date);
-			setTitle(dateStr);
+        if (intent != null) {
+            long dateExtra = intent.getLongExtra(EXTRA_DATE, 0);
+            Date date = new Date(dateExtra);
+            String dateStr = formatter.format(date);
+            setTitle(dateStr);
 
-			String descriptionExtra = intent.getStringExtra(EXTRA_DESCRIPTION);
-			eventDescription.setText(descriptionExtra);
-		}
+            String descriptionExtra = intent.getStringExtra(EXTRA_DESCRIPTION);
+            eventDescription.setText(descriptionExtra);
+        }
 
-	}
+    }
 
-	@SuppressLint("NewApi")
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		Resources resources = getResources();
-		MenuItem menuItem = menu.add("Edit");
-		menuItem.setIcon(resources.getDrawable(R.drawable.ic_menu_add));// TODO create correct color for ic_menu_edit
-		menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+    @SuppressLint("NewApi")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        Resources resources = getResources();
+        MenuItem menuItem = menu.add("Edit");
+        menuItem.setIcon(resources.getDrawable(R.drawable.ic_menu_add));// TODO create correct color for ic_menu_edit
+        menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			finish();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

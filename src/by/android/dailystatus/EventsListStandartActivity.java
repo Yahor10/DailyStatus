@@ -11,10 +11,12 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
+import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.fragment.EventStandartListFragment;
 import by.android.dailystatus.interfaces.FragmentActivityCallback;
 
 import com.viewpagerindicator.TabPageIndicator;
+import org.acra.annotation.ReportsCrashes;
 
 public class EventsListStandartActivity extends ActionBarActivity
 		implements FragmentActivityCallback {

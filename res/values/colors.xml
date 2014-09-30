@@ -3,7 +3,7 @@
 
     <color name="daynames_background">#67CBEE</color>
     <!-- #FFDDDDDD -->
-    <color name="daynames_text_color">#ff000000</color>
+    <color name="daynames_text_color">#ffffffff</color>
     <color name="sunday_text_color">#ff446688</color>
     <color name="saturday_text_color">#ff446688</color>
     <color name="bg_text_color">#ff550000</color>
@@ -17,20 +17,23 @@
     <color name="white">#ffffff</color>
     <color name="red_border">#EF2551</color>
     <color name="gray_lite">#FCFCFC</color>
+    <color name="light_gray">#bcbcbc</color>
+    <color name="lighter_gray">#efefef</color>
     <color name="invisible">#FFFFFFFF</color>
+    <color name="gray">#aa000000</color>
 
     <!-- NEW STYLE COLORS -->
     <color name="limon_color">#E1F930</color>
     <color name="event_add_title">#686868</color>
     <color name="event_event_text">#AFAFAF</color>
-     <color name="button_good_bad_text">#898989</color>
-    
+    <color name="button_good_bad_text">#898989</color>
+
 
     <!-- #FACEBOOK colors -->
     <dimen name="com_facebook_picker_place_image_size">64dp</dimen>
 
     <color name="com_facebook_picker_search_bar_background">#f5f5f7</color>
     <color name="com_facebook_picker_search_bar_text">#bcbdc2</color>
-    
+
 
 </resources>

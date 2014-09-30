@@ -12,114 +12,115 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
+
+import com.viewpagerindicator.TabPageIndicator;
+
 import by.android.dailystatus.fragment.MonthFragment;
 import by.android.dailystatus.fragment.WeekFragment;
 import by.android.dailystatus.fragment.YearFragment;
 
-import com.viewpagerindicator.TabPageIndicator;
-
 public class ChartsActivity extends ActionBarActivity {
 
-	public static final String WEEK = "Week_day";
-	public static final String MONTH = "Month";
-	public static final String YEAR = "Year";
-	private static final String FROM_CALENDAR = "from_calendar";
+    public static final String WEEK = "Week_day";
+    public static final String MONTH = "Month";
+    public static final String YEAR = "Year";
+    private static final String FROM_CALENDAR = "from_calendar";
 
-	@Override
-	protected void onCreate(Bundle arg0) {
-		super.onCreate(arg0);
-		setContentView(R.layout.simple_tabs);
+    @Override
+    protected void onCreate(Bundle arg0) {
+        super.onCreate(arg0);
+        setContentView(R.layout.simple_tabs);
 
-		getSupportActionBar().setBackgroundDrawable(
-				new ColorDrawable(Color.parseColor("#0e78c9")));
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(
+                new ColorDrawable(Color.parseColor("#0e78c9")));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-		FragmentPagerAdapter adapter = new AppsAdapter(
-				getSupportFragmentManager());
+        FragmentPagerAdapter adapter = new AppsAdapter(
+                getSupportFragmentManager());
 
-		ViewPager pager = (ViewPager) findViewById(R.id.pager);
-		pager.setAdapter(adapter);
-		
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(adapter);
 
-		TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
-		indicator.setViewPager(pager);
-		boolean fromCalendar = getIntent()
-				.getBooleanExtra(FROM_CALENDAR, false);
 
-		if (fromCalendar) {
-			pager.setCurrentItem(1);
-		} else {
-			pager.setCurrentItem(0);
-		}
-	}
+        TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
+        indicator.setViewPager(pager);
+        boolean fromCalendar = getIntent()
+                .getBooleanExtra(FROM_CALENDAR, false);
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
+        if (fromCalendar) {
+            pager.setCurrentItem(1);
+        } else {
+            pager.setCurrentItem(0);
+        }
+    }
 
-	private class AppsAdapter extends FragmentPagerAdapter {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
-		public AppsAdapter(FragmentManager fm) {
-			super(fm);
-		}
+    private class AppsAdapter extends FragmentPagerAdapter {
 
-		@Override
-		public Fragment getItem(int position) {
-			switch (position) {
-			case 0:
-				return WeekFragment.newInstance();
-			case 1:
-				return MonthFragment.newInstance();
-			case 2:
-				return YearFragment.newInstance();
-			default:
-				return null;
-			}
-		}
+        public AppsAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
-		@Override
-		public CharSequence getPageTitle(int position) {
-			switch (position) {
-			case 0:
-				return getString(R.string.week);
-			case 1:
-				return getString(R.string.month);
-			case 2:
-				return getString(R.string.year);
-			default:
-				return "";
-			}
-		}
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return WeekFragment.newInstance();
+                case 1:
+                    return MonthFragment.newInstance();
+                case 2:
+                    return YearFragment.newInstance();
+                default:
+                    return null;
+            }
+        }
 
-		@Override
-		public int getCount() {
-			return 3;
-		}
-	}
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return getString(R.string.week);
+                case 1:
+                    return getString(R.string.month);
+                case 2:
+                    return getString(R.string.year);
+                default:
+                    return "";
+            }
+        }
 
-	public static Intent buintIntent(Context context, int week, int month,
-			int year) {
-		Intent intent = new Intent(context, ChartsActivity.class);
-		intent.putExtra(WEEK, week);
-		intent.putExtra(MONTH, month);
-		intent.putExtra(YEAR, year);
-		return intent;
-	}
+        @Override
+        public int getCount() {
+            return 3;
+        }
+    }
 
-	public static Intent buintIntent(Context context, int week, int month,
-			int year, boolean fromCalendar) {
-		Intent intent = new Intent(context, ChartsActivity.class);
-		intent.putExtra(WEEK, week);
-		intent.putExtra(MONTH, month);
-		intent.putExtra(YEAR, year);
-		intent.putExtra(FROM_CALENDAR, fromCalendar);
-		return intent;
-	}
+    public static Intent buintIntent(Context context, int week, int month,
+                                     int year) {
+        Intent intent = new Intent(context, ChartsActivity.class);
+        intent.putExtra(WEEK, week);
+        intent.putExtra(MONTH, month);
+        intent.putExtra(YEAR, year);
+        return intent;
+    }
+
+    public static Intent buintIntent(Context context, int week, int month,
+                                     int year, boolean fromCalendar) {
+        Intent intent = new Intent(context, ChartsActivity.class);
+        intent.putExtra(WEEK, week);
+        intent.putExtra(MONTH, month);
+        intent.putExtra(YEAR, year);
+        intent.putExtra(FROM_CALENDAR, fromCalendar);
+        return intent;
+    }
 }

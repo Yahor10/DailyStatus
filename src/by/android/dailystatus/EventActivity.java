@@ -32,10 +32,12 @@ import android.view.SubMenu;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import by.android.dailystatus.adapters.EventListIndexedAdapter;
+import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.fragment.EventListFragment;
 import by.android.dailystatus.widget.animations.AnimationViewPagerFragmentZoom;
 
 import com.viewpagerindicator.TabPageIndicator;
+import org.acra.annotation.ReportsCrashes;
 
 @SuppressLint("NewApi")
 public class EventActivity extends ActionBarActivity implements

@@ -76,7 +76,7 @@
       <!-- Events activity -->
     <string name="events">События</string>
     <string name="show_events">Показать события</string>
-    <string name="search_week">Искать на этой неделе</string>
+    <string name="search_this_week">Искать на этой неделе</string>
     <string name="search_week_events">Искать на этой неделе</string>
     <string name="search_month">Искать в этом месяце</string>
     <string name="search_month_events">Искать в этом месяце</string>
