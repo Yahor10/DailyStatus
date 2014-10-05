@@ -18,6 +18,7 @@ import by.android.dailystatus.dialog.ForgotPasswordDialog;
 import by.android.dailystatus.interfaces.FragmentActivityCallback;
 import by.android.dailystatus.orm.model.UserORM;
 import by.android.dailystatus.preference.PreferenceUtils;
+import com.crashlytics.android.Crashlytics;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class LoginActivity extends ActionBarActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Crashlytics.start(this);
         setContentView(R.layout.login);
         getSupportActionBar().hide();
 

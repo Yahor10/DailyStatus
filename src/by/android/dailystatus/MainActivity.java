@@ -45,6 +45,7 @@ import by.android.dailystatus.preference.PreferenceUtils;
 import by.android.dailystatus.widget.animations.AnimationViewPagerFragmentZoom;
 import by.android.dailystatus.widget.calendar.CalendarView;
 import by.android.dailystatus.widget.container.EventLayout;
+import com.crashlytics.android.Crashlytics;
 import org.joda.time.DateTime;
 import uk.co.senab.bitmapcache.BitmapLruCache;
 import uk.co.senab.bitmapcache.CacheableBitmapWrapper;
@@ -163,7 +164,9 @@ public class MainActivity extends ActionBarActivity implements
                 .setOnMenuItemClickListener(this);
         subChoosePhoto.add(0, 2, Menu.NONE, R.string.add_standart_event)
                 .setOnMenuItemClickListener(this);
-        subChoosePhoto.add(0, 3, Menu.NONE, R.string.add_day_event)
+        subChoosePhoto.add(0, 3, Menu.NONE, getString(R.string.add_event_from_calendar))
+                .setOnMenuItemClickListener(this);
+        subChoosePhoto.add(0, 4, Menu.NONE, R.string.add_day_event)
                 .setOnMenuItemClickListener(this);
         subChoosePhoto.getItem()
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -171,19 +174,19 @@ public class MainActivity extends ActionBarActivity implements
         SubMenu subMyProfile = menu.addSubMenu("Dropdown list").setIcon(
                 getResources().getDrawable(R.drawable.ic_override_menu));
 
-        subMyProfile.add(0, 4, Menu.NONE, R.string.charts)
-                .setIcon(R.drawable.ic_menu_chart)
+        subMyProfile.add(0, 5, Menu.NONE, R.string.charts)
+                .setIcon(R.drawable.ic_menu_graphics)
                 .setOnMenuItemClickListener(this);
-        subMyProfile.add(0, 5, Menu.NONE, R.string.calendar)
+        subMyProfile.add(0, 6, Menu.NONE, R.string.calendar)
                 .setIcon(R.drawable.ic_menu_calendar)
                 .setOnMenuItemClickListener(this);
-        subMyProfile.add(0, 6, Menu.NONE, R.string.profile)
-                .setIcon(R.drawable.ic_menu_profile)
+        subMyProfile.add(0, 7, Menu.NONE, R.string.profile)
+                .setIcon(R.drawable.ic_profile)
                 .setOnMenuItemClickListener(this);
-        subMyProfile.add(0, 7, Menu.NONE, R.string.events)
+        subMyProfile.add(0, 8, Menu.NONE, R.string.events)
                 .setOnMenuItemClickListener(this);
-        subMyProfile.add(0, 8, Menu.NONE, R.string.settings)
-                .setIcon(R.drawable.ic_settings)
+        subMyProfile.add(0, 9, Menu.NONE, R.string.settings)
+                .setIcon(R.drawable.ic_menu_settings)
                 .setOnMenuItemClickListener(this);
         subMyProfile.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return super.onCreateOptionsMenu(menu);
@@ -206,30 +209,35 @@ public class MainActivity extends ActionBarActivity implements
                 startActivityForResult(intentEvents, RESULT_GET_STANDART_EVENT);
                 break;
             case 3:
-                DialogDayEvent();
+                Intent intentAddFromCalendar = new Intent(MainActivity.this,
+                        AddEventFromCalendarActivity.class);
+                startActivityForResult(intentAddFromCalendar, RESULT_GET_STANDART_EVENT);
                 break;
             case 4:
+                DialogDayEvent();
+                break;
+            case 5:
                 int dayOfWeek = now.getDayOfYear();
                 int monthOfYear = now.getMonthOfYear();
                 int year = now.getYear();
                 startActivity(ChartsActivity.buintIntent(this, dayOfWeek,
                         monthOfYear, year));
                 break;
-            case 5:
+            case 6:
                 startActivity(CalendarView.buintIntent(this));
                 break;
-            case 6:
+            case 7:
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivityForResult(intent, RESULT_LOG_OUT);
                 break;
-            case 7:
+            case 8:
                 int dayOfWeek1 = now.getDayOfYear();
                 int monthOfYear1 = now.getMonthOfYear();
                 int year1 = now.getYear();
                 startActivity(EventActivity.buintIntent(this, dayOfWeek1,
                         monthOfYear1, year1));
                 break;
-            case 8:
+            case 9:
                 Intent intantSettings = new Intent(MainActivity.this,
                         SettingsActivity.class);
                 startActivity(intantSettings);

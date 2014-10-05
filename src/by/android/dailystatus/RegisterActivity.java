@@ -1,9 +1,10 @@
 package by.android.dailystatus;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -14,7 +15,7 @@ import by.android.dailystatus.orm.model.UserORM;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegisterActivity extends Activity {
+public class RegisterActivity extends ActionBarActivity {
 
     private final static int MIN_COUNT_PASSWORD_SIZE = 5;
 
@@ -33,10 +34,13 @@ public class RegisterActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        emailValidator = new EmailValidator();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        emailValidator = new EmailValidator();
+
         String[] data = getResources().getStringArray(R.array.sex);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, data);
@@ -128,6 +132,14 @@ public class RegisterActivity extends Activity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public class EmailValidator {

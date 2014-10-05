@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import android.graphics.Color;
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.model.CategorySeries;
@@ -47,11 +48,12 @@ public class MonthFragment extends BaseChartsFragment {
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
-		mRenderer.setStartAngle(180);
-		mRenderer.setDisplayValues(true);
-		mRenderer.setZoomEnabled(false);
-		mRenderer.setPanEnabled(false);
-		mRenderer.setInScroll(true);
+        mRenderer.setStartAngle(90);
+        mRenderer.setDisplayValues(false);
+        mRenderer.setZoomEnabled(false);
+        mRenderer.setPanEnabled(false);
+        mRenderer.setInScroll(true);
+        mRenderer.setShowLegend(false);
 		super.onViewCreated(view, savedInstanceState);
 	}
 
@@ -114,17 +116,14 @@ public class MonthFragment extends BaseChartsFragment {
 		mSeries.add("Bad", badDaysCount);
 
 		SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
-		renderer.setColor(COLORS[(mSeries.getItemCount() - 1) % COLORS.length]);
+		renderer.setColor(Color.parseColor("#E1F930"));
 		mRenderer.addSeriesRenderer(renderer);
-
-		Log.v(Constants.TAG, "BAD" + badDaysCount);
-		Log.v(Constants.TAG, "GOOD" + goodDaysCount);
 
 		mSeries.add("Good ", goodDaysCount);
 
 		SimpleSeriesRenderer renderer2 = new SimpleSeriesRenderer();
 		renderer2
-				.setColor(COLORS[(mSeries.getItemCount() - 1) % COLORS.length]);
+				.setColor(Color.parseColor("#EF2551"));
 		mRenderer.addSeriesRenderer(renderer2);
 
 		mChartView.repaint();

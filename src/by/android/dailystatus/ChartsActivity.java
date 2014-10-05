@@ -12,12 +12,11 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
-
-import com.viewpagerindicator.TabPageIndicator;
-
+import android.widget.ImageView;
 import by.android.dailystatus.fragment.MonthFragment;
 import by.android.dailystatus.fragment.WeekFragment;
 import by.android.dailystatus.fragment.YearFragment;
+import com.viewpagerindicator.TabPageIndicator;
 
 public class ChartsActivity extends ActionBarActivity {
 
@@ -31,8 +30,12 @@ public class ChartsActivity extends ActionBarActivity {
         super.onCreate(arg0);
         setContentView(R.layout.simple_tabs);
 
+        //change default overlays
+        ((ImageView) findViewById(R.id.overlay_left)).setImageResource(R.drawable.ic_grape_green_calendar);
+        ((ImageView) findViewById(R.id.overlay_right)).setImageResource(R.drawable.pear_mirrored);
+
         getSupportActionBar().setBackgroundDrawable(
-                new ColorDrawable(Color.parseColor("#0e78c9")));
+                new ColorDrawable(Color.parseColor("#ffffffff")));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FragmentPagerAdapter adapter = new AppsAdapter(

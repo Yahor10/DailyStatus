@@ -6,7 +6,7 @@
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
     -->
-    <style name="AppBaseTheme" parent="@style/Theme.AppCompat">
+    <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light">
 
         <!--
             Theme customizations available in newer API levels can go in
@@ -87,10 +87,10 @@
         <item name="android:shadowRadius">2</item>
     </style>
 
-    <style name="Animations" />
+    <style name="Animations"/>
 
     <!-- PopDownMenu -->
-    <style name="Animations.PopDownMenu" />
+    <style name="Animations.PopDownMenu"/>
 
     <style name="Animations.PopDownMenu.Left">
         <item name="@android:windowEnterAnimation">@anim/grow_from_topleft_to_bottomright</item>
@@ -108,7 +108,7 @@
     </style>
 
     <!-- PopUpMenu -->
-    <style name="Animations.PopUpMenu" />
+    <style name="Animations.PopUpMenu"/>
 
     <style name="Animations.PopUpMenu.Left">
         <item name="@android:windowEnterAnimation">@anim/grow_from_bottomleft_to_topright</item>
@@ -207,22 +207,16 @@
 
     <style name="CustomTabPageIndicator" parent="Widget.TabPageIndicator">
         <item name="android:background">@drawable/custom_tab_indicator</item>
-        <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
-        <item name="android:textColor">#FF555555</item>
-        <item name="android:textSize">13sp</item>
-        <item name="android:divider">@drawable/custom_tab_indicator_divider</item>
-        <!--
-        <item name="android:dividerPadding">10dp</item>
-        <item name="attrs:showDividers">middle</item>
-        -->
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:divider">@drawable/tabs_divider</item>
+        <item name="android:showDividers">middle</item>
+        <item name="android:dividerPadding">5dp</item>
+        <item name="android:height">35dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:padding">5dp</item>
         <item name="android:paddingLeft">8dp</item>
         <item name="android:paddingRight">8dp</item>
-        <item name="android:fadingEdge">horizontal</item>
-        <item name="android:fadingEdgeLength">8dp</item>
-    </style>
-
-    <style name="CustomTabPageIndicator.Text" parent="android:TextAppearance.Medium">
-        <item name="android:typeface">monospace</item>
     </style>
 
     <style name="CustomUnderlinePageIndicator">
