@@ -48,7 +48,7 @@ public class ProfileActivity extends ActionBarActivity {
 
         inflater = getLayoutInflater();
         getSupportActionBar().setBackgroundDrawable(
-                new ColorDrawable(Color.parseColor("#0e78c9")));
+                new ColorDrawable(Color.parseColor("#ffffffff")));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         date = DateTime.now();
 

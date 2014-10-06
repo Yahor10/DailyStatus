@@ -17,7 +17,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -45,7 +44,6 @@ import by.android.dailystatus.preference.PreferenceUtils;
 import by.android.dailystatus.widget.animations.AnimationViewPagerFragmentZoom;
 import by.android.dailystatus.widget.calendar.CalendarView;
 import by.android.dailystatus.widget.container.EventLayout;
-import com.crashlytics.android.Crashlytics;
 import org.joda.time.DateTime;
 import uk.co.senab.bitmapcache.BitmapLruCache;
 import uk.co.senab.bitmapcache.CacheableBitmapWrapper;
@@ -411,15 +409,20 @@ public class MainActivity extends ActionBarActivity implements
         }
         if (requestCode == RESULT_GET_STANDART_EVENT && resultCode == RESULT_OK) {
             if (data != null) {
-                String str = data
-                        .getStringExtra(EventsListStandartActivity.MESSAGE_KEY);
-                AddDayEvent dialog = new AddDayEvent(this, str, false);
-                // dialog.show(getSupportFragmentManager(), "");
+                String title = data.getStringExtra(EventsListStandartActivity.MESSAGE_KEY);
 
-                FragmentTransaction transaction = getSupportFragmentManager()
-                        .beginTransaction();
-                transaction.add(dialog, "");
-                transaction.commitAllowingStateLoss();
+                DateTime now = getNow();
+
+                String currentUser = PreferenceUtils.getCurrentUser(this);
+                int day = now.getDayOfYear();
+                int month = now.getMonthOfYear();
+                int year = now.getYear();
+                long date = now.getMillis();
+                EventORM event = new EventORM(currentUser, day, month, year, date, title);
+                event.new_item = true;
+
+                EventORM.insertEvent(this, event);
+                updateContent();
             }
 
         }

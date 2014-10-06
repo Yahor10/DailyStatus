@@ -40,11 +40,7 @@
         </activity>
         <activity
             android:name="by.android.dailystatus.MainActivity"
-            android:configChanges="keyboardHidden|orientation">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="by.android.dailystatus.MainActivity"/>
-        </activity>
+            android:configChanges="keyboardHidden|orientation"/>
         <activity android:name="by.android.dailystatus.alarm.AlarmActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

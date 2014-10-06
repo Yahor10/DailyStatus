@@ -36,7 +36,6 @@ public class LoginActivity extends ActionBarActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Crashlytics.start(this);
         setContentView(R.layout.login);
         getSupportActionBar().hide();
 

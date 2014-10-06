@@ -181,7 +181,7 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
 
                 int index = ((ViewGroup) findViewById.getParent())
                         .indexOfChild(findViewById);
-                removeViewAt(index + 1);
+                removeViewAt(index);
                 removeView(findViewById);
 
                 break;

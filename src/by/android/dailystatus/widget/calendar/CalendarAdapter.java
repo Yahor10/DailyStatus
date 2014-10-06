@@ -8,23 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
+import by.android.dailystatus.R;
+import by.android.dailystatus.application.Constants;
 import org.joda.time.LocalDate;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
-
-import by.android.dailystatus.R;
-import by.android.dailystatus.application.Constants;
+import java.util.*;
 
 public class CalendarAdapter extends BaseAdapter {
     private Context mContext;
@@ -144,6 +135,8 @@ public class CalendarAdapter extends BaseAdapter {
             LocalDate local = new LocalDate(date2);
             int dayOfYear = local.getDayOfYear();
 
+            v.setTag(dayOfYear);
+
             if (goodDays.contains(dayOfYear)) {
                 v.setBackgroundColor(mContext.getResources().getColor(R.color.red_border));
             }
@@ -176,7 +169,19 @@ public class CalendarAdapter extends BaseAdapter {
 
     public View setSelected(View view) {
         if (previousView != null) {
-            previousView.setBackgroundColor(mContext.getResources().getColor(R.color.light_gray));
+            if (previousView.getTag() != null) {
+                int dayOfYear = (Integer) previousView.getTag();
+
+                if (goodDays.contains(dayOfYear)) {
+                    previousView.setBackgroundColor(mContext.getResources().getColor(R.color.red_border));
+                } else if (badDays.contains(dayOfYear)) {
+                    previousView.setBackgroundColor(mContext.getResources().getColor(R.color.limon_color));
+                    ((TextView) previousView.findViewById(R.id.date))
+                            .setTextColor(mContext.getResources().getColor(R.color.red_border));
+                } else {
+                    previousView.setBackgroundColor(mContext.getResources().getColor(R.color.light_gray));
+                }
+            }
         }
         previousView = view;
         view.setBackgroundColor(mContext.getResources().getColor(android.R.color.darker_gray));
