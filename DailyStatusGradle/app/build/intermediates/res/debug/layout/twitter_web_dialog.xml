@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/twitter_web_view_content"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/twitter_web_view_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" />
+
+    <ImageView
+        android:id="@+id/twitter_close_web_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:src="@drawable/close" />
+
+</FrameLayout><!-- From: file:/home/alex/WorkProjects/DailyStatus/DailyStatusGradle/app/src/main/res/layout/twitter_web_dialog.xml -->

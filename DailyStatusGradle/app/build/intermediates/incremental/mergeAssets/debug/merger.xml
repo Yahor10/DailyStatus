@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="2" >
+
+    <dataSet config="19.1.0" >
+        <source path="/home/alex/WorkProjects/DailyStatus/DailyStatusGradle/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/assets" />
+    </dataSet>
+    <dataSet config="main" >
+        <source path="/home/alex/WorkProjects/DailyStatus/DailyStatusGradle/app/src/main/assets" >
+            <file
+                name="crashlytics-build.properties"
+                path="/home/alex/WorkProjects/DailyStatus/DailyStatusGradle/app/src/main/assets/crashlytics-build.properties" />
+            <file
+                name="fonts/charissil-i.ttf"
+                path="/home/alex/WorkProjects/DailyStatus/DailyStatusGradle/app/src/main/assets/fonts/charissil-i.ttf" />
+            <file
+                name="fonts/segoe-ui-1361529660.ttf"
+                path="/home/alex/WorkProjects/DailyStatus/DailyStatusGradle/app/src/main/assets/fonts/segoe-ui-1361529660.ttf" />
+        </source>
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="/home/alex/WorkProjects/DailyStatus/DailyStatusGradle/app/src/debug/assets" />
+    </dataSet>
+
+</merger>

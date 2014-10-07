@@ -1,0 +1,763 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Manifest Merging:
+-----------------
+Your project uses libraries that provide manifests, and your Eclipse
+project did not explicitly turn on manifest merging. In Android Gradle
+projects, manifests are always merged (meaning that contents from your
+libraries' manifests will be merged into the app manifest. If you had
+manually copied contents from library manifests into your app manifest
+you may need to remove these for the app to build correctly.
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .checkstyle
+* .gitignore
+* .idea/
+* .idea/.name
+* .idea/codeStyleSettings.xml
+* .idea/compiler.xml
+* .idea/copyright/
+* .idea/copyright/profiles_settings.xml
+* .idea/encodings.xml
+* .idea/libraries/
+* .idea/libraries/libs.xml
+* .idea/misc.xml
+* .idea/modules.xml
+* .idea/scopes/
+* .idea/scopes/scope_settings.xml
+* .idea/uiDesigner.xml
+* .idea/vcs.xml
+* .idea/workspace.xml
+* DailyStatus.iml
+* crashlytics.properties
+* ic_launcher-web.png
+* out/
+* out/production/
+* out/production/DailyStatus/
+* out/production/DailyStatus/DailyStatus.apk
+* out/production/DailyStatus/android/
+* out/production/DailyStatus/android/support/
+* out/production/DailyStatus/android/support/v7/
+* out/production/DailyStatus/android/support/v7/appcompat/
+* out/production/DailyStatus/android/support/v7/appcompat/BuildConfig.class
+* out/production/DailyStatus/android/support/v7/appcompat/R$anim.class
+* out/production/DailyStatus/android/support/v7/appcompat/R$attr.class
+* out/production/DailyStatus/android/support/v7/appcompat/R$bool.class
+* out/production/DailyStatus/android/support/v7/appcompat/R$color.class
+* out/production/DailyStatus/android/support/v7/appcompat/R$dimen.class
+* out/production/DailyStatus/android/support/v7/appcompat/R$drawable.class
+* out/production/DailyStatus/android/support/v7/appcompat/R$id.class
+* out/production/DailyStatus/android/support/v7/appcompat/R$integer.class
+* out/production/DailyStatus/android/support/v7/appcompat/R$layout.class
+* out/production/DailyStatus/android/support/v7/appcompat/R$string.class
+* out/production/DailyStatus/android/support/v7/appcompat/R$style.class
+* out/production/DailyStatus/android/support/v7/appcompat/R$styleable.class
+* out/production/DailyStatus/android/support/v7/appcompat/R.class
+* out/production/DailyStatus/by/
+* out/production/DailyStatus/by/android/
+* out/production/DailyStatus/by/android/dailystatus/
+* out/production/DailyStatus/by/android/dailystatus/AddEventFromCalendarActivity.class
+* out/production/DailyStatus/by/android/dailystatus/BuildConfig.class
+* out/production/DailyStatus/by/android/dailystatus/ChartsActivity$AppsAdapter.class
+* out/production/DailyStatus/by/android/dailystatus/ChartsActivity.class
+* out/production/DailyStatus/by/android/dailystatus/EventActivity$1.class
+* out/production/DailyStatus/by/android/dailystatus/EventActivity$2.class
+* out/production/DailyStatus/by/android/dailystatus/EventActivity$3.class
+* out/production/DailyStatus/by/android/dailystatus/EventActivity$4.class
+* out/production/DailyStatus/by/android/dailystatus/EventActivity$EventsAdapter.class
+* out/production/DailyStatus/by/android/dailystatus/EventActivity.class
+* out/production/DailyStatus/by/android/dailystatus/EventsListStandartActivity$EventsAdapter.class
+* out/production/DailyStatus/by/android/dailystatus/EventsListStandartActivity.class
+* out/production/DailyStatus/by/android/dailystatus/LoginActivity$1.class
+* out/production/DailyStatus/by/android/dailystatus/LoginActivity$2.class
+* out/production/DailyStatus/by/android/dailystatus/LoginActivity$3.class
+* out/production/DailyStatus/by/android/dailystatus/LoginActivity.class
+* out/production/DailyStatus/by/android/dailystatus/MainActivity$1.class
+* out/production/DailyStatus/by/android/dailystatus/MainActivity$2$1.class
+* out/production/DailyStatus/by/android/dailystatus/MainActivity$2.class
+* out/production/DailyStatus/by/android/dailystatus/MainActivity$DayPageAdapter.class
+* out/production/DailyStatus/by/android/dailystatus/MainActivity.class
+* out/production/DailyStatus/by/android/dailystatus/ProfileActivity$1.class
+* out/production/DailyStatus/by/android/dailystatus/ProfileActivity.class
+* out/production/DailyStatus/by/android/dailystatus/R$anim.class
+* out/production/DailyStatus/by/android/dailystatus/R$array.class
+* out/production/DailyStatus/by/android/dailystatus/R$attr.class
+* out/production/DailyStatus/by/android/dailystatus/R$bool.class
+* out/production/DailyStatus/by/android/dailystatus/R$color.class
+* out/production/DailyStatus/by/android/dailystatus/R$dimen.class
+* out/production/DailyStatus/by/android/dailystatus/R$drawable.class
+* out/production/DailyStatus/by/android/dailystatus/R$id.class
+* out/production/DailyStatus/by/android/dailystatus/R$integer.class
+* out/production/DailyStatus/by/android/dailystatus/R$layout.class
+* out/production/DailyStatus/by/android/dailystatus/R$menu.class
+* out/production/DailyStatus/by/android/dailystatus/R$string.class
+* out/production/DailyStatus/by/android/dailystatus/R$style.class
+* out/production/DailyStatus/by/android/dailystatus/R$styleable.class
+* out/production/DailyStatus/by/android/dailystatus/R.class
+* out/production/DailyStatus/by/android/dailystatus/RegisterActivity$1.class
+* out/production/DailyStatus/by/android/dailystatus/RegisterActivity$2.class
+* out/production/DailyStatus/by/android/dailystatus/RegisterActivity$3.class
+* out/production/DailyStatus/by/android/dailystatus/RegisterActivity$EmailValidator.class
+* out/production/DailyStatus/by/android/dailystatus/RegisterActivity.class
+* out/production/DailyStatus/by/android/dailystatus/SettingsActivity$1.class
+* out/production/DailyStatus/by/android/dailystatus/SettingsActivity$2$1.class
+* out/production/DailyStatus/by/android/dailystatus/SettingsActivity$2.class
+* out/production/DailyStatus/by/android/dailystatus/SettingsActivity$3$1.class
+* out/production/DailyStatus/by/android/dailystatus/SettingsActivity$3.class
+* out/production/DailyStatus/by/android/dailystatus/SettingsActivity.class
+* out/production/DailyStatus/by/android/dailystatus/ViewEventActivity.class
+* out/production/DailyStatus/by/android/dailystatus/adapters/
+* out/production/DailyStatus/by/android/dailystatus/adapters/EventExpandableListAdapter$HolderChild.class
+* out/production/DailyStatus/by/android/dailystatus/adapters/EventExpandableListAdapter$HolderGroup.class
+* out/production/DailyStatus/by/android/dailystatus/adapters/EventExpandableListAdapter.class
+* out/production/DailyStatus/by/android/dailystatus/adapters/EventListIndexedAdapter$1.class
+* out/production/DailyStatus/by/android/dailystatus/adapters/EventListIndexedAdapter$ViewHolder.class
+* out/production/DailyStatus/by/android/dailystatus/adapters/EventListIndexedAdapter.class
+* out/production/DailyStatus/by/android/dailystatus/adapters/StandartEventExpandableListAdapter$HolderChild.class
+* out/production/DailyStatus/by/android/dailystatus/adapters/StandartEventExpandableListAdapter$HolderGroup.class
+* out/production/DailyStatus/by/android/dailystatus/adapters/StandartEventExpandableListAdapter.class
+* out/production/DailyStatus/by/android/dailystatus/alarm/
+* out/production/DailyStatus/by/android/dailystatus/alarm/AlarmActivity.class
+* out/production/DailyStatus/by/android/dailystatus/alarm/EveryDayTimeAlarm$day.class
+* out/production/DailyStatus/by/android/dailystatus/alarm/EveryDayTimeAlarm.class
+* out/production/DailyStatus/by/android/dailystatus/alarm/TimeAlarm.class
+* out/production/DailyStatus/by/android/dailystatus/application/
+* out/production/DailyStatus/by/android/dailystatus/application/Constants.class
+* out/production/DailyStatus/by/android/dailystatus/application/DailyStatusApplication.class
+* out/production/DailyStatus/by/android/dailystatus/dialog/
+* out/production/DailyStatus/by/android/dailystatus/dialog/AddDayEvent.class
+* out/production/DailyStatus/by/android/dailystatus/dialog/ForgotPasswordDialog$SendEmail.class
+* out/production/DailyStatus/by/android/dailystatus/dialog/ForgotPasswordDialog.class
+* out/production/DailyStatus/by/android/dailystatus/dialog/ImageChoiseDialog.class
+* out/production/DailyStatus/by/android/dailystatus/dialog/LicenseDialog$1.class
+* out/production/DailyStatus/by/android/dailystatus/dialog/LicenseDialog.class
+* out/production/DailyStatus/by/android/dailystatus/dialog/ProgressDialog.class
+* out/production/DailyStatus/by/android/dailystatus/dialog/VersionDialog$1.class
+* out/production/DailyStatus/by/android/dailystatus/dialog/VersionDialog.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/
+* out/production/DailyStatus/by/android/dailystatus/fragment/BaseChartsFragment.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/DayModel.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/EventListFragment$1.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/EventListFragment$1CustomComparator.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/EventListFragment$2.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/EventListFragment$3.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/EventListFragment$LoadDBAsync.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/EventListFragment.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/EventStandartListFragment$1.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/EventStandartListFragment$1CustomComparator.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/EventStandartListFragment$LoadXMLAsync.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/EventStandartListFragment.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/MonthFragment.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/WeekFragment.class
+* out/production/DailyStatus/by/android/dailystatus/fragment/YearFragment.class
+* out/production/DailyStatus/by/android/dailystatus/interfaces/
+* out/production/DailyStatus/by/android/dailystatus/interfaces/FragmentActivityCallback.class
+* out/production/DailyStatus/by/android/dailystatus/model/
+* out/production/DailyStatus/by/android/dailystatus/model/GroupEvent.class
+* out/production/DailyStatus/by/android/dailystatus/newpopup/
+* out/production/DailyStatus/by/android/dailystatus/newpopup/MenuItem.class
+* out/production/DailyStatus/by/android/dailystatus/newpopup/PopupMenu$1.class
+* out/production/DailyStatus/by/android/dailystatus/newpopup/PopupMenu$2.class
+* out/production/DailyStatus/by/android/dailystatus/newpopup/PopupMenu$MenuItemAdapter.class
+* out/production/DailyStatus/by/android/dailystatus/newpopup/PopupMenu$OnItemSelectedListener.class
+* out/production/DailyStatus/by/android/dailystatus/newpopup/PopupMenu$ViewHolder.class
+* out/production/DailyStatus/by/android/dailystatus/newpopup/PopupMenu.class
+* out/production/DailyStatus/by/android/dailystatus/orm/
+* out/production/DailyStatus/by/android/dailystatus/orm/model/
+* out/production/DailyStatus/by/android/dailystatus/orm/model/DatabaseHelper.class
+* out/production/DailyStatus/by/android/dailystatus/orm/model/DayORM.class
+* out/production/DailyStatus/by/android/dailystatus/orm/model/EventORM.class
+* out/production/DailyStatus/by/android/dailystatus/orm/model/UserORM.class
+* out/production/DailyStatus/by/android/dailystatus/preference/
+* out/production/DailyStatus/by/android/dailystatus/preference/PreferenceKeys.class
+* out/production/DailyStatus/by/android/dailystatus/preference/PreferenceUtils.class
+* out/production/DailyStatus/by/android/dailystatus/social/
+* out/production/DailyStatus/by/android/dailystatus/social/email/
+* out/production/DailyStatus/by/android/dailystatus/social/email/GMailSender$ByteArrayDataSource.class
+* out/production/DailyStatus/by/android/dailystatus/social/email/GMailSender.class
+* out/production/DailyStatus/by/android/dailystatus/social/email/JSSEProvider$1.class
+* out/production/DailyStatus/by/android/dailystatus/social/email/JSSEProvider.class
+* out/production/DailyStatus/by/android/dailystatus/utils/
+* out/production/DailyStatus/by/android/dailystatus/utils/CryptUtils.class
+* out/production/DailyStatus/by/android/dailystatus/widget/
+* out/production/DailyStatus/by/android/dailystatus/widget/animations/
+* out/production/DailyStatus/by/android/dailystatus/widget/animations/AnimationViewPagerFragmentZoom.class
+* out/production/DailyStatus/by/android/dailystatus/widget/calendar/
+* out/production/DailyStatus/by/android/dailystatus/widget/calendar/CalendarAdapter.class
+* out/production/DailyStatus/by/android/dailystatus/widget/calendar/CalendarView$1.class
+* out/production/DailyStatus/by/android/dailystatus/widget/calendar/CalendarView$2.class
+* out/production/DailyStatus/by/android/dailystatus/widget/calendar/CalendarView$3.class
+* out/production/DailyStatus/by/android/dailystatus/widget/calendar/CalendarView$4.class
+* out/production/DailyStatus/by/android/dailystatus/widget/calendar/CalendarView.class
+* out/production/DailyStatus/by/android/dailystatus/widget/calendar/Utils.class
+* out/production/DailyStatus/by/android/dailystatus/widget/container/
+* out/production/DailyStatus/by/android/dailystatus/widget/container/EventLayout$1.class
+* out/production/DailyStatus/by/android/dailystatus/widget/container/EventLayout.class
+* out/production/DailyStatus/by/android/dailystatus/widget/customlistview/
+* out/production/DailyStatus/by/android/dailystatus/widget/customlistview/AlphabetIndexerView.class
+* out/production/DailyStatus/by/android/dailystatus/widget/customlistview/AlphabetListView.class
+* out/production/DailyStatus/com/
+* out/production/DailyStatus/com/facebook/
+* out/production/DailyStatus/com/facebook/AccessToken$1.class
+* out/production/DailyStatus/com/facebook/AccessToken$SerializationProxyV1.class
+* out/production/DailyStatus/com/facebook/AccessToken.class
+* out/production/DailyStatus/com/facebook/AccessTokenSource.class
+* out/production/DailyStatus/com/facebook/AppEventsConstants.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$1.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$2.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$3.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$4.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$5.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$AccessTokenAppIdPair$SerializationProxyV1.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$AccessTokenAppIdPair.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$AppEvent$SerializationProxyV1.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$AppEvent.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$EventSuppression.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$FlushBehavior.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$FlushReason.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$FlushResult.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$FlushStatistics.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$PersistedEvents.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$SessionEventsState.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger$SuppressionTimeoutBehavior.class
+* out/production/DailyStatus/com/facebook/AppEventsLogger.class
+* out/production/DailyStatus/com/facebook/AppLinkData$1.class
+* out/production/DailyStatus/com/facebook/AppLinkData$2.class
+* out/production/DailyStatus/com/facebook/AppLinkData$CompletionHandler.class
+* out/production/DailyStatus/com/facebook/AppLinkData$DeferredAppLinkDataClient.class
+* out/production/DailyStatus/com/facebook/AppLinkData.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$1.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$2.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$3.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$4.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$5.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$AuthDialogBuilder.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$AuthHandler.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$AuthorizationRequest.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$BackgroundProcessingListener.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$GetTokenAuthHandler$1.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$GetTokenAuthHandler.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$KatanaAuthHandler.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$KatanaLoginDialogAuthHandler.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$KatanaProxyAuthHandler.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$OnCompletedListener.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$Result$Code.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$Result.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$StartActivityDelegate.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$WebViewAuthHandler$1.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient$WebViewAuthHandler.class
+* out/production/DailyStatus/com/facebook/AuthorizationClient.class
+* out/production/DailyStatus/com/facebook/FacebookAuthorizationException.class
+* out/production/DailyStatus/com/facebook/FacebookDialogException.class
+* out/production/DailyStatus/com/facebook/FacebookException.class
+* out/production/DailyStatus/com/facebook/FacebookGraphObjectException.class
+* out/production/DailyStatus/com/facebook/FacebookOperationCanceledException.class
+* out/production/DailyStatus/com/facebook/FacebookRequestError$1.class
+* out/production/DailyStatus/com/facebook/FacebookRequestError$Category.class
+* out/production/DailyStatus/com/facebook/FacebookRequestError$Range.class
+* out/production/DailyStatus/com/facebook/FacebookRequestError.class
+* out/production/DailyStatus/com/facebook/FacebookSdkVersion.class
+* out/production/DailyStatus/com/facebook/FacebookServiceException.class
+* out/production/DailyStatus/com/facebook/GetTokenClient.class
+* out/production/DailyStatus/com/facebook/HttpMethod.class
+* out/production/DailyStatus/com/facebook/InsightsLogger.class
+* out/production/DailyStatus/com/facebook/LegacyHelper.class
+* out/production/DailyStatus/com/facebook/LoggingBehavior.class
+* out/production/DailyStatus/com/facebook/LoginActivity$1.class
+* out/production/DailyStatus/com/facebook/LoginActivity$2.class
+* out/production/DailyStatus/com/facebook/LoginActivity.class
+* out/production/DailyStatus/com/facebook/NativeAppCallAttachmentStore$1.class
+* out/production/DailyStatus/com/facebook/NativeAppCallAttachmentStore$2.class
+* out/production/DailyStatus/com/facebook/NativeAppCallAttachmentStore$ProcessAttachment.class
+* out/production/DailyStatus/com/facebook/NativeAppCallAttachmentStore.class
+* out/production/DailyStatus/com/facebook/NativeAppCallContentProvider$AttachmentDataSource.class
+* out/production/DailyStatus/com/facebook/NativeAppCallContentProvider.class
+* out/production/DailyStatus/com/facebook/NonCachingTokenCachingStrategy.class
+* out/production/DailyStatus/com/facebook/Request$1.class
+* out/production/DailyStatus/com/facebook/Request$2.class
+* out/production/DailyStatus/com/facebook/Request$3.class
+* out/production/DailyStatus/com/facebook/Request$4.class
+* out/production/DailyStatus/com/facebook/Request$5.class
+* out/production/DailyStatus/com/facebook/Request$Callback.class
+* out/production/DailyStatus/com/facebook/Request$GraphPlaceListCallback.class
+* out/production/DailyStatus/com/facebook/Request$GraphUserCallback.class
+* out/production/DailyStatus/com/facebook/Request$GraphUserListCallback.class
+* out/production/DailyStatus/com/facebook/Request$KeyValueSerializer.class
+* out/production/DailyStatus/com/facebook/Request$ParcelFileDescriptorWithMimeType$1.class
+* out/production/DailyStatus/com/facebook/Request$ParcelFileDescriptorWithMimeType.class
+* out/production/DailyStatus/com/facebook/Request$Serializer.class
+* out/production/DailyStatus/com/facebook/Request.class
+* out/production/DailyStatus/com/facebook/RequestAsyncTask.class
+* out/production/DailyStatus/com/facebook/RequestBatch$Callback.class
+* out/production/DailyStatus/com/facebook/RequestBatch.class
+* out/production/DailyStatus/com/facebook/Response$PagedResults.class
+* out/production/DailyStatus/com/facebook/Response$PagingDirection.class
+* out/production/DailyStatus/com/facebook/Response$PagingInfo.class
+* out/production/DailyStatus/com/facebook/Response.class
+* out/production/DailyStatus/com/facebook/Session$1.class
+* out/production/DailyStatus/com/facebook/Session$2.class
+* out/production/DailyStatus/com/facebook/Session$3$1.class
+* out/production/DailyStatus/com/facebook/Session$3.class
+* out/production/DailyStatus/com/facebook/Session$4.class
+* out/production/DailyStatus/com/facebook/Session$AuthorizationRequest$1.class
+* out/production/DailyStatus/com/facebook/Session$AuthorizationRequest$2.class
+* out/production/DailyStatus/com/facebook/Session$AuthorizationRequest$3.class
+* out/production/DailyStatus/com/facebook/Session$AuthorizationRequest$4.class
+* out/production/DailyStatus/com/facebook/Session$AuthorizationRequest$AuthRequestSerializationProxyV1.class
+* out/production/DailyStatus/com/facebook/Session$AuthorizationRequest.class
+* out/production/DailyStatus/com/facebook/Session$AutoPublishAsyncTask.class
+* out/production/DailyStatus/com/facebook/Session$Builder.class
+* out/production/DailyStatus/com/facebook/Session$NewPermissionsRequest.class
+* out/production/DailyStatus/com/facebook/Session$OpenRequest.class
+* out/production/DailyStatus/com/facebook/Session$SerializationProxyV1.class
+* out/production/DailyStatus/com/facebook/Session$StartActivityDelegate.class
+* out/production/DailyStatus/com/facebook/Session$StatusCallback.class
+* out/production/DailyStatus/com/facebook/Session$TokenRefreshRequest.class
+* out/production/DailyStatus/com/facebook/Session$TokenRefreshRequestHandler.class
+* out/production/DailyStatus/com/facebook/Session.class
+* out/production/DailyStatus/com/facebook/SessionDefaultAudience.class
+* out/production/DailyStatus/com/facebook/SessionLoginBehavior.class
+* out/production/DailyStatus/com/facebook/SessionState$Category.class
+* out/production/DailyStatus/com/facebook/SessionState.class
+* out/production/DailyStatus/com/facebook/Settings$1.class
+* out/production/DailyStatus/com/facebook/Settings$2$1.class
+* out/production/DailyStatus/com/facebook/Settings$2.class
+* out/production/DailyStatus/com/facebook/Settings.class
+* out/production/DailyStatus/com/facebook/SharedPreferencesTokenCachingStrategy.class
+* out/production/DailyStatus/com/facebook/TestSession$1.class
+* out/production/DailyStatus/com/facebook/TestSession$FqlResponse.class
+* out/production/DailyStatus/com/facebook/TestSession$FqlResult.class
+* out/production/DailyStatus/com/facebook/TestSession$Mode.class
+* out/production/DailyStatus/com/facebook/TestSession$TestAccount.class
+* out/production/DailyStatus/com/facebook/TestSession$TestTokenCachingStrategy.class
+* out/production/DailyStatus/com/facebook/TestSession$UserAccount.class
+* out/production/DailyStatus/com/facebook/TestSession.class
+* out/production/DailyStatus/com/facebook/TokenCachingStrategy.class
+* out/production/DailyStatus/com/facebook/UiLifecycleHelper$1.class
+* out/production/DailyStatus/com/facebook/UiLifecycleHelper$ActiveSessionBroadcastReceiver.class
+* out/production/DailyStatus/com/facebook/UiLifecycleHelper.class
+* out/production/DailyStatus/com/facebook/android/
+* out/production/DailyStatus/com/facebook/android/AsyncFacebookRunner$1.class
+* out/production/DailyStatus/com/facebook/android/AsyncFacebookRunner$2.class
+* out/production/DailyStatus/com/facebook/android/AsyncFacebookRunner$RequestListener.class
+* out/production/DailyStatus/com/facebook/android/AsyncFacebookRunner.class
+* out/production/DailyStatus/com/facebook/android/DialogError.class
+* out/production/DailyStatus/com/facebook/android/Facebook$1.class
+* out/production/DailyStatus/com/facebook/android/Facebook$DialogListener.class
+* out/production/DailyStatus/com/facebook/android/Facebook$ServiceListener.class
+* out/production/DailyStatus/com/facebook/android/Facebook$SetterTokenCachingStrategy.class
+* out/production/DailyStatus/com/facebook/android/Facebook$TokenRefreshConnectionHandler.class
+* out/production/DailyStatus/com/facebook/android/Facebook$TokenRefreshServiceConnection.class
+* out/production/DailyStatus/com/facebook/android/Facebook.class
+* out/production/DailyStatus/com/facebook/android/FacebookError.class
+* out/production/DailyStatus/com/facebook/android/FbDialog$1.class
+* out/production/DailyStatus/com/facebook/android/FbDialog.class
+* out/production/DailyStatus/com/facebook/android/Util.class
+* out/production/DailyStatus/com/facebook/internal/
+* out/production/DailyStatus/com/facebook/internal/AnalyticsEvents.class
+* out/production/DailyStatus/com/facebook/internal/CacheableRequestBatch.class
+* out/production/DailyStatus/com/facebook/internal/FileLruCache$1.class
+* out/production/DailyStatus/com/facebook/internal/FileLruCache$2.class
+* out/production/DailyStatus/com/facebook/internal/FileLruCache$3.class
+* out/production/DailyStatus/com/facebook/internal/FileLruCache$BufferFile$1.class
+* out/production/DailyStatus/com/facebook/internal/FileLruCache$BufferFile$2.class
+* out/production/DailyStatus/com/facebook/internal/FileLruCache$BufferFile.class
+* out/production/DailyStatus/com/facebook/internal/FileLruCache$CloseCallbackOutputStream.class
+* out/production/DailyStatus/com/facebook/internal/FileLruCache$CopyingInputStream.class
+* out/production/DailyStatus/com/facebook/internal/FileLruCache$Limits.class
+* out/production/DailyStatus/com/facebook/internal/FileLruCache$ModifiedFile.class
+* out/production/DailyStatus/com/facebook/internal/FileLruCache$StreamCloseCallback.class
+* out/production/DailyStatus/com/facebook/internal/FileLruCache$StreamHeader.class
+* out/production/DailyStatus/com/facebook/internal/FileLruCache.class
+* out/production/DailyStatus/com/facebook/internal/ImageDownloader$1.class
+* out/production/DailyStatus/com/facebook/internal/ImageDownloader$CacheReadWorkItem.class
+* out/production/DailyStatus/com/facebook/internal/ImageDownloader$DownloadImageWorkItem.class
+* out/production/DailyStatus/com/facebook/internal/ImageDownloader$DownloaderContext.class
+* out/production/DailyStatus/com/facebook/internal/ImageDownloader$RequestKey.class
+* out/production/DailyStatus/com/facebook/internal/ImageDownloader.class
+* out/production/DailyStatus/com/facebook/internal/ImageRequest$1.class
+* out/production/DailyStatus/com/facebook/internal/ImageRequest$Builder.class
+* out/production/DailyStatus/com/facebook/internal/ImageRequest$Callback.class
+* out/production/DailyStatus/com/facebook/internal/ImageRequest.class
+* out/production/DailyStatus/com/facebook/internal/ImageResponse.class
+* out/production/DailyStatus/com/facebook/internal/ImageResponseCache$BufferedHttpInputStream.class
+* out/production/DailyStatus/com/facebook/internal/ImageResponseCache.class
+* out/production/DailyStatus/com/facebook/internal/Logger.class
+* out/production/DailyStatus/com/facebook/internal/NativeProtocol.class
+* out/production/DailyStatus/com/facebook/internal/PlatformServiceClient$1.class
+* out/production/DailyStatus/com/facebook/internal/PlatformServiceClient$CompletedListener.class
+* out/production/DailyStatus/com/facebook/internal/PlatformServiceClient.class
+* out/production/DailyStatus/com/facebook/internal/ServerProtocol.class
+* out/production/DailyStatus/com/facebook/internal/SessionAuthorizationType.class
+* out/production/DailyStatus/com/facebook/internal/SessionTracker$1.class
+* out/production/DailyStatus/com/facebook/internal/SessionTracker$ActiveSessionBroadcastReceiver.class
+* out/production/DailyStatus/com/facebook/internal/SessionTracker$CallbackWrapper.class
+* out/production/DailyStatus/com/facebook/internal/SessionTracker.class
+* out/production/DailyStatus/com/facebook/internal/UrlRedirectCache.class
+* out/production/DailyStatus/com/facebook/internal/Utility$1.class
+* out/production/DailyStatus/com/facebook/internal/Utility$FetchedAppSettings.class
+* out/production/DailyStatus/com/facebook/internal/Utility.class
+* out/production/DailyStatus/com/facebook/internal/Validate.class
+* out/production/DailyStatus/com/facebook/internal/WorkQueue$1.class
+* out/production/DailyStatus/com/facebook/internal/WorkQueue$WorkItem.class
+* out/production/DailyStatus/com/facebook/internal/WorkQueue$WorkNode.class
+* out/production/DailyStatus/com/facebook/internal/WorkQueue.class
+* out/production/DailyStatus/com/facebook/model/
+* out/production/DailyStatus/com/facebook/model/CreateGraphObject.class
+* out/production/DailyStatus/com/facebook/model/GraphLocation.class
+* out/production/DailyStatus/com/facebook/model/GraphMultiResult.class
+* out/production/DailyStatus/com/facebook/model/GraphObject$Factory$GraphObjectListImpl.class
+* out/production/DailyStatus/com/facebook/model/GraphObject$Factory$GraphObjectProxy$1.class
+* out/production/DailyStatus/com/facebook/model/GraphObject$Factory$GraphObjectProxy.class
+* out/production/DailyStatus/com/facebook/model/GraphObject$Factory$ProxyBase.class
+* out/production/DailyStatus/com/facebook/model/GraphObject$Factory.class
+* out/production/DailyStatus/com/facebook/model/GraphObject.class
+* out/production/DailyStatus/com/facebook/model/GraphObjectList.class
+* out/production/DailyStatus/com/facebook/model/GraphPlace.class
+* out/production/DailyStatus/com/facebook/model/GraphUser.class
+* out/production/DailyStatus/com/facebook/model/JsonUtil$JSONObjectEntry.class
+* out/production/DailyStatus/com/facebook/model/JsonUtil.class
+* out/production/DailyStatus/com/facebook/model/OpenGraphAction$Factory.class
+* out/production/DailyStatus/com/facebook/model/OpenGraphAction.class
+* out/production/DailyStatus/com/facebook/model/OpenGraphObject$Factory.class
+* out/production/DailyStatus/com/facebook/model/OpenGraphObject.class
+* out/production/DailyStatus/com/facebook/model/PropertyName.class
+* out/production/DailyStatus/com/facebook/widget/
+* out/production/DailyStatus/com/facebook/widget/FacebookDialog$1.class
+* out/production/DailyStatus/com/facebook/widget/FacebookDialog$Builder.class
+* out/production/DailyStatus/com/facebook/widget/FacebookDialog$Callback.class
+* out/production/DailyStatus/com/facebook/widget/FacebookDialog$DialogFeature.class
+* out/production/DailyStatus/com/facebook/widget/FacebookDialog$OnPresentCallback.class
+* out/production/DailyStatus/com/facebook/widget/FacebookDialog$OpenGraphActionDialogBuilder$1.class
+* out/production/DailyStatus/com/facebook/widget/FacebookDialog$OpenGraphActionDialogBuilder.class
+* out/production/DailyStatus/com/facebook/widget/FacebookDialog$OpenGraphActionDialogFeature.class
+* out/production/DailyStatus/com/facebook/widget/FacebookDialog$PendingCall$1.class
+* out/production/DailyStatus/com/facebook/widget/FacebookDialog$PendingCall.class
+* out/production/DailyStatus/com/facebook/widget/FacebookDialog$ShareDialogBuilder.class
+* out/production/DailyStatus/com/facebook/widget/FacebookDialog$ShareDialogFeature.class
+* out/production/DailyStatus/com/facebook/widget/FacebookDialog.class
+* out/production/DailyStatus/com/facebook/widget/FacebookFragment$1.class
+* out/production/DailyStatus/com/facebook/widget/FacebookFragment$DefaultSessionStatusCallback.class
+* out/production/DailyStatus/com/facebook/widget/FacebookFragment.class
+* out/production/DailyStatus/com/facebook/widget/FriendPickerFragment$1.class
+* out/production/DailyStatus/com/facebook/widget/FriendPickerFragment$ImmediateLoadingStrategy.class
+* out/production/DailyStatus/com/facebook/widget/FriendPickerFragment.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectAdapter$1.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectAdapter$2.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectAdapter$3.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectAdapter$DataNeededListener.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectAdapter$Filter.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectAdapter$ItemPicture.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectAdapter$ItemPictureData.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectAdapter$OnErrorListener.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectAdapter$SectionAndItem$Type.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectAdapter$SectionAndItem.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectAdapter.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectCursor.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectPagingLoader$1.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectPagingLoader$2.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectPagingLoader$3.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectPagingLoader$OnErrorListener.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectPagingLoader$PagedResults.class
+* out/production/DailyStatus/com/facebook/widget/GraphObjectPagingLoader.class
+* out/production/DailyStatus/com/facebook/widget/LoginButton$1.class
+* out/production/DailyStatus/com/facebook/widget/LoginButton$LoginButtonCallback.class
+* out/production/DailyStatus/com/facebook/widget/LoginButton$LoginButtonProperties.class
+* out/production/DailyStatus/com/facebook/widget/LoginButton$LoginClickListener$1.class
+* out/production/DailyStatus/com/facebook/widget/LoginButton$LoginClickListener.class
+* out/production/DailyStatus/com/facebook/widget/LoginButton$OnErrorListener.class
+* out/production/DailyStatus/com/facebook/widget/LoginButton$UserInfoChangedCallback.class
+* out/production/DailyStatus/com/facebook/widget/LoginButton.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$1.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$2.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$3.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$4.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$5.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$6.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$GraphObjectFilter.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$LoadingStrategy$1.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$LoadingStrategy$2.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$LoadingStrategy$3.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$LoadingStrategy.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$MultiSelectionStrategy.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$OnDataChangedListener.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$OnDoneButtonClickedListener.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$OnErrorListener.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$OnSelectionChangedListener.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$PickerFragmentAdapter.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$SelectionStrategy.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment$SingleSelectionStrategy.class
+* out/production/DailyStatus/com/facebook/widget/PickerFragment.class
+* out/production/DailyStatus/com/facebook/widget/PlacePickerFragment$1.class
+* out/production/DailyStatus/com/facebook/widget/PlacePickerFragment$2.class
+* out/production/DailyStatus/com/facebook/widget/PlacePickerFragment$3.class
+* out/production/DailyStatus/com/facebook/widget/PlacePickerFragment$AsNeededLoadingStrategy$1.class
+* out/production/DailyStatus/com/facebook/widget/PlacePickerFragment$AsNeededLoadingStrategy.class
+* out/production/DailyStatus/com/facebook/widget/PlacePickerFragment$SearchTextWatcher.class
+* out/production/DailyStatus/com/facebook/widget/PlacePickerFragment.class
+* out/production/DailyStatus/com/facebook/widget/ProfilePictureView$1.class
+* out/production/DailyStatus/com/facebook/widget/ProfilePictureView$OnErrorListener.class
+* out/production/DailyStatus/com/facebook/widget/ProfilePictureView.class
+* out/production/DailyStatus/com/facebook/widget/SimpleGraphObjectCursor.class
+* out/production/DailyStatus/com/facebook/widget/UserSettingsFragment$1.class
+* out/production/DailyStatus/com/facebook/widget/UserSettingsFragment$2.class
+* out/production/DailyStatus/com/facebook/widget/UserSettingsFragment.class
+* out/production/DailyStatus/com/facebook/widget/WebDialog$1.class
+* out/production/DailyStatus/com/facebook/widget/WebDialog$2.class
+* out/production/DailyStatus/com/facebook/widget/WebDialog$3.class
+* out/production/DailyStatus/com/facebook/widget/WebDialog$Builder.class
+* out/production/DailyStatus/com/facebook/widget/WebDialog$BuilderBase.class
+* out/production/DailyStatus/com/facebook/widget/WebDialog$DialogWebViewClient.class
+* out/production/DailyStatus/com/facebook/widget/WebDialog$FeedDialogBuilder.class
+* out/production/DailyStatus/com/facebook/widget/WebDialog$OnCompleteListener.class
+* out/production/DailyStatus/com/facebook/widget/WebDialog$RequestsDialogBuilder.class
+* out/production/DailyStatus/com/facebook/widget/WebDialog.class
+* out/production/DailyStatus/com/kanak/
+* out/production/DailyStatus/com/kanak/emptylayout/
+* out/production/DailyStatus/com/kanak/emptylayout/EmptyLayout.class
+* out/production/DailyStatus/com/kskkbys/
+* out/production/DailyStatus/com/kskkbys/rate/
+* out/production/DailyStatus/com/kskkbys/rate/RateThisApp$1.class
+* out/production/DailyStatus/com/kskkbys/rate/RateThisApp$2.class
+* out/production/DailyStatus/com/kskkbys/rate/RateThisApp$3.class
+* out/production/DailyStatus/com/kskkbys/rate/RateThisApp$4.class
+* out/production/DailyStatus/com/kskkbys/rate/RateThisApp.class
+* out/production/DailyStatus/com/makeramen/
+* out/production/DailyStatus/com/makeramen/widget/
+* out/production/DailyStatus/com/makeramen/widget/RoundedDrawable$1.class
+* out/production/DailyStatus/com/makeramen/widget/RoundedDrawable.class
+* out/production/DailyStatus/com/makeramen/widget/RoundedImageView$1.class
+* out/production/DailyStatus/com/makeramen/widget/RoundedImageView.class
+* out/production/DailyStatus/com/viewpagerindicator/
+* out/production/DailyStatus/com/viewpagerindicator/CirclePageIndicator$1.class
+* out/production/DailyStatus/com/viewpagerindicator/CirclePageIndicator$SavedState$1.class
+* out/production/DailyStatus/com/viewpagerindicator/CirclePageIndicator$SavedState.class
+* out/production/DailyStatus/com/viewpagerindicator/CirclePageIndicator.class
+* out/production/DailyStatus/com/viewpagerindicator/IconPagerAdapter.class
+* out/production/DailyStatus/com/viewpagerindicator/IcsLinearLayout.class
+* out/production/DailyStatus/com/viewpagerindicator/LinePageIndicator$1.class
+* out/production/DailyStatus/com/viewpagerindicator/LinePageIndicator$SavedState$1.class
+* out/production/DailyStatus/com/viewpagerindicator/LinePageIndicator$SavedState.class
+* out/production/DailyStatus/com/viewpagerindicator/LinePageIndicator.class
+* out/production/DailyStatus/com/viewpagerindicator/PageIndicator.class
+* out/production/DailyStatus/com/viewpagerindicator/TabPageIndicator$1.class
+* out/production/DailyStatus/com/viewpagerindicator/TabPageIndicator$2.class
+* out/production/DailyStatus/com/viewpagerindicator/TabPageIndicator$OnTabReselectedListener.class
+* out/production/DailyStatus/com/viewpagerindicator/TabPageIndicator$TabView.class
+* out/production/DailyStatus/com/viewpagerindicator/TabPageIndicator.class
+* out/production/DailyStatus/com/viewpagerindicator/TitlePageIndicator$1.class
+* out/production/DailyStatus/com/viewpagerindicator/TitlePageIndicator$IndicatorStyle.class
+* out/production/DailyStatus/com/viewpagerindicator/TitlePageIndicator$OnCenterItemClickListener.class
+* out/production/DailyStatus/com/viewpagerindicator/TitlePageIndicator$SavedState$1.class
+* out/production/DailyStatus/com/viewpagerindicator/TitlePageIndicator$SavedState.class
+* out/production/DailyStatus/com/viewpagerindicator/TitlePageIndicator.class
+* out/production/DailyStatus/com/viewpagerindicator/UnderlinePageIndicator$1.class
+* out/production/DailyStatus/com/viewpagerindicator/UnderlinePageIndicator$2.class
+* out/production/DailyStatus/com/viewpagerindicator/UnderlinePageIndicator$SavedState$1.class
+* out/production/DailyStatus/com/viewpagerindicator/UnderlinePageIndicator$SavedState.class
+* out/production/DailyStatus/com/viewpagerindicator/UnderlinePageIndicator.class
+* out/production/DailyStatus/net/
+* out/production/DailyStatus/net/cieolib/
+* out/production/DailyStatus/net/cieolib/cieo/
+* out/production/DailyStatus/net/cieolib/cieo/BulletAdapter.class
+* out/production/DailyStatus/net/cieolib/cieo/BulletInterface.class
+* out/production/DailyStatus/net/cieolib/cieo/BulletListener.class
+* out/production/DailyStatus/net/cieolib/cieo/Cieo.class
+* out/production/DailyStatus/net/cieolib/cieo/Finish$HitAnimationListener.class
+* out/production/DailyStatus/net/cieolib/cieo/Finish$TargetAnimationListener.class
+* out/production/DailyStatus/net/cieolib/cieo/Finish.class
+* out/production/DailyStatus/net/cieolib/cieo/Gun.class
+* out/production/DailyStatus/net/cieolib/cieo/HitAnimation.class
+* out/production/DailyStatus/net/cieolib/cieo/Loader.class
+* out/production/DailyStatus/net/cieolib/cieo/MainAnimation.class
+* out/production/DailyStatus/net/cieolib/cieo/TargetAnimation.class
+* out/production/DailyStatus/org/
+* out/production/DailyStatus/org/achartengine/
+* out/production/DailyStatus/org/achartengine/ChartFactory.class
+* out/production/DailyStatus/org/achartengine/GraphicalActivity.class
+* out/production/DailyStatus/org/achartengine/GraphicalView$1.class
+* out/production/DailyStatus/org/achartengine/GraphicalView$2.class
+* out/production/DailyStatus/org/achartengine/GraphicalView.class
+* out/production/DailyStatus/org/achartengine/ITouchHandler.class
+* out/production/DailyStatus/org/achartengine/TouchHandler.class
+* out/production/DailyStatus/org/achartengine/TouchHandlerOld.class
+* out/production/DailyStatus/org/achartengine/chart/
+* out/production/DailyStatus/org/achartengine/chart/AbstractChart.class
+* out/production/DailyStatus/org/achartengine/chart/BarChart$Type.class
+* out/production/DailyStatus/org/achartengine/chart/BarChart.class
+* out/production/DailyStatus/org/achartengine/chart/BubbleChart.class
+* out/production/DailyStatus/org/achartengine/chart/ClickableArea.class
+* out/production/DailyStatus/org/achartengine/chart/CombinedXYChart.class
+* out/production/DailyStatus/org/achartengine/chart/CubicLineChart.class
+* out/production/DailyStatus/org/achartengine/chart/DialChart.class
+* out/production/DailyStatus/org/achartengine/chart/DoughnutChart.class
+* out/production/DailyStatus/org/achartengine/chart/LineChart$1.class
+* out/production/DailyStatus/org/achartengine/chart/LineChart.class
+* out/production/DailyStatus/org/achartengine/chart/PieChart.class
+* out/production/DailyStatus/org/achartengine/chart/PieMapper.class
+* out/production/DailyStatus/org/achartengine/chart/PieSegment.class
+* out/production/DailyStatus/org/achartengine/chart/PointStyle.class
+* out/production/DailyStatus/org/achartengine/chart/RangeBarChart.class
+* out/production/DailyStatus/org/achartengine/chart/RangeStackedBarChart.class
+* out/production/DailyStatus/org/achartengine/chart/RoundChart.class
+* out/production/DailyStatus/org/achartengine/chart/ScatterChart$1.class
+* out/production/DailyStatus/org/achartengine/chart/ScatterChart.class
+* out/production/DailyStatus/org/achartengine/chart/TimeChart.class
+* out/production/DailyStatus/org/achartengine/chart/XYChart.class
+* out/production/DailyStatus/org/achartengine/chart/package.html
+* out/production/DailyStatus/org/achartengine/image/
+* out/production/DailyStatus/org/achartengine/image/zoom-1.png
+* out/production/DailyStatus/org/achartengine/image/zoom_in.png
+* out/production/DailyStatus/org/achartengine/image/zoom_out.png
+* out/production/DailyStatus/org/achartengine/model/
+* out/production/DailyStatus/org/achartengine/model/CategorySeries.class
+* out/production/DailyStatus/org/achartengine/model/MultipleCategorySeries.class
+* out/production/DailyStatus/org/achartengine/model/Point.class
+* out/production/DailyStatus/org/achartengine/model/RangeCategorySeries.class
+* out/production/DailyStatus/org/achartengine/model/SeriesSelection.class
+* out/production/DailyStatus/org/achartengine/model/TimeSeries.class
+* out/production/DailyStatus/org/achartengine/model/XYMultipleSeriesDataset.class
+* out/production/DailyStatus/org/achartengine/model/XYSeries.class
+* out/production/DailyStatus/org/achartengine/model/XYValueSeries.class
+* out/production/DailyStatus/org/achartengine/model/package.html
+* out/production/DailyStatus/org/achartengine/package.html
+* out/production/DailyStatus/org/achartengine/renderer/
+* out/production/DailyStatus/org/achartengine/renderer/BasicStroke.class
+* out/production/DailyStatus/org/achartengine/renderer/DefaultRenderer.class
+* out/production/DailyStatus/org/achartengine/renderer/DialRenderer$Type.class
+* out/production/DailyStatus/org/achartengine/renderer/DialRenderer.class
+* out/production/DailyStatus/org/achartengine/renderer/SimpleSeriesRenderer.class
+* out/production/DailyStatus/org/achartengine/renderer/XYMultipleSeriesRenderer$Orientation.class
+* out/production/DailyStatus/org/achartengine/renderer/XYMultipleSeriesRenderer.class
+* out/production/DailyStatus/org/achartengine/renderer/XYSeriesRenderer$FillOutsideLine$Type.class
+* out/production/DailyStatus/org/achartengine/renderer/XYSeriesRenderer$FillOutsideLine.class
+* out/production/DailyStatus/org/achartengine/renderer/XYSeriesRenderer.class
+* out/production/DailyStatus/org/achartengine/renderer/package.html
+* out/production/DailyStatus/org/achartengine/tools/
+* out/production/DailyStatus/org/achartengine/tools/AbstractTool.class
+* out/production/DailyStatus/org/achartengine/tools/FitZoom.class
+* out/production/DailyStatus/org/achartengine/tools/Pan.class
+* out/production/DailyStatus/org/achartengine/tools/PanListener.class
+* out/production/DailyStatus/org/achartengine/tools/Zoom.class
+* out/production/DailyStatus/org/achartengine/tools/ZoomEvent.class
+* out/production/DailyStatus/org/achartengine/tools/ZoomListener.class
+* out/production/DailyStatus/org/achartengine/util/
+* out/production/DailyStatus/org/achartengine/util/IndexXYMap.class
+* out/production/DailyStatus/org/achartengine/util/MathHelper.class
+* out/production/DailyStatus/org/achartengine/util/XYEntry.class
+* out/production/DailyStatus/org/achartengine/util/package.html
+* out/production/DailyStatus/vn/
+* out/production/DailyStatus/vn/com/
+* out/production/DailyStatus/vn/com/enclaveit/
+* out/production/DailyStatus/vn/com/enclaveit/phatbeo/
+* out/production/DailyStatus/vn/com/enclaveit/phatbeo/quickaction/
+* out/production/DailyStatus/vn/com/enclaveit/phatbeo/quickaction/ActionItem.class
+* out/production/DailyStatus/vn/com/enclaveit/phatbeo/quickaction/NewQAAdapter$ViewHolder.class
+* out/production/DailyStatus/vn/com/enclaveit/phatbeo/quickaction/NewQAAdapter.class
+* out/production/DailyStatus/vn/com/enclaveit/phatbeo/quickaction/PopupWindows$1.class
+* out/production/DailyStatus/vn/com/enclaveit/phatbeo/quickaction/PopupWindows.class
+* out/production/DailyStatus/vn/com/enclaveit/phatbeo/quickaction/QuickAction$1.class
+* out/production/DailyStatus/vn/com/enclaveit/phatbeo/quickaction/QuickAction$2.class
+* out/production/DailyStatus/vn/com/enclaveit/phatbeo/quickaction/QuickAction$OnActionItemClickListener.class
+* out/production/DailyStatus/vn/com/enclaveit/phatbeo/quickaction/QuickAction.class
+* out/production/appcompat/
+* out/production/appcompat/android/
+* out/production/appcompat/android/support/
+* out/production/appcompat/android/support/v7/
+* out/production/appcompat/android/support/v7/appcompat/
+* out/production/appcompat/android/support/v7/appcompat/BuildConfig.class
+* out/production/appcompat/android/support/v7/appcompat/R$anim.class
+* out/production/appcompat/android/support/v7/appcompat/R$attr.class
+* out/production/appcompat/android/support/v7/appcompat/R$bool.class
+* out/production/appcompat/android/support/v7/appcompat/R$color.class
+* out/production/appcompat/android/support/v7/appcompat/R$dimen.class
+* out/production/appcompat/android/support/v7/appcompat/R$drawable.class
+* out/production/appcompat/android/support/v7/appcompat/R$id.class
+* out/production/appcompat/android/support/v7/appcompat/R$integer.class
+* out/production/appcompat/android/support/v7/appcompat/R$layout.class
+* out/production/appcompat/android/support/v7/appcompat/R$string.class
+* out/production/appcompat/android/support/v7/appcompat/R$style.class
+* out/production/appcompat/android/support/v7/appcompat/R$styleable.class
+* out/production/appcompat/android/support/v7/appcompat/R.class
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:19.1.0
+android-support-v7-appcompat.jar => com.android.support:appcompat-v7:19.1.0
+joda-time-2.1.jar => joda-time:joda-time:2.1
+
+Potentially Missing Dependency:
+-------------------------------
+When we replaced the following .jar files with a Gradle dependency, we
+inferred the dependency version number from the filename. This
+specific version may not actually be available from the repository.
+If you get a build error stating that the dependency is missing, edit
+the version number to for example "+" to pick up the latest version
+instead. (This may require you to update your code if the library APIs
+have changed.)
+
+joda-time-2.1.jar => version 2.1 in joda-time:joda-time:2.1
+
+Replaced Libraries with Dependencies:
+-------------------------------------
+The importer recognized the following library projects as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the source files in your project were of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the library replacement in the import wizard and try
+again:
+
+android-support-v7-appcompat => [com.android.support:appcompat-v7:19.1.0]
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app/src/main/AndroidManifest.xml
+* assets/ => app/src/main/assets/
+* libs/Android-BitmapMemoryCache-v1.0.jar => app/libs/Android-BitmapMemoryCache-v1.0.jar
+* libs/activation.jar => app/libs/activation.jar
+* libs/additionnal.jar => app/libs/additionnal.jar
+* libs/crashlytics.jar => app/libs/crashlytics.jar
+* libs/hintdesk.core.jar => app/libs/hintdesk.core.jar
+* libs/mail.jar => app/libs/mail.jar
+* libs/ormlite-android-4.41.jar => app/libs/ormlite-android-4.41.jar
+* libs/ormlite-core-4.41.jar => app/libs/ormlite-core-4.41.jar
+* libs/signpost-commonshttp4-1.2.1.2.jar => app/libs/signpost-commonshttp4-1.2.1.2.jar
+* libs/signpost-core-1.2.1.2.jar => app/libs/signpost-core-1.2.1.2.jar
+* lint.xml => app/lint.xml
+* res/ => app/src/main/res/
+* src/ => app/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

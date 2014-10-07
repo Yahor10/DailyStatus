@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_button">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/etFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/reg_margins"
+                android:layout_marginRight="@dimen/reg_margins"
+                android:layout_marginTop="@dimen/reg_top_margin"
+                android:background="@drawable/selector_edit_text"
+                android:ems="10"
+                android:hint="@string/first_name"
+                android:inputType="textPersonName"
+                android:padding="10dp">
+
+
+                <requestFocus/>
+            </EditText>
+
+            <EditText
+                android:id="@+id/etLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etFirstName"
+                android:layout_marginLeft="@dimen/reg_margins"
+                android:layout_marginRight="@dimen/reg_margins"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selector_edit_text"
+                android:ems="10"
+                android:hint="@string/last_name"
+                android:inputType="textPersonName"
+                android:padding="10dp"/>
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etLastName"
+                android:layout_marginLeft="@dimen/reg_margins"
+                android:layout_marginRight="@dimen/reg_margins"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spinner"
+                android:layout_centerHorizontal="false"
+                android:layout_marginLeft="@dimen/reg_margins"
+                android:layout_marginRight="@dimen/reg_margins"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selector_edit_text"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"/>
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etEmail"
+                android:layout_marginLeft="@dimen/reg_margins"
+                android:layout_marginRight="@dimen/reg_margins"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selector_edit_text"
+                android:ems="10"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:padding="10dp"/>
+
+            <Button
+                android:id="@+id/btnOk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etPassword"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/selector_but_red_rounded"
+                android:gravity="center_vertical|center_horizontal"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:text="@string/ok"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout><!-- From: file:/home/alex/WorkProjects/DailyStatus/DailyStatusGradle/app/src/main/res/layout/register.xml -->

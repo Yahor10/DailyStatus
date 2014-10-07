@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="group_about_programm">О программе</string>
+    <string name="version">Версия</string>
+    <string name="license">Лицензия</string>
+    <string name="group_sharing">Социальные сети</string>
+    <string name="not_authorized">Не авторизован</string>
+    <string name="group_contacts">Контакты</string>
+    <string name="connect_with_developers">Cвязаться с разработчиками</string>
+    <string name="connect_with_developers_description">Запросить новую функциональность у разработчиков</string>
+    <string name="every_6_hours">Каждые 6 часов</string>
+    <string name="every_3_hours">Каждые 3 часа</string>
+    <string name="do_not_notify">Не уведомлять о хороших/плохих днях</string>
+    <string name="notifications">Уведомления</string>
+
+</resources>

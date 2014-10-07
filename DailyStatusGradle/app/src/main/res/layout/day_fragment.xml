@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/day_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/back_day"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/ic_arrow_left"/>
+
+                <TextView
+                    android:id="@+id/currentDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="12 июня"
+                    android:textColor="@android:color/black"
+                    android:textSize="22sp"/>
+
+                <ImageView
+                    android:id="@+id/next_day"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_arrow_right"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="240dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/imageView7"
+                    android:layout_marginLeft="-20dp"
+                    android:layout_toLeftOf="@+id/dayImage"
+                    android:layout_toStartOf="@+id/dayImage"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_grape_green"/>
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/dayImage_back"
+                    android:layout_alignLeft="@id/dayImage_back"
+                    android:layout_alignStart="@id/dayImage_back"
+                    android:layout_marginLeft="52dp"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginTop="-10dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_plum_down"/>
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/imageView4"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignRight="@+id/imageView4"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginRight="30dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_small_cherry"/>
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignTop="@+id/dayImage"
+                    android:layout_marginEnd="18dp"
+                    android:layout_marginRight="18dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_toEndOf="@+id/imageView4"
+                    android:layout_toRightOf="@+id/imageView4"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_small_cherry"
+                    />
+
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/imageView3"
+                    android:layout_alignStart="@+id/imageView3"
+                    android:layout_below="@+id/dayImage_back"
+                    android:layout_marginBottom="-10dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_pomegranate"/>
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/dayImage_back"
+                    android:layout_alignEnd="@+id/dayImage"
+                    android:layout_alignRight="@+id/dayImage"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="-20dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_cherry_three"/>
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="-20dp"
+                    android:layout_marginRight="-20dp"
+                    android:layout_toEndOf="@+id/dayImage_back"
+                    android:layout_toRightOf="@+id/dayImage_back"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_pear"/>
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/dayImage"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginEnd="-50dp"
+                    android:layout_marginRight="-50dp"
+                    android:layout_toEndOf="@+id/dayImage"
+                    android:layout_toRightOf="@+id/dayImage"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_grape_red"/>
+
+                <com.makeramen.widget.RoundedImageView
+                    android:id="@+id/dayImage_back"
+                    android:layout_width="310dp"
+                    android:layout_height="200dp"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="Day Image"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/back_day_photo"
+                    app:border_width="2dip"
+                    app:corner_radius="30dip"/>
+
+                <com.makeramen.widget.RoundedImageView
+                    android:id="@+id/dayImage"
+                    android:layout_width="310dp"
+                    android:layout_height="196dp"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="Day Image"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/photo1"
+                    app:border_width="0dip"
+                    app:corner_radius="30dip"/>
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/imageView10"
+                    android:layout_alignRight="@+id/imageView10"
+                    android:layout_below="@+id/dayImage_back"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_plum_up"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/addDayEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/list_selector_background"
+                android:gravity="center|left">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_add_event"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="10dp"
+                    android:text="@string/add_day_event"
+                    android:textColor="#aa000000"
+                    android:textSize="21sp"/>
+            </LinearLayout>
+
+            <by.android.dailystatus.widget.container.EventLayout
+                android:id="@+id/eventLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingBottom="20dp">
+
+        <View
+            android:id="@+id/center_rule"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:id="@+id/bad_day"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/button_bad"
+            android:background="@android:color/transparent"
+            android:text="@string/bad_day"
+            android:textColor="@android:color/darker_gray"/>
+
+        <ImageView
+            android:id="@+id/button_bad"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/button_good"
+            android:layout_toLeftOf="@+id/center_rule"
+            android:adjustViewBounds="true"
+            android:paddingTop="10dp"
+            android:scaleType="fitEnd"
+            android:src="@drawable/ic_button_bad"/>
+
+        <ImageView
+            android:id="@+id/button_good"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/center_rule"
+            android:adjustViewBounds="true"
+            android:scaleType="fitEnd"
+            android:src="@drawable/ic_button_good"/>
+
+        <Button
+            android:id="@+id/good_day"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/button_good"
+            android:background="@android:color/transparent"
+            android:text="@string/good_day"
+            android:textColor="@android:color/darker_gray"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

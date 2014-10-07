@@ -1,0 +1,31 @@
+<resources>
+
+    <string name="title_activity_login">Авторизация</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Почта</string>
+    <string name="prompt_password">Пароль</string>
+    <string name="action_register"><b>Регистрация</b></string>
+    <string name="action_log_in"><b>Вход</b></string>
+    <string name="action_sign_in_short">Регистрация нового пользователя</string>
+    <string name="action_forgot_password">Recover lost password</string>
+    <string name="login_progress_signing_in">Авторизация в&#8230;</string>
+    <string name="error_invalid_email">Такого адреса не существует</string>
+    <string name="error_invalid_password">Этот пароль слишком короткий</string>
+    <string name="error_incorrect_password">Этот пароль не правильный</string>
+    <string name="error_field_required">Это поле обязательно</string>
+    <string name="error_name_does_not_exist">Пользователь с таким именем не был зарегистрирован</string>
+    <string name="error_name_exist">Пользователь с таким именем уже зарегистрирован</string>
+    <string name="error_name_empty">Имя не может быть пустым</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="send_forgot_password">Отправить пароль на вашу почту?</string>
+    <string name="progress_dialog_wait">Подождите... </string>
+    <string name="ok">Да</string>
+    <string name="cancel">Отмена</string>
+
+    <string-array name="users">
+        <item>Пользователь1</item>
+        <item>Пользователь2</item>
+    </string-array>
+
+</resources>

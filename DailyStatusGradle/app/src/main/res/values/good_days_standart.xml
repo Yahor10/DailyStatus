@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="goodDaysArray">  
+    <item>Just having good time</item>  
+    <item>Running</item>  
+    <item>Chat with friends</item>  
+    <item>Wake up early</item>
+    <item>Jogging</item>
+    <item>Swimming</item>
+    <item>Fitness</item>
+    <item>Yoga</item>
+    <item>Meditation</item>
+    <item>Ride bike</item>
+    <item>Dancing</item>
+    <item>Singing</item>
+    <item>Go to the theater</item>
+    <item>Go to the cinema</item>
+    <item>Reading interesting books and facts</item>    
+  
+     </array>
+</resources>
