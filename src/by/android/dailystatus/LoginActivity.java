@@ -18,7 +18,6 @@ import by.android.dailystatus.dialog.ForgotPasswordDialog;
 import by.android.dailystatus.interfaces.FragmentActivityCallback;
 import by.android.dailystatus.orm.model.UserORM;
 import by.android.dailystatus.preference.PreferenceUtils;
-import com.crashlytics.android.Crashlytics;
 
 import java.util.List;
 
@@ -52,6 +51,7 @@ public class LoginActivity extends ActionBarActivity implements
 
         loginEdit.clearFocus();
         passwordEdit = (EditText) findViewById(R.id.edtPassword);
+        passwordEdit.setText(PreferenceUtils.getPassword(this));
         txtForgotPassword = (TextView) findViewById(R.id.txt_forgot_password);
         txtForgotPassword.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         txtForgotPassword.setOnClickListener(new OnClickListener() {
@@ -88,6 +88,8 @@ public class LoginActivity extends ActionBarActivity implements
             public void onClick(View v) {
                 String loginStr = loginEdit.getText().toString();
                 String passwordStr = passwordEdit.getText().toString();
+
+                PreferenceUtils.savePassword(LoginActivity.this, passwordStr);
 
                 if (loginStr.length() == 0) {
 

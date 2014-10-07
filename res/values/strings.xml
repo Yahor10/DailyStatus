@@ -119,5 +119,6 @@
     <string name="bad">Bad</string>
     <string name="register">Register</string>
     <string name="add_event_from_calendar">Add event from calendar</string>
+    <string name="license">License</string>
 
 </resources>

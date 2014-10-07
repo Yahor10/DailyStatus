@@ -20,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import by.android.dailystatus.alarm.AlarmActivity;
+import by.android.dailystatus.dialog.LicenseDialog;
 import by.android.dailystatus.dialog.VersionDialog;
 import by.android.dailystatus.preference.PreferenceUtils;
 import com.facebook.Request;
@@ -53,7 +54,7 @@ public class SettingsActivity extends ActionBarActivity implements
         setContentView(R.layout.settings);
 
         getSupportActionBar().setBackgroundDrawable(
-                new ColorDrawable(Color.parseColor("#0e78c9")));
+                new ColorDrawable(Color.parseColor("#ffffffff")));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (!OSUtil.IsNetworkAvailable(getApplicationContext())) {
@@ -79,34 +80,23 @@ public class SettingsActivity extends ActionBarActivity implements
                 break;
         }
         radioGroup.check(id);
-
         radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-
                 View radioButton = radioGroup.findViewById(checkedId);
                 int idx = radioGroup.indexOfChild(radioButton);
-
-                PreferenceUtils.setCurrentRadioNotification(
-                        getApplicationContext(), idx);
-
+                PreferenceUtils.setCurrentRadioNotification(getApplicationContext(), idx);
                 switch (idx) {
                     case 0:
-
                     case 2:
                         AlarmActivity.CancelAlarm(getApplicationContext());
-                        AlarmActivity.setRepeatingAlarm(getApplicationContext(),
-                                idx);
-
+                        AlarmActivity.setRepeatingAlarm(getApplicationContext(), idx);
                         break;
                     case 4:
                         AlarmActivity.CancelAlarm(getApplicationContext());
-
                         break;
-
                     default:
                         break;
                 }
-
             }
         });
 
@@ -116,18 +106,17 @@ public class SettingsActivity extends ActionBarActivity implements
             pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
             vers = pInfo.versionName;
         } catch (NameNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        versionTextView = (TextView) findViewById(R.id.txt_version_description);
-        versionTextView.setText("v" + vers);
         faceUserName = (TextView) findViewById(R.id.txt_face_user_name);
         facebookDescription = (TextView) findViewById(R.id.txt_facebook_descroption);
 
         findViewById(R.id.lay_rate).setOnClickListener(this);
         findViewById(R.id.lay_connect_with_developer).setOnClickListener(this);
         findViewById(R.id.lay_facebook).setOnClickListener(this);
+        findViewById(R.id.lay_version).setOnClickListener(this);
+        findViewById(R.id.lay_license).setOnClickListener(this);
 
         Session.openActiveSession(this, false, new Session.StatusCallback() {
 
@@ -135,9 +124,7 @@ public class SettingsActivity extends ActionBarActivity implements
             @Override
             public void call(Session session, SessionState state,
                              Exception exception) {
-
                 if (session.isOpened()) {
-
                     Request.newMeRequest(session,
                             new Request.GraphUserCallback() {
 
@@ -168,7 +155,6 @@ public class SettingsActivity extends ActionBarActivity implements
             pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
             versionNew = pInfo.versionCode;
         } catch (NameNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -290,18 +276,34 @@ public class SettingsActivity extends ActionBarActivity implements
 
                 // String recepientEmail = "sekt88@gmail.com"; // either set to
                 String recepientEmail = "alex-pers92@mail.ru"; // destination
-                // email or leave empty
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
                 intent.setData(Uri.parse("mailto:" + recepientEmail));
 
                 try {
                     startActivity(Intent.createChooser(intent, "Send Email"));
                 } catch (Exception e) {
-                    // TODO: handle exception
+                    e.printStackTrace();
                 }
 
                 break;
-
+            case R.id.lay_version:
+                PackageInfo pInfo;
+                String vers = "";
+                try {
+                    pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+                    vers = "Version " + pInfo.versionName + ", first application release";
+                } catch (NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+                VersionDialog dialog = new VersionDialog();
+                dialog.setText(vers);
+                dialog.show(getSupportFragmentManager(), "versionDialog");
+                break;
+            case R.id.lay_license:
+                LicenseDialog licenseDialog = new LicenseDialog();
+                licenseDialog.setText("Nothin' to see here");
+                licenseDialog.show(getSupportFragmentManager(), "licenseDialog");
+                break;
             default:
                 break;
         }

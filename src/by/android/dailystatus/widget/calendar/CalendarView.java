@@ -16,32 +16,19 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.joda.time.LocalDate;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
-
 import by.android.dailystatus.ChartsActivity;
 import by.android.dailystatus.R;
 import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.preference.PreferenceUtils;
+import org.joda.time.LocalDate;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @SuppressLint("NewApi")
 public class CalendarView extends ActionBarActivity implements
@@ -189,7 +176,7 @@ public class CalendarView extends ActionBarActivity implements
                 .setIcon(R.drawable.ic_bad_day)
                 .setOnMenuItemClickListener(this);
         subMyProfile.add(0, 6, Menu.NONE, "Show month chart")
-                .setIcon(R.drawable.ic_chart).setOnMenuItemClickListener(this);
+                .setIcon(R.drawable.ic_menu_graphics).setOnMenuItemClickListener(this);
         subMyProfile.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return super.onCreateOptionsMenu(menu);
     }
