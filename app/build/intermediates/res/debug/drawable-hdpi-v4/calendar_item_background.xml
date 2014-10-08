@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+    	  android:drawable="@drawable/ic_calendar_cell_pressed"
+          android:state_pressed="true" />
+    <item 
+    	  android:drawable="@drawable/ic_calendar_cell_pressed"
+          android:state_focused="true" />
+    <item  
+     	  android:drawable="@drawable/ic_calendar_cell" />
+</selector><!-- From: file:/home/alex/WorkProjects/DailyStatus/app/src/main/res/drawable-hdpi/calendar_item_background.xml -->

@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "by.android.dailystatus"
+        minSdkVersion 8
+        targetSdkVersion 19
+    }
+
+    buildTypes {
+        release {
+            runProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+    }
+}
+
+dependencies {
+    compile 'joda-time:joda-time:2.1'
+    compile 'com.android.support:appcompat-v7:19.1.0'
+    compile files('libs/Android-BitmapMemoryCache-v1.0.jar')
+    compile files('libs/activation.jar')
+    compile files('libs/additionnal.jar')
+    compile files('libs/crashlytics.jar')
+    compile files('libs/hintdesk.core.jar')
+    compile files('libs/mail.jar')
+    compile 'com.j256.ormlite:ormlite-android:4.48'
+    compile 'com.j256.ormlite:ormlite-core:4.48'
+    compile 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
+    compile 'oauth.signpost:signpost-core:1.2.1.2'
+}

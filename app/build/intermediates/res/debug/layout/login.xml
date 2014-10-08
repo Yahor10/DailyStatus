@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_lite" >
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="340dp"
+        android:paddingLeft="-15dp"
+        android:src="@drawable/ic_plum2" />
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/one_cherry" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/ic_plum" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="90dp"
+        android:paddingLeft="-5dp"
+        android:src="@drawable/ic_gooseberry" />
+
+    <ImageView
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="230dp"
+        android:paddingRight="-34dp"
+        android:src="@drawable/ic_cherry" />
+
+    <ImageView
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="420dp"
+        android:paddingLeft="-37dp"
+        android:src="@drawable/ic_lemon" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="160dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:paddingRight="-42dp"
+        android:src="@drawable/ic_grape" />
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/daily_status"
+        android:textColor="@color/red_border"
+        android:textSize="@dimen/dayli_size" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/welcomeText"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_login_icon" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/welcomeText"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" >
+
+            <EditText
+                android:id="@+id/edtLogin"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/selector_edit_text"
+                android:ems="10"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="@string/first_name"
+                android:inputType="textPersonName"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp"
+                android:textColor="@color/red_border"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/edtPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/selector_edit_text"
+                android:ems="10"
+                android:gravity="center_vertical|center_horizontal"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:paddingBottom="7dp"
+                android:paddingTop="7dp"
+                android:textColor="@color/red_border"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btnOk"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/selector_but_red_rounded"
+                android:text="@string/log_in"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btnCreateAccount"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:background="#00ffffff"
+                android:text="@string/create_account"
+                android:textColor="@color/red_border"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/txt_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/forgot_password" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout><!-- From: file:/home/alex/WorkProjects/DailyStatus/app/src/main/res/layout/login.xml -->
