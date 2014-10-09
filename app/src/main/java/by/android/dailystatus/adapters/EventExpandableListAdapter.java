@@ -1,7 +1,5 @@
 package by.android.dailystatus.adapters;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -9,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+
 import by.android.dailystatus.R;
 import by.android.dailystatus.orm.model.EventORM;
 
@@ -59,7 +60,6 @@ public class EventExpandableListAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public long getChildId(int groupPosition, int childPosition) {
-		// TODO Auto-generated method stub
 		return childPosition;
 	}
 

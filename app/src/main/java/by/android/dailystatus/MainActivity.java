@@ -11,7 +11,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
-import android.graphics.*;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,9 +27,14 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
+import android.view.SubMenu;
+import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
@@ -33,6 +42,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.joda.time.DateTime;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.List;
+
 import by.android.dailystatus.alarm.EveryDayTimeAlarm;
 import by.android.dailystatus.application.DailyStatusApplication;
 import by.android.dailystatus.dialog.AddDayEvent;
@@ -44,14 +61,8 @@ import by.android.dailystatus.preference.PreferenceUtils;
 import by.android.dailystatus.widget.animations.AnimationViewPagerFragmentZoom;
 import by.android.dailystatus.widget.calendar.CalendarView;
 import by.android.dailystatus.widget.container.EventLayout;
-import org.joda.time.DateTime;
 import uk.co.senab.bitmapcache.BitmapLruCache;
 import uk.co.senab.bitmapcache.CacheableBitmapWrapper;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.List;
 
 import static by.android.dailystatus.application.Constants.TAG;
 
@@ -376,6 +387,10 @@ public class MainActivity extends ActionBarActivity implements
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
+
+            if (picturePath == null) {
+                return;
+            }
 
             File newdir = new File(picturePath);
             // cursor.close();
