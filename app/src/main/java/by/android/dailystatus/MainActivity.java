@@ -42,6 +42,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.joda.time.DateTime;
 
@@ -345,6 +346,40 @@ public class MainActivity extends ActionBarActivity implements
         return null;
     }
 
+    private void saveImage(Uri selectedImage) throws Exception {
+        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(selectedImage,
+                filePathColumn, null, null, null);
+        cursor.moveToFirst();
+        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+        String picturePath = cursor.getString(columnIndex);
+        cursor.close();
+
+        if (picturePath == null) {
+            return;
+        }
+
+        File newdir = new File(picturePath);
+        // cursor.close();
+
+        Bitmap bitmap = decodeFile(newdir);
+
+        Log.v(TAG, "PICTURE PATH" + picturePath + "DAY"
+                + now.dayOfWeek().getAsShortText());
+        CacheableBitmapWrapper newValue = new CacheableBitmapWrapper(bitmap);
+        mCache.put(picturePath, newValue);
+
+        String currentUser = PreferenceUtils.getCurrentUser(this);
+
+        DayORM day = new DayORM(currentUser, now.getDayOfYear(),
+                now.getMonthOfYear(), now.getYear());
+
+        day.pictureURL = picturePath;
+        DayORM.insertOrUpdateDayPicture(this, day);
+
+        adapter.notifyDataSetChanged();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RESULT_TAKE_IMAGE && resultCode == RESULT_OK) {
@@ -379,39 +414,13 @@ public class MainActivity extends ActionBarActivity implements
         if ((requestCode == RESULT_LOAD_IMAGE || requestCode == RESULT_TAKE_IMAGE)
                 && resultCode == RESULT_OK && null != data) {
             Log.v(TAG, "RESULT_LOAD IMAGE");
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
 
-            if (picturePath == null) {
-                return;
+            try {
+                saveImage(data.getData());
+            } catch (Exception e) {
+                Toast.makeText(this, "Cannot open picture", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
-
-            File newdir = new File(picturePath);
-            // cursor.close();
-
-            Bitmap bitmap = decodeFile(newdir);
-
-            Log.v(TAG, "PICTURE PATH" + picturePath + "DAY"
-                    + now.dayOfWeek().getAsShortText());
-            CacheableBitmapWrapper newValue = new CacheableBitmapWrapper(bitmap);
-            mCache.put(picturePath, newValue);
-
-            String currentUser = PreferenceUtils.getCurrentUser(this);
-
-            DayORM day = new DayORM(currentUser, now.getDayOfYear(),
-                    now.getMonthOfYear(), now.getYear());
-
-            day.pictureURL = picturePath;
-            DayORM.insertOrUpdateDayPicture(this, day);
-
-            adapter.notifyDataSetChanged();
-
         }
 
         if (requestCode == RESULT_LOG_OUT && resultCode == RESULT_OK) {
