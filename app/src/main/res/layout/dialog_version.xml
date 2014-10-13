@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="@string/title_dialog_new_version"
-            android:textColor="@color/daynames_background"
+            android:textColor="@color/red_border"
             android:textSize="@dimen/size_text_title"
             android:textStyle="bold" />
     </LinearLayout>
@@ -30,7 +30,7 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/lin_title_dialog_version"
-        android:background="@color/daynames_background" />
+        android:background="@color/red_border" />
 
     <ScrollView
         android:id="@+id/scrl_dialog_version"
@@ -64,7 +64,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:background="@drawable/but_red_rounded"
+        android:background="@drawable/selector_but_red_rounded"
         android:text="@android:string/ok"
         android:textColor="@android:color/white" />
 

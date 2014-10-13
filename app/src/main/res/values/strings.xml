@@ -108,13 +108,13 @@
 
     <!-- Standart events activity -->
     <string name="standarts_events">Events from list</string>
-    <string name="sat">сб</string>
-    <string name="fr">пт</string>
-    <string name="th">чт</string>
-    <string name="we">ср</string>
-    <string name="tu">вт</string>
-    <string name="mo">пн</string>
-    <string name="su">вс</string>
+    <string name="sat">Sat</string>
+    <string name="fr">Fri</string>
+    <string name="th">Thu</string>
+    <string name="we">Wed</string>
+    <string name="tu">Tue</string>
+    <string name="mo">Mon</string>
+    <string name="su">Sun</string>
     <string name="good">Good</string>
     <string name="bad">Bad</string>
     <string name="register">Register</string>

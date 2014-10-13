@@ -35,9 +35,9 @@ import android.view.SubMenu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -112,7 +112,6 @@ public class MainActivity extends ActionBarActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.v(TAG, "Main activity created");
         setContentView(R.layout.activity_main);
 
         if (!PreferenceUtils
@@ -194,6 +193,7 @@ public class MainActivity extends ActionBarActivity implements
                 .setIcon(R.drawable.ic_profile)
                 .setOnMenuItemClickListener(this);
         subMyProfile.add(0, 8, Menu.NONE, R.string.events)
+                .setIcon(R.drawable.ic_add_event)
                 .setOnMenuItemClickListener(this);
         subMyProfile.add(0, 9, Menu.NONE, R.string.settings)
                 .setIcon(R.drawable.ic_menu_settings)
@@ -473,12 +473,6 @@ public class MainActivity extends ActionBarActivity implements
 
     private void initDayLaybels() {
         int dayOfWeek = now.getDayOfWeek() - 1;
-        // Get first day of week based on locale and populate the day
-        // headers
-//		final int sundayColor = getResources().getColor(
-//				R.color.sunday_text_color);
-//		final int saturdayColor = getResources().getColor(
-//				R.color.saturday_text_color);
 
         DateTime weekStart = now.dayOfWeek().withMinimumValue();
 
@@ -510,7 +504,6 @@ public class MainActivity extends ActionBarActivity implements
 
     private void initPageModel() {
         for (int i = 0; i < dayPageModel.length; i++) {
-            // initing the pagemodel with indexes of -1, 0 and 1
             dayPageModel[i] = new DayModel(i - 1, getApplicationContext(), now);
         }
     }
@@ -524,10 +517,6 @@ public class MainActivity extends ActionBarActivity implements
         final DayModel model = dayPageModel[index];
         String dayText = model.getDayText();
         model.dayText.setText(dayText);
-
-//        int violetColor = getResources().getColor(R.color.violet);
-//        model.goodDay.setBackgroundColor(violetColor);
-//        model.badDay.setBackgroundColor(violetColor);
 
         DateTime date = model.getDate();
         int dayOfYear = date.getDayOfYear();
@@ -545,9 +534,7 @@ public class MainActivity extends ActionBarActivity implements
                             .getBitmap());
                 } else {
                     String picturePath = day.pictureURL;
-                    // cursor.close();
                     File newdir = new File(picturePath);
-                    // cursor.close();
                     Log.v(TAG,
                             "PICTURE PATH " + picturePath + " DAY "
                                     + now.getDayOfYear());
@@ -570,42 +557,31 @@ public class MainActivity extends ActionBarActivity implements
             model.eventLayout.removeAllViews();
 
             int status = day.status;
-            int color = 0;
             switch (status) {
                 case 1:
-//                    color = getResources().getColor(android.R.color.white);
-//                    model.goodDay.setBackgroundColor(color);
-
-                    Animation animation_good = AnimationUtils.loadAnimation(
-                            MainActivity.this,
-                            R.anim.button_clic_animation_zoom_small);
+                    ScaleAnimation animation_good = new ScaleAnimation(0, 1, 0, 1,
+                            ScaleAnimation.RELATIVE_TO_SELF, .5f, ScaleAnimation.RELATIVE_TO_SELF, .5f);
                     animation_good.setDuration(500);
+                    animation_good.setInterpolator(new OvershootInterpolator());
                     model.goodDay.startAnimation(animation_good);
-                    animation_good = null;
                     break;
                 case -1:
-//                    color = getResources().getColor(android.R.color.black);
-//                    model.badDay.setBackgroundColor(color);
-                    Animation animation_bad = AnimationUtils.loadAnimation(
-                            MainActivity.this,
-                            R.anim.button_clic_animation_zoom_small);
+                    ScaleAnimation animation_bad = new ScaleAnimation(0, 1, 0, 1,
+                            ScaleAnimation.RELATIVE_TO_SELF, .5f, ScaleAnimation.RELATIVE_TO_SELF, .5f);
                     animation_bad.setDuration(500);
+                    animation_bad.setInterpolator(new OvershootInterpolator());
                     model.badDay.startAnimation(animation_bad);
-                    animation_bad = null;
                     break;
                 default:
                     break;
             }
         } else {
             model.dayImage.setImageResource(R.drawable.photo1);
-//            model.goodDay.setBackgroundColor(violetColor);
-//            model.badDay.setBackgroundColor(violetColor);
             model.eventLayout.removeAllViews();
         }
 
         List<EventORM> eventsByDay = EventORM.getEventsByDay(
                 getApplicationContext(), dayOfYear, year);
-        Log.v(TAG, "EVENT LIST" + eventsByDay);
         if (eventsByDay != null && !eventsByDay.isEmpty()) {
             for (EventORM eventORM : eventsByDay) {
                 model.eventLayout.addEventView(this, eventORM);
@@ -628,7 +604,6 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     private void DialogChosePhoto() {
-        Log.v(TAG, "NOW DAY:" + now.dayOfWeek().getAsShortText());
         DialogFragment dialog = new ImageChoiseDialog(this);
         dialog.show(getSupportFragmentManager(), "");
     }
@@ -777,7 +752,6 @@ public class MainActivity extends ActionBarActivity implements
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-
             View inflate = inflater.inflate(R.layout.day_fragment, null);
             DayModel currentPage = dayPageModel[position];
             Log.v(TAG, "instantiateItem position" + position);
@@ -832,8 +806,6 @@ public class MainActivity extends ActionBarActivity implements
                     String currentUser = PreferenceUtils
                             .getCurrentUser(getApplicationContext());
 
-                    // DayORM day = new DayORM(currentUser, now.getDayOfYear(),
-                    // now.getMonthOfYear(), now.getYear());
                     DayORM day = DayORM.getDay(MainActivity.this,
                             now.getDayOfYear(), now.getYear());
                     if (day == null)
@@ -842,13 +814,11 @@ public class MainActivity extends ActionBarActivity implements
 
                     if (day.status == -1) {
                         View but_bad = (View) v.getTag();
-                        Animation animation_bad = AnimationUtils.loadAnimation(
-                                MainActivity.this,
-                                R.anim.button_clic_animation_zoom_small);
+                        ScaleAnimation animation_bad = new ScaleAnimation(0, 1, 0, 1,
+                                ScaleAnimation.RELATIVE_TO_SELF, .5f, ScaleAnimation.RELATIVE_TO_SELF, .5f);
                         animation_bad.setDuration(500);
+                        animation_bad.setInterpolator(new OvershootInterpolator());
                         but_bad.startAnimation(animation_bad);
-                        animation_bad = null;
-
                     }
                     day.status = 1;
 
@@ -867,13 +837,11 @@ public class MainActivity extends ActionBarActivity implements
 
                     if (day.status == 1) {
                         View but_good = (View) v.getTag();
-                        Animation animation_good = AnimationUtils.loadAnimation(
-                                MainActivity.this,
-                                R.anim.button_clic_animation_zoom_small);
+                        ScaleAnimation animation_good = new ScaleAnimation(0, 1, 0, 1,
+                                ScaleAnimation.RELATIVE_TO_SELF, .5f, ScaleAnimation.RELATIVE_TO_SELF, .5f);
                         animation_good.setDuration(500);
+                        animation_good.setInterpolator(new OvershootInterpolator());
                         but_good.startAnimation(animation_good);
-                        animation_good = null;
-
                     }
 
                     day.status = -1;

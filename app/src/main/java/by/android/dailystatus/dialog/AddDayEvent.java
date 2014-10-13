@@ -10,20 +10,21 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.EditText;
-import android.widget.ImageView;
+
+import net.cieolib.cieo.Cieo;
+
+import org.joda.time.DateTime;
+
 import by.android.dailystatus.MainActivity;
 import by.android.dailystatus.R;
 import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.orm.model.EventORM;
 import by.android.dailystatus.preference.PreferenceUtils;
-import net.cieolib.cieo.Cieo;
-import org.joda.time.DateTime;
 
 public class AddDayEvent extends DialogFragment implements OnClickListener, TextWatcher {
 
     private MainActivity mainActivity;
     private Cieo cieo;
-    ImageView imageBack;
     String startText;
     boolean flagEditEvent = false;
     EditText eventText;
@@ -52,33 +53,10 @@ public class AddDayEvent extends DialogFragment implements OnClickListener, Text
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.add_day_event);
 
-        imageBack = (ImageView) dialog.findViewById(R.id.image);
-
-        DateTime now = mainActivity.getNow();
-        int day = now.getDayOfYear();
-        int year = now.getYear();
-        DayORM dayORM = DayORM.getDay(mainActivity, day, year);
-        if (dayORM != null) {
-            switch (dayORM.status) {
-                case 0:
-                    break;
-                case -1:
-                    imageBack.setBackgroundResource(R.drawable.ic_cloud);
-                    break;
-                case 1:
-                    imageBack.setBackgroundResource(R.drawable.ic_sun);
-                    break;
-                default:
-                    break;
-            }
-        }
-
         eventText = (EditText) dialog.findViewById(R.id.eventText);
         if (startText != null) {
             eventText.setText(startText);
         }
-//        eventText.addTextChangedListener(this);
-//        cieo.setTargetAndArm(eventText);
 
         dialog.findViewById(R.id.addEventOK).setOnClickListener(this);
         dialog.findViewById(R.id.addEventCancel).setOnClickListener(this);

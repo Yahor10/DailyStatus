@@ -170,10 +170,10 @@ public class CalendarView extends ActionBarActivity implements
                 getResources().getDrawable(R.drawable.ic_override_menu));
 
         subMyProfile.add(0, 4, Menu.NONE, "Show Good days")
-                .setIcon(R.drawable.ic_good_day)
+                .setIcon(R.drawable.ic_button_good)
                 .setOnMenuItemClickListener(this);
         subMyProfile.add(0, 5, Menu.NONE, "Show Bad days")
-                .setIcon(R.drawable.ic_bad_day)
+                .setIcon(R.drawable.ic_button_bad)
                 .setOnMenuItemClickListener(this);
         subMyProfile.add(0, 6, Menu.NONE, "Show month chart")
                 .setIcon(R.drawable.ic_menu_graphics).setOnMenuItemClickListener(this);

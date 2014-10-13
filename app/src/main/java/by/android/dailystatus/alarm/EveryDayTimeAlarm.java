@@ -1,14 +1,15 @@
 package by.android.dailystatus.alarm;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+
 import by.android.dailystatus.R;
 import by.android.dailystatus.orm.model.DayORM;
 
@@ -89,7 +90,7 @@ public class EveryDayTimeAlarm extends BroadcastReceiver {
 			PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
 					new Intent(), 0);
 			Notification notif = new Notification(
-					android.R.drawable.ic_input_add, message,
+					R.drawable.ic_launcher, message,
 					System.currentTimeMillis());
 			notif.setLatestEventInfo(context, from, message, contentIntent);
 			nm.notify(1, notif);
@@ -103,7 +104,7 @@ public class EveryDayTimeAlarm extends BroadcastReceiver {
 			PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
 					new Intent(), 0);
 			Notification notif = new Notification(
-					android.R.drawable.ic_input_add, message,
+					R.drawable.ic_launcher, message,
 					System.currentTimeMillis());
 			notif.setLatestEventInfo(context, from, message, contentIntent);
 			nm.notify(1, notif);

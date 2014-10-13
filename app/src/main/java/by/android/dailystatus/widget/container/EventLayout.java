@@ -14,6 +14,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.Random;
+
 import by.android.dailystatus.MainActivity;
 import by.android.dailystatus.R;
 import by.android.dailystatus.ViewEventActivity;
@@ -23,8 +26,6 @@ import by.android.dailystatus.newpopup.MenuItem;
 import by.android.dailystatus.newpopup.PopupMenu;
 import by.android.dailystatus.newpopup.PopupMenu.OnItemSelectedListener;
 import by.android.dailystatus.orm.model.EventORM;
-
-import java.util.Random;
 
 public class EventLayout extends LinearLayout implements OnItemSelectedListener {
 
@@ -147,8 +148,6 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
 
     @Override
     public void onItemSelected(MenuItem item) {
-
-        Log.v(Constants.TAG, "MenuItem onItemSelected");
         Context context = getContext();
 
         switch (item.getItemId()) {
