@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="badDaysArray">
+        <item>Hardworking day</item>
+        <item>Spent a lot of time for nothing</item>
+        <item>Quarreled with friends</item>
+        <item>Catch a cold
+        </item>
+        <item>Spend a lot of money</item>
+        <item>Poisoned</item>
+        <item>Personal problems</item>
+    </array>
+</resources>
