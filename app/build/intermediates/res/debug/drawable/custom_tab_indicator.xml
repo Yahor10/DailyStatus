@@ -32,4 +32,4 @@
     <item android:state_focused="true" android:state_selected="false" android:state_pressed="true" android:drawable="@color/event_add_title" />
     <item android:state_focused="true" android:state_selected="true"  android:state_pressed="true" android:drawable="@color/red_border" />
 </selector>
-<!-- From: file:/home/alex/WorkProjects/DailyStatus/app/src/main/res/drawable/custom_tab_indicator.xml -->
+<!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/drawable/custom_tab_indicator.xml -->

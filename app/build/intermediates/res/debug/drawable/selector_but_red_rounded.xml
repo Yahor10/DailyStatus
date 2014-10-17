@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/but_yellow_rounded" android:state_pressed="true"/> <!-- focused -->
-    <item android:drawable="@drawable/but_red_rounded"/>
+    <item android:drawable="@drawable/but_yellow_rounded" android:state_pressed="true" />
+    <item android:drawable="@drawable/but_red_rounded" />
 
-</selector><!-- From: file:/home/alex/WorkProjects/DailyStatus/app/src/main/res/drawable/selector_but_red_rounded.xml -->
+</selector><!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/drawable/selector_but_red_rounded.xml -->

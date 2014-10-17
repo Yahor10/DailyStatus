@@ -17,4 +17,4 @@
         android:layout_gravity="right|top"
         android:src="@drawable/close" />
 
-</FrameLayout><!-- From: file:/home/alex/WorkProjects/DailyStatus/app/src/main/res/layout/twitter_web_dialog.xml -->
+</FrameLayout><!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/layout/twitter_web_dialog.xml -->

@@ -11,4 +11,4 @@
 		android:fromAlpha="0.0" android:toAlpha="1.0"
 		android:duration="@android:integer/config_shortAnimTime"
 	/>
-</set><!-- From: file:/home/alex/WorkProjects/DailyStatus/app/src/main/res/anim/grow_from_bottomright_to_topleft.xml -->
+</set><!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/anim/grow_from_bottomright_to_topleft.xml -->

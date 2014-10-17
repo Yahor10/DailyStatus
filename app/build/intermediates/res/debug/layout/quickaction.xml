@@ -71,4 +71,4 @@
         android:contentDescription="@string/contentdesc4pic1"
         android:src="@drawable/quickaction_arrow_down" />
 
-</RelativeLayout><!-- From: file:/home/alex/WorkProjects/DailyStatus/app/src/main/res/layout/quickaction.xml -->
+</RelativeLayout><!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/layout/quickaction.xml -->

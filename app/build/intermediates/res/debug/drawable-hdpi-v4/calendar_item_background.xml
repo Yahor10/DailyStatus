@@ -8,4 +8,4 @@
           android:state_focused="true" />
     <item  
      	  android:drawable="@drawable/ic_calendar_cell" />
-</selector><!-- From: file:/home/alex/WorkProjects/DailyStatus/app/src/main/res/drawable-hdpi/calendar_item_background.xml -->
+</selector><!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/drawable-hdpi/calendar_item_background.xml -->

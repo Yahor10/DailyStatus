@@ -4,4 +4,4 @@
     <item android:drawable="@drawable/but_red_rounded" android:state_pressed="true"/> <!-- focused -->
     <item android:drawable="@drawable/but_yellow_rounded"/>
 
-</selector><!-- From: file:/home/alex/WorkProjects/DailyStatus/app/src/main/res/drawable/selector_yellow_rounded.xml -->
+</selector><!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/drawable/selector_yellow_rounded.xml -->

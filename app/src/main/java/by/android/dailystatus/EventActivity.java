@@ -9,7 +9,12 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.*;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NavUtils;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBarActivity;
@@ -22,13 +27,15 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.SubMenu;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
-import by.android.dailystatus.adapters.EventListIndexedAdapter;
-import by.android.dailystatus.fragment.EventListFragment;
-import by.android.dailystatus.widget.animations.AnimationViewPagerFragmentZoom;
+
 import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.Calendar;
 import java.util.HashMap;
+
+import by.android.dailystatus.adapters.EventListIndexedAdapter;
+import by.android.dailystatus.fragment.EventListFragment;
+import by.android.dailystatus.widget.animations.AnimationViewPagerFragmentZoom;
 
 import static by.android.dailystatus.application.Constants.TAG;
 
@@ -43,15 +50,6 @@ public class EventActivity extends ActionBarActivity implements
 
     EventsAdapter adapter;
     ViewPager pager;
-    private SearchView mSearchViewWeek;
-    private MenuItem mSearchWeek;
-
-    private SearchView mSearchViewMonth;
-    private MenuItem mSearchMonth;
-
-    private SearchView mSearchViewYear;
-    private MenuItem mSearchYear;
-
     OnDateSetListener myCallBack = new OnDateSetListener() {
 
         public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -65,6 +63,21 @@ public class EventActivity extends ActionBarActivity implements
 
         }
     };
+    private SearchView mSearchViewWeek;
+    private MenuItem mSearchWeek;
+    private SearchView mSearchViewMonth;
+    private MenuItem mSearchMonth;
+    private SearchView mSearchViewYear;
+    private MenuItem mSearchYear;
+
+    public static Intent buintIntent(Context context, int week, int month,
+                                     int year) {
+        Intent intent = new Intent(context, EventActivity.class);
+        intent.putExtra(WEEK, week);
+        intent.putExtra(MONTH, month);
+        intent.putExtra(YEAR, year);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -80,6 +93,8 @@ public class EventActivity extends ActionBarActivity implements
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setPageTransformer(true, new AnimationViewPagerFragmentZoom());
         pager.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
 
         TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
         indicator.setViewPager(pager);
@@ -95,6 +110,14 @@ public class EventActivity extends ActionBarActivity implements
             pager.setCurrentItem(0);
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        adapter.notifyDataSetChanged();
+//        pager.invalidate();
+//        pager.notifyAll();
     }
 
     @Override
@@ -142,7 +165,8 @@ public class EventActivity extends ActionBarActivity implements
                         .setActionView(mSearchViewWeek)
                         .setShowAsAction(
                                 MenuItem.SHOW_AS_ACTION_ALWAYS
-                                        | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+                                        | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW
+                        );
             }
         }
 
@@ -182,7 +206,8 @@ public class EventActivity extends ActionBarActivity implements
                         .setActionView(mSearchViewMonth)
                         .setShowAsAction(
                                 MenuItem.SHOW_AS_ACTION_ALWAYS
-                                        | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+                                        | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW
+                        );
             }
         }
 
@@ -222,7 +247,8 @@ public class EventActivity extends ActionBarActivity implements
                         .setActionView(mSearchViewYear)
                         .setShowAsAction(
                                 MenuItem.SHOW_AS_ACTION_ALWAYS
-                                        | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+                                        | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW
+                        );
             }
         }
 
@@ -280,6 +306,12 @@ public class EventActivity extends ActionBarActivity implements
     }
 
     @Override
+    protected void onSaveInstanceState(final Bundle outState) {
+        // super.onSaveInstanceState(outState);
+    }
+    
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -290,118 +322,9 @@ public class EventActivity extends ActionBarActivity implements
         }
     }
 
-    private static class EventsAdapter extends FragmentStatePagerAdapter {
-        int filterEvent = 0; // 0 - all, -1 - bad, 1- good
-
-        private final HashMap<Integer, EventListFragment> fragments;
-        private final Context mContext;
-
-        public EventsAdapter(Context context, FragmentManager fm) {
-            super(fm);
-            fragments = new HashMap<Integer, EventListFragment>();
-            mContext = context;
-
-        }
-
-        public void showBadEvents() {
-            filterEvent = -1;
-            updateFragments();
-        }
-
-        public void showGoodEvents() {
-            filterEvent = 1;
-            updateFragments();
-        }
-
-        public void showAllEvents() {
-            filterEvent = 0;
-            updateFragments();
-        }
-
-        public void findEventsByDate(int dayOfYear, int year) {
-            for (Integer key : fragments.keySet()) {
-
-                EventListFragment fragment = fragments.get(key);
-                if (fragment != null) {
-                    fragment.findEventsByDate(dayOfYear, year);
-                }
-            }
-        }
-
-        public void updateFragments() {
-            for (Integer key : fragments.keySet()) {
-
-                EventListFragment fragment = fragments.get(key);
-                if (fragment != null) {
-                    fragment.setFilterNews(filterEvent);
-                    fragment.updateFragment();
-                }
-            }
-
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            EventListFragment fragment = (EventListFragment) EventListFragment
-                    .newInstance(position);
-            fragment.setFilterNews(filterEvent);
-            Log.d("BUG", "PAGER position : " + position);
-
-            fragments.put(position, fragment);
-            return fragment;
-
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            if (position >= getCount()) {
-                FragmentManager manager = ((Fragment) object)
-                        .getFragmentManager();
-                FragmentTransaction trans = manager.beginTransaction();
-                trans.remove((Fragment) object);
-                trans.commit();
-                // fragments.remove(position);
-                Log.d("BUG", "PAGER DESTROY position : " + position);
-            }
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return mContext.getString(R.string.week);
-                case 1:
-                    return mContext.getString(R.string.month);
-                case 2:
-                    return mContext.getString(R.string.year);
-                default:
-                    return "";
-            }
-
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
-        }
-
-        public EventListFragment getFragmentAtPosition(int position) {
-            return fragments.get(position);
-        }
-    }
-
-    public static Intent buintIntent(Context context, int week, int month,
-                                     int year) {
-        Intent intent = new Intent(context, EventActivity.class);
-        intent.putExtra(WEEK, week);
-        intent.putExtra(MONTH, month);
-        intent.putExtra(YEAR, year);
-        return intent;
-    }
-
     @Override
     public void onPageScrollStateChanged(int arg0) {
-        // TODO Auto-generated method stub
+
 
     }
 
@@ -461,6 +384,106 @@ public class EventActivity extends ActionBarActivity implements
     private void disableSearchItem(MenuItem item) {
         if (item != null)
             item.setVisible(false);
+    }
+
+    private static class EventsAdapter extends FragmentStatePagerAdapter {
+        private final HashMap<Integer, EventListFragment> fragments;
+        private final EventActivity eventActivity;
+        int filterEvent = 0; // 0 - all, -1 - bad, 1- good
+
+        public EventsAdapter(EventActivity eventActivity, FragmentManager fm) {
+            super(fm);
+            fragments = new HashMap<Integer, EventListFragment>();
+            this.eventActivity = eventActivity;
+
+        }
+
+        public void showBadEvents() {
+            filterEvent = -1;
+            updateFragments();
+        }
+
+        public void showGoodEvents() {
+            filterEvent = 1;
+            updateFragments();
+        }
+
+        public void showAllEvents() {
+            filterEvent = 0;
+            updateFragments();
+        }
+
+        public void findEventsByDate(int dayOfYear, int year) {
+            for (Integer key : fragments.keySet()) {
+
+                EventListFragment fragment = fragments.get(key);
+                if (fragment != null) {
+                    fragment.findEventsByDate(dayOfYear, year);
+                }
+            }
+        }
+
+        public void updateFragments() {
+            for (Integer key : fragments.keySet()) {
+
+                EventListFragment fragment = fragments.get(key);
+                if (fragment != null) {
+                    fragment.setFilterNews(filterEvent);
+                    fragment.updateFragment();
+                }
+            }
+
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            EventListFragment fragment = (EventListFragment) EventListFragment
+                    .newInstance(position);
+            fragment.setFilterNews(filterEvent);
+            fragments.put(position, fragment);
+            return fragment;
+
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            FragmentManager manager = eventActivity.getSupportFragmentManager();
+            FragmentTransaction trans = manager.beginTransaction();
+            trans.remove((Fragment) object);
+            trans.commit();
+            fragments.remove(position);
+            super.destroyItem(container, position, object);
+//            }
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return eventActivity.getString(R.string.week);
+                case 1:
+                    return eventActivity.getString(R.string.month);
+                case 2:
+                    return eventActivity.getString(R.string.year);
+                default:
+                    return "";
+            }
+
+        }
+
+        @Override
+        public int getItemPosition(Object object){
+            return PagerAdapter.POSITION_UNCHANGED;
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        public EventListFragment getFragmentAtPosition(int position) {
+            return fragments.get(position);
+        }
     }
 
 }

@@ -56,4 +56,4 @@
             loginView:login_text="@string/com_facebook_usersettingsfragment_log_in_button" />
     </LinearLayout>
 
-</ScrollView><!-- From: file:/home/alex/WorkProjects/DailyStatus/app/src/main/res/layout/com_facebook_usersettingsfragment.xml -->
+</ScrollView><!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/layout/com_facebook_usersettingsfragment.xml -->
