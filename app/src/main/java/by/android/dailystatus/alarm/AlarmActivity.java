@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
+
 import by.android.dailystatus.R;
 
 public class AlarmActivity extends ActionBarActivity {
@@ -43,27 +44,28 @@ public class AlarmActivity extends ActionBarActivity {
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
 				intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-		am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+(10800000) + indexOfInterval * 1,
+		am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (10800000) + indexOfInterval * 1,
 				(10800000) + indexOfInterval * 1, pendingIntent);
 	}
 
 	public static void CancelAlarm(Context context) {
 		Intent intent = new Intent(context, TimeAlarm.class);
-		PendingIntent sender = PendingIntent
-				.getBroadcast(context, 0, intent, 0);
-		AlarmManager alarmManager = (AlarmManager) context
-				.getSystemService(Context.ALARM_SERVICE);
+		PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
+		AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+		alarmManager.cancel(sender);
+		intent = new Intent(context, EveryDayTimeAlarm.class);
+		sender = PendingIntent.getBroadcast(context, 0, intent, 0);
 		alarmManager.cancel(sender);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
+			case android.R.id.home:
+				NavUtils.navigateUpFromSameTask(this);
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
 		}
 	}
 
