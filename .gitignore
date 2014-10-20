@@ -33,6 +33,7 @@ Thumbs.db
 build/
 
 /*/out
+/*/build
 /*/*/build
 /*/*/production
 *.iws

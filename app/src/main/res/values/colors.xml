@@ -27,6 +27,8 @@
     <color name="event_add_title">#686868</color>
     <color name="event_event_text">#AFAFAF</color>
     <color name="button_good_bad_text">#898989</color>
+    <color name="button_red">#FF0D52</color>
+    <color name="button_yellow">#F9FF00</color>
 
 
     <!-- #FACEBOOK colors -->

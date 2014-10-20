@@ -65,9 +65,8 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
                 menu.setOnItemSelectedListener(EventLayout.this);
                 Resources resources = getResources();
 
-                // TODO find resources
                 menu.add(MENU_VIEW, R.string.view, viewId, eventORM).setIcon(
-                        resources.getDrawable(R.drawable.ic_edit));
+                        resources.getDrawable(R.drawable.ic_view));
                 menu.add(MENU_EDIT, R.string.edit, viewId, eventORM).setIcon(
                         resources.getDrawable(R.drawable.ic_edit));
                 menu.add(MENU_DELETE, R.string.delete, viewId, eventORM)
@@ -99,8 +98,7 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
 
         layoutEvent.addView(image, 0);
         layoutEvent.addView(textView, 1);
-        layoutEvent
-                .setBackgroundResource(android.R.drawable.list_selector_background);
+        layoutEvent.setBackgroundResource(R.drawable.background_white);
         layoutEvent.setClickable(true);
 
         addView(layoutEvent, 0);

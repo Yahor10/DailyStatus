@@ -566,14 +566,14 @@ public class MainActivity extends ActionBarActivity implements
 							ScaleAnimation.RELATIVE_TO_SELF, .5f, ScaleAnimation.RELATIVE_TO_SELF, .5f);
 					animation_good.setDuration(500);
 					animation_good.setInterpolator(new OvershootInterpolator());
-					model.goodDay.startAnimation(animation_good);
+					model.goodDay.findViewById(R.id.good_day_text).startAnimation(animation_good);
 					break;
 				case -1:
 					ScaleAnimation animation_bad = new ScaleAnimation(0, 1, 0, 1,
 							ScaleAnimation.RELATIVE_TO_SELF, .5f, ScaleAnimation.RELATIVE_TO_SELF, .5f);
 					animation_bad.setDuration(500);
 					animation_bad.setInterpolator(new OvershootInterpolator());
-					model.badDay.startAnimation(animation_bad);
+					model.badDay.findViewById(R.id.bad_day_text).startAnimation(animation_bad);
 					break;
 				default:
 					break;
@@ -762,8 +762,8 @@ public class MainActivity extends ActionBarActivity implements
 
 			ImageView dayImage = (ImageView) inflate
 					.findViewById(R.id.dayImage);
-			Button goodDay = (Button) inflate.findViewById(R.id.good_day);
-			Button badDay = (Button) inflate.findViewById(R.id.bad_day);
+			View goodDay = inflate.findViewById(R.id.good_container);
+			View badDay = inflate.findViewById(R.id.bad_container);
 			EventLayout eventLayout = (EventLayout) inflate
 					.findViewById(R.id.eventLayout);
 
@@ -779,16 +779,16 @@ public class MainActivity extends ActionBarActivity implements
 			updateDateStep();
 			setContent(position);
 
-			inflate.findViewById(R.id.good_day).setOnClickListener(this);
-			inflate.findViewById(R.id.bad_day).setOnClickListener(this);
+			inflate.findViewById(R.id.good_container).setOnClickListener(this);
+			inflate.findViewById(R.id.bad_container).setOnClickListener(this);
 			inflate.findViewById(R.id.back_day).setOnClickListener(this);
 			inflate.findViewById(R.id.next_day).setOnClickListener(this);
 			inflate.findViewById(R.id.addDayEvent).setOnClickListener(this);
 
-			inflate.findViewById(R.id.good_day).setTag(
-					inflate.findViewById(R.id.bad_day));
-			inflate.findViewById(R.id.bad_day).setTag(
-					inflate.findViewById(R.id.good_day));
+			inflate.findViewById(R.id.good_container).setTag(
+					inflate.findViewById(R.id.bad_day_text));
+			inflate.findViewById(R.id.bad_container).setTag(
+					inflate.findViewById(R.id.good_day_text));
 
 			dayImage.setOnClickListener(this);
 
@@ -804,7 +804,7 @@ public class MainActivity extends ActionBarActivity implements
 		public void onClick(View v) {
 
 			switch (v.getId()) {
-				case R.id.good_day:
+				case R.id.good_container:
 
 					String currentUser = PreferenceUtils
 							.getCurrentUser(getApplicationContext());
@@ -828,7 +828,7 @@ public class MainActivity extends ActionBarActivity implements
 					DayORM.insertOrUpdateDay(getApplicationContext(), day);
 					setContent(PAGE_MIDDLE);
 					break;
-				case R.id.bad_day:
+				case R.id.bad_container:
 					currentUser = PreferenceUtils
 							.getCurrentUser(getApplicationContext());
 					day = DayORM.getDay(MainActivity.this, now.getDayOfYear(),

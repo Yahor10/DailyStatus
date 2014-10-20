@@ -99,16 +99,18 @@
                     android:adjustViewBounds="true"
                     android:paddingTop="10dp"
                     android:scaleType="fitEnd"
-                    android:src="@drawable/ic_button_bad"/>
+                    android:clickable="true"
+                    android:src="@drawable/ic_button_bad_normal"/>
 
                 <ImageView
                     android:id="@+id/button_good"
                     android:layout_width="80dp"
+                    android:clickable="true"
                     android:layout_height="match_parent"
                     android:layout_toRightOf="@id/center_rule"
                     android:adjustViewBounds="true"
                     android:scaleType="fitEnd"
-                    android:src="@drawable/ic_button_good"/>
+                    android:src="@drawable/ic_button_good_normal"/>
 
                 <TextView
                     android:id="@+id/good_day"

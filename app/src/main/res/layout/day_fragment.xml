@@ -36,7 +36,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/ic_arrow_left"/>
+                    android:src="@drawable/ic_arrow_left" />
 
                 <TextView
                     android:id="@+id/currentDay"
@@ -46,7 +46,7 @@
                     android:gravity="center"
                     android:text="12 июня"
                     android:textColor="@android:color/black"
-                    android:textSize="22sp"/>
+                    android:textSize="22sp" />
 
                 <ImageView
                     android:id="@+id/next_day"
@@ -54,7 +54,7 @@
                     android:layout_height="30dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_arrow_right"/>
+                    android:src="@drawable/ic_arrow_right" />
             </LinearLayout>
 
             <RelativeLayout
@@ -71,7 +71,7 @@
                     android:layout_toStartOf="@+id/dayImage"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_grape_green"/>
+                    android:src="@drawable/ic_grape_green" />
 
                 <ImageView
                     android:id="@+id/imageView10"
@@ -85,7 +85,7 @@
                     android:layout_marginTop="-10dp"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_plum_down"/>
+                    android:src="@drawable/ic_plum_down" />
 
                 <ImageView
                     android:id="@+id/imageView7"
@@ -98,7 +98,7 @@
                     android:layout_marginRight="30dp"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_small_cherry"/>
+                    android:src="@drawable/ic_small_cherry" />
 
                 <ImageView
                     android:layout_width="40dp"
@@ -111,8 +111,7 @@
                     android:layout_toRightOf="@+id/imageView4"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_small_cherry"
-                    />
+                    android:src="@drawable/ic_small_cherry" />
 
 
                 <ImageView
@@ -125,7 +124,7 @@
                     android:layout_marginBottom="-10dp"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_pomegranate"/>
+                    android:src="@drawable/ic_pomegranate" />
 
                 <ImageView
                     android:id="@+id/imageView3"
@@ -139,7 +138,7 @@
                     android:layout_marginTop="-20dp"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_cherry_three"/>
+                    android:src="@drawable/ic_cherry_three" />
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -152,7 +151,7 @@
                     android:layout_toRightOf="@+id/dayImage_back"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_pear"/>
+                    android:src="@drawable/ic_pear" />
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -166,7 +165,7 @@
                     android:layout_toRightOf="@+id/dayImage"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_grape_red"/>
+                    android:src="@drawable/ic_grape_red" />
 
                 <com.makeramen.widget.RoundedImageView
                     android:id="@+id/dayImage_back"
@@ -177,7 +176,7 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/back_day_photo"
                     app:border_width="2dip"
-                    app:corner_radius="30dip"/>
+                    app:corner_radius="30dip" />
 
                 <com.makeramen.widget.RoundedImageView
                     android:id="@+id/dayImage"
@@ -188,7 +187,7 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/photo1"
                     app:border_width="0dip"
-                    app:corner_radius="30dip"/>
+                    app:corner_radius="30dip" />
 
                 <ImageView
                     android:id="@+id/imageView9"
@@ -199,12 +198,13 @@
                     android:layout_below="@+id/dayImage_back"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_plum_up"/>
+                    android:src="@drawable/ic_plum_up" />
 
                 <ImageView
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_marginEnd="18dp"
+                    android:layout_marginRight="18dp"
                     android:layout_toEndOf="@+id/dayImage_back"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
@@ -219,13 +219,13 @@
                 android:id="@+id/addDayEvent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:drawable/list_selector_background"
+                android:background="@drawable/background_white"
                 android:gravity="center|left">
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_add_event"/>
+                    android:src="@drawable/ic_add_event" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -234,7 +234,7 @@
                     android:layout_margin="10dp"
                     android:text="@string/add_day_event"
                     android:textColor="#aa000000"
-                    android:textSize="21sp"/>
+                    android:textSize="21sp" />
             </LinearLayout>
 
             <by.android.dailystatus.widget.container.EventLayout
@@ -242,7 +242,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:orientation="vertical"/>
+                android:orientation="vertical" />
         </LinearLayout>
     </ScrollView>
 
@@ -255,45 +255,69 @@
             android:id="@+id/center_rule"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true" />
 
-        <Button
-            android:id="@+id/bad_day"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/bad_container"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/button_bad"
-            android:background="@android:color/transparent"
-            android:text="@string/bad_day"
-            android:textColor="@android:color/darker_gray"/>
+            android:clickable="true"
+            android:layout_alignBottom="@+id/good_container"
+            android:layout_toLeftOf="@+id/center_rule">
 
-        <ImageView
-            android:id="@+id/button_bad"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:layout_alignBottom="@+id/button_good"
-            android:layout_toLeftOf="@+id/center_rule"
-            android:adjustViewBounds="true"
-            android:paddingTop="10dp"
-            android:scaleType="fitEnd"
-            android:src="@drawable/ic_button_bad"/>
+            <ImageView
+                android:id="@+id/button_bad"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:layout_alignParentRight="true"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:duplicateParentState="true"
+                android:paddingTop="10dp"
+                android:scaleType="fitEnd"
+                android:src="@drawable/ic_button_bad" />
 
-        <ImageView
-            android:id="@+id/button_good"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@id/center_rule"
-            android:adjustViewBounds="true"
-            android:scaleType="fitEnd"
-            android:src="@drawable/ic_button_good"/>
+            <Button
+                android:id="@+id/bad_day_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/button_bad"
+                android:clickable="false"
+                android:background="@android:color/transparent"
+                android:text="@string/bad_day"
+                android:textColor="@android:color/darker_gray" />
 
-        <Button
-            android:id="@+id/good_day"
-            android:layout_width="wrap_content"
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/good_container"
+            android:clickable="true"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@id/button_good"
-            android:background="@android:color/transparent"
-            android:text="@string/good_day"
-            android:textColor="@android:color/darker_gray"/>
+            android:layout_toRightOf="@id/center_rule">
+
+            <ImageView
+                android:id="@+id/button_good"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:duplicateParentState="true"
+                android:clickable="false"
+                android:adjustViewBounds="true"
+                android:scaleType="fitEnd"
+                android:src="@drawable/ic_button_good" />
+
+            <Button
+                android:id="@+id/good_day_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:layout_toRightOf="@id/button_good"
+                android:background="@android:color/transparent"
+                android:text="@string/good_day"
+                android:textColor="@android:color/darker_gray" />
+        </RelativeLayout>
 
     </RelativeLayout>
 

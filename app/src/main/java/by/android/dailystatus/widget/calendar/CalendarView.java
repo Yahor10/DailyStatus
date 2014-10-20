@@ -47,8 +47,8 @@ public class CalendarView extends ActionBarActivity implements
 
     private String selectedDate;
 
-    Button butGood;
-    Button butBad;
+    View butGood;
+    View butBad;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +78,8 @@ public class CalendarView extends ActionBarActivity implements
         handler = new Handler();
         handler.post(calendarUpdater);
 
-        butBad = (Button) findViewById(R.id.but_bad);
-        butGood = (Button) findViewById(R.id.but_good);
+        butBad = findViewById(R.id.bad_container);
+        butGood = findViewById(R.id.good_container);
 
         butBad.setOnClickListener(this);
         butGood.setOnClickListener(this);
@@ -465,7 +465,7 @@ public class CalendarView extends ActionBarActivity implements
         String currentUser = PreferenceUtils.getCurrentUser(this);
         DayORM dayORM = new DayORM(currentUser, day, monthNumber, yearNumber);
         switch (v.getId()) {
-            case R.id.but_bad:
+            case R.id.bad_container:
 
                 dayORM.status = -1;
 
@@ -476,7 +476,7 @@ public class CalendarView extends ActionBarActivity implements
                 adapter.notifyDataSetChanged();
 
                 break;
-            case R.id.but_good:
+            case R.id.good_container:
 
                 dayORM.status = 1;
 
