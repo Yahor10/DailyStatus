@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/day_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/day_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
@@ -71,7 +70,8 @@
                     android:layout_toStartOf="@+id/dayImage"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_grape_green" />
+                    android:src="@drawable/ic_grape_green"
+                    android:id="@+id/imageView11" />
 
                 <ImageView
                     android:id="@+id/imageView10"
@@ -111,7 +111,8 @@
                     android:layout_toRightOf="@+id/imageView4"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_small_cherry" />
+                    android:src="@drawable/ic_small_cherry"
+                    android:id="@+id/imageView8" />
 
 
                 <ImageView
@@ -201,17 +202,30 @@
                     android:src="@drawable/ic_plum_up" />
 
                 <ImageView
+                    android:id="@+id/imageView5"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
+                    android:layout_alignBottom="@+id/dayImage_back"
                     android:layout_marginEnd="18dp"
                     android:layout_marginRight="18dp"
                     android:layout_toEndOf="@+id/dayImage_back"
+                    android:layout_toRightOf="@+id/dayImage_back"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_small_cherry"
-                    android:id="@+id/imageView5"
-                    android:layout_alignBottom="@+id/dayImage_back"
-                    android:layout_toRightOf="@+id/dayImage_back" />
+                    android:src="@drawable/ic_small_cherry" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="52dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_lemon"
+                    android:layout_toStartOf="@+id/imageView9"
+                    android:layout_below="@+id/imageView8"
+                    android:layout_alignRight="@+id/imageView11"
+                    android:layout_alignEnd="@+id/imageView11" />
 
             </RelativeLayout>
 
@@ -261,18 +275,18 @@
             android:id="@+id/bad_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="true"
             android:layout_alignBottom="@+id/good_container"
-            android:layout_toLeftOf="@+id/center_rule">
+            android:layout_toLeftOf="@+id/center_rule"
+            android:clickable="true">
 
             <ImageView
                 android:id="@+id/button_bad"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
-                android:clickable="false"
                 android:layout_alignParentRight="true"
                 android:adjustViewBounds="true"
                 android:background="@android:color/transparent"
+                android:clickable="false"
                 android:duplicateParentState="true"
                 android:paddingTop="10dp"
                 android:scaleType="fitEnd"
@@ -283,8 +297,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@id/button_bad"
-                android:clickable="false"
                 android:background="@android:color/transparent"
+                android:clickable="false"
                 android:text="@string/bad_day"
                 android:textColor="@android:color/darker_gray" />
 
@@ -292,19 +306,19 @@
 
         <RelativeLayout
             android:id="@+id/good_container"
-            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@id/center_rule">
+            android:layout_toRightOf="@id/center_rule"
+            android:clickable="true">
 
             <ImageView
                 android:id="@+id/button_good"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:duplicateParentState="true"
-                android:clickable="false"
                 android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:duplicateParentState="true"
                 android:scaleType="fitEnd"
                 android:src="@drawable/ic_button_good" />
 
@@ -312,9 +326,9 @@
                 android:id="@+id/good_day_text"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:clickable="false"
                 android:layout_toRightOf="@id/button_good"
                 android:background="@android:color/transparent"
+                android:clickable="false"
                 android:text="@string/good_day"
                 android:textColor="@android:color/darker_gray" />
         </RelativeLayout>

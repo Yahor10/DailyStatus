@@ -1,5 +1,6 @@
 package by.android.dailystatus.dialog;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -17,7 +18,6 @@ import org.joda.time.DateTime;
 
 import by.android.dailystatus.MainActivity;
 import by.android.dailystatus.R;
-import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.orm.model.EventORM;
 import by.android.dailystatus.preference.PreferenceUtils;
 
@@ -41,6 +41,7 @@ public class AddDayEvent extends DialogFragment implements OnClickListener, Text
 
     }
 
+    @SuppressLint("ValidFragment")
     public AddDayEvent(MainActivity mainActivity, String startText, boolean flagEditEvent) {
         this.mainActivity = mainActivity;
         this.flagEditEvent = flagEditEvent;

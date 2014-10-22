@@ -16,6 +16,7 @@
 
 package com.facebook.widget;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -109,6 +110,7 @@ public class PlacePickerFragment extends PickerFragment<GraphPlace> {
      * @param args a Bundle that optionally contains one or more values containing additional
      *             configuration information for the Fragment.
      */
+    @SuppressLint("ValidFragment")
     public PlacePickerFragment(Bundle args) {
         super(GraphPlace.class, R.layout.com_facebook_placepickerfragment, args);
         setPlacePickerSettingsFromBundle(args);

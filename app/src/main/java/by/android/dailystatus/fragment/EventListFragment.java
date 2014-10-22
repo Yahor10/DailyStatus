@@ -1,17 +1,6 @@
 package by.android.dailystatus.fragment;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Locale;
-
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.os.AsyncTask;
@@ -24,20 +13,28 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.kanak.emptylayout.EmptyLayout;
+
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import by.android.dailystatus.ChartsActivity;
 import by.android.dailystatus.R;
-import by.android.dailystatus.adapters.EventExpandableListAdapter;
 import by.android.dailystatus.adapters.EventListIndexedAdapter;
-import by.android.dailystatus.application.Constants;
 import by.android.dailystatus.model.GroupEvent;
 import by.android.dailystatus.orm.model.DayORM;
 import by.android.dailystatus.orm.model.EventORM;
 import by.android.dailystatus.widget.customlistview.AlphabetIndexerView;
 import by.android.dailystatus.widget.customlistview.AlphabetListView;
-
-import com.kanak.emptylayout.EmptyLayout;
 
 public class EventListFragment extends Fragment {
 
@@ -87,6 +84,7 @@ public class EventListFragment extends Fragment {
 
 	}
 
+    @SuppressLint("ValidFragment")
 	public EventListFragment(int type) {
 		typeFragment = type;
 	}

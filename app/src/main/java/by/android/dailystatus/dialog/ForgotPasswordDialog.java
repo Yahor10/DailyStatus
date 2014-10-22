@@ -1,5 +1,6 @@
 package by.android.dailystatus.dialog;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -27,6 +28,7 @@ public class ForgotPasswordDialog extends DialogFragment implements
 
 	}
 
+    @SuppressLint("ValidFragment")
 	public ForgotPasswordDialog(Context mainActivity, UserORM user) {
 		this.mainActivity = mainActivity;
 		this.user = user;

@@ -1,11 +1,7 @@
 package by.android.dailystatus.dialog;
 
-import java.io.File;
-import java.io.IOException;
-
-import android.app.AlertDialog;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,8 +11,12 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
+
+import java.io.File;
+import java.io.IOException;
+
 import by.android.dailystatus.MainActivity;
 import by.android.dailystatus.R;
 import by.android.dailystatus.preference.PreferenceUtils;
@@ -29,6 +29,7 @@ public class ImageChoiseDialog extends DialogFragment implements
 	public ImageChoiseDialog() {
 	}
 
+    @SuppressLint("ValidFragment")
 	public ImageChoiseDialog(MainActivity mainActivity) {
 		this.mainActivity = mainActivity;
 	}

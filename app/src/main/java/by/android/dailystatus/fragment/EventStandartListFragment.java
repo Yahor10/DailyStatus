@@ -1,27 +1,24 @@
 package by.android.dailystatus.fragment;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.TextView;
+
+import com.kanak.emptylayout.EmptyLayout;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 import by.android.dailystatus.R;
 import by.android.dailystatus.adapters.StandartEventExpandableListAdapter;
 import by.android.dailystatus.interfaces.FragmentActivityCallback;
-
-import com.kanak.emptylayout.EmptyLayout;
 
 public class EventStandartListFragment extends Fragment {
 
@@ -36,6 +33,7 @@ public class EventStandartListFragment extends Fragment {
 		return new EventStandartListFragment(type);
 	}
 
+    @SuppressLint("ValidFragment")
 	public EventStandartListFragment(int type) {
 		typeFragment = type;
 
