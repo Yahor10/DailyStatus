@@ -62,16 +62,18 @@
                 android:layout_height="240dp">
 
                 <ImageView
+                    android:id="@+id/imageView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/imageView7"
-                    android:layout_marginLeft="-20dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginLeft="-30dp"
+                    android:layout_marginStart="-30dp"
                     android:layout_toLeftOf="@+id/dayImage"
                     android:layout_toStartOf="@+id/dayImage"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_grape_green"
-                    android:id="@+id/imageView11" />
+                    android:src="@drawable/ic_grape_green" />
 
                 <ImageView
                     android:id="@+id/imageView10"
@@ -101,6 +103,7 @@
                     android:src="@drawable/ic_small_cherry" />
 
                 <ImageView
+                    android:id="@+id/imageView8"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignTop="@+id/dayImage"
@@ -111,8 +114,7 @@
                     android:layout_toRightOf="@+id/imageView4"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_small_cherry"
-                    android:id="@+id/imageView8" />
+                    android:src="@drawable/ic_small_cherry" />
 
 
                 <ImageView
@@ -140,6 +142,20 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/ic_cherry_three" />
+
+                <ImageView
+                    android:id="@+id/appleTop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/dayImage_back"
+                    android:layout_marginEnd="-10dp"
+                    android:layout_marginRight="-10dp"
+                    android:layout_marginTop="-20dp"
+                    android:layout_toLeftOf="@+id/imageView3"
+                    android:layout_toStartOf="@+id/imageView3"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/apple_red" />
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -218,14 +234,43 @@
                     android:id="@+id/imageView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/imageView11"
+                    android:layout_alignRight="@+id/imageView11"
+                    android:layout_below="@+id/imageView8"
+                    android:layout_marginLeft="52dp"
                     android:layout_marginStart="52dp"
+                    android:layout_marginTop="-30dp"
+                    android:layout_toLeftOf="@+id/imageView9"
+                    android:layout_toStartOf="@+id/imageView9"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_lemon"
-                    android:layout_toStartOf="@+id/imageView9"
-                    android:layout_below="@+id/imageView8"
-                    android:layout_alignRight="@+id/imageView11"
-                    android:layout_alignEnd="@+id/imageView11" />
+                    android:src="@drawable/ic_lemon" />
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/dayImage_back"
+                    android:layout_alignLeft="@+id/dayImage_back"
+                    android:layout_alignStart="@+id/dayImage_back"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="-50dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/apple_top" />
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/plum"
+                    android:layout_toStartOf="@+id/imageView11"
+                    android:layout_alignBottom="@+id/dayImage"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
 
             </RelativeLayout>
 
