@@ -19,10 +19,7 @@ import android.view.View.OnClickListener;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
-import by.android.dailystatus.alarm.AlarmActivity;
-import by.android.dailystatus.dialog.LicenseDialog;
-import by.android.dailystatus.dialog.VersionDialog;
-import by.android.dailystatus.preference.PreferenceUtils;
+
 import com.facebook.Request;
 import com.facebook.Response;
 import com.facebook.Session;
@@ -31,6 +28,11 @@ import com.facebook.model.GraphUser;
 import com.hintdesk.core.activities.AlertMessageBox;
 import com.hintdesk.core.util.OSUtil;
 import com.kskkbys.rate.RateThisApp;
+
+import by.android.dailystatus.alarm.AlarmActivity;
+import by.android.dailystatus.dialog.LicenseDialog;
+import by.android.dailystatus.dialog.VersionDialog;
+import by.android.dailystatus.preference.PreferenceUtils;
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;
 
@@ -147,33 +149,6 @@ public class SettingsActivity extends ActionBarActivity implements
 
             }
         });
-
-        int versionCurrent = PreferenceUtils.getCurrentVersion(this);
-        int versionNew = 1;
-
-        try {
-            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            versionNew = pInfo.versionCode;
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        if (versionNew > versionCurrent) {
-            VersionDialog dialog = new VersionDialog();
-            switch (versionNew) {
-                case 1:
-                    dialog.setText(this.getResources()
-                            .getString(R.string.version_1));
-                    break;
-
-                default:
-                    break;
-            }
-            dialog.show(getSupportFragmentManager(), "");
-            PreferenceUtils.setCurrentVersion(getApplicationContext(),
-                    versionNew);
-        }
-
     }
 
     @Override

@@ -38,7 +38,6 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -551,7 +550,6 @@ public class MainActivity extends ActionBarActivity implements
 					} else {
 						model.dayImage.setImageResource(R.drawable.photo1);
 					}
-
 				}
 			} else {
 				model.dayImage.setImageResource(R.drawable.photo1);
@@ -815,14 +813,6 @@ public class MainActivity extends ActionBarActivity implements
 						day = new DayORM(currentUser, now.getDayOfYear(),
 								now.getMonthOfYear(), now.getYear());
 
-					if (day.status == -1) {
-						View but_bad = (View) v.getTag();
-						ScaleAnimation animation_bad = new ScaleAnimation(0, 1, 0, 1,
-								ScaleAnimation.RELATIVE_TO_SELF, .5f, ScaleAnimation.RELATIVE_TO_SELF, .5f);
-						animation_bad.setDuration(500);
-						animation_bad.setInterpolator(new OvershootInterpolator());
-						but_bad.startAnimation(animation_bad);
-					}
 					day.status = 1;
 
 					DayORM.insertOrUpdateDay(getApplicationContext(), day);
@@ -837,15 +827,6 @@ public class MainActivity extends ActionBarActivity implements
 					if (day == null)
 						day = new DayORM(currentUser, now.getDayOfYear(),
 								now.getMonthOfYear(), now.getYear());
-
-					if (day.status == 1) {
-						View but_good = (View) v.getTag();
-						ScaleAnimation animation_good = new ScaleAnimation(0, 1, 0, 1,
-								ScaleAnimation.RELATIVE_TO_SELF, .5f, ScaleAnimation.RELATIVE_TO_SELF, .5f);
-						animation_good.setDuration(500);
-						animation_good.setInterpolator(new OvershootInterpolator());
-						but_good.startAnimation(animation_good);
-					}
 
 					day.status = -1;
 

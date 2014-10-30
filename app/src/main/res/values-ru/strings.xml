@@ -101,4 +101,9 @@
     <string name="standarts_events">События из списка</string>
     <string name="search_week">Поиск на этой неделе</string>
     <string name="search_events_">Поиск событий</string>
+    <string name="good">Хороший</string>
+    <string name="bad">Плохой</string>
+    <string name="register">Регистрация</string>
+    <string name="add_event_from_calendar">Добавить событие из календаря</string>
+    <string name="search">Поиск</string>
 </resources>
