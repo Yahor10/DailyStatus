@@ -2,94 +2,94 @@
 <pre-dex-items>
 
     <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/classes-957918bb6acfe598c0bc11b66b7be812b563abe9.jar"
-        jar="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
-    <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/signpost-commonshttp4-1.2.1.2-ab66513d11afa96a6fe247408c303cac31e0ad14.jar"
-        jar="/Users/alex-pers/.gradle/caches/modules-2/files-2.1/oauth.signpost/signpost-commonshttp4/1.2.1.2/731e05de30cfeb1f41d417f886277f9597fe0f36/signpost-commonshttp4-1.2.1.2.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="731e05de30cfeb1f41d417f886277f9597fe0f36"/>
-    <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/additionnal-6b2fd382081d3e0390685b7b3d6412ece3fdc1e0.jar"
-        jar="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/libs/additionnal.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="bd9e8dc422bb8c8405359947fe9f4282b49f57f4"/>
-    <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/crashlytics-7a792e5b4513b545ebeb99cccfb774e74ea41073.jar"
-        jar="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/libs/crashlytics.jar"
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\crashlytics-c86a4b3f26f912befdbc277c24d5cd668cf3434a.jar"
+        jar="C:\Users\ychabatarou\gitProjects\DailyStatus\app\libs\crashlytics.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="0e821eafa1bf489a26bdb71f95078c26785b37a1"/>
     <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/joda-time-2.1-d7c663fcbd39af7c99a83709333e6aab0df2f4c8.jar"
-        jar="/Users/alex-pers/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.1/8f79e353ef77da6710e1f10d34fc3698eaaacbca/joda-time-2.1.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="8f79e353ef77da6710e1f10d34fc3698eaaacbca"/>
-    <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/Android-BitmapMemoryCache-v1.0-ed21d5e65d7962f6c2fbd189da00c2b5e535944a.jar"
-        jar="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/libs/Android-BitmapMemoryCache-v1.0.jar"
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\Android-BitmapMemoryCache-v1.0-ea469833762caaa039aa3cb456d3543438b0ca1c.jar"
+        jar="C:\Users\ychabatarou\gitProjects\DailyStatus\app\libs\Android-BitmapMemoryCache-v1.0.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="df1cb97e2e47e7dd708e947f42a8948659f23d41"/>
     <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/httpcore-4.0.1-b2a8f54d1678fe77aa2bfea31857800c80eba7a4.jar"
-        jar="/Users/alex-pers/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.0.1/e813b8722c387b22e1adccf7914729db09bcb4a9/httpcore-4.0.1.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="e813b8722c387b22e1adccf7914729db09bcb4a9"/>
-    <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/support-v4-19.1.0-fe930dc68beb1e566675ce71b270d4091c6c249b.jar"
-        jar="/Applications/Android Studio.app/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
-    <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/ormlite-core-4.48-149686295789e5faf9b01dad4f7482bb93c90693.jar"
-        jar="/Users/alex-pers/.gradle/caches/modules-2/files-2.1/com.j256.ormlite/ormlite-core/4.48/e579bd2905d0399af5029aaaf9817d5fa0ca88a5/ormlite-core-4.48.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="e579bd2905d0399af5029aaaf9817d5fa0ca88a5"/>
-    <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/hintdesk.core-e3126e4cf340f2fb2d9d0bdc84105d4f43e58ebe.jar"
-        jar="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/libs/hintdesk.core.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="45b164ed43d7029ef5fb8d479acdd4410eb65a6f"/>
-    <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/ormlite-android-4.48-e37a607f32d2a674cf355196ab2a9442eb1804f8.jar"
-        jar="/Users/alex-pers/.gradle/caches/modules-2/files-2.1/com.j256.ormlite/ormlite-android/4.48/afa06f539a4026c10b247386312aa67404b80a16/ormlite-android-4.48.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="afa06f539a4026c10b247386312aa67404b80a16"/>
-    <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/mail-3895241faae905d79acc81c66bf1db84b6f4a705.jar"
-        jar="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/libs/mail.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="428e267abff0d10802ccde86b915da2c20471160"/>
-    <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/signpost-core-1.2.1.2-82aed9e14c600ae8544644c521f6b4b04a9163aa.jar"
-        jar="/Users/alex-pers/.gradle/caches/modules-2/files-2.1/oauth.signpost/signpost-core/1.2.1.2/bf95955dcf3d5a78c201e49b0c336787ea73f161/signpost-core-1.2.1.2.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="bf95955dcf3d5a78c201e49b0c336787ea73f161"/>
-    <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/commons-codec-1.3-be3d811c375bda389cf1207deb8683d253748e96.jar"
-        jar="/Users/alex-pers/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.3/fd32786786e2adb664d5ecc965da47629dca14ba/commons-codec-1.3.jar"
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\commons-codec-1.3-2c9eddc9751e7f3ad016f67bd8aa16937d892eaf.jar"
+        jar="C:\Users\ychabatarou\.gradle\caches\modules-2\files-2.1\commons-codec\commons-codec\1.3\fd32786786e2adb664d5ecc965da47629dca14ba\commons-codec-1.3.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="fd32786786e2adb664d5ecc965da47629dca14ba"/>
     <item
-        dex="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/pre-dexed/debug/activation-0036680806136537b24515fd31ab9523911af215.jar"
-        jar="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/libs/activation.jar"
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\classes-84455f97daddfff4f909381564746962093a0fcf.jar"
+        jar="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
+    <item
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\ormlite-core-4.48-b8b4c68a55ca5418cd70475d98dd026500cbbae0.jar"
+        jar="C:\Users\ychabatarou\.gradle\caches\modules-2\files-2.1\com.j256.ormlite\ormlite-core\4.48\e579bd2905d0399af5029aaaf9817d5fa0ca88a5\ormlite-core-4.48.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e579bd2905d0399af5029aaaf9817d5fa0ca88a5"/>
+    <item
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-d59d2ea954fe24cb9c5eb1852cad0741b85496fa.jar"
+        jar="C:\Users\ychabatarou\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+    <item
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\signpost-commonshttp4-1.2.1.2-5c5ebd8925a27d3aac1c78ccc145358ccedf60f6.jar"
+        jar="C:\Users\ychabatarou\.gradle\caches\modules-2\files-2.1\oauth.signpost\signpost-commonshttp4\1.2.1.2\731e05de30cfeb1f41d417f886277f9597fe0f36\signpost-commonshttp4-1.2.1.2.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="731e05de30cfeb1f41d417f886277f9597fe0f36"/>
+    <item
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\activation-1455e6199170c714382406f404590028931fcb25.jar"
+        jar="C:\Users\ychabatarou\gitProjects\DailyStatus\app\libs\activation.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="d1257cbff6faa44c1f325ae0d9413522d4644383"/>
+    <item
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\mail-27b087a4a44a09c1f1a939b42ecd827362835440.jar"
+        jar="C:\Users\ychabatarou\gitProjects\DailyStatus\app\libs\mail.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="428e267abff0d10802ccde86b915da2c20471160"/>
+    <item
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\ormlite-android-4.48-c566bd647d61ccacec52d22c00baccc710c90953.jar"
+        jar="C:\Users\ychabatarou\.gradle\caches\modules-2\files-2.1\com.j256.ormlite\ormlite-android\4.48\afa06f539a4026c10b247386312aa67404b80a16\ormlite-android-4.48.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="afa06f539a4026c10b247386312aa67404b80a16"/>
+    <item
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\httpcore-4.0.1-517fb3b1512c74298ffe08c840a294bf1b89077e.jar"
+        jar="C:\Users\ychabatarou\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.0.1\e813b8722c387b22e1adccf7914729db09bcb4a9\httpcore-4.0.1.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e813b8722c387b22e1adccf7914729db09bcb4a9"/>
+    <item
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\joda-time-2.1-6c56c60dccca315be133a4c0c0e9415f35b83dc1.jar"
+        jar="C:\Users\ychabatarou\.gradle\caches\modules-2\files-2.1\joda-time\joda-time\2.1\8f79e353ef77da6710e1f10d34fc3698eaaacbca\joda-time-2.1.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8f79e353ef77da6710e1f10d34fc3698eaaacbca"/>
+    <item
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\additionnal-16157dc337df81e898c8f08588fa41ce6babe2cd.jar"
+        jar="C:\Users\ychabatarou\gitProjects\DailyStatus\app\libs\additionnal.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="bd9e8dc422bb8c8405359947fe9f4282b49f57f4"/>
+    <item
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\signpost-core-1.2.1.2-e123f7933f270c2315e1139d38d3a5290f765157.jar"
+        jar="C:\Users\ychabatarou\.gradle\caches\modules-2\files-2.1\oauth.signpost\signpost-core\1.2.1.2\bf95955dcf3d5a78c201e49b0c336787ea73f161\signpost-core-1.2.1.2.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="bf95955dcf3d5a78c201e49b0c336787ea73f161"/>
+    <item
+        dex="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\pre-dexed\debug\hintdesk.core-3fc765d8b230ec95d310dcf675a5a88870521241.jar"
+        jar="C:\Users\ychabatarou\gitProjects\DailyStatus\app\libs\hintdesk.core.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="45b164ed43d7029ef5fb8d479acdd4410eb65a6f"/>
 
 </pre-dex-items>

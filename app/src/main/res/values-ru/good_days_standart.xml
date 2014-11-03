@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="testArray">  
-    <item>Улыбался</item>  
-    <item>Бегал</item>  
-    <item>Разговаривал с друзьями</item>  
-    <item>Поднялся рано утром</item>  
-     </array>
+    <array name="goodDaysArray">
+        <item>Улыбался</item>
+        <item>Бегал</item>
+        <item>Танцевал</item>
+        <item>Пел</item>
+        <item>Ходил в кино</item>
+        <item>Посещял театр</item>
+
+        <item>Разговаривал с друзьями</item>
+        <item>Поднялся рано утром</item>
+        <item>Плавал</item>
+        <item>Занимался спортом</item>
+    </array>
 </resources>

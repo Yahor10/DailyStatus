@@ -35,4 +35,4 @@
         android:interpolator="@android:anim/accelerate_interpolator"
         android:toAlpha="0.0" />
 
-</set><!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/anim/photo_fade_out.xml -->
+</set><!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/anim/photo_fade_out.xml -->

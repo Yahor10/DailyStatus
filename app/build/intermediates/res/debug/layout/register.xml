@@ -7,8 +7,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/layout_button">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -101,4 +100,4 @@
         </RelativeLayout>
     </ScrollView>
 
-</RelativeLayout><!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/layout/register.xml -->
+</RelativeLayout><!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/layout/register.xml -->

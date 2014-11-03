@@ -2,23 +2,23 @@
 <merger version="2" >
 
     <dataSet config="19.1.0" >
-        <source path="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/assets" />
+        <source path="C:\Users\ychabatarou\gitProjects\DailyStatus\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\assets" />
     </dataSet>
     <dataSet config="main" >
-        <source path="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/assets" >
+        <source path="C:\Users\ychabatarou\gitProjects\DailyStatus\app\src\main\assets" >
             <file
                 name="crashlytics-build.properties"
-                path="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/assets/crashlytics-build.properties" />
+                path="C:\Users\ychabatarou\gitProjects\DailyStatus\app\src\main\assets\crashlytics-build.properties" />
             <file
                 name="fonts/charissil-i.ttf"
-                path="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/assets/fonts/charissil-i.ttf" />
+                path="C:\Users\ychabatarou\gitProjects\DailyStatus\app\src\main\assets\fonts\charissil-i.ttf" />
             <file
                 name="fonts/segoe-ui-1361529660.ttf"
-                path="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/assets/fonts/segoe-ui-1361529660.ttf" />
+                path="C:\Users\ychabatarou\gitProjects\DailyStatus\app\src\main\assets\fonts\segoe-ui-1361529660.ttf" />
         </source>
     </dataSet>
     <dataSet config="debug" >
-        <source path="/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/debug/assets" />
+        <source path="C:\Users\ychabatarou\gitProjects\DailyStatus\app\src\debug\assets" />
     </dataSet>
 
 </merger>

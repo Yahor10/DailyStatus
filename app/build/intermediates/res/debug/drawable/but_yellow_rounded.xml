@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <solid android:color="@color/light_gray" />
+    <solid android:color="@color/button_yellow"/>
 
-    <corners android:radius="10dp" />
+    <corners android:radius="10dp"/>
 
-</shape><!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/drawable/but_yellow_rounded.xml -->
+</shape><!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/drawable/but_yellow_rounded.xml -->

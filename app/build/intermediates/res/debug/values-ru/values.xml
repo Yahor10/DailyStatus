@@ -1,30 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/bad_days_standart.xml -->
+    <eat-comment />
+
+    <array name="badDaysArray">
+        <item>Тяжелый день</item>
+        <item>Потратил много денег попросту</item>
+        <item>Поссорился с друзьями</item>
+        <item>Простыл</item>
+        <item>Spend a lot of money</item>
+        <item>Отправился</item>
+        <item>Личные проблемы</item>
+    </array>
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/good_days_standart.xml -->
+    <eat-comment />
+
+    <array name="goodDaysArray">
+        <item>Улыбался</item>
+        <item>Бегал</item>
+        <item>Танцевал</item>
+        <item>Пел</item>
+        <item>Ходил в кино</item>
+        <item>Посещял театр</item>
+        <item>Разговаривал с друзьями</item>
+        <item>Поднялся рано утром</item>
+        <item>Плавал</item>
+        <item>Занимался спортом</item>
+    </array>
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string-array name="sex">
         <item>@string/man</item>
         <item>@string/woman</item>
     </string-array>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/good_days_standart.xml -->
-    <eat-comment />
-
-    <array name="testArray">
-        <item>Улыбался</item>
-        <item>Бегал</item>
-        <item>Разговаривал с друзьями</item>
-        <item>Поднялся рано утром</item>
-    </array>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
     <eat-comment />
 
     <string-array name="users">
         <item>Пользователь1</item>
         <item>Пользователь2</item>
     </string-array>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values-ru/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values-ru/values.xml -->
     <eat-comment />
 
     <string name="abc_action_bar_home_description" msgid="4600421777120114993">"Перейти на главный экран"</string>
@@ -40,56 +58,58 @@
     <string name="abc_searchview_description_voice" msgid="893419373245838918">"Голосовой поиск"</string>
     <string name="abc_shareactionprovider_share_with" msgid="3421042268587513524">"Открыть доступ"</string>
     <string name="abc_shareactionprovider_share_with_application" msgid="7165123711973476752">"Открыть доступ пользователю %s"</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="action_forgot_password">Recover lost password</string>
     <string name="action_log_in"><b>Вход</b></string>
     <string name="action_register"><b>Регистрация</b></string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="action_settings">Настройки</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="action_sign_in_short">Регистрация нового пользователя</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="add_day_event">Добавить событие</string>
     <string name="add_day_picture">Добавить изображение</string>
+    <string name="add_event_from_calendar">Добавить событие из календаря</string>
     <string name="add_standart_event">Выбрать событие</string>
     <string name="alarm_message">Как прошел твой день? Что случилось с вами сегодня?</string>
     <string name="app_name">DailyStatus</string>
+    <string name="bad">Плохой</string>
     <string name="bad_day">Плохой день</string>
     <string name="calendar">Календарь</string>
     <string name="camera">Камера</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="cancel">Отмена</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="charts">Графики</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_settings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_settings.xml -->
     <eat-comment />
 
     <string name="connect_with_developers">Cвязаться с разработчиками</string>
     <string name="connect_with_developers_description">Запросить новую функциональность у разработчиков</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="create_account">Создать аккаунт</string>
     <string name="daily_status">Daily Status</string>
     <string name="delete">Удалить</string>
     <string name="dialog_title">Выберите цвет</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_settings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_settings.xml -->
     <eat-comment />
 
     <string name="do_not_notify">Не уведомлять о хороших/плохих днях</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="edit">Изменить</string>
@@ -97,79 +117,80 @@
     <string name="empty_button">Попробуйте снова</string>
     <string name="empty_message">Нет данных пока</string>
     <string name="error_button">Попробуйте снова</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="error_field_required">Это поле обязательно</string>
     <string name="error_incorrect_password">Этот пароль не правильный</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="error_internet_off">Подключите интернет</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="error_invalid_email">Такого адреса не существует</string>
     <string name="error_invalid_password">Этот пароль слишком короткий</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="error_message">Упс! Что то пошло не так</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="error_name_does_not_exist">Пользователь с таким именем не был зарегистрирован</string>
     <string name="error_name_empty">Имя не может быть пустым</string>
     <string name="error_name_exist">Пользователь с таким именем уже зарегистрирован</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="events">События</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_settings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_settings.xml -->
     <eat-comment />
 
     <string name="every_3_hours">Каждые 3 часа</string>
     <string name="every_6_hours">Каждые 6 часов</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="first_name">Имя</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="forgot_password">Забыли пароль?</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="fr">пт</string>
     <string name="gallery">Галерея</string>
+    <string name="good">Хороший</string>
     <string name="good_day">Хороший день</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_settings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_settings.xml -->
     <eat-comment />
 
     <string name="group_about_programm">О программе</string>
     <string name="group_contacts">Контакты</string>
     <string name="group_sharing">Социальные сети</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="last_name">Фамилия</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_settings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_settings.xml -->
     <eat-comment />
 
     <string name="license">Лицензия</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="loading_button">Отмена</string>
     <string name="loading_message">Пожалуйста,подождите</string>
     <string name="location">ru</string>
     <string name="log_in">Вход</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="login_progress_signing_in">Авторизация в…</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="logout">Выход</string>
@@ -180,32 +201,34 @@
     <string name="month_year">m</string>
     <string name="name_profile">Людмила</string>
     <string name="no_data_about_days">Нету ни хороших, ни плохих дней за </string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_settings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_settings.xml -->
     <eat-comment />
 
     <string name="not_authorized">Не авторизован</string>
     <string name="notifications">Уведомления</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="ok">Да</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="password">Пароль</string>
     <string name="please_enter_first_name">пожалуйста, введите имя</string>
     <string name="profile">Профиль</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="progress_dialog_wait">Подождите... </string>
     <string name="prompt_email">Почта</string>
     <string name="prompt_password">Пароль</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
+    <string name="register">Регистрация</string>
     <string name="registration">Регистрация</string>
     <string name="sat">сб</string>
+    <string name="search">Поиск</string>
     <string name="search_events_">Поиск событий</string>
     <string name="search_month">Искать в этом месяце</string>
     <string name="search_month_events">Искать в этом месяце</string>
@@ -214,11 +237,11 @@
     <string name="search_week_events">Искать на этой неделе</string>
     <string name="search_year">Искать в этом году</string>
     <string name="search_year_events">Искать в этом году</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="send_forgot_password">Отправить пароль на вашу почту?</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="settings">Настройки</string>
@@ -232,21 +255,21 @@
     <string name="stats">Статистика</string>
     <string name="su">вс</string>
     <string name="th">чт</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="title_activity_login">Авторизация</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="title_add_image">Выберите изображение</string>
     <string name="title_dialog_add_event">Добавьте событие</string>
     <string name="tu">вт</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings_activity_settings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings_activity_settings.xml -->
     <eat-comment />
 
     <string name="version">Версия</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-ru/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-ru/strings.xml -->
     <eat-comment />
 
     <string name="view">Просмотреть</string>

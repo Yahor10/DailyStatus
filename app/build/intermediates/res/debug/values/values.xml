@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/bad_days_standart.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/bad_days_standart.xml -->
     <eat-comment />
 
     <array name="badDaysArray">
@@ -13,7 +13,7 @@
         <item>Poisoned</item>
         <item>Personal problems</item>
     </array>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/good_days_standart.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/good_days_standart.xml -->
     <eat-comment />
 
     <array name="goodDaysArray">
@@ -33,21 +33,21 @@
         <item>Go to the cinema</item>
         <item>Reading interesting books and facts</item>
     </array>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string-array name="sex">
         <item>@string/man</item>
         <item>@string/woman</item>
     </string-array>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment />
 
     <string-array name="users">
         <item>User1</item>
         <item>User2</item>
     </string-array>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <attr name="actionBarDivider" format="reference" />
@@ -79,11 +79,11 @@
     <attr name="activityChooserViewStyle" format="reference" />
     <attr name="buttonBarButtonStyle" format="reference" />
     <attr name="buttonBarStyle" format="reference" />
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
     <eat-comment />
 
     <attr name="centered" format="boolean" />
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <attr name="dividerHorizontal" format="reference" />
@@ -110,20 +110,20 @@
     <attr name="searchViewTextFieldRight" format="reference" />
     <attr name="searchViewVoiceIcon" format="reference" />
     <attr name="selectableItemBackground" format="reference" />
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
     <eat-comment />
 
     <attr name="selectedColor" format="color" />
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <attr name="spinnerDropDownItemStyle" format="reference" />
     <attr name="spinnerStyle" format="reference" />
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
     <eat-comment />
 
     <attr name="strokeWidth" format="dimension" />
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <attr name="textAppearanceLargePopupMenu" format="reference" />
@@ -134,11 +134,11 @@
     <attr name="textAppearanceSmallPopupMenu" format="reference" />
     <attr name="textColorSearchUrl" format="reference|color" />
     <attr name="title" format="string" />
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
     <eat-comment />
 
     <attr name="unselectedColor" format="color" />
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <bool name="abc_action_bar_embed_tabs_pre_jb">false</bool>
@@ -147,7 +147,7 @@
     <bool name="abc_config_allowActionMenuItemTextWithIcon">false</bool>
     <bool name="abc_config_showMenuShortcutsWhenKeyboardPresent">false</bool>
     <bool name="abc_split_action_bar_is_narrow">true</bool>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__defaults.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__defaults.xml -->
     <eat-comment />
 
     <bool name="default_circle_indicator_centered">true</bool>
@@ -155,42 +155,44 @@
     <bool name="default_line_indicator_centered">true</bool>
     <bool name="default_title_indicator_selected_bold">true</bool>
     <bool name="default_underline_indicator_fades">true</bool>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
     <color name="abc_search_url_text_selected">@android:color/black</color>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/colors.xml -->
     <eat-comment />
 
     <color name="bg_gray">#3d3d3d00</color>
     <color name="bg_gray_new">#FCFCFC</color>
     <color name="bg_text_color">#ff550000</color>
     <color name="button_good_bad_text">#898989</color>
+    <color name="button_red">#FF0D52</color>
+    <color name="button_yellow">#F9FF00</color>
     <color name="cian">#67CBEE</color>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/facebook_styles.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/facebook_styles.xml -->
     <eat-comment />
 
     <color name="com_facebook_blue">#3B5998</color>
     <color name="com_facebook_loginview_text_color">#FFFFFF</color>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/colors.xml -->
     <eat-comment />
 
     <color name="com_facebook_picker_search_bar_background">#f5f5f7</color>
     <color name="com_facebook_picker_search_bar_text">#bcbdc2</color>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/facebook_styles.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/facebook_styles.xml -->
     <eat-comment />
 
     <color name="com_facebook_usersettingsfragment_connected_shadow_color">#000000</color>
     <color name="com_facebook_usersettingsfragment_connected_text_color">#FFFFFF</color>
     <color name="com_facebook_usersettingsfragment_not_connected_text_color">#A6AED7</color>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/colors.xml -->
     <eat-comment />
 
     <color name="daynames_background">#67CBEE</color>
     <color name="daynames_text_color">#ffffffff</color>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__defaults.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__defaults.xml -->
     <eat-comment />
 
     <color name="default_circle_indicator_fill_color">#FFFFFFFF</color>
@@ -202,7 +204,7 @@
     <color name="default_title_indicator_selected_color">#FFFFFFFF</color>
     <color name="default_title_indicator_text_color">#BBFFFFFF</color>
     <color name="default_underline_indicator_selected_color">#FF33B5E5</color>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/colors.xml -->
     <eat-comment />
 
     <color name="event_add_title">#686868</color>
@@ -220,7 +222,7 @@
     <color name="sunday_text_color">#ff446688</color>
     <color name="violet">#54296E</color>
     <color name="violet_new">#AE2B6D</color>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__colors.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__colors.xml -->
     <eat-comment />
 
     <color name="vpi__background_holo_dark">#ff000000</color>
@@ -231,11 +233,11 @@
     <color name="vpi__bright_foreground_holo_light">@color/vpi__background_holo_dark</color>
     <color name="vpi__bright_foreground_inverse_holo_dark">@color/vpi__bright_foreground_holo_light</color>
     <color name="vpi__bright_foreground_inverse_holo_light">@color/vpi__bright_foreground_holo_dark</color>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/colors.xml -->
     <eat-comment />
 
     <color name="white">#ffffff</color>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <declare-styleable name="ActionBar">
@@ -363,7 +365,7 @@
         -->
         <attr name="expandActivityOverflowButtonDrawable" format="reference" />
     </declare-styleable>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
     <eat-comment />
 
     <declare-styleable name="CirclePageIndicator">
@@ -385,7 +387,7 @@
         <!-- Width of the stroke used to draw the circles. -->
         <attr name="strokeWidth" />
     </declare-styleable>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <declare-styleable name="CompatTextView">
@@ -393,7 +395,7 @@
         <!-- Present the text in ALL CAPS. This may use a small-caps form when available. -->
         <attr name="textAllCaps" format="reference|boolean" />
     </declare-styleable>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
     <eat-comment />
 
     <declare-styleable name="LinePageIndicator">
@@ -411,7 +413,7 @@
         <!-- Width of the gap between each indicator line. -->
         <attr name="gapWidth" format="dimension" />
     </declare-styleable>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <declare-styleable name="LinearLayoutICS">
@@ -594,7 +596,7 @@
         <!-- Whether space should be reserved in layout when an icon is missing. -->
         <attr name="android:preserveIconSpacing" />
     </declare-styleable>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/roundimage_attrs.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/roundimage_attrs.xml -->
     <eat-comment />
 
     <declare-styleable name="RoundedImageView">
@@ -605,7 +607,7 @@
         <attr name="is_oval" format="boolean" />
         <attr name="android:scaleType" />
     </declare-styleable>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <declare-styleable name="SearchView">
@@ -692,7 +694,7 @@
         <!-- Drawable used as a background for selected list items. -->
         <attr name="listChoiceBackgroundIndicator" format="reference" />
     </declare-styleable>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
     <eat-comment />
 
     <declare-styleable name="TitlePageIndicator">
@@ -739,7 +741,7 @@
         <!-- Color of the selected line that represents the current page. -->
         <attr name="selectedColor" />
     </declare-styleable>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <declare-styleable name="View">
@@ -759,7 +761,7 @@
         -->
         <attr name="android:focusable" />
     </declare-styleable>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__attrs.xml -->
     <eat-comment />
 
     <declare-styleable name="ViewPagerIndicator">
@@ -775,7 +777,7 @@
         <!-- Style of the underline indicator. -->
         <attr name="vpiUnderlinePageIndicatorStyle" format="reference" />
     </declare-styleable>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/facebook_attrs.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/facebook_attrs.xml -->
     <eat-comment />
 
     <declare-styleable name="com_facebook_friend_picker_fragment">
@@ -810,7 +812,7 @@
         </attr>
         <attr name="is_cropped" format="boolean" />
     </declare-styleable>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <dimen name="abc_action_bar_default_height">48dip</dimen>
@@ -830,12 +832,12 @@
     <dimen name="abc_panel_menu_list_width">296dp</dimen>
     <dimen name="abc_search_view_preferred_width">320dip</dimen>
     <dimen name="abc_search_view_text_min_width">160dip</dimen>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/dimens.xml -->
     <eat-comment />
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/facebook_styles.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/facebook_styles.xml -->
     <eat-comment />
 
     <dimen name="com_facebook_loginview_compound_drawable_padding">12dp</dimen>
@@ -844,11 +846,11 @@
     <dimen name="com_facebook_loginview_padding_right">16dp</dimen>
     <dimen name="com_facebook_loginview_padding_top">12dp</dimen>
     <dimen name="com_facebook_loginview_text_size">16.0sp</dimen>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/colors.xml -->
     <eat-comment />
 
     <dimen name="com_facebook_picker_place_image_size">64dp</dimen>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/facebook_styles.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/facebook_styles.xml -->
     <eat-comment />
 
     <dimen name="com_facebook_profilepictureview_preset_size_large">180dp</dimen>
@@ -856,11 +858,11 @@
     <dimen name="com_facebook_profilepictureview_preset_size_small">50dp</dimen>
     <dimen name="com_facebook_usersettingsfragment_profile_picture_height">64dp</dimen>
     <dimen name="com_facebook_usersettingsfragment_profile_picture_width">64dp</dimen>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/dimens.xml -->
     <eat-comment />
 
     <dimen name="dayli_size">30sp</dimen>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__defaults.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__defaults.xml -->
     <eat-comment />
 
     <dimen name="default_circle_indicator_radius">3dp</dimen>
@@ -878,14 +880,14 @@
     <dimen name="default_title_indicator_text_size">15dp</dimen>
     <dimen name="default_title_indicator_title_padding">5dp</dimen>
     <dimen name="default_title_indicator_top_padding">7dp</dimen>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <item name="dialog_fixed_height_major" type="dimen">80%</item>
     <item name="dialog_fixed_height_minor" type="dimen">100%</item>
     <item name="dialog_fixed_width_major" type="dimen">320dp</item>
     <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/dimens.xml -->
     <eat-comment />
 
     <dimen name="height_child_group">60dp</dimen>
@@ -909,11 +911,11 @@
     <dimen name="size_text_item">16sp</dimen>
     <dimen name="size_text_title">20sp</dimen>
     <dimen name="welcome_size">17sp</dimen>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/facebook_drawables.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/facebook_drawables.xml -->
     <eat-comment />
 
     <drawable name="com_facebook_picker_default_separator_color">#33464c59</drawable>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <item name="action_bar_activity_content" type="id"/>
@@ -922,22 +924,22 @@
     <item name="home" type="id"/>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <item name="tag_standart_event" type="id">1</item>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <integer name="abc_max_action_buttons">2</integer>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__defaults.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__defaults.xml -->
     <eat-comment />
 
     <integer name="default_circle_indicator_orientation">0</integer>
     <integer name="default_title_indicator_footer_indicator_style">2</integer>
     <integer name="default_underline_indicator_fade_delay">300</integer>
     <integer name="default_underline_indicator_fade_length">400</integer>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <string name="abc_action_bar_home_description">Navigate home</string>
@@ -953,21 +955,21 @@
     <string name="abc_searchview_description_voice">Voice search</string>
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="action_forgot_password">Recover lost password</string>
     <string name="action_log_in"><b>Log in</b></string>
     <string name="action_register"><b>Register</b></string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="action_settings">Settings</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="action_sign_in_short">Register new user</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="add_day_event">Add Day Event</string>
@@ -984,19 +986,19 @@
     <string name="bad_days_charts">Bad</string>
     <string name="calendar">Calendar</string>
     <string name="camera">Camera</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="cancel">Cancel</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="charts">Charts</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/com_crashlytics_export_strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/com_crashlytics_export_strings.xml -->
     <eat-comment />
 
     <string name="com.crashlytics.android.build_id" translatable="false">cddda6c0-0a24-438c-9a8a-58ac5df458cf</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/facebook_strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/facebook_strings.xml -->
     <eat-comment />
 
     <string name="com_facebook_choose_friends">Choose Friends</string>
@@ -1024,12 +1026,12 @@
     <string name="com_facebook_usersettingsfragment_log_in_button">Log in…</string>
     <string name="com_facebook_usersettingsfragment_logged_in">Logged in</string>
     <string name="com_facebook_usersettingsfragment_not_logged_in">Not logged in</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_settings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_settings.xml -->
     <eat-comment />
 
     <string name="connect_with_developers">Contacts to developers</string>
     <string name="connect_with_developers_description">Request new information from developers</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="contentdesc4pic1">Content</string>
@@ -1037,11 +1039,11 @@
     <string name="daily_status">Daily Status</string>
     <string name="delete">Delete</string>
     <string name="dialog_title">Pick a color</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_settings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_settings.xml -->
     <eat-comment />
 
     <string name="do_not_notify">Do not notify me of the good / bad days</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="edit">Edit</string>
@@ -1049,52 +1051,52 @@
     <string name="empty_button">Try again</string>
     <string name="empty_message">No items yet</string>
     <string name="error_button">Try again</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="error_field_required">This field is required</string>
     <string name="error_incorrect_password">This password is incorrect</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="error_internet_off">Connect Internet</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="error_message">Oops! Something wrong happened</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="error_name_does_not_exist">This user name is not registered</string>
     <string name="error_name_empty">Username can not be empty</string>
     <string name="error_name_exist">This username is already registered</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="events">Events</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_settings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_settings.xml -->
     <eat-comment />
 
     <string name="every_3_hours">Every 3 hours</string>
     <string name="every_6_hours">Every 6 hours</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_static_eng.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_static_eng.xml -->
     <eat-comment />
 
     <string name="facebook">Facebook</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="first_name">First Name</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="forgot_password">Forgot your password?</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="fr">Fri</string>
@@ -1102,13 +1104,13 @@
     <string name="good">Good</string>
     <string name="good_day">Good Day</string>
     <string name="good_days_charts">Good</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_settings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_settings.xml -->
     <eat-comment />
 
     <string name="group_about_programm">About Application</string>
     <string name="group_contacts">Contacts</string>
     <string name="group_sharing">Sharing</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="last_name">Last Name</string>
@@ -1117,11 +1119,11 @@
     <string name="loading_message">Please wait</string>
     <string name="location">en</string>
     <string name="log_in">Log in</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="login_progress_signing_in">Signing in…</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="logout">Logout</string>
@@ -1132,28 +1134,28 @@
     <string name="month_year">m</string>
     <string name="name_profile">Lyudmila</string>
     <string name="no_data_about_days">There are no good or bad days selected in this </string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_settings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_settings.xml -->
     <eat-comment />
 
     <string name="not_authorized">Not authorized</string>
     <string name="notifications">Notifications</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="ok">Ok</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="password">Password</string>
     <string name="please_enter_first_name">Please, enter firstname</string>
     <string name="profile">Profile</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="progress_dialog_wait">Wait ... </string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="rate">Rate</string>
@@ -1172,11 +1174,11 @@
     <string name="search_week_events">Search week events</string>
     <string name="search_year">Search year</string>
     <string name="search_year_events">Search year events</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="send_forgot_password">Send the password to your email?</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="settings">Settings</string>
@@ -1190,30 +1192,30 @@
     <string name="stats">Stats</string>
     <string name="su">Sun</string>
     <string name="th">Thu</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment />
 
     <string name="title_activity_login">Sign in</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="title_add_image">Please, choose or take photo</string>
     <string name="title_dialog_add_event">Add day event</string>
     <string name="title_dialog_new_version">New Version</string>
     <string name="tu">Tue</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_static_eng.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_static_eng.xml -->
     <eat-comment />
 
     <string name="twitter">Twitter</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings_activity_settings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings_activity_settings.xml -->
     <eat-comment />
 
     <string name="version">Version</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/version_description.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/version_description.xml -->
     <eat-comment />
 
     <string name="version_1">Version 1.00 \n First application Release! </string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="view">View</string>
@@ -1223,7 +1225,7 @@
     <string name="welcome">Welcome to</string>
     <string name="woman">woman</string>
     <string name="year">Year</string>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="Animations" />
@@ -1407,7 +1409,7 @@
         <item name="vpiUnderlinePageIndicatorStyle">@style/CustomUnderlinePageIndicator</item>
         <item name="android:windowTitleSize">40dip</item>
     </style>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <style name="TextAppearance.AppCompat.Base.CompactMenu.Dialog" parent="android:TextAppearance.Medium">
@@ -1530,14 +1532,14 @@
     <style name="TextAppearance.AppCompat.Widget.PopupMenu.Large" parent="TextAppearance.AppCompat.Base.Widget.PopupMenu.Large" />
 
     <style name="TextAppearance.AppCompat.Widget.PopupMenu.Small" parent="TextAppearance.AppCompat.Base.Widget.PopupMenu.Small" />
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__styles.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__styles.xml -->
     <eat-comment />
 
     <style name="TextAppearance.TabPageIndicator" parent="Widget">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/vpi__dark_theme</item>
     </style>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <style name="TextAppearance.Widget.AppCompat.Base.ExpandedMenu.Item" parent="android:TextAppearance.Medium">
@@ -1545,14 +1547,14 @@
     </style>
 
     <style name="TextAppearance.Widget.AppCompat.ExpandedMenu.Item" parent="TextAppearance.Widget.AppCompat.Base.ExpandedMenu.Item" />
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="TextAppearance_MonthView_DayLabel">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/daynames_text_color</item>
     </style>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <style name="Theme.AppCompat" parent="Theme.Base.AppCompat">
@@ -1847,7 +1849,7 @@
     <style name="Theme.Base.AppCompat.Light.DialogWhenLarge" parent="Theme.Base.AppCompat.Light" />
 
     <style name="Theme.Base.Light" parent="android:Theme.Light" />
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__styles.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__styles.xml -->
     <eat-comment />
 
     <style name="Theme.PageIndicatorDefaults" parent="android:Theme">
@@ -1855,7 +1857,7 @@
     </style>
 
     <style name="Widget"></style>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment />
 
     <style name="Widget.AppCompat.ActionBar" parent="Widget.AppCompat.Base.ActionBar" />
@@ -2149,7 +2151,7 @@
     <style name="Widget.AppCompat.ProgressBar.Horizontal" parent="Widget.AppCompat.Base.ProgressBar.Horizontal" />
 
     <style name="Widget.AppCompat.Spinner.DropDown.ActionBar" parent="Widget.AppCompat.Base.Spinner" />
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/vpi__styles.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/vpi__styles.xml -->
     <eat-comment />
 
     <style name="Widget.TabPageIndicator" parent="Widget">
@@ -2163,7 +2165,7 @@
         <item name="android:textSize">12sp</item>
         <item name="android:maxLines">1</item>
     </style>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/facebook_styles.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/facebook_styles.xml -->
     <eat-comment />
 
     <style name="com_facebook_loginview_default_style" parent="@android:style/Widget.Button">
@@ -2186,7 +2188,7 @@
         <item name="android:textColor">#4B5164</item>
         <item name="android:gravity">center</item>
     </style>
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="text_style">

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/values-hdpi/facebook_dimens.xml -->
+    <!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/values-hdpi/facebook_dimens.xml -->
     <eat-comment />
 
     <dimen name="com_facebook_picker_divider_width">1px</dimen>

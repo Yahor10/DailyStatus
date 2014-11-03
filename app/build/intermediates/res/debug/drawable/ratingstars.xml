@@ -6,4 +6,4 @@
           android:drawable="@drawable/ic_star_empty" />
     <item android:id="@+android:id/progress"
           android:drawable="@drawable/ic_star_full" />
-</layer-list><!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/drawable/ratingstars.xml -->
+</layer-list><!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/drawable/ratingstars.xml -->

@@ -19,4 +19,4 @@
         android:text="@string/daily_status"
         android:textSize="@dimen/size_text_item" />
 
-</LinearLayout><!-- From: file:/Users/alex-pers/Documents/android/repositories/DailyStatus/app/src/main/res/layout/item_standart_event_list.xml -->
+</LinearLayout><!-- From: file:/C:/Users/ychabatarou/gitProjects/DailyStatus/app/src/main/res/layout/item_standart_event_list.xml -->

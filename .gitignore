@@ -32,6 +32,10 @@ Thumbs.db
 .gradle
 build/
 
+app/build
+
+*/build
+
 /*/out
 /*/build
 /*/*/build
