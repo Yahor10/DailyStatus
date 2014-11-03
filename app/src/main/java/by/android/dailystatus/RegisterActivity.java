@@ -8,16 +8,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
-import android.widget.*;
+import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import by.android.dailystatus.orm.model.UserORM;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import by.android.dailystatus.orm.model.UserORM;
+
 public class RegisterActivity extends ActionBarActivity {
 
-    private final static int MIN_COUNT_PASSWORD_SIZE = 5;
+    private final static int MIN_COUNT_PASSWORD_SIZE = 4;
 
     private int sex;
     private String firstName;
