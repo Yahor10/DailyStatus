@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="badDaysArray">
+        <item>Тяжелый день</item>
+        <item>Потратил много денег попросту</item>
+        <item>Поссорился с друзьями</item>
+        <item>Простыл
+        </item>
+        <item>Spend a lot of money</item>
+        <item>Отправился</item>
+        <item>Личные проблемы</item>
+    </array>
+</resources>

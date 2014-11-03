@@ -91,7 +91,12 @@ public class EventStandartListFragment extends Fragment {
 		@Override
 		protected String[] doInBackground(Void... params) {
 			String[] result;
-			result = getResources().getStringArray(R.array.goodDaysArray);
+            if(type == 0){
+                result = getResources().getStringArray(R.array.goodDaysArray);
+            }else{
+                result = getResources().getStringArray(R.array.badDaysArray);
+            }
+
 			return result;
 
 		}
