@@ -384,21 +384,14 @@ public class MainActivity extends ActionBarActivity implements
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == RESULT_TAKE_IMAGE && resultCode == RESULT_OK) {
 
-			Log.v(TAG, "RESULT_TAKE IMAGE");
 
 			String picturePath = PreferenceUtils
 					.getImageFromCameraURL(getApplicationContext());
 			File newdir = new File(picturePath);
-			Log.v(TAG,
-					"PICTURE PATH " + picturePath + " DAY "
-							+ now.getDayOfYear());
-
 			Bitmap bitmap = decodeFile(newdir);
 
 			CacheableBitmapWrapper newValue = new CacheableBitmapWrapper(bitmap);
 			mCache.put(picturePath, newValue);
-
-			Log.v(TAG, "LRU CACHE SIZE" + mCache.size());
 
 			String currentUser = PreferenceUtils.getCurrentUser(this);
 
@@ -413,7 +406,6 @@ public class MainActivity extends ActionBarActivity implements
 		}
 		if ((requestCode == RESULT_LOAD_IMAGE || requestCode == RESULT_TAKE_IMAGE)
 				&& resultCode == RESULT_OK && null != data) {
-			Log.v(TAG, "RESULT_LOAD IMAGE");
 
 			try {
 				saveImage(data.getData());
@@ -460,7 +452,6 @@ public class MainActivity extends ActionBarActivity implements
 	protected void onSaveInstanceState(Bundle outState) {
 
 		outState.putLong(DAY_MILLS, now.getMillis());
-		Log.i(TAG, "SAVE INSTANCE");
 		super.onSaveInstanceState(outState);
 
 	}
@@ -469,7 +460,6 @@ public class MainActivity extends ActionBarActivity implements
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
 		long dayMills = savedInstanceState.getLong(DAY_MILLS);
-		Log.i(TAG, "RESTORE INSTANCE" + dayMills);
 		now = new DateTime(dayMills);
 	}
 
@@ -524,7 +514,6 @@ public class MainActivity extends ActionBarActivity implements
 		int dayOfYear = date.getDayOfYear();
 		int year = date.getYear();
 
-		Log.i(TAG, "CONTENT DAY NAME:" + date.dayOfWeek().getAsShortText());
 		DayORM day = DayORM.getDay(this, dayOfYear, year);
 		if (day != null) {
 			if (day.pictureURL != null) {
@@ -548,11 +537,11 @@ public class MainActivity extends ActionBarActivity implements
 						mCache.put(picturePath, newValue);
 						model.dayImage.setImageBitmap(bitmap);
 					} else {
-						model.dayImage.setImageResource(R.drawable.photo1);
+						model.dayImage.setImageResource(R.drawable.photo3);
 					}
 				}
 			} else {
-				model.dayImage.setImageResource(R.drawable.photo1);
+				model.dayImage.setImageResource(R.drawable.photo3);
 			}
 
 			model.eventLayout.removeAllViews();
@@ -577,7 +566,7 @@ public class MainActivity extends ActionBarActivity implements
 					break;
 			}
 		} else {
-			model.dayImage.setImageResource(R.drawable.photo1);
+			model.dayImage.setImageResource(R.drawable.photo3);
 			model.eventLayout.removeAllViews();
 		}
 
@@ -591,12 +580,6 @@ public class MainActivity extends ActionBarActivity implements
 			model.eventLayout.removeAllViews();
 		}
 
-	}
-
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		// TODO Auto-generated method stub
-		super.onConfigurationChanged(newConfig);
 	}
 
 	private void DialogDayEvent() {
@@ -755,7 +738,7 @@ public class MainActivity extends ActionBarActivity implements
 		public Object instantiateItem(ViewGroup container, int position) {
 			View inflate = inflater.inflate(R.layout.day_fragment, null);
 			DayModel currentPage = dayPageModel[position];
-			Log.v(TAG, "instantiateItem position" + position);
+
 			currentDay = (TextView) inflate.findViewById(R.id.currentDay);
 
 			ImageView dayImage = (ImageView) inflate
