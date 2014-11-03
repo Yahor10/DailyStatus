@@ -7,6 +7,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -14,21 +16,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
+
 import by.android.dailystatus.dialog.ForgotPasswordDialog;
 import by.android.dailystatus.interfaces.FragmentActivityCallback;
 import by.android.dailystatus.orm.model.UserORM;
 import by.android.dailystatus.preference.PreferenceUtils;
 
-import java.util.List;
-
-public class LoginActivity extends ActionBarActivity implements
-        FragmentActivityCallback {
+public class LoginActivity extends ActionBarActivity implements FragmentActivityCallback, TextWatcher {
 
     // private Spinner mCountView;
 
     EditText loginEdit;
     EditText passwordEdit;
     TextView txtForgotPassword;
+
+    private boolean passwordWasChanged = false;
 
     private List<UserORM> allUsers;
 
@@ -48,10 +52,12 @@ public class LoginActivity extends ActionBarActivity implements
 
         loginEdit = (EditText) findViewById(R.id.edtLogin);
         loginEdit.setText(PreferenceUtils.getCurrentUser(this));
+        loginEdit.addTextChangedListener(this);
 
         loginEdit.clearFocus();
         passwordEdit = (EditText) findViewById(R.id.edtPassword);
-        passwordEdit.setText(PreferenceUtils.getPassword(this));
+//        passwordEdit.setText(PreferenceUtils.getPassword(this));
+        passwordEdit.addTextChangedListener(this);
         txtForgotPassword = (TextView) findViewById(R.id.txt_forgot_password);
         txtForgotPassword.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         txtForgotPassword.setOnClickListener(new OnClickListener() {
@@ -89,23 +95,16 @@ public class LoginActivity extends ActionBarActivity implements
                 String loginStr = loginEdit.getText().toString();
                 String passwordStr = passwordEdit.getText().toString();
 
-                PreferenceUtils.savePassword(LoginActivity.this, passwordStr);
+//                PreferenceUtils.savePassword(LoginActivity.this, passwordStr);
 
-                if (loginStr.length() == 0) {
-
-                } else {
-
+                if (loginStr.length() != 0) {
                     boolean containNameFlag = false;
                     for (UserORM user : allUsers) {
-
                         if (user.name.equals(loginStr)) {
                             containNameFlag = true;
-
-                            if (user.password.equals(passwordStr)) {
-                                PreferenceUtils.setCurrentUser(
-                                        getApplicationContext(), loginStr);
-                                startActivity(MainActivity
-                                        .buildIntent(getApplicationContext()));
+                            if (user.password.equals(passwordStr) || !passwordWasChanged) {
+                                PreferenceUtils.setCurrentUser(getApplicationContext(), loginStr);
+                                startActivity(MainActivity.buildIntent(getApplicationContext()));
                                 finish();
                             } else {
                                 Toast.makeText(LoginActivity.this,
@@ -174,4 +173,18 @@ public class LoginActivity extends ActionBarActivity implements
 
     }
 
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        passwordWasChanged = true;
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
+    }
 }

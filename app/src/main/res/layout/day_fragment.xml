@@ -244,7 +244,7 @@
                     android:layout_toStartOf="@+id/imageView9"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_lemon" />
+                    android:src="@drawable/lemon_left" />
 
                 <ImageView
                     android:id="@+id/imageView12"
@@ -267,6 +267,8 @@
                     android:layout_alignBottom="@+id/dayImage"
                     android:layout_toStartOf="@+id/imageView11"
                     android:layout_toLeftOf="@+id/imageView11"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/plum" />
