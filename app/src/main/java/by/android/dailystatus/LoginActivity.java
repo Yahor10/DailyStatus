@@ -2,12 +2,14 @@ package by.android.dailystatus;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,15 +34,18 @@ public class LoginActivity extends ActionBarActivity implements FragmentActivity
     EditText passwordEdit;
     TextView txtForgotPassword;
 
-    private boolean passwordWasChanged = false;
+    private boolean passwordWasChanged;
 
     private List<UserORM> allUsers;
+
+    private String passBefore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         getSupportActionBar().hide();
+        passwordWasChanged = false;
 
         this.getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -139,6 +144,10 @@ public class LoginActivity extends ActionBarActivity implements FragmentActivity
     }
 
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data == null) {
             return;
@@ -175,12 +184,12 @@ public class LoginActivity extends ActionBarActivity implements FragmentActivity
 
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
+        passBefore = charSequence.toString();
     }
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        passwordWasChanged = true;
+        passwordWasChanged = !TextUtils.equals(charSequence, passBefore);
     }
 
     @Override
