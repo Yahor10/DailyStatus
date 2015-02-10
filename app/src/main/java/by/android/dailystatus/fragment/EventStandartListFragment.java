@@ -75,7 +75,6 @@ public class EventStandartListFragment extends Fragment {
 
 		emptyLayout = new EmptyLayout(getActivity(), list);
 
-		// ArrayList<EventORM> events = new ArrayList<EventORM>();
 		new LoadXMLAsync(typeFragment).execute();
 
 		return view;

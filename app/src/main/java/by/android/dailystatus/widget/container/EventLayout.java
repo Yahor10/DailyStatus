@@ -94,6 +94,8 @@ public class EventLayout extends LinearLayout implements OnItemSelectedListener 
         TextView textView = new TextView(mainActivity.getApplicationContext());
         textView.setLayoutParams(layoutParamsText);
         textView.setTextSize(20);
+        textView.setTextColor(R.color.gray);
+
         textView.setText(eventORM.description);
 
         layoutEvent.addView(image, 0);
